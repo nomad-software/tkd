@@ -1,0 +1,14 @@
+{
+	"name": "tkd",
+	"description": "GUI toolkit for the D programming language based on Tcl/Tk",
+	"homepage": "https://github.com/nomad-software/tkd",
+	"authors": ["Gary Willoughby"],
+	"copyright": "Copyright (c) 2014 Gary Willoughby",
+	"license": "MIT",
+	"configurations": [
+		{
+			"name": "library",
+			"excludedSourceFiles": []
+		}
+	],
+}
