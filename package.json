@@ -5,13 +5,22 @@
 	"authors": ["Gary Willoughby"],
 	"copyright": "Copyright (c) 2014 Gary Willoughby",
 	"license": "MIT",
+	"dependencies": {
+		"tcltk": "~master",
+	},
 	"configurations": [
 		{
 			"name": "library",
-			"excludedSourceFiles": []
-		}
+			"targetType": "library",
+			"excludedSourceFiles": ["source/example.d"],
+			"lflags-osx": ["-L/opt/X11/lib/"],
+			"libs": ["X11", "tcl", "tk"],
+		},
+		{
+			"name": "application",
+			"targetType": "executable",
+			"lflags-osx": ["-L/opt/X11/lib/"],
+			"libs": ["X11", "tcl", "tk"],
+		},
 	],
-	"dependencies": {
-		"tcltk": "~master"
-	}
 }
