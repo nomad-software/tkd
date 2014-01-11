@@ -46,6 +46,14 @@ class Tcl
 	}
 
 	/**
+	 * Delete the interpreter.
+	 */
+	protected ~this()
+	{
+		Tcl_DeleteInterp(this._interpreter);
+	}
+
+	/**
 	 * Get the instance of this class.
 	 *
 	 * Returns:

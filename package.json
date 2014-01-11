@@ -13,14 +13,12 @@
 			"name": "library",
 			"targetType": "library",
 			"excludedSourceFiles": ["source/example.d"],
-			"lflags-osx": ["-L/opt/X11/lib/"],
-			"libs": ["X11", "tcl", "tk"],
 		},
 		{
-			"name": "application",
+			"name": "example",
 			"targetType": "executable",
-			"lflags-osx": ["-L/opt/X11/lib/"],
-			"libs": ["X11", "tcl", "tk"],
+			"mainSourceFile": "source/example.d",
+			"lflags-windows": ["/subsystem:windows"],
 		},
 	],
 }
