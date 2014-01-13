@@ -62,7 +62,7 @@ abstract class TkApplication
 	 */
 	public void exit(int exitCode = 0)
 	{
-		core.stdc.stdlib.exit(exitCode);
+		this._tk.eval("destroy .");
 	}
 
 	/**

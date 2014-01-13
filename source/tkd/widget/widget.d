@@ -9,7 +9,7 @@ module tkd.widget.widget;
 /**
  * Imports.
  */
-import core.stdc.stdlib;
+import core.stdc.stdlib : malloc, free;
 import std.array;
 import std.algorithm;
 import std.conv;

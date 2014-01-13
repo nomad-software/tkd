@@ -11,7 +11,6 @@ module tkd.tcl;
  */
 import std.conv;
 import std.string;
-import std.utf;
 import tcltk.tcl;
 
 /**
@@ -70,17 +69,6 @@ class Tcl
 	}
 
 	/**
-	 * Get the low level native interpreter. This is the pointer to the C implementation.
-	 *
-	 * Returns:
-	 *     A pointer to the underlying Tcl interpreter.
-	 */
-	deprecated public @property Tcl_Interp* interpreter() nothrow
-	{
-		return this._interpreter;
-	}
-
-	/**
 	 * Evaluate a script fragment using the interpreter.
 	 *
 	 * Params:
@@ -92,7 +80,7 @@ class Tcl
 	 */
 	public int eval(A...)(string script, A args)
 	{
-		return Tcl_EvalEx(this._interpreter, format(script, args).toUTF8.toStringz, -1, 0);
+		return Tcl_EvalEx(this._interpreter, format(script, args).toStringz, -1, 0);
 	}
 
 	/**
@@ -105,7 +93,7 @@ class Tcl
 	 */
 	public void setResult(A...)(string result, A args)
 	{
-		Tcl_SetResult(this._interpreter, format(result, args).toUTF8.toStringz, TCL_STATIC);
+		Tcl_SetResult(this._interpreter, format(result, args).toStringz, TCL_STATIC);
 	}
 
 	/**
