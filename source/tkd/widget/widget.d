@@ -9,7 +9,7 @@ module tkd.widget.widget;
 /**
  * Imports.
  */
-import core.memory;
+import core.stdc.stdlib;
 import std.array;
 import std.algorithm;
 import std.conv;
@@ -143,7 +143,7 @@ writefln("Geometry: %s", tkScript);
 	{
 		this.unbind(binding);
 
-		EventArgs* eventArgs  = cast(EventArgs*)GC.calloc(EventArgs.sizeof);
+		EventArgs* eventArgs  = cast(EventArgs*)malloc(EventArgs.sizeof);
 
 		(*eventArgs).widget   = this;
 		(*eventArgs).binding  = binding;
@@ -228,5 +228,5 @@ EventArgs eventArgs = *cast(EventArgs*)data;
 import std.stdio;
 writefln("Freeing : 0x%X (%s)", data, eventArgs.widget.id);
 
-	GC.free(data);
+	free(data);
 }
