@@ -1,55 +1,29 @@
 /**
- * Widget module.
+ * Element module.
  *
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.widget.widget;
+module tkd.element.element;
 
 /**
  * Imports.
  */
 import core.stdc.stdlib : malloc, free;
-import std.array;
 import std.algorithm;
+import std.array;
 import std.conv;
 import std.digest.crc;
 import std.random;
 import std.range;
 import std.string;
 import tcltk.tk;
-import tkd.tk;
+import tkd.interpreter.tk;
 
 /**
- * Alias representing a widget callback triggered during events.
+ * The ui element base class.
  */
-alias void delegate(Widget sender, EventArgs args) WidgetCallback;
-
-/**
- * The EventArgs struct passed to the WidgetCallback on invocation.
- */
-struct EventArgs
-{
-	/**
-	 * The widget that raised the event.
-	 */
-	Widget widget;
-
-	/**
-	 * The event that occurred.
-	 */
-	string binding;
-
-	/**
-	 * The callback which was called during the event.
-	 */
-	WidgetCallback callback;
-}
-
-/**
- * The widget base class.
- */
-abstract class Widget
+abstract class Element
 {
 	/**
 	 * The Tk interpreter.
@@ -57,22 +31,22 @@ abstract class Widget
 	protected Tk _tk;
 
 	/**
-	 * The unique hash of this widget.
+	 * The unique hash of this element.
 	 */
 	protected string _hash;
 
 	/**
-	 * The parent of this widget if nested within another.
+	 * The parent of this element if nested within another.
 	 */
-	protected Widget _parent;
+	protected Element _parent;
 
 	/**
-	 * Construct the widget.
+	 * Construct the element.
 	 *
 	 * Params:
-	 *     parent = An optional parent of this widget.
+	 *     parent = An optional parent of this element.
 	 */
-	this(Widget parent = null)
+	this(Element parent = null)
 	{
 		this._tk     = Tk.getInstance();
 		this._parent = parent;
@@ -80,7 +54,7 @@ abstract class Widget
 	}
 
 	/**
-	 * Accessor for the unique widget hash.
+	 * Accessor for the unique element hash.
 	 *
 	 * Returns:
 	 *     The string hash.
@@ -91,7 +65,7 @@ abstract class Widget
 	}
 
 	/**
-	 * The unique id of this widget.
+	 * The unique id of this element.
 	 *
 	 * Returns:
 	 *     The string id.
@@ -105,47 +79,34 @@ abstract class Widget
 			parentId = this._parent.id;
 		}
 
-		return format("%s.widget-%s", parentId, this._hash);
+		return format("%s.element-%s", parentId, this._hash);
 	}
 
 	/**
-	 * The parent widget if any.
+	 * The parent element if any.
 	 *
 	 * Returns:
-	 *     The parent widget.
+	 *     The parent element.
 	 */
-	public @property Widget parent()
+	public @property Element parent()
 	{
 		return this._parent;
 	}
 
 	/**
-	 * Geometry method for placing the widget onto the interface.
-	 */
-	public void pack()
-	{
-		string tkScript = format("pack %s -padx 10 -pady 10", this.id);
-
-import std.stdio;
-writefln("Geometry: %s", tkScript);
-
-		this._tk.eval(tkScript);
-	}
-
-	/**
-	 * Bind an event to this widget.
+	 * Bind an event to this element.
 	 *
 	 * Params:
 	 *     binding = The binding that triggers this event.
 	 *     callback = The delegate callback to execute when the event triggers.
 	 */
-	public void bind(string binding, WidgetCallback callback)
+	public void bind(string binding, ElementCallback callback)
 	{
 		this.unbind(binding);
 
 		EventArgs* eventArgs  = cast(EventArgs*)malloc(EventArgs.sizeof);
 
-		(*eventArgs).widget   = this;
+		(*eventArgs).element  = this;
 		(*eventArgs).binding  = binding;
 		(*eventArgs).callback = callback;
 
@@ -178,7 +139,7 @@ writefln("Unbind  : %s", tkScript);
 	}
 
 	/**
-	 * Generate the unique hash for this widget.
+	 * Generate the unique hash for this element.
 	 *
 	 * Returns:
 	 *     The string hash.
@@ -191,7 +152,33 @@ writefln("Unbind  : %s", tkScript);
 }
 
 /**
- * The function used to create new commands. All bound events trigger for the above widget call this function.
+ * Alias representing an element callback triggered during events.
+ */
+alias void delegate(Element sender, EventArgs args) ElementCallback;
+
+/**
+ * The EventArgs struct passed to the ElementCallback on invocation.
+ */
+struct EventArgs
+{
+	/**
+	 * The element that raised the event.
+	 */
+	Element element;
+
+	/**
+	 * The event that occurred.
+	 */
+	string binding;
+
+	/**
+	 * The callback which was called during the event.
+	 */
+	ElementCallback callback;
+}
+
+/**
+ * The function used to create new commands. All bound events trigger for the above element call this function.
  *
  * Params:
  *     data = Client data registered with the new command.
@@ -208,7 +195,7 @@ private extern(C) int commandCallback(ClientData data, Tcl_Interp* tclInterprete
 	}
 
 	EventArgs eventArgs = *cast(EventArgs*)data;
-	eventArgs.callback(eventArgs.widget, eventArgs);
+	eventArgs.callback(eventArgs.element, eventArgs);
 
 	return TCL_OK;
 }
@@ -226,7 +213,7 @@ private extern(C) void deleteCommandCallback(ClientData data) nothrow
 scope (failure) return;
 EventArgs eventArgs = *cast(EventArgs*)data;
 import std.stdio;
-writefln("Freeing : 0x%X (%s)", data, eventArgs.widget.id);
+writefln("Freeing : 0x%X (%s)", data, eventArgs.element.id);
 
 	free(data);
 }

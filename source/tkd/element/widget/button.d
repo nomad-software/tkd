@@ -4,13 +4,14 @@
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.widget.button;
+module tkd.element.widget.button;
 
 /**
  * Imports.
  */
 import std.string;
-import tkd.widget.widget;
+import tkd.element.element;
+import tkd.element.widget.widget;
 
 /**
  * Class representing a button widget.
@@ -24,20 +25,15 @@ class Button : Widget
 	 *     parent = An optional parent of this widget.
 	 *     text = The text of the button.
 	 */
-	this(Widget parent, string text = null)
+	this(Element parent = null, string text = null)
 	{
 		super(parent);
 
-		string tkCreate = format("ttk::button %s -text \"%s\"", this.id, text);
+		string tkScript = format("ttk::button %s -text \"%s\"", this.id, text);
 
 import std.stdio;
-writefln("Geometry: %s", tkCreate);
+writefln("Geometry: %s", tkScript);
 
-		this._tk.eval(tkCreate);
+		this._tk.eval(tkScript);
 	}
-
-	// public void setText(string text)
-	// {
-	// 	this._tkOptions["-text"] = format("\"%s\"", text);
-	// }
 }

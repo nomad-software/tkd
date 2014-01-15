@@ -4,13 +4,14 @@
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.widget.frame;
+module tkd.element.widget.frame;
 
 /**
  * Imports.
  */
 import std.string;
-import tkd.widget.widget;
+import tkd.element.element;
+import tkd.element.widget.widget;
 
 /**
  * Class representing a frame widget.
@@ -23,15 +24,15 @@ class Frame : Widget
 	 * Params:
 	 *     parent = An optional parent of this widget.
 	 */
-	this(Widget parent = null)
+	this(Element parent = null)
 	{
 		super(parent);
 
-		string tkCreate = format("ttk::frame %s -borderwidth 2 -relief groove", this.id);
+		string tkScript = format("ttk::frame %s -borderwidth 2 -relief groove", this.id);
 
 import std.stdio;
-writefln("Geometry: %s", tkCreate);
+writefln("Geometry: %s", tkScript);
 
-		this._tk.eval(tkCreate);
+		this._tk.eval(tkScript);
 	}
 }

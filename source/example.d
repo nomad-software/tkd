@@ -5,23 +5,37 @@ module main;
  */
 import std.stdio;
 import tkd.tkapplication;
+import tkd.element.widget.cursor;
 
 /**
  * Sample application.
  */
 class Application : TkApplication
 {
-	private void button_hello_click(Widget widget, EventArgs args)
+	/**
+	 * Interface members.
+	 */
+	private Frame  root;
+	private Button button_hello;
+	private Button button_exit;
+
+	/**
+	 * Event callbacks.
+	 */
+	private void button_hello_click(Element element, EventArgs args)
 	{
-		writefln("Hello from %s", widget.id);
+		writefln("Hello from %s", element.id);
 	}
 
-	private void button_quit_click(Widget widget, EventArgs args)
+	private void button_quit_click(Element element, EventArgs args)
 	{
 		this.exit();
 	}
 
-	override protected void initWidgets()
+	/**
+	 * Initialise the user interface.
+	 */
+	override protected void initInterface()
 	{
 		this.root         = new Frame();
 		this.button_hello = new Button(this.root, "Hello");
@@ -33,6 +47,13 @@ class Application : TkApplication
 		this.root.pack();
 		this.button_hello.pack();
 		this.button_exit.pack();
+
+import std.stdio;
+writefln("%s", this.button_hello.getClass());
+writefln("%s", this.button_hello.getCursor());
+writefln("%s", this.button_hello.canFocus());
+writefln("%s", this.button_hello.getStyle());
+
 	}
 }
 

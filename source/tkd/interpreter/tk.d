@@ -4,14 +4,14 @@
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.tk;
+module tkd.interpreter.tk;
 
 /**
  * Imports.
  */
 import std.conv;
 import tcltk.tk;
-import tkd.tcl;
+import tkd.interpreter.tcl;
 
 /**
  * Simple singleton wrapper for the Tk interpreter.

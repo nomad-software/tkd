@@ -4,7 +4,7 @@
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.tcl;
+module tkd.interpreter.tcl;
 
 /**
  * Imports.
