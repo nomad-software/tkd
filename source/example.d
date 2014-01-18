@@ -13,13 +13,6 @@ import tkd.element.widget.cursor;
 class Application : TkApplication
 {
 	/**
-	 * Interface members.
-	 */
-	private Frame  root;
-	private Button button_hello;
-	private Button button_exit;
-
-	/**
 	 * Event callbacks.
 	 */
 	private void button_hello_click(Element element, EventArgs args)
@@ -37,22 +30,25 @@ class Application : TkApplication
 	 */
 	override protected void initInterface()
 	{
-		this.root         = new Frame();
-		this.button_hello = new Button(this.root, "Hello");
-		this.button_exit  = new Button(this.root, "Exit");
+		this.frame.root   = new Frame();
+		this.button.hello = new Button(this.frame.root, "Hello");
+		this.button.exit  = new Button(this.frame.root, "Exit");
 
-		this.button_hello.bind("<Button-1>", &this.button_hello_click);
-		this.button_exit.bind("<Button-1>", &this.button_quit_click);
+		// This is not the correct way to add a command to a button
+		// as this binding endures after the widget is disabled.
+		this.button.hello.bind("<Button-1>", &this.button_hello_click);
+		this.button.exit.bind("<Button-1>", &this.button_quit_click);
 
-		this.root.pack();
-		this.button_hello.pack();
-		this.button_exit.pack();
+		this.frame.root.pack();
+		this.button.hello.pack();
+		this.button.exit.pack();
 
 import std.stdio;
-writefln("%s", this.button_hello.getClass());
-writefln("%s", this.button_hello.getCursor());
-writefln("%s", this.button_hello.canFocus());
-writefln("%s", this.button_hello.getStyle());
+writefln("Class: %s", this.button.hello.getClass());
+writefln("Cursor: %s", this.button.hello.getCursor());
+writefln("State: %s", this.button.hello.getState());
+writefln("Style: %s", this.button.hello.getStyle());
+writefln("Focus: %s", this.button.hello.canFocus());
 
 	}
 }

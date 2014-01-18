@@ -12,6 +12,8 @@ module tkd.element.widget.widget;
 import std.string;
 import tkd.element.element;
 import tkd.element.widget.cursor;
+import tkd.element.widget.state;
+import tkd.meta.reflection;
 
 /**
  * The widget base class.
@@ -45,7 +47,7 @@ abstract class Widget : Element
 	 * Set the widget's cursor.
 	 *
 	 * Params:
-	 *     cursor = A valid widget cursor.
+	 *     cursor = Any valid widget cursor.
 	 */
 	public void setCursor(Cursor cursor)
 	{
@@ -56,23 +58,34 @@ abstract class Widget : Element
 	 * Get the widget's assigned cursor.
 	 *
 	 * Returns:
-	 *     A Tk cursor string if any.
+	 *     The assigned cursor.
 	 */
-	public string getCursor()
+	public Cursor getCursor()
 	{
 		this._tk.eval(format("%s cget -cursor", this.id));
-		return this._tk.getResult();
+		return this._tk.getResult().getEnumMemberByValue!(Cursor);
 	}
 
 	/**
-	 * Check if the widget can recieve focus during keyboard traversal.
+	 * Set the widget's state.
+	 *
+	 * Params:
+	 *     state = A valid widget state.
+	 */
+	public void setState(State state)
+	{
+		this._tk.eval(format("%s configure -state %s", this.id, state));
+	}
+
+	/**
+	 * Get the widget's state.
 	 *
 	 * Returns:
-	 *     A Tk class string if any.
+	 *     The widget's state.
 	 */
-	public string canFocus()
+	public string getState()
 	{
-		this._tk.eval(format("%s cget -takefocus", this.id));
+		this._tk.eval(format("%s cget -state", this.id));
 		return this._tk.getResult();
 	}
 
@@ -85,6 +98,18 @@ abstract class Widget : Element
 	public string getStyle()
 	{
 		this._tk.eval(format("%s cget -style", this.id));
+		return this._tk.getResult();
+	}
+
+	/**
+	 * Check if the widget can recieve focus during keyboard traversal.
+	 *
+	 * Returns:
+	 *     A Tk class string if any.
+	 */
+	public string canFocus()
+	{
+		this._tk.eval(format("%s cget -takefocus", this.id));
 		return this._tk.getResult();
 	}
 

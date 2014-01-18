@@ -11,6 +11,7 @@ module tkd.element.widget.cursor;
  */
 enum Cursor : string
 {
+	normal                  = "",
 	xCursor                 = "X_cursor",
 	arrow                   = "arrow",
 	basedArrowDown          = "based_arrow_down",

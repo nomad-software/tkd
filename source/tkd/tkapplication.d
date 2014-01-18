@@ -9,6 +9,7 @@ module tkd.tkapplication;
 /**
  * Private imports.
  */
+import tkd.element.store;
 import tkd.interpreter.tk;
 
 /**
@@ -27,6 +28,12 @@ abstract class TkApplication
 	 * The Tk interpreter.
 	 */
 	private Tk _tk;
+
+	/**
+	 * Storage for elements.
+	 */
+	protected Store!(Button) button;
+	protected Store!(Frame) frame;
 
 	/**
 	 * constructor.

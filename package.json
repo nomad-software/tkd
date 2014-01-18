@@ -6,6 +6,7 @@
 	"copyright": "Copyright (c) 2014 Gary Willoughby",
 	"license": "MIT",
 	"dependencies": {
+		"dunit": "~master",
 		"tcltk": "~master",
 	},
 	"configurations": [
