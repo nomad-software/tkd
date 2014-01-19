@@ -10,14 +10,14 @@ module tkd.tkapplication;
  * Private imports.
  */
 import tkd.element.store;
+import tkd.element.widget.button;
+import tkd.element.widget.frame;
 import tkd.interpreter.tk;
 
 /**
  * Public imports.
  */
 public import tkd.element.element;
-public import tkd.element.widget.button;
-public import tkd.element.widget.frame;
 
 /**
  * Base class of all Tk gui applications.

@@ -9,11 +9,9 @@ module tkd.element.widget.widget;
 /**
  * Imports.
  */
+import std.array;
 import std.string;
 import tkd.element.element;
-import tkd.element.widget.cursor;
-import tkd.element.widget.state;
-import tkd.meta.reflection;
 
 /**
  * The widget base class.
@@ -32,47 +30,12 @@ abstract class Widget : Element
 	}
 
 	/**
-	 * Get the widget's assigned class.
-	 *
-	 * Returns:
-	 *     A Tk class string.
-	 */
-	public string getClass()
-	{
-		this._tk.eval(format("%s cget -class", this.id));
-		return this._tk.getResult();
-	}
-
-	/**
-	 * Set the widget's cursor.
-	 *
-	 * Params:
-	 *     cursor = Any valid widget cursor.
-	 */
-	public void setCursor(Cursor cursor)
-	{
-		this._tk.eval(format("%s configure -cursor %s", this.id, cursor));
-	}
-
-	/**
-	 * Get the widget's assigned cursor.
-	 *
-	 * Returns:
-	 *     The assigned cursor.
-	 */
-	public Cursor getCursor()
-	{
-		this._tk.eval(format("%s cget -cursor", this.id));
-		return this._tk.getResult().getEnumMemberByValue!(Cursor);
-	}
-
-	/**
 	 * Set the widget's state.
 	 *
 	 * Params:
 	 *     state = A valid widget state.
 	 */
-	public void setState(State state)
+	public void setState(string state)
 	{
 		this._tk.eval(format("%s configure -state %s", this.id, state));
 	}
@@ -90,7 +53,18 @@ abstract class Widget : Element
 	}
 
 	/**
-	 * Get the widget's assigned style.
+	 * Set the widget's style.
+	 *
+	 * Params:
+	 *     style = A valid widget style.
+	 */
+	public void setStyle(string style)
+	{
+		this._tk.eval(format("%s configure -style %s", this.id, style));
+	}
+
+	/**
+	 * Get the widget's style.
 	 *
 	 * Returns:
 	 *     A Tk style string if any.
@@ -98,6 +72,10 @@ abstract class Widget : Element
 	public string getStyle()
 	{
 		this._tk.eval(format("%s cget -style", this.id));
+		if (this._tk.getResult().empty())
+		{
+			return this.getClass();
+		}
 		return this._tk.getResult();
 	}
 

@@ -94,6 +94,61 @@ abstract class Element
 	}
 
 	/**
+	 * Get the class as a string.
+	 *
+	 * returns:
+	 *     A string containing the class.
+	 */
+	protected string getClassString()
+	{
+		this._tk.eval(format("%s cget -class", this.id));
+		if (this._tk.getResult().empty())
+		{
+			this._tk.eval(format("winfo class %s", this.id));
+		}
+		return this._tk.getResult();
+	}
+
+	/**
+	 * Get the widget's class.
+	 *
+	 * Returns:
+	 *     The widget's class as a string.
+	 */
+	public string getClass()
+	{
+		this._tk.eval(format("%s cget -class", this.id));
+		if (this._tk.getResult().empty())
+		{
+			this._tk.eval(format("winfo class %s", this.id));
+		}
+		return this._tk.getResult();
+	}
+
+	/**
+	 * Set the widget's cursor.
+	 *
+	 * Params:
+	 *     cursor = Any valid widget cursor.
+	 */
+	public void setCursor(string cursor)
+	{
+		this._tk.eval(format("%s configure -cursor %s", this.id, cursor));
+	}
+
+	/**
+	 * Get the widget's cursor.
+	 *
+	 * Returns:
+	 *     The widget's cursor.
+	 */
+	public string getCursor()
+	{
+		this._tk.eval(format("%s cget -cursor", this.id));
+		return this._tk.getResult();
+	}
+
+	/**
 	 * Bind an event to this element.
 	 *
 	 * Params:

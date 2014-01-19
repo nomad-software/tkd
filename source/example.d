@@ -4,8 +4,9 @@ module main;
  * Imports.
  */
 import std.stdio;
+import tkd.element.widget.button;
+import tkd.element.widget.frame;
 import tkd.tkapplication;
-import tkd.element.widget.cursor;
 
 /**
  * Sample application.

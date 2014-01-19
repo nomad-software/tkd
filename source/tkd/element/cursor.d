@@ -4,7 +4,7 @@
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.element.widget.cursor;
+module tkd.element.cursor;
 
 /**
  * Cross-platform cursor values.
