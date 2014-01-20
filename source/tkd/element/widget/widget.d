@@ -12,6 +12,7 @@ module tkd.element.widget.widget;
 import std.array;
 import std.string;
 import tkd.element.element;
+import tkd.element.widget.state;
 
 /**
  * The widget base class.
@@ -50,6 +51,37 @@ abstract class Widget : Element
 	{
 		this._tk.eval(format("%s cget -state", this.id));
 		return this._tk.getResult();
+	}
+
+	/**
+	 * Test if a widget is in a particular state.
+	 *
+	 * Params:
+	 *     state = A valid widget state.
+	 *
+	 * Returns:
+	 *     true is the widget is in that state, false if not.
+	 */
+	public bool inState(string state)
+	{
+		if (state == State.normal)
+		{
+			bool abnormalState = this.inState(State.active)
+				|| this.inState(State.disabled)
+				|| this.inState(State.focus)
+				|| this.inState(State.pressed)
+				|| this.inState(State.selected)
+				|| this.inState(State.background)
+				|| this.inState(State.readonly)
+				|| this.inState(State.alternate)
+				|| this.inState(State.invalid)
+				|| this.inState(State.hover);
+
+				return !abnormalState;
+		}
+
+		this._tk.eval(format("%s instate %s", this.id, state));
+		return this._tk.getResult() == "1";
 	}
 
 	/**

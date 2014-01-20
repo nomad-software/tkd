@@ -44,6 +44,11 @@ class Application : TkApplication
 		this.button.hello.pack();
 		this.button.exit.pack();
 
+
+import tkd.element.widget.state;
+this.button.hello.setState(State.active);
+writefln("In state?: %s", this.button.hello.inState(State.normal));
+
 import std.stdio;
 writefln("Class: %s", this.button.hello.getClass());
 writefln("Cursor: %s", this.button.hello.getCursor());
