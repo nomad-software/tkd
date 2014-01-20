@@ -9,6 +9,7 @@ module tkd.element.widget.widget;
 /**
  * Imports.
  */
+import std.algorithm;
 import std.array;
 import std.string;
 import tkd.element.element;
@@ -34,54 +35,62 @@ abstract class Widget : Element
 	 * Set the widget's state.
 	 *
 	 * Params:
-	 *     state = A valid widget state.
+	 *     state = An array of valid widget states.
 	 */
-	public void setState(string state)
+	public void setState(string[] state)
 	{
-		this._tk.eval(format("%s configure -state %s", this.id, state));
+		this._tk.eval(format("%s state { %s }", this.id, state.join(" ")));
 	}
 
 	/**
 	 * Get the widget's state.
 	 *
 	 * Returns:
-	 *     The widget's state.
+	 *     An array of valid widget states.
 	 */
-	public string getState()
+	public string[] getState()
 	{
-		this._tk.eval(format("%s cget -state", this.id));
-		return this._tk.getResult();
+		this._tk.eval(format("%s state", this.id));
+		return this._tk.getResult().split();
 	}
 
 	/**
 	 * Test if a widget is in a particular state.
 	 *
 	 * Params:
-	 *     state = A valid widget state.
+	 *     state = An array of valid widget states.
 	 *
 	 * Returns:
 	 *     true is the widget is in that state, false if not.
 	 */
-	public bool inState(string state)
+	public bool inState(string[] state)
 	{
-		if (state == State.normal)
+		if (state.canFind(State.normal))
 		{
-			bool abnormalState = this.inState(State.active)
-				|| this.inState(State.disabled)
-				|| this.inState(State.focus)
-				|| this.inState(State.pressed)
-				|| this.inState(State.selected)
-				|| this.inState(State.background)
-				|| this.inState(State.readonly)
-				|| this.inState(State.alternate)
-				|| this.inState(State.invalid)
-				|| this.inState(State.hover);
-
-				return !abnormalState;
+			throw new Exception("State.normal is not supported by inState method.");
 		}
 
-		this._tk.eval(format("%s instate %s", this.id, state));
+		this._tk.eval(format("%s instate { %s }", this.id, state.join(" ")));
 		return this._tk.getResult() == "1";
+	}
+
+	/**
+	 * Remove the widget's state.
+	 *
+	 * Params:
+	 *     state = An array of valid widget states.
+	 */
+	public void removeState(string[] state)
+	{
+		this._tk.eval(format("%s state { !%s }", this.id, state.join(" !")));
+	}
+
+	/**
+	 * Reset the widget's state to default.
+	 */
+	public void resetState()
+	{
+		this.removeState(this.getState());
 	}
 
 	/**
