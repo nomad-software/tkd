@@ -67,7 +67,7 @@ abstract class Widget : Element
 	 * Get the widget's style.
 	 *
 	 * Returns:
-	 *     A Tk style string if any.
+	 *     The widget's style.
 	 */
 	public string getStyle()
 	{
@@ -80,12 +80,23 @@ abstract class Widget : Element
 	}
 
 	/**
-	 * Check if the widget can recieve focus during keyboard traversal.
+	 * Set if the widget can recieve focus during keyboard traversal.
+	 *
+	 * Params:
+	 *     style = A valid focus setting.
+	 */
+	public void setFocus(string focus)
+	{
+		this._tk.eval(format("%s configure -takefocus %s", this.id, focus));
+	}
+
+	/**
+	 * Get if the widget can recieve focus during keyboard traversal.
 	 *
 	 * Returns:
-	 *     A Tk class string if any.
+	 *     The widget's focus setting.
 	 */
-	public string canFocus()
+	public string getFocus()
 	{
 		this._tk.eval(format("%s cget -takefocus", this.id));
 		return this._tk.getResult();

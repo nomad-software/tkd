@@ -94,22 +94,6 @@ abstract class Element
 	}
 
 	/**
-	 * Get the class as a string.
-	 *
-	 * returns:
-	 *     A string containing the class.
-	 */
-	protected string getClassString()
-	{
-		this._tk.eval(format("%s cget -class", this.id));
-		if (this._tk.getResult().empty())
-		{
-			this._tk.eval(format("winfo class %s", this.id));
-		}
-		return this._tk.getResult();
-	}
-
-	/**
 	 * Get the widget's class.
 	 *
 	 * Returns:

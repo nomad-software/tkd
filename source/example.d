@@ -49,7 +49,7 @@ writefln("Class: %s", this.button.hello.getClass());
 writefln("Cursor: %s", this.button.hello.getCursor());
 writefln("State: %s", this.button.hello.getState());
 writefln("Style: %s", this.button.hello.getStyle());
-writefln("Focus: %s", this.button.hello.canFocus());
+writefln("Focus: %s", this.button.hello.getFocus());
 
 	}
 }
