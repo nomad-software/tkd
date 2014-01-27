@@ -41,27 +41,22 @@ abstract class Element
 	protected Element _parent;
 
 	/**
+	 * Internal element identifier.
+	 */
+	protected string _elementId;
+
+	/**
 	 * Construct the element.
 	 *
 	 * Params:
 	 *     parent = An optional parent of this element.
 	 */
-	this(Element parent = null)
+	public this(Element parent = null)
 	{
-		this._tk     = Tk.getInstance();
-		this._parent = parent;
-		this._hash   = this.generateHash();
-	}
-
-	/**
-	 * Accessor for the unique element hash.
-	 *
-	 * Returns:
-	 *     The string hash.
-	 */
-	public @property string hash()
-	{
-		return this._hash;
+		this._tk        = Tk.getInstance();
+		this._parent    = parent;
+		this._hash      = this.generateHash();
+		this._elementId = "element";
 	}
 
 	/**
@@ -79,7 +74,7 @@ abstract class Element
 			parentId = this._parent.id;
 		}
 
-		return format("%s.element-%s", parentId, this._hash);
+		return format("%s.%s-%s", parentId, this._elementId, this._hash);
 	}
 
 	/**
@@ -149,11 +144,8 @@ abstract class Element
 		(*eventArgs).binding  = binding;
 		(*eventArgs).callback = callback;
 
-		string command  = format("command-%s", hexDigest!(CRC32)(binding ~ this.id).array.to!(string));
+		string command  = format("command-%s", this.generateHash(binding ~ this.id));
 		string tkScript = format("bind %s %s { %s }", this.id, binding, command);
-
-import std.stdio;
-writefln("Bind    : %s", tkScript);
 
 		this._tk.createCommand(command, &commandCallback, eventArgs, &deleteCommandCallback);
 		this._tk.eval(tkScript);
@@ -167,11 +159,8 @@ writefln("Bind    : %s", tkScript);
 	 */
 	public void unbind(string binding)
 	{
-		string command  = format("command-%s", hexDigest!(CRC32)(this.id).array.to!(string));
+		string command  = format("command-%s", this.generateHash(binding ~ this.id));
 		string tkScript = format("bind %s %s { }", this.id, binding);
-
-import std.stdio;
-writefln("Unbind  : %s", tkScript);
 
 		this._tk.deleteCommand(command);
 		this._tk.eval(tkScript);
@@ -180,13 +169,19 @@ writefln("Unbind  : %s", tkScript);
 	/**
 	 * Generate the unique hash for this element.
 	 *
+	 * Params:
+	 *     text = The text to generate a hash of.
+	 *
 	 * Returns:
 	 *     The string hash.
 	 */
-	protected string generateHash()
+	protected string generateHash(string text = null)
 	{
-		uint number = Random(unpredictableSeed).front;
-		return hexDigest!(CRC32)(number.to!(string)).array.to!(string);
+		if (text is null)
+		{
+			text = Random(unpredictableSeed).front.to!(string);
+		}
+		return hexDigest!(CRC32)(text).array.to!(string);
 	}
 }
 
@@ -248,11 +243,5 @@ private extern(C) int commandCallback(ClientData data, Tcl_Interp* tclInterprete
  */
 private extern(C) void deleteCommandCallback(ClientData data) nothrow
 {
-
-scope (failure) return;
-EventArgs eventArgs = *cast(EventArgs*)data;
-import std.stdio;
-writefln("Freeing : 0x%X (%s)", data, eventArgs.element.id);
-
 	free(data);
 }

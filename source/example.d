@@ -18,7 +18,7 @@ class Application : TkApplication
 	 */
 	private void button_hello_click(Element element, EventArgs args)
 	{
-		writefln("Hello from %s", element.id);
+		this.button.hello.setText("World");
 	}
 
 	private void button_quit_click(Element element, EventArgs args)
@@ -43,14 +43,6 @@ class Application : TkApplication
 		this.frame.root.pack();
 		this.button.hello.pack();
 		this.button.exit.pack();
-
-import std.stdio;
-writefln("Class: %s", this.button.hello.getClass());
-writefln("Cursor: %s", this.button.hello.getCursor());
-writefln("State: %s", this.button.hello.getState());
-writefln("Style: %s", this.button.hello.getStyle());
-writefln("Focus: %s", this.button.hello.getFocus());
-
 	}
 }
 

@@ -26,9 +26,11 @@ abstract class Widget : Element
 	 * Params:
 	 *     parent = An optional parent of this widget.
 	 */
-	this(Element parent = null)
+	public this(Element parent = null)
 	{
 		super(parent);
+
+		this._elementId = "widget";
 	}
 
 	/**
@@ -149,10 +151,6 @@ abstract class Widget : Element
 	public void pack()
 	{
 		string tkScript = format("pack %s -padx 10 -pady 10", this.id);
-
-import std.stdio;
-writefln("Geometry: %s", tkScript);
-
 		this._tk.eval(tkScript);
 	}
 }

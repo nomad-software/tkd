@@ -11,12 +11,12 @@ module tkd.element.widget.button;
  */
 import std.string;
 import tkd.element.element;
-import tkd.element.widget.widget;
+import tkd.element.widget.labeledwidget;
 
 /**
  * Class representing a button widget.
  */
-class Button : Widget
+class Button : LabeledWidget
 {
 	/**
 	 * Construct the widget.
@@ -27,12 +27,11 @@ class Button : Widget
 	 */
 	this(Element parent = null, string text = null)
 	{
-		super(parent);
+		super(parent, text);
 
-		string tkScript = format("ttk::button %s -text \"%s\"", this.id, text);
+		this._elementId = "button";
 
-import std.stdio;
-writefln("Geometry: %s", tkScript);
+		string tkScript = format("ttk::button %s -textvariable \"%s\"", this.id, this._textVariable);
 
 		this._tk.eval(tkScript);
 	}

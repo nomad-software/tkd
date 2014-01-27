@@ -24,14 +24,11 @@ class Frame : Widget
 	 * Params:
 	 *     parent = An optional parent of this widget.
 	 */
-	this(Element parent = null)
+	public this(Element parent = null)
 	{
 		super(parent);
 
 		string tkScript = format("ttk::frame %s -borderwidth 2 -relief groove", this.id);
-
-import std.stdio;
-writefln("Geometry: %s", tkScript);
 
 		this._tk.eval(tkScript);
 	}

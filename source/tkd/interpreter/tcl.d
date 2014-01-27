@@ -12,6 +12,7 @@ module tkd.interpreter.tcl;
 import std.conv;
 import std.string;
 import tcltk.tcl;
+debug import std.stdio;
 
 /**
  * Simple wrapper for the Tcl interpreter.
@@ -36,6 +37,8 @@ class Tcl
 	 */
 	protected this()
 	{
+		debug writefln("Inititalising Tcl");
+
 		this._interpreter = Tcl_CreateInterp();
 
 		if (Tcl_Init(this._interpreter) != TCL_OK)
@@ -45,10 +48,12 @@ class Tcl
 	}
 
 	/**
-	 * Delete the interpreter.
+	 * Clean up.
 	 */
 	protected ~this()
 	{
+		debug writefln("Cleaning up Tcl");
+
 		Tcl_DeleteInterp(this._interpreter);
 	}
 
@@ -80,6 +85,8 @@ class Tcl
 	 */
 	public int eval(A...)(string script, A args)
 	{
+		debug writefln(format(script, args));
+
 		return Tcl_EvalEx(this._interpreter, format(script, args).toStringz, -1, 0);
 	}
 
@@ -118,6 +125,8 @@ class Tcl
 	 */
 	public Tcl_Command createCommand(string name, Tcl_CmdProc commandProcedure, ClientData data = null, Tcl_CmdDeleteProc deleteProcedure = null)
 	{
+		debug writefln(format("Creating command %s", name));
+
 		return Tcl_CreateCommand(this._interpreter, name.toStringz, commandProcedure, data, deleteProcedure);
 	}
 
@@ -132,6 +141,55 @@ class Tcl
 	 */
 	public int deleteCommand(string name)
 	{
+		debug writefln(format("Deleting command %s", name));
+
 		return Tcl_DeleteCommand(this._interpreter, name.toStringz);
+	}
+
+	/**
+	 * Set the value of a variable.
+	 * If the variable doesn't exist it is created.
+	 *
+	 * Params:
+	 *     name = The name of the variable to set.
+	 *     value = The variable's value.
+	 */
+	public void setVariable(string name, string value)
+	{
+		debug writefln(format("Setting variable %s", name));
+
+		Tcl_SetVar(this._interpreter, name.toStringz, value.toStringz, TCL_GLOBAL_ONLY);
+	}
+
+	/**
+	 * Get the value of a variable.
+	 *
+	 * Params:
+	 *     name = The name of the variable to get the value of.
+	 *
+	 * Returns:
+	 *     A string containing the variable's value.
+	 */
+	public string getVariable(string name)
+	{
+		debug writefln(format("Getting variable %s", name));
+
+		return Tcl_GetVar(this._interpreter, name.toStringz, TCL_GLOBAL_ONLY).to!(string);
+	}
+
+	/**
+	 * Delete a variable from the interpreter.
+	 *
+	 * Params:
+	 *     name = The name of the variable to delete.
+	 *
+	 * Returns:
+	 *     TCL_OK on success, TCL_ERROR on failure.
+	 */
+	public int deleteVariable(string name)
+	{
+		debug writefln(format("Deleting variable %s", name));
+
+		return Tcl_UnsetVar(this._interpreter, name.toStringz, TCL_GLOBAL_ONLY);
 	}
 }
