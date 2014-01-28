@@ -65,7 +65,7 @@ abstract class Element
 	 * Returns:
 	 *     The string id.
 	 */
-	public @property string id()
+	public @property string id() nothrow
 	{
 		string parentId;
 
@@ -74,7 +74,7 @@ abstract class Element
 			parentId = this._parent.id;
 		}
 
-		return format("%s.%s-%s", parentId, this._elementId, this._hash);
+		return parentId ~ "." ~ this._elementId ~ "-" ~ this._hash;
 	}
 
 	/**
@@ -222,14 +222,22 @@ struct EventArgs
  */
 private extern(C) int commandCallback(ClientData data, Tcl_Interp* tclInterpreter, int argc, const(char)** argv) nothrow
 {
-	scope (failure)
+	EventArgs eventArgs = *cast(EventArgs*)data;
+
+	try
 	{
-		Tcl_SetResult(tclInterpreter, "Error occurred in event callback.".toStringz, TCL_STATIC);
+		eventArgs.callback(eventArgs.element, eventArgs);
+	}
+	catch (Throwable ex)
+	{
+		string error = "Error occurred in bound callback. ";
+		error ~= ex.msg ~ "\n";
+		error ~= "Element: " ~ eventArgs.element.id ~ "\n";
+		error ~= "Binding: " ~ eventArgs.binding ~ "\n";
+
+		Tcl_SetResult(tclInterpreter, error.toStringz, TCL_STATIC);
 		return TCL_ERROR;
 	}
-
-	EventArgs eventArgs = *cast(EventArgs*)data;
-	eventArgs.callback(eventArgs.element, eventArgs);
 
 	return TCL_OK;
 }

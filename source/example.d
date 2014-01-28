@@ -3,6 +3,8 @@ module main;
 /**
  * Imports.
  */
+import std.algorithm;
+import std.range;
 import std.stdio;
 import tkd.element.widget.button;
 import tkd.element.widget.frame;
@@ -18,7 +20,11 @@ class Application : TkApplication
 	 */
 	private void button_hello_click(Element element, EventArgs args)
 	{
-		this.button.hello.setText("World");
+		string[] words     = ["Mary", "had", "a", "little", "lamb"];
+		string currentWord = this.button.hello.getText();
+		string nextword    = words.cycle.find(currentWord).dropOne.front;
+
+		this.button.hello.setText(nextword);
 	}
 
 	private void button_quit_click(Element element, EventArgs args)
@@ -32,7 +38,7 @@ class Application : TkApplication
 	override protected void initInterface()
 	{
 		this.frame.root   = new Frame();
-		this.button.hello = new Button(this.frame.root, "Hello");
+		this.button.hello = new Button(this.frame.root, "Mary");
 		this.button.exit  = new Button(this.frame.root, "Exit");
 
 		// This is not the correct way to add a command to a button

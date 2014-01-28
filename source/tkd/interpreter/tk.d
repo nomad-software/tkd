@@ -12,7 +12,6 @@ module tkd.interpreter.tk;
 import std.conv;
 import tcltk.tk;
 import tkd.interpreter.tcl;
-debug import std.stdio;
 
 /**
  * Simple singleton wrapper for the Tk interpreter.
@@ -32,9 +31,9 @@ class Tk : Tcl
 	 */
 	protected this()
 	{
-		debug writefln("Inititalising Tk");
-
 		super();
+
+		debug this._log.info("Inititalising Tk");
 
 		if (Tk_Init(this._interpreter) != TCL_OK)
 		{
@@ -63,7 +62,7 @@ class Tk : Tcl
 	 */
 	public void run()
 	{
-		debug writefln("Running Tk main loop");
+		debug this._log.info("Running Tk main loop");
 
 		Tk_MainLoop();
 	}

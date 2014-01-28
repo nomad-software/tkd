@@ -12,7 +12,7 @@ module tkd.interpreter.tcl;
 import std.conv;
 import std.string;
 import tcltk.tcl;
-debug import std.stdio;
+import tkd.interpreter.logger;
 
 /**
  * Simple wrapper for the Tcl interpreter.
@@ -30,6 +30,11 @@ class Tcl
 	private static Tcl _instance;
 
 	/**
+	 * The logger.
+	 */
+	protected Logger _log;
+
+	/**
 	 * Create the interpreter and initialise it.
 	 *
 	 * Throws:
@@ -37,7 +42,8 @@ class Tcl
 	 */
 	protected this()
 	{
-		debug writefln("Inititalising Tcl");
+		debug this._log = new Logger();
+		debug this._log.info("Inititalising Tcl");
 
 		this._interpreter = Tcl_CreateInterp();
 
@@ -52,7 +58,7 @@ class Tcl
 	 */
 	protected ~this()
 	{
-		debug writefln("Cleaning up Tcl");
+		debug this._log.info("Cleaning up Tcl");
 
 		Tcl_DeleteInterp(this._interpreter);
 	}
@@ -85,7 +91,7 @@ class Tcl
 	 */
 	public int eval(A...)(string script, A args)
 	{
-		debug writefln(format(script, args));
+		debug this._log.info(script, args);
 
 		return Tcl_EvalEx(this._interpreter, format(script, args).toStringz, -1, 0);
 	}
@@ -125,7 +131,7 @@ class Tcl
 	 */
 	public Tcl_Command createCommand(string name, Tcl_CmdProc commandProcedure, ClientData data = null, Tcl_CmdDeleteProc deleteProcedure = null)
 	{
-		debug writefln(format("Creating command %s", name));
+		debug this._log.info("Creating command %s", name);
 
 		return Tcl_CreateCommand(this._interpreter, name.toStringz, commandProcedure, data, deleteProcedure);
 	}
@@ -141,7 +147,7 @@ class Tcl
 	 */
 	public int deleteCommand(string name)
 	{
-		debug writefln(format("Deleting command %s", name));
+		debug this._log.info("Deleting command %s", name);
 
 		return Tcl_DeleteCommand(this._interpreter, name.toStringz);
 	}
@@ -156,7 +162,7 @@ class Tcl
 	 */
 	public void setVariable(string name, string value)
 	{
-		debug writefln(format("Setting variable %s", name));
+		debug this._log.info("Setting variable %s", name);
 
 		Tcl_SetVar(this._interpreter, name.toStringz, value.toStringz, TCL_GLOBAL_ONLY);
 	}
@@ -172,7 +178,7 @@ class Tcl
 	 */
 	public string getVariable(string name)
 	{
-		debug writefln(format("Getting variable %s", name));
+		debug this._log.info("Getting variable %s", name);
 
 		return Tcl_GetVar(this._interpreter, name.toStringz, TCL_GLOBAL_ONLY).to!(string);
 	}
@@ -188,7 +194,7 @@ class Tcl
 	 */
 	public int deleteVariable(string name)
 	{
-		debug writefln(format("Deleting variable %s", name));
+		debug this._log.info("Deleting variable %s", name);
 
 		return Tcl_UnsetVar(this._interpreter, name.toStringz, TCL_GLOBAL_ONLY);
 	}
