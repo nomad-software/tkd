@@ -42,14 +42,14 @@ class Tcl
 	 */
 	protected this()
 	{
-		debug this._log = new Logger();
+		debug this._log = new Logger("debug.log");
 		debug this._log.info("Inititalising Tcl");
 
 		this._interpreter = Tcl_CreateInterp();
 
 		if (Tcl_Init(this._interpreter) != TCL_OK)
 		{
-			throw new Exception(Tcl_GetStringResult(this._interpreter).to!(string));
+			throw new Exception(this.getResult());
 		}
 	}
 
@@ -58,13 +58,13 @@ class Tcl
 	 */
 	protected ~this()
 	{
-		debug this._log.info("Cleaning up Tcl");
+		debug this._log.info("Cleaning up interpreter");
 
 		Tcl_DeleteInterp(this._interpreter);
 	}
 
 	/**
-	 * Get the instance of this class.
+	 * Get an instance of this class.
 	 *
 	 * Returns:
 	 *     If An instance doesn't exist, one is created and returned.
@@ -91,8 +91,7 @@ class Tcl
 	 */
 	public int eval(A...)(string script, A args)
 	{
-		debug this._log.info(script, args);
-
+		debug this._log.eval(script, args);
 		return Tcl_EvalEx(this._interpreter, format(script, args).toStringz, -1, 0);
 	}
 
@@ -106,6 +105,7 @@ class Tcl
 	 */
 	public void setResult(A...)(string result, A args)
 	{
+		debug this._log.info("Setting interpreter result '%s'", format(result, args));
 		Tcl_SetResult(this._interpreter, format(result, args).toStringz, TCL_STATIC);
 	}
 
@@ -117,6 +117,7 @@ class Tcl
 	 */
 	public string getResult()
 	{
+		debug this._log.info("Getting interpreter result '%s'", Tcl_GetStringResult(this._interpreter).to!(string));
 		return Tcl_GetStringResult(this._interpreter).to!(string);
 	}
 
@@ -132,7 +133,6 @@ class Tcl
 	public Tcl_Command createCommand(string name, Tcl_CmdProc commandProcedure, ClientData data = null, Tcl_CmdDeleteProc deleteProcedure = null)
 	{
 		debug this._log.info("Creating command %s", name);
-
 		return Tcl_CreateCommand(this._interpreter, name.toStringz, commandProcedure, data, deleteProcedure);
 	}
 
@@ -148,7 +148,6 @@ class Tcl
 	public int deleteCommand(string name)
 	{
 		debug this._log.info("Deleting command %s", name);
-
 		return Tcl_DeleteCommand(this._interpreter, name.toStringz);
 	}
 
@@ -162,8 +161,7 @@ class Tcl
 	 */
 	public void setVariable(string name, string value)
 	{
-		debug this._log.info("Setting variable %s", name);
-
+		debug this._log.info("Setting variable %s <- '%s'", name, value);
 		Tcl_SetVar(this._interpreter, name.toStringz, value.toStringz, TCL_GLOBAL_ONLY);
 	}
 
@@ -178,8 +176,7 @@ class Tcl
 	 */
 	public string getVariable(string name)
 	{
-		debug this._log.info("Getting variable %s", name);
-
+		debug this._log.info("Getting variable %s -> '%s'", name, Tcl_GetVar(this._interpreter, name.toStringz, TCL_GLOBAL_ONLY).to!(string));
 		return Tcl_GetVar(this._interpreter, name.toStringz, TCL_GLOBAL_ONLY).to!(string);
 	}
 
@@ -195,7 +192,7 @@ class Tcl
 	public int deleteVariable(string name)
 	{
 		debug this._log.info("Deleting variable %s", name);
-
 		return Tcl_UnsetVar(this._interpreter, name.toStringz, TCL_GLOBAL_ONLY);
 	}
+
 }

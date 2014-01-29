@@ -25,6 +25,11 @@ class Logger
 	private enum Level
 	{
 		/**
+		 * The eval level is for evaluated commands.
+		 */
+		eval,
+
+		/**
 		 * The information level used for info messages.
 		 */
 		information,
@@ -38,17 +43,12 @@ class Logger
 		 * The error level used for error messages.
 		 */
 		error,
-
-		/**
-		 * The critical level used for error messages.
-		 */
-		critical,
 	}
 
 	/**
 	 * The open log file.
 	 */
-	private File _logFile;
+	private File _log;
 
 	/**
 	 * Constructor.
@@ -62,13 +62,13 @@ class Logger
 	{
 		try
 		{
-			if (logFile)
+			if (logFile is null)
 			{
-				this._logFile = File(logFile, "a");
+				this._log = stdout;
 			}
 			else
 			{
-				this._logFile = stdout;
+				this._log = File(logFile, "a");
 			}
 		}
 		catch (Exception ex)
@@ -109,18 +109,18 @@ class Logger
 
 		switch(level)
 		{
+			case Level.eval:
+				levelText = "EVAL";
+				break;
+
 			case Level.warning:
 				levelText = "WARN";
 				break;
-		
+
 			case Level.error:
 				levelText = "ERROR";
 				break;
-		
-			case Level.critical:
-				levelText = "CRIT";
-				break;
-		
+
 			default:
 				levelText = "INFO";
 				break;
@@ -128,8 +128,27 @@ class Logger
 
 		try
 		{
-			this._logFile.writefln("%s %s: %s", this.getTimestamp(), levelText, text);
-			this._logFile.flush();
+			this._log.writefln("%s %s: %s", this.getTimestamp(), levelText, text);
+			this._log.flush();
+		}
+		catch (Exception ex)
+		{
+			assert(false, ex.msg);
+		}
+	}
+
+	/**
+	 * Write eval text to the log.
+	 *
+	 * Params:
+	 *     text = The format of the text to write to the log.
+	 *     args = The arguments that the format defines (if any).
+	 */
+	public void eval(A...)(string text, A args) nothrow
+	{
+		try
+		{
+			this.log(format(text, args), Level.eval);
 		}
 		catch (Exception ex)
 		{
@@ -187,25 +206,6 @@ class Logger
 		try
 		{
 			this.log(format(text, args), Level.error);
-		}
-		catch (Exception ex)
-		{
-			assert(false, ex.msg);
-		}
-	}
-
-	/**
-	 * Write error text to the log.
-	 *
-	 * Params:
-	 *     text = The format of the text to write to the log.
-	 *     args = The arguments that the format defines (if any).
-	 */
-	public void critical(A...)(string text, A args) nothrow
-	{
-		try
-		{
-			this.log(format(text, args), Level.critical);
 		}
 		catch (Exception ex)
 		{

@@ -37,12 +37,12 @@ class Tk : Tcl
 
 		if (Tk_Init(this._interpreter) != TCL_OK)
 		{
-			throw new Exception(Tcl_GetStringResult(this._interpreter).to!(string));
+			throw new Exception(this.getResult());
 		}
 	}
 
 	/**
-	 * Get the instance of this class.
+	 * Get an instance of this class.
 	 *
 	 * Returns:
 	 *     If An instance doesn't exist, one is created and returned.
@@ -63,7 +63,6 @@ class Tk : Tcl
 	public void run()
 	{
 		debug this._log.info("Running Tk main loop");
-
 		Tk_MainLoop();
 	}
 }
