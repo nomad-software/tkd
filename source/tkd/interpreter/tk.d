@@ -10,6 +10,7 @@ module tkd.interpreter.tk;
  * Imports.
  */
 import std.conv;
+import std.string;
 import tcltk.tk;
 import tkd.interpreter.tcl;
 
@@ -37,7 +38,8 @@ class Tk : Tcl
 
 		if (Tk_Init(this._interpreter) != TCL_OK)
 		{
-			throw new Exception(this.getResult());
+			string result = Tcl_GetStringResult(this._interpreter).to!(string);
+			throw new Exception(format("Tk interpreter extension could not be initialised. %s", result));
 		}
 	}
 

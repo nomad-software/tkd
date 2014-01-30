@@ -49,7 +49,8 @@ class Tcl
 
 		if (Tcl_Init(this._interpreter) != TCL_OK)
 		{
-			throw new Exception(this.getResult());
+			string result = Tcl_GetStringResult(this._interpreter).to!(string);
+			throw new Exception(format("Tcl interpreter could not be initialised. %s", result));
 		}
 	}
 
@@ -59,7 +60,6 @@ class Tcl
 	protected ~this()
 	{
 		debug this._log.info("Cleaning up interpreter");
-
 		Tcl_DeleteInterp(this._interpreter);
 	}
 
@@ -117,8 +117,9 @@ class Tcl
 	 */
 	public string getResult()
 	{
-		debug this._log.info("Getting interpreter result '%s'", Tcl_GetStringResult(this._interpreter).to!(string));
-		return Tcl_GetStringResult(this._interpreter).to!(string);
+		string result = Tcl_GetStringResult(this._interpreter).to!(string);
+		debug this._log.info("Getting interpreter result '%s'", result);
+		return result;
 	}
 
 	/**
@@ -176,8 +177,9 @@ class Tcl
 	 */
 	public string getVariable(string name)
 	{
-		debug this._log.info("Getting variable %s -> '%s'", name, Tcl_GetVar(this._interpreter, name.toStringz, TCL_GLOBAL_ONLY).to!(string));
-		return Tcl_GetVar(this._interpreter, name.toStringz, TCL_GLOBAL_ONLY).to!(string);
+		string result = Tcl_GetVar(this._interpreter, name.toStringz, TCL_GLOBAL_ONLY).to!(string);
+		debug this._log.info("Getting variable %s -> '%s'", name, result);
+		return result;
 	}
 
 	/**
