@@ -59,7 +59,6 @@ class Tcl
 	 */
 	protected ~this()
 	{
-		debug this._log.info("Cleaning up interpreter");
 		Tcl_DeleteInterp(this._interpreter);
 	}
 
@@ -86,13 +85,19 @@ class Tcl
 	 *     script = The script to evaluate, including any format placeholders.
 	 *     args = variadic list of arguments to provide data for any format placeholders.
 	 *
-	 * Returns:
-	 *     An int equal to TCL_OK or TCL_ERROR.
+	 * Throws:
+	 *     Exception if the script evaluation failed.
 	 */
-	public int eval(A...)(string script, A args)
+	public void eval(A...)(string script, A args)
 	{
 		debug this._log.eval(script, args);
-		return Tcl_EvalEx(this._interpreter, format(script, args).toStringz, -1, 0);
+
+		int result = Tcl_EvalEx(this._interpreter, format(script, args).toStringz, -1, 0);
+
+		if (result == TCL_ERROR)
+		{
+			throw new Exception(this.getResult());
+		}
 	}
 
 	/**
@@ -130,6 +135,9 @@ class Tcl
 	 *     commandProcedure = A function pointer to the new command.
 	 *     data = Extra data to be passed to the command on invocation.
 	 *     deleteProcedure = The procedure to run when deleteCommand is called.
+	 *
+	 * Returns:
+	 *     A command token that can be used to refer to the command created.
 	 */
 	public Tcl_Command createCommand(string name, Tcl_CmdProc commandProcedure, ClientData data = null, Tcl_CmdDeleteProc deleteProcedure = null)
 	{
@@ -143,13 +151,19 @@ class Tcl
 	 * Params:
 	 *     name = The name of the command to delete.
 	 *
-	 * Returns:
-	 *     TCL_OK on success, -1 if the command didn't exist.
+	 * Throws:
+	 *     Exception if the command cannot be deleted.
 	 */
-	public int deleteCommand(string name)
+	public void deleteCommand(string name)
 	{
 		debug this._log.info("Deleting command %s", name);
-		return Tcl_DeleteCommand(this._interpreter, name.toStringz);
+
+		int result = Tcl_DeleteCommand(this._interpreter, name.toStringz);
+
+		if (result == TCL_ERROR)
+		{
+			throw new Exception(this.getResult());
+		}
 	}
 
 	/**
@@ -188,13 +202,19 @@ class Tcl
 	 * Params:
 	 *     name = The name of the variable to delete.
 	 *
-	 * Returns:
-	 *     TCL_OK on success, TCL_ERROR on failure.
+	 * Throws:
+	 *     Exception if the command cannot be deleted.
 	 */
-	public int deleteVariable(string name)
+	public void deleteVariable(string name)
 	{
 		debug this._log.info("Deleting variable %s", name);
-		return Tcl_UnsetVar(this._interpreter, name.toStringz, TCL_GLOBAL_ONLY);
+
+		int result = Tcl_UnsetVar(this._interpreter, name.toStringz, TCL_GLOBAL_ONLY);
+
+		if (result == TCL_ERROR)
+		{
+			throw new Exception(this.getResult());
+		}
 	}
 
 }

@@ -68,7 +68,7 @@ class Logger
 			}
 			else
 			{
-				this._log = File(logFile, "a");
+				this._log = File(logFile, "w");
 			}
 		}
 		catch (Exception ex)

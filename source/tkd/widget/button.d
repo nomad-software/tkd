@@ -1,22 +1,22 @@
 /**
- * Button module.
+ * Widget module.
  *
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.element.widget.button;
+module tkd.widget.button;
 
 /**
  * Imports.
  */
 import std.string;
-import tkd.element.element;
-import tkd.element.widget.labeledwidget;
+import tkd.element.uielement;
+import tkd.widget.textwidget;
 
 /**
  * Class representing a button widget.
  */
-class Button : LabeledWidget
+class Button : TextWidget
 {
 	/**
 	 * Construct the widget.
@@ -25,7 +25,7 @@ class Button : LabeledWidget
 	 *     parent = An optional parent of this widget.
 	 *     text = The text of the button.
 	 */
-	this(Element parent = null, string text = null)
+	this(UiElement parent = null, string text = null)
 	{
 		super(parent, text);
 

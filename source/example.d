@@ -6,19 +6,17 @@ module main;
 import std.algorithm;
 import std.range;
 import std.stdio;
-import tkd.element.widget.button;
-import tkd.element.widget.frame;
-import tkd.tkapplication;
+import tkd.tkdapplication;
 
 /**
  * Sample application.
  */
-class Application : TkApplication
+class Application : TkdApplication
 {
 	/**
 	 * Event callbacks.
 	 */
-	private void button_hello_click(Element element, EventArgs args)
+	private void button_hello_click(UiElement element, EventArgs args)
 	{
 		string[] words     = ["Mary", "had", "a", "little", "lamb"];
 		string currentWord = this.button.hello.getText();
@@ -27,7 +25,7 @@ class Application : TkApplication
 		this.button.hello.setText(nextword);
 	}
 
-	private void button_quit_click(Element element, EventArgs args)
+	private void button_quit_click(UiElement element, EventArgs args)
 	{
 		this.exit();
 	}
@@ -44,6 +42,9 @@ class Application : TkApplication
 		// This is not the correct way to add a command to a button
 		// as this binding endures after the widget is disabled.
 		this.button.hello.bind("<Button-1>", &this.button_hello_click);
+		this.button.hello.underlineChar(0);
+		this.button.hello.addImage(new Image("../media/test.png"), ImagePosition.top);
+
 		this.button.exit.bind("<Button-1>", &this.button_quit_click);
 
 		this.frame.root.pack();

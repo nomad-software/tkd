@@ -1,10 +1,10 @@
 /**
- * Focus enum module.
+ * Widget module.
  *
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.element.widget.focus;
+module tkd.widget.focus;
 
 /**
  * State values of widgets.

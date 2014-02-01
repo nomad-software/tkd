@@ -1,10 +1,10 @@
 /**
- * State enum module.
+ * Widget module.
  *
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.element.widget.state;
+module tkd.widget.state;
 
 /**
  * State values of widgets.

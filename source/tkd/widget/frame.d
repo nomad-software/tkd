@@ -1,17 +1,17 @@
 /**
- * Frame module.
+ * Widget module.
  *
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.element.widget.frame;
+module tkd.widget.frame;
 
 /**
  * Imports.
  */
 import std.string;
-import tkd.element.element;
-import tkd.element.widget.widget;
+import tkd.element.uielement;
+import tkd.widget.widget;
 
 /**
  * Class representing a frame widget.
@@ -24,7 +24,7 @@ class Frame : Widget
 	 * Params:
 	 *     parent = An optional parent of this widget.
 	 */
-	public this(Element parent = null)
+	public this(UiElement parent = null)
 	{
 		super(parent);
 

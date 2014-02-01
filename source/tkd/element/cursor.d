@@ -1,5 +1,5 @@
 /**
- * Cursor enum module.
+ * Element module.
  *
  * License:
  *     MIT. See LICENSE for full details.

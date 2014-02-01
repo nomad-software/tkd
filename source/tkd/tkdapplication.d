@@ -4,25 +4,25 @@
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.tkapplication;
+module tkd.tkdapplication;
 
 /**
  * Private imports.
  */
-import tkd.element.store;
-import tkd.element.widget.button;
-import tkd.element.widget.frame;
-import tkd.interpreter.tk;
+import tkd.interpreter;
+import tkd.store;
 
 /**
  * Public imports.
  */
-public import tkd.element.element;
+public import tkd.element;
+public import tkd.widget;
+public import tkd.image;
 
 /**
  * Base class of all Tk gui applications.
  */
-abstract class TkApplication
+abstract class TkdApplication
 {
 	/**
 	 * The Tk interpreter.

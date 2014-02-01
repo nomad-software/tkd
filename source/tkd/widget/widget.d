@@ -4,7 +4,7 @@
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.element.widget.widget;
+module tkd.widget.widget;
 
 /**
  * Imports.
@@ -12,13 +12,13 @@ module tkd.element.widget.widget;
 import std.algorithm;
 import std.array;
 import std.string;
-import tkd.element.element;
-import tkd.element.widget.state;
+import tkd.element.uielement;
+import tkd.widget.state;
 
 /**
  * The widget base class.
  */
-abstract class Widget : Element
+abstract class Widget : UiElement
 {
 	/**
 	 * Construct the widget.
@@ -26,7 +26,7 @@ abstract class Widget : Element
 	 * Params:
 	 *     parent = An optional parent of this widget.
 	 */
-	public this(Element parent = null)
+	public this(UiElement parent = null)
 	{
 		super(parent);
 
@@ -41,7 +41,7 @@ abstract class Widget : Element
 	 */
 	public void setState(string[] state)
 	{
-		this._tk.eval(format("%s state { %s }", this.id, state.join(" ")));
+		this._tk.eval("%s state { %s }", this.id, state.join(" "));
 	}
 
 	/**
@@ -52,7 +52,7 @@ abstract class Widget : Element
 	 */
 	public string[] getState()
 	{
-		this._tk.eval(format("%s state", this.id));
+		this._tk.eval("%s state", this.id);
 		return this._tk.getResult().split();
 	}
 
@@ -72,7 +72,7 @@ abstract class Widget : Element
 			throw new Exception("State.normal is not supported by inState method.");
 		}
 
-		this._tk.eval(format("%s instate { %s }", this.id, state.join(" ")));
+		this._tk.eval("%s instate { %s }", this.id, state.join(" "));
 		return this._tk.getResult() == "1";
 	}
 
@@ -84,7 +84,7 @@ abstract class Widget : Element
 	 */
 	public void removeState(string[] state)
 	{
-		this._tk.eval(format("%s state { !%s }", this.id, state.join(" !")));
+		this._tk.eval("%s state { !%s }", this.id, state.join(" !"));
 	}
 
 	/**
@@ -103,7 +103,7 @@ abstract class Widget : Element
 	 */
 	public void setStyle(string style)
 	{
-		this._tk.eval(format("%s configure -style %s", this.id, style));
+		this._tk.eval("%s configure -style %s", this.id, style);
 	}
 
 	/**
@@ -114,7 +114,7 @@ abstract class Widget : Element
 	 */
 	public string getStyle()
 	{
-		this._tk.eval(format("%s cget -style", this.id));
+		this._tk.eval("%s cget -style", this.id);
 		if (this._tk.getResult().empty())
 		{
 			return this.getClass();
@@ -130,7 +130,7 @@ abstract class Widget : Element
 	 */
 	public void setFocus(string focus)
 	{
-		this._tk.eval(format("%s configure -takefocus %s", this.id, focus));
+		this._tk.eval("%s configure -takefocus %s", this.id, focus);
 	}
 
 	/**
@@ -141,7 +141,7 @@ abstract class Widget : Element
 	 */
 	public string getFocus()
 	{
-		this._tk.eval(format("%s cget -takefocus", this.id));
+		this._tk.eval("%s cget -takefocus", this.id);
 		return this._tk.getResult();
 	}
 

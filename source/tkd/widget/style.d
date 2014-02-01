@@ -1,10 +1,10 @@
 /**
- * Style enum module.
+ * Widget module.
  *
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.element.widget.style;
+module tkd.widget.style;
 
 /**
  * Style values of widgets.
