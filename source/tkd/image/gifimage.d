@@ -10,6 +10,7 @@ module tkd.image.gifimage;
  * Imports.
  */
 import tkd.image.image;
+import tkd.image.imageformat;
 
 /**
  * The gif image class.
@@ -24,9 +25,14 @@ class GifImage : Image
 	 */
 	public this(string filename)
 	{
-		super(filename);
-		this._elementId = "gifimage";
-		this._tk.eval("image create photo %s -format gif -file %s", this.id, filename);
+		super();
+
+		this.setFormat(ImageFormat.gif);
+
+		// auto data = cast(ubyte[])std.file.read(filename);
+		// this.setData(Base64.encode(data));
+
+		this.setFile(filename);
 	}
 
 }

@@ -32,7 +32,7 @@ struct Store(T)
 	 *     line = The line number where this action occurred for error reporting.
 	 *
 	 * See_Also:
-	 *     http://dlang.org/operatoroverloading.html#Dispatch
+	 *     $(LINK http://dlang.org/operatoroverloading.html#Dispatch)
 	 */
 	private void opDispatch(string name)(T item, string file = __FILE__, size_t line = __LINE__)
 	{
@@ -56,7 +56,7 @@ struct Store(T)
 	 *     The item matching the property name.
 	 *
 	 * See_Also:
-	 *     http://dlang.org/operatoroverloading.html#Dispatch
+	 *     $(LINK http://dlang.org/operatoroverloading.html#Dispatch)
 	 */
 	private T opDispatch(string name)(string file = __FILE__, size_t line = __LINE__)
 	{

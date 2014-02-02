@@ -9,7 +9,9 @@ module tkd.image.pngimage;
 /**
  * Imports.
  */
+import std.base64;
 import tkd.image.image;
+import tkd.image.imageformat;
 
 /**
  * The png image class.
@@ -24,9 +26,14 @@ class PngImage : Image
 	 */
 	public this(string filename)
 	{
-		super(filename);
-		this._elementId = "pngimage";
-		this._tk.eval("image create photo %s -format png -file %s", this.id, filename);
+		super();
+
+		this.setFormat(ImageFormat.png);
+
+		// auto data = cast(ubyte[])std.file.read(filename);
+		// this.setData(Base64.encode(data));
+
+		this.setFile(filename);
 	}
 
 }

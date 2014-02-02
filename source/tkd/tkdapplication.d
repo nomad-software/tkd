@@ -20,7 +20,7 @@ public import tkd.widget;
 public import tkd.image;
 
 /**
- * Base class of all Tk gui applications.
+ * Base class of all Tkd gui applications.
  */
 abstract class TkdApplication
 {
@@ -34,12 +34,13 @@ abstract class TkdApplication
 	 */
 	protected Store!(Button) button;
 	protected Store!(Frame) frame;
+	protected Store!(Image) image;
 
 	/**
 	 * constructor.
 	 *
 	 * Throws:
-	 *     Exception if Tcl/Tk cannot be initialised.
+	 *     Exception if Tcl/Tk interpreter cannot be initialised.
 	 */
 	public this()
 	{

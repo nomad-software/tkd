@@ -6,6 +6,8 @@
  */
 module tkd.image;
 
-public import tkd.image.imageposition;
 public import tkd.image.gifimage;
+public import tkd.image.image;
+public import tkd.image.imageformat;
+public import tkd.image.imageposition;
 public import tkd.image.pngimage;

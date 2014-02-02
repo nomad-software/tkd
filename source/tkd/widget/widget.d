@@ -126,7 +126,7 @@ abstract class Widget : UiElement
 	 * Set if the widget can recieve focus during keyboard traversal.
 	 *
 	 * Params:
-	 *     style = A valid focus setting.
+	 *     focus = A valid focus setting.
 	 */
 	public void setFocus(string focus)
 	{
