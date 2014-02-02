@@ -14,7 +14,7 @@ import tkd.element.element;
 /**
  * The image base class.
  */
-class Image : Element
+abstract class Image : Element
 {
 	/**
 	 * Construct the image.
@@ -22,13 +22,11 @@ class Image : Element
 	 * Params:
 	 *     filename = The filename of the image to load.
 	 */
-	public this(string filename)
+	protected this(string filename)
 	{
 		super();
 		this._hash      = this.generateHash(filename);
 		this._elementId = "image";
-
-		this._tk.eval("image create photo %s -format png -file %s", this.id, filename);
 	}
 
 }

@@ -39,11 +39,9 @@ class Application : TkdApplication
 		this.button.hello = new Button(this.frame.root, "Mary");
 		this.button.exit  = new Button(this.frame.root, "Exit");
 
-		// This is not the correct way to add a command to a button
-		// as this binding endures after the widget is disabled.
 		this.button.hello.bind("<Button-1>", &this.button_hello_click);
 		this.button.hello.underlineChar(0);
-		this.button.hello.addImage(new Image("../media/test.png"), ImagePosition.top);
+		this.button.hello.addImage(new PngImage("../media/logo.png"), ImagePosition.top);
 
 		this.button.exit.bind("<Button-1>", &this.button_quit_click);
 
