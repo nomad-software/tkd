@@ -40,7 +40,7 @@ class Application : TkdApplication
 		this.button.exit  = new Button(this.frame.root, "Exit");
 
 		this.button.hello.bind("<Button-1>", &this.button_hello_click);
-		this.button.hello.addImage(new PngImage("../media/48px/png.png"), ImagePosition.top);
+		this.button.hello.addImage(new PngImage!("thumbnail.png"), ImagePosition.top);
 		this.button.hello.underlineChar(0);
 
 		this.button.exit.bind("<Button-1>", &this.button_quit_click);

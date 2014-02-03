@@ -20,6 +20,7 @@
 			"targetType": "executable",
 			"mainSourceFile": "source/example.d",
 			"lflags-windows": ["/subsystem:windows"],
+			"dflags": ["-Jmedia"],
 		},
 	],
 }

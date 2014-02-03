@@ -208,3 +208,68 @@ class Image : Element
 		return this._tk.getResult();
 	}
 }
+
+/**
+ * The png image class.
+ *
+ * This class embeds the image as a base64 encoded string into the application.
+ * The path to the image must be passed to the compiler using the -J switch.
+ *
+ * Params:
+ *     filename = The filename of the image to embed.
+ */
+class PngImage(string filename) : Image
+{
+	/**
+	 * Construct the image.
+	 */
+	public this()
+	{
+		super();
+
+		this.setFormat(ImageFormat.png);
+		this.setData(base64Encode!(filename));
+	}
+}
+
+/**
+ * The gif image class.
+ *
+ * This class embeds the image as a base64 encoded string into the application.
+ * The path to the image must be passed to the compiler using the -J switch.
+ *
+ * Params:
+ *     filename = The filename of the image to embed.
+ */
+class GifImage(string filename) : Image
+{
+	/**
+	 * Construct the image.
+	 */
+	public this()
+	{
+		super();
+
+		this.setFormat(ImageFormat.gif);
+		this.setData(base64Encode!(filename));
+	}
+}
+
+/**
+ * Template to base64 encode files at compile time, effectively embedding them 
+ * inside the application.
+ *
+ * Params:
+ *     file = The file name to encode and embed.
+ */
+private template base64Encode(string file)
+{
+	import std.base64;
+
+	private string getData()
+	{
+		return Base64.encode(cast(ubyte[])import(file));
+	}
+
+	enum base64Encode = getData();
+}

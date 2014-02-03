@@ -48,14 +48,6 @@ abstract class TextWidget : Widget
 	}
 
 	/**
-	 * Clean up.
-	 */
-	protected ~this()
-	{
-		this._tk.deleteVariable(this._textVariable);
-	}
-
-	/**
 	 * Set the widget text.
 	 *
 	 * Params:
