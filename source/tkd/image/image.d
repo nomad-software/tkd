@@ -99,6 +99,18 @@ class Image : Element
 	}
 
 	/**
+	 * This method embeds the image as a base64 encoded string into the application.
+	 * The path to the image must be passed to the compiler using the -J switch.
+	 *
+	 * Params:
+	 *     filename = The filename to read the data from.
+	 */
+	public void embedDataFromFile(string filename)()
+	{
+		this.setData(base64Encode!(filename));
+	}
+
+	/**
 	 * Get the image file.
 	 *
 	 * Returns:
@@ -210,15 +222,12 @@ class Image : Element
 }
 
 /**
- * The png image class.
- *
- * This class embeds the image as a base64 encoded string into the application.
- * The path to the image must be passed to the compiler using the -J switch.
+ * Helper class to quickly create an embedded Png format image.
  *
  * Params:
  *     filename = The filename of the image to embed.
  */
-class PngImage(string filename) : Image
+class Png(string filename) : Image
 {
 	/**
 	 * Construct the image.
@@ -228,20 +237,17 @@ class PngImage(string filename) : Image
 		super();
 
 		this.setFormat(ImageFormat.png);
-		this.setData(base64Encode!(filename));
+		this.embedDataFromFile!(filename);
 	}
 }
 
 /**
- * The gif image class.
- *
- * This class embeds the image as a base64 encoded string into the application.
- * The path to the image must be passed to the compiler using the -J switch.
+ * Helper class to quickly create an embedded Gif format image.
  *
  * Params:
  *     filename = The filename of the image to embed.
  */
-class GifImage(string filename) : Image
+class Gif(string filename) : Image
 {
 	/**
 	 * Construct the image.
@@ -251,7 +257,7 @@ class GifImage(string filename) : Image
 		super();
 
 		this.setFormat(ImageFormat.gif);
-		this.setData(base64Encode!(filename));
+		this.embedDataFromFile!(filename);
 	}
 }
 
