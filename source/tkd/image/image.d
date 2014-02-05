@@ -10,7 +10,6 @@ module tkd.image.image;
  * Imports.
  */
 import tkd.element.element;
-import tkd.image.imageformat;
 
 /**
  * The image base class.
@@ -218,46 +217,6 @@ class Image : Element
 	{
 		this._tk.eval("%s cget -width", this.id);
 		return this._tk.getResult();
-	}
-}
-
-/**
- * Helper class to quickly create an embedded Png format image.
- *
- * Params:
- *     filename = The filename of the image to embed.
- */
-class Png(string filename) : Image
-{
-	/**
-	 * Construct the image.
-	 */
-	public this()
-	{
-		super();
-
-		this.setFormat(ImageFormat.png);
-		this.embedDataFromFile!(filename);
-	}
-}
-
-/**
- * Helper class to quickly create an embedded Gif format image.
- *
- * Params:
- *     filename = The filename of the image to embed.
- */
-class Gif(string filename) : Image
-{
-	/**
-	 * Construct the image.
-	 */
-	public this()
-	{
-		super();
-
-		this.setFormat(ImageFormat.gif);
-		this.embedDataFromFile!(filename);
 	}
 }
 
