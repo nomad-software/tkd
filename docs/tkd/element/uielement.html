@@ -120,31 +120,6 @@
 </div>
 </div>
 </div>
-<h2><a name="commandCallback"></a>protected nothrow int <span class="symbol">commandCallback</span>(ClientData data, Tcl_Interp* tclInterpreter, int argc, const(char)** argv);
-</h2>
-<div class="declaration-description"><div class="sections"><p>The function used to create new commands. All bound events trigger for the above element call this function.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>ClientData data</td>
-<td>Client data registered with the new command.</td></tr>
-<tr><td>Tcl_Interp* tclInterpreter</td>
-<td>The native Tcl interpreter.</td></tr>
-<tr><td>int argc</td>
-<td>The number of parameters called from Tcl.</td></tr>
-<tr><td>const(char)** argv</td>
-<td>A pointer to an array of string parameters called from Tcl.</td></tr>
-</table>
-</div>
-</div>
-<h2><a name="deleteCommandCallback"></a>protected nothrow void <span class="symbol">deleteCommandCallback</span>(ClientData data);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Function automatically called by Tcl when deleting a custom command from the interpreter.
- Freeing the memory allocated from creating the command's client data.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>ClientData data</td>
-<td>The client data registered with this command on creation.</td></tr>
-</table>
-</div>
-</div>
 </div>
 
 	</body>
