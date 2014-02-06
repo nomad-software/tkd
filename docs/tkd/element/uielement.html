@@ -24,12 +24,12 @@
 <div class="declaration-description"><div class="sections"><p>The parent of this element if nested within another.</p>
 </div>
 </div>
-<h2><a name="UiElement.this"></a> this(UiElement <em>parent</em> = null);
+<h2><a name="UiElement.this"></a> this(UiElement parent = null);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the uielement.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>UiElement <em>parent</em></td>
-<td>An optional <em>parent</em> of this element.</td></tr>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>UiElement parent</td>
+<td>An optional parent of this element.</td></tr>
 </table>
 </div>
 </div>
@@ -54,13 +54,15 @@
 <h3>Return Value</h3><p>The widget's class as a string.</p>
 </div>
 </div>
-<h2><a name="UiElement.setCursor"></a>void <span class="symbol">setCursor</span>(string <em>cursor</em>);
+<h2><a name="UiElement.setCursor"></a>void <span class="symbol">setCursor</span>(string cursor);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Set the widget's <em>cursor</em>.
+<div class="declaration-description"><div class="sections"><p>Set the widget's cursor.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string <em>cursor</em></td>
-<td>Any valid widget <em>cursor</em>.</td></tr>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string cursor</td>
+<td>Any valid widget cursor.</td></tr>
 </table>
+<p><h3>Related:</h3>
+<a href="./cursor.html">tkd.element.cursor</a> for supported cursors.</p>
 </div>
 </div>
 <h2><a name="UiElement.getCursor"></a>string <span class="symbol">getCursor</span>();
@@ -70,23 +72,23 @@
 <h3>Return Value</h3><p>The widget's cursor.</p>
 </div>
 </div>
-<h2><a name="UiElement.bind"></a>void <span class="symbol">bind</span>(string <em>binding</em>, UiElementCallback <em>callback</em>);
+<h2><a name="UiElement.bind"></a>void <span class="symbol">bind</span>(string binding, UiElementCallback callback);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Bind an event to this element.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string <em>binding</em></td>
-<td>The <em>binding</em> that triggers this event.</td></tr>
-<tr><td>UiElementCallback <em>callback</em></td>
-<td>The delegate <em>callback</em> to execute when the event triggers.</td></tr>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string binding</td>
+<td>The binding that triggers this event.</td></tr>
+<tr><td>UiElementCallback callback</td>
+<td>The delegate callback to execute when the event triggers.</td></tr>
 </table>
 </div>
 </div>
-<h2><a name="UiElement.unbind"></a>void <span class="symbol">unbind</span>(string <em>binding</em>);
+<h2><a name="UiElement.unbind"></a>void <span class="symbol">unbind</span>(string binding);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Unbind a previous <em>binding</em>.
+<div class="declaration-description"><div class="sections"><p>Unbind a previous binding.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string <em>binding</em></td>
-<td>The <em>binding</em> to remove.</td></tr>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string binding</td>
+<td>The binding to remove.</td></tr>
 </table>
 </div>
 </div>
@@ -116,6 +118,31 @@
 <div class="declaration-description"><div class="sections"><p>The <span class="symbol">callback</span> which was called during the event.</p>
 </div>
 </div>
+</div>
+</div>
+<h2><a name="commandCallback"></a>protected nothrow int <span class="symbol">commandCallback</span>(ClientData data, Tcl_Interp* tclInterpreter, int argc, const(char)** argv);
+</h2>
+<div class="declaration-description"><div class="sections"><p>The function used to create new commands. All bound events trigger for the above element call this function.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>ClientData data</td>
+<td>Client data registered with the new command.</td></tr>
+<tr><td>Tcl_Interp* tclInterpreter</td>
+<td>The native Tcl interpreter.</td></tr>
+<tr><td>int argc</td>
+<td>The number of parameters called from Tcl.</td></tr>
+<tr><td>const(char)** argv</td>
+<td>A pointer to an array of string parameters called from Tcl.</td></tr>
+</table>
+</div>
+</div>
+<h2><a name="deleteCommandCallback"></a>protected nothrow void <span class="symbol">deleteCommandCallback</span>(ClientData data);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Function automatically called by Tcl when deleting a custom command from the interpreter.
+ Freeing the memory allocated from creating the command's client data.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>ClientData data</td>
+<td>The client data registered with this command on creation.</td></tr>
+</table>
 </div>
 </div>
 </div>

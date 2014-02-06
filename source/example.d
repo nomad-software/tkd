@@ -41,7 +41,6 @@ class Application : TkdApplication
 
 		this.button.hello.bind("<Button-1>", &this.button_hello_click);
 		this.button.hello.addImage(new Png!("thumbnail.png"), ImagePosition.top);
-		this.button.hello.underlineChar(0);
 
 		this.button.exit.bind("<Button-1>", &this.button_quit_click);
 

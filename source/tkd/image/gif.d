@@ -33,6 +33,7 @@ class Gif(string filename) : Image
 
 	/**
 	 * Select the index if a multi-indexed gif.
+	 * If you select an idex which doesn't exist in the image an error will occur.
 	 *
 	 * Params:
 	 *     index = The index to select.

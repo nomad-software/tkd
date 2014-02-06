@@ -88,6 +88,9 @@ abstract class UiElement : Element
 	 *
 	 * Params:
 	 *     cursor = Any valid widget cursor.
+	 *
+	 * Related:
+	 *     $(LINK2 ./cursor.html, tkd.element.cursor) for supported cursors.
 	 */
 	public void setCursor(string cursor)
 	{

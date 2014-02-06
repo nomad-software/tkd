@@ -44,7 +44,7 @@
      If one already exists, that is returned.</p>
 </div>
 </div>
-<h2><a name="Tcl.eval"></a>void <span class="symbol">eval</span>(A...)(string <em>script</em>, A <em>args</em>);
+<h2><a name="Tcl.eval"></a>void <span class="symbol">eval</span>(A...)(string script, A args);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Evaluate a script fragment using the interpreter.
 </p>
@@ -56,7 +56,7 @@
 <h3>Exceptions Thrown</h3><p>Exception if the script evaluation failed.</p>
 </div>
 </div>
-<h2><a name="Tcl.setResult"></a>void <span class="symbol">setResult</span>(A...)(string <em>result</em>, A <em>args</em>);
+<h2><a name="Tcl.setResult"></a>void <span class="symbol">setResult</span>(A...)(string result, A args);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Set the result of the interpreter.
  This is sometimes used to set the result to an error if things go bad.
@@ -75,60 +75,60 @@
 <h3>Return Value</h3><p>A string representing the result of the last script fragment evaluated.</p>
 </div>
 </div>
-<h2><a name="Tcl.createCommand"></a>Tcl_Command <span class="symbol">createCommand</span>(string <em>name</em>, Tcl_CmdProc <em>commandProcedure</em>, ClientData <em>data</em> = null, Tcl_CmdDeleteProc <em>deleteProcedure</em> = null);
+<h2><a name="Tcl.createCommand"></a>Tcl_Command <span class="symbol">createCommand</span>(string name, Tcl_CmdProc commandProcedure, ClientData data = null, Tcl_CmdDeleteProc deleteProcedure = null);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Create a new command in the Tcl interpreter.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string <em>name</em></td>
-<td>The <em>name</em> of the new command.</td></tr>
-<tr><td>Tcl_CmdProc <em>commandProcedure</em></td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string name</td>
+<td>The name of the new command.</td></tr>
+<tr><td>Tcl_CmdProc commandProcedure</td>
 <td>A function pointer to the new command.</td></tr>
-<tr><td>ClientData <em>data</em></td>
-<td>Extra <em>data</em> to be passed to the command on invocation.</td></tr>
-<tr><td>Tcl_CmdDeleteProc <em>deleteProcedure</em></td>
+<tr><td>ClientData data</td>
+<td>Extra data to be passed to the command on invocation.</td></tr>
+<tr><td>Tcl_CmdDeleteProc deleteProcedure</td>
 <td>The procedure to run when deleteCommand is called.</td></tr>
 </table>
 <h3>Return Value</h3><p>A command token that can be used to refer to the command created.</p>
 </div>
 </div>
-<h2><a name="Tcl.deleteCommand"></a>void <span class="symbol">deleteCommand</span>(string <em>name</em>);
+<h2><a name="Tcl.deleteCommand"></a>void <span class="symbol">deleteCommand</span>(string name);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Delete a command in the Tcl interpreter.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string <em>name</em></td>
-<td>The <em>name</em> of the command to delete.</td></tr>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string name</td>
+<td>The name of the command to delete.</td></tr>
 </table>
 <h3>Exceptions Thrown</h3><p>Exception if the command cannot be deleted.</p>
 </div>
 </div>
-<h2><a name="Tcl.setVariable"></a>void <span class="symbol">setVariable</span>(string <em>name</em>, string <em>value</em>);
+<h2><a name="Tcl.setVariable"></a>void <span class="symbol">setVariable</span>(string name, string value);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Set the <em>value</em> of a variable.
+<div class="declaration-description"><div class="sections"><p>Set the value of a variable.
  If the variable doesn't exist it is created.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string <em>name</em></td>
-<td>The <em>name</em> of the variable to set.</td></tr>
-<tr><td>string <em>value</em></td>
-<td>The variable's <em>value</em>.</td></tr>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string name</td>
+<td>The name of the variable to set.</td></tr>
+<tr><td>string value</td>
+<td>The variable's value.</td></tr>
 </table>
 </div>
 </div>
-<h2><a name="Tcl.getVariable"></a>string <span class="symbol">getVariable</span>(string <em>name</em>);
+<h2><a name="Tcl.getVariable"></a>string <span class="symbol">getVariable</span>(string name);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Get the value of a variable.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string <em>name</em></td>
-<td>The <em>name</em> of the variable to get the value of.</td></tr>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string name</td>
+<td>The name of the variable to get the value of.</td></tr>
 </table>
 <h3>Return Value</h3><p>A string containing the variable's value.</p>
 </div>
 </div>
-<h2><a name="Tcl.deleteVariable"></a>void <span class="symbol">deleteVariable</span>(string <em>name</em>);
+<h2><a name="Tcl.deleteVariable"></a>void <span class="symbol">deleteVariable</span>(string name);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Delete a variable from the interpreter.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string <em>name</em></td>
-<td>The <em>name</em> of the variable to delete.</td></tr>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string name</td>
+<td>The name of the variable to delete.</td></tr>
 </table>
 <h3>Exceptions Thrown</h3><p>Exception if the command cannot be deleted.</p>
 </div>

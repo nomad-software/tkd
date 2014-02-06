@@ -29,23 +29,23 @@
 <div class="declaration-description"><div class="sections"><p>The image of this widget.</p>
 </div>
 </div>
-<h2><a name="TextWidget.this"></a> this(UiElement <em>parent</em> = null, string <em>text</em> = null);
+<h2><a name="TextWidget.this"></a> this(UiElement parent = null, string text = null);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>UiElement <em>parent</em></td>
-<td>An optional <em>parent</em> of this widget.</td></tr>
-<tr><td>string <em>text</em></td>
-<td>The widget <em>text</em>.</td></tr>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>UiElement parent</td>
+<td>An optional parent of this widget.</td></tr>
+<tr><td>string text</td>
+<td>The widget text.</td></tr>
 </table>
 </div>
 </div>
-<h2><a name="TextWidget.setText"></a>void <span class="symbol">setText</span>(string <em>text</em>);
+<h2><a name="TextWidget.setText"></a>void <span class="symbol">setText</span>(string text);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Set the widget <em>text</em>.
+<div class="declaration-description"><div class="sections"><p>Set the widget text.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string <em>text</em></td>
-<td>The widget <em>text</em>.</td></tr>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string text</td>
+<td>The widget text.</td></tr>
 </table>
 </div>
 </div>
@@ -56,18 +56,42 @@
 <h3>Return Value</h3><p>A string containing the widget text.</p>
 </div>
 </div>
-<h2><a name="TextWidget.underlineChar"></a>void <span class="symbol">underlineChar</span>(int <em>index</em>);
+<h2><a name="TextWidget.underlineChar"></a>void <span class="symbol">underlineChar</span>(int index);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Underline one of the characters in the widget text.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>int <em>index</em></td>
-<td>The <em>index</em> of the character to underline.</td></tr>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int index</td>
+<td>The index of the character to underline.</td></tr>
 </table>
 </div>
 </div>
-<h2><a name="TextWidget.addImage"></a>void <span class="symbol">addImage</span>(Image <em>image</em>, string <em>imagePosition</em> = ImagePosition.<em>image</em>);
+<h2><a name="TextWidget.addImage"></a>void <span class="symbol">addImage</span>(Image image, string imagePosition = ImagePosition.image);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Add an <em>image</em> to this widget.</p>
+<div class="declaration-description"><div class="sections"><p>Add an image to this widget.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>Image image</td>
+<td>The image to add to the widget.</td></tr>
+<tr><td>string imagePosition</td>
+<td>The position of the image relative to the text.</td></tr>
+</table>
+</div>
+</div>
+<h2><a name="TextWidget.setImagePosition"></a>void <span class="symbol">setImagePosition</span>(string imagePosition);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Change the position of the image in relation to the text.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string imagePosition</td>
+<td>The position of the image relative to the text.</td></tr>
+</table>
+</div>
+</div>
+<h2><a name="TextWidget.setTextCharacterWidth"></a>void <span class="symbol">setTextCharacterWidth</span>(int characterWidth);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the text character width.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int characterWidth</td>
+<td>The width of characters to set the label to.</td></tr>
+</table>
 </div>
 </div>
 </div>

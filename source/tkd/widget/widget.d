@@ -38,6 +38,9 @@ abstract class Widget : UiElement
 	 *
 	 * Params:
 	 *     state = An array of valid widget states.
+	 *
+	 * See_Also:
+	 *     $(LINK2 state.html, tkd.widget.state) for supported states.
 	 */
 	public void setState(string[] state)
 	{
@@ -49,6 +52,9 @@ abstract class Widget : UiElement
 	 *
 	 * Returns:
 	 *     An array of valid widget states.
+	 *
+	 * See_Also:
+	 *     $(LINK2 state.html, tkd.widget.state) for supported states.
 	 */
 	public string[] getState()
 	{
@@ -64,6 +70,9 @@ abstract class Widget : UiElement
 	 *
 	 * Returns:
 	 *     true is the widget is in that state, false if not.
+	 *
+	 * See_Also:
+	 *     $(LINK2 state.html, tkd.widget.state) for supported states.
 	 */
 	public bool inState(string[] state)
 	{
@@ -81,6 +90,9 @@ abstract class Widget : UiElement
 	 *
 	 * Params:
 	 *     state = An array of valid widget states.
+	 *
+	 * See_Also:
+	 *     $(LINK2 state.html, tkd.widget.state) for supported states.
 	 */
 	public void removeState(string[] state)
 	{
@@ -89,6 +101,9 @@ abstract class Widget : UiElement
 
 	/**
 	 * Reset the widget's state to default.
+	 *
+	 * See_Also:
+	 *     $(LINK2 state.html, tkd.widget.state) for supported states.
 	 */
 	public void resetState()
 	{
@@ -100,6 +115,9 @@ abstract class Widget : UiElement
 	 *
 	 * Params:
 	 *     style = A valid widget style.
+	 *
+	 * See_Also:
+	 *     $(LINK2 style.html, tkd.widget.style) for supported styles.
 	 */
 	public void setStyle(string style)
 	{
@@ -111,6 +129,9 @@ abstract class Widget : UiElement
 	 *
 	 * Returns:
 	 *     The widget's style.
+	 *
+	 * See_Also:
+	 *     $(LINK2 style.html, tkd.widget.style) for supported styles.
 	 */
 	public string getStyle()
 	{
@@ -127,6 +148,9 @@ abstract class Widget : UiElement
 	 *
 	 * Params:
 	 *     focus = A valid focus setting.
+	 *
+	 * See_Also:
+	 *     $(LINK2 focus.html, tkd.widget.focus) for supported focus states.
 	 */
 	public void setFocus(string focus)
 	{
@@ -138,6 +162,9 @@ abstract class Widget : UiElement
 	 *
 	 * Returns:
 	 *     The widget's focus setting.
+	 *
+	 * See_Also:
+	 *     $(LINK2 focus.html, tkd.widget.focus) for supported focus states.
 	 */
 	public string getFocus()
 	{

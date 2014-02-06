@@ -11,10 +11,16 @@ module tkd.widget.button;
  */
 import std.string;
 import tkd.element.uielement;
+import tkd.widget.command.invoke;
+import tkd.widget.command.setdefault;
 import tkd.widget.textwidget;
 
 /**
  * Class representing a button widget.
+ *
+ * Common_Commands:
+ *     $(LINK2 ./command/invoke.html, invoke())
+ *     $(LINK2 ./command/setdefault.html, setDefault())
  */
 class Button : TextWidget
 {
@@ -35,4 +41,10 @@ class Button : TextWidget
 
 		this._tk.eval(tkScript);
 	}
+
+	/**
+	 * Mixin common commands.
+	 */
+	mixin invoke;
+	mixin setDefault;
 }

@@ -82,12 +82,38 @@ abstract class TextWidget : Widget
 
 	/**
 	 * Add an image to this widget.
+	 *
+	 * Params:
+	 *     image = The image to add to the widget.
+	 *     imagePosition = The position of the image relative to the text.
 	 */
 	public void addImage(Image image, string imagePosition = ImagePosition.image)
 	{
 		this._image = image;
 
-		this._tk.eval("%s configure -image %s -compound %s", this.id, this._image.id, imagePosition);
+		this._tk.eval("%s configure -image %s", this.id, this._image.id);
+		this.setImagePosition(imagePosition);
 	}
 
+	/**
+	 * Change the position of the image in relation to the text.
+	 *
+	 * Params:
+	 *     imagePosition = The position of the image relative to the text.
+	 */
+	public void setImagePosition(string imagePosition)
+	{
+		this._tk.eval("%s configure -compound %s", this.id, imagePosition);
+	}
+
+	/**
+	 * Set the text character width.
+	 *
+	 * Params:
+	 *     characterWidth = The width of characters to set the label to.
+	 */
+	public void setTextCharacterWidth(int characterWidth)
+	{
+		this._tk.eval("%s configure -width %s", this.id, characterWidth);
+	}
 }
