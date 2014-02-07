@@ -30,13 +30,13 @@ public import tkd.image;
  * 	{
  * 		this.exit();
  * 	}
- * 
+ *
  * 	override protected void initInterface()
  * 	{
  * 		this.frame.root   = new Frame();
  * 		this.button.exit  = new Button(this.frame.root, "Exit");
  * 		this.button.exit.setCommand(&this.button_quit_command);
- * 
+ *
  * 		this.frame.root.pack();
  * 		this.button.exit.pack();
  * 	}
