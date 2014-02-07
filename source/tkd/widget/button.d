@@ -20,10 +20,12 @@ import tkd.widget.widget;
 /**
  * Class representing a button widget.
  *
- * Common_Commands:
- *     $(LINK2 ./common/command.html, setDefault())
- *     $(LINK2 ./common/default_.html, setDefault())
- *     $(LINK2 ./common/invoke.html, invoke())
+ * Additional_Commands:
+ *     $(UL
+ *         $(LI $(LINK2 ./common/command.html, command))
+ *         $(LI $(LINK2 ./common/default_.html, default))
+ *         $(LI $(LINK2 ./common/invoke.html, invoke))
+ *     )
  */
 class Button : TextWidget
 {

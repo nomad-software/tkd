@@ -6,6 +6,9 @@
  */
 module tkd.widget.common.command;
 
+/**
+ * These are common commands that apply to all widgets that have them injected.
+ */
 mixin template command()
 {
 	import tcltk.tk;

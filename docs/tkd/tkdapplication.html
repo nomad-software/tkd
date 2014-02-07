@@ -17,11 +17,53 @@
 </div>
 <div class="module-members"><h2><a name="TkdApplication"></a>abstract class <span class="symbol">TkdApplication</span>;
 </h2>
-<div class="declaration-description"><div class="sections"><p>Base class of all Tkd gui applications.</p>
+<div class="declaration-description"><div class="sections"><p>Base class of all Tkd gui applications.
+</p>
+<p><h3>Example:</h3>
+<pre><span class="keyword">class</span> Application : <span class="symbol">TkdApplication</span>
+{
+	<span class="keyword">private</span> <span class="keyword">void</span> button_quit_command(Widget widget, CommandArgs args)
+	{
+		<span class="keyword">this</span>.exit();
+	}
+
+	<span class="keyword">override</span> <span class="keyword">protected</span> <span class="keyword">void</span> initInterface()
+	{
+		<span class="keyword">this</span>.frame.root   = <span class="keyword">new</span> Frame();
+		<span class="keyword">this</span>.button.exit  = <span class="keyword">new</span> Button(<span class="keyword">this</span>.frame.root, <span class="string">"Exit"</span>);
+		<span class="keyword">this</span>.button.exit.setCommand(&amp;<span class="keyword">this</span>.button_quit_command);
+
+		<span class="keyword">this</span>.frame.root.pack();
+		<span class="keyword">this</span>.button.exit.pack();
+	}
+}
+
+<span class="keyword">void</span> main(string[] args)
+{
+	<span class="keyword">auto</span> app = <span class="keyword">new</span> Application();
+	app.run();
+}
+</pre>
+</p>
 </div>
 <div class="class-members"><h2><a name="TkdApplication.button"></a>protected Store!Button <span class="symbol">button</span>;
 </h2>
-<div class="declaration-description"><div class="sections"><p>Storage for elements.</p>
+<div class="declaration-description"><div class="sections"><p>Automatic storage for buttons.</p>
+</div>
+</div>
+<h2><a name="TkdApplication.checkbutton"></a>protected Store!CheckButton <span class="symbol">checkbutton</span>;
+</h2>
+<div class="declaration-description"><div class="sections"><p>Automatic storage for checkbuttons.</p>
+</div>
+</div>
+<h2><a name="TkdApplication.frame"></a>protected Store!Frame <span class="symbol">frame</span>;
+</h2>
+<div class="declaration-description"><div class="sections"><p>Automatic storage for frames.</p>
+</div>
+</div>
+<h2><a name="TkdApplication.image"></a>protected Store!Image <span class="symbol">image</span>;
+</h2>
+<div class="declaration-description"><div class="sections"><p>Automatic storage for images.</p>
 </div>
 </div>
 <h2><a name="TkdApplication.this"></a> this();

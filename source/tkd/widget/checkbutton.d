@@ -19,9 +19,11 @@ import tkd.widget.widget;
 /**
  * Class representing a checkbutton widget.
  *
- * Common_Commands:
- *     $(LINK2 ./common/command.html, setDefault())
- *     $(LINK2 ./common/invoke.html, invoke())
+ * Additional_Commands:
+ *     $(UL
+ *         $(LI $(LINK2 ./common/command.html, command))
+ *         $(LI $(LINK2 ./common/invoke.html, invoke))
+ *     )
  */
 class CheckButton : TextWidget
 {

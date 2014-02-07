@@ -6,6 +6,9 @@
  */
 module tkd.widget.common.default_;
 
+/**
+ * These are common commands that apply to all widgets that have them injected.
+ */
 mixin template default_()
 {
 	/**
