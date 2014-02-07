@@ -116,20 +116,47 @@ abstract class UiElement : Element
 	 *     binding = The binding that triggers this event.
 	 *     callback = The delegate callback to execute when the event triggers.
 	 */
-	public void bind(string binding, UiElementCallback callback)
+	public void bind(string binding, UiElementBindCallback callback)
 	{
 		this.unbind(binding);
 
-		EventArgs* eventArgs  = cast(EventArgs*)malloc(EventArgs.sizeof);
+		BindArgs* args  = cast(BindArgs*)malloc(BindArgs.sizeof);
 
-		(*eventArgs).element  = this;
-		(*eventArgs).binding  = binding;
-		(*eventArgs).callback = callback;
+		(*args).element  = this;
+		(*args).binding  = binding;
+		(*args).callback = callback;
 
 		string command  = format("command-%s", this.generateHash(binding ~ this.id));
 		string tkScript = format("bind %s %s { %s }", this.id, binding, command);
 
-		this._tk.createCommand(command, &commandCallback, eventArgs, &deleteCommandCallback);
+		Tcl_CmdProc bindCallbackHandler = function(ClientData data, Tcl_Interp* tclInterpreter, int argc, const(char)** argv)
+		{
+			BindArgs args = *cast(BindArgs*)data;
+
+			try
+			{
+				args.callback(args.element, args);
+			}
+			catch (Throwable ex)
+			{
+				string error = "Error occurred in bound callback. ";
+				error ~= ex.msg ~ "\n";
+				error ~= "UiElement: " ~ args.element.id ~ "\n";
+				error ~= "Binding: " ~ args.binding ~ "\n";
+
+				Tcl_SetResult(tclInterpreter, error.toStringz, TCL_STATIC);
+				return TCL_ERROR;
+			}
+
+			return TCL_OK;
+		};
+
+		Tcl_CmdDeleteProc deleteBindCallbackHandler = function(ClientData data)
+		{
+			free(data);
+		};
+
+		this._tk.createCommand(command, bindCallbackHandler, args, deleteBindCallbackHandler);
 		this._tk.eval(tkScript);
 	}
 
@@ -150,14 +177,14 @@ abstract class UiElement : Element
 }
 
 /**
- * Alias representing an element callback triggered during events.
+ * Alias representing an element callback.
  */
-alias void delegate(UiElement sender, EventArgs args) UiElementCallback;
+alias void delegate(UiElement sender, BindArgs args) UiElementBindCallback;
 
 /**
- * The EventArgs struct passed to the UiElementCallback on invocation.
+ * The BindArgs struct passed to the UiElementBindCallback on invocation.
  */
-struct EventArgs
+struct BindArgs
 {
 	/**
 	 * The element that raised the event.
@@ -170,50 +197,7 @@ struct EventArgs
 	string binding;
 
 	/**
-	 * The callback which was called during the event.
+	 * The callback which was invoked for the event.
 	 */
-	UiElementCallback callback;
-}
-
-/**
- * The function used to create new commands. All bound events trigger for the above element call this function.
- *
- * Params:
- *     data = Client data registered with the new command.
- *     tclInterpreter = The native Tcl interpreter.
- *     argc = The number of parameters called from Tcl.
- *     argv = A pointer to an array of string parameters called from Tcl.
- */
-private extern(C) int commandCallback(ClientData data, Tcl_Interp* tclInterpreter, int argc, const(char)** argv) nothrow
-{
-	EventArgs eventArgs = *cast(EventArgs*)data;
-
-	try
-	{
-		eventArgs.callback(eventArgs.element, eventArgs);
-	}
-	catch (Throwable ex)
-	{
-		string error = "Error occurred in bound callback. ";
-		error ~= ex.msg ~ "\n";
-		error ~= "UiElement: " ~ eventArgs.element.id ~ "\n";
-		error ~= "Binding: " ~ eventArgs.binding ~ "\n";
-
-		Tcl_SetResult(tclInterpreter, error.toStringz, TCL_STATIC);
-		return TCL_ERROR;
-	}
-
-	return TCL_OK;
-}
-
-/**
- * Function automatically called by Tcl when deleting a custom command from the interpreter.
- * Freeing the memory allocated from creating the command's client data.
- *
- * Params:
- *     data = The client data registered with this command on creation.
- */
-private extern(C) void deleteCommandCallback(ClientData data) nothrow
-{
-	free(data);
+	UiElementBindCallback callback;
 }

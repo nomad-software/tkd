@@ -1,12 +1,12 @@
 /**
- * Invoke module.
+ * Default module.
  *
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.widget.command.setdefault;
+module tkd.widget.common.default_;
 
-mixin template setDefault()
+mixin template default_()
 {
 	/**
 	 * Make the widget the default one on the interface.
@@ -15,5 +15,4 @@ mixin template setDefault()
 	{
 		this._tk.eval("%s configure -default active", this.id);
 	}
-
 }

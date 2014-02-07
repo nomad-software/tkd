@@ -4,7 +4,7 @@
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.widget.command.invoke;
+module tkd.widget.common.invoke;
 
 mixin template invoke()
 {

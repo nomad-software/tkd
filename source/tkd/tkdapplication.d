@@ -33,6 +33,7 @@ abstract class TkdApplication
 	 * Storage for elements.
 	 */
 	protected Store!(Button) button;
+	protected Store!(CheckButton) checkbutton;
 	protected Store!(Frame) frame;
 	protected Store!(Image) image;
 

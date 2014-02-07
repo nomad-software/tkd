@@ -16,7 +16,7 @@ class Application : TkdApplication
 	/**
 	 * Event callbacks.
 	 */
-	private void button_hello_click(UiElement element, EventArgs args)
+	private void button_hello_command(Widget widget, CommandArgs args)
 	{
 		string[] words     = ["Mary", "had", "a", "little", "lamb"];
 		string currentWord = this.button.hello.getText();
@@ -25,7 +25,7 @@ class Application : TkdApplication
 		this.button.hello.setText(nextword);
 	}
 
-	private void button_quit_click(UiElement element, EventArgs args)
+	private void button_quit_command(Widget widget, CommandArgs args)
 	{
 		this.exit();
 	}
@@ -38,15 +38,17 @@ class Application : TkdApplication
 		this.frame.root   = new Frame();
 		this.button.hello = new Button(this.frame.root, "Mary");
 		this.button.exit  = new Button(this.frame.root, "Exit");
+		this.checkbutton.option = new CheckButton(this.frame.root, "Option");
 
-		this.button.hello.bind("<Button-1>", &this.button_hello_click);
+		this.button.hello.setCommand(&this.button_hello_command);
 		this.button.hello.addImage(new Png!("thumbnail.png"), ImagePosition.top);
 
-		this.button.exit.bind("<Button-1>", &this.button_quit_click);
+		this.button.exit.setCommand(&this.button_quit_command);
 
 		this.frame.root.pack();
 		this.button.hello.pack();
 		this.button.exit.pack();
+		this.checkbutton.option.pack();
 	}
 }
 

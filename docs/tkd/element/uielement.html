@@ -72,13 +72,13 @@
 <h3>Return Value</h3><p>The widget's cursor.</p>
 </div>
 </div>
-<h2><a name="UiElement.bind"></a>void <span class="symbol">bind</span>(string binding, UiElementCallback callback);
+<h2><a name="UiElement.bind"></a>void <span class="symbol">bind</span>(string binding, UiElementBindCallback callback);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Bind an event to this element.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string binding</td>
 <td>The binding that triggers this event.</td></tr>
-<tr><td>UiElementCallback callback</td>
+<tr><td>UiElementBindCallback callback</td>
 <td>The delegate callback to execute when the event triggers.</td></tr>
 </table>
 </div>
@@ -94,28 +94,28 @@
 </div>
 </div>
 </div>
-<h2><a name="UiElementCallback"></a>alias <span class="symbol">UiElementCallback</span> = void delegate(UiElement sender, EventArgs args);
+<h2><a name="UiElementBindCallback"></a>alias <span class="symbol">UiElementBindCallback</span> = void delegate(UiElement sender, BindArgs args);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Alias representing an element callback triggered during events.</p>
+<div class="declaration-description"><div class="sections"><p>Alias representing an element callback.</p>
 </div>
 </div>
-<h2><a name="EventArgs"></a>struct <span class="symbol">EventArgs</span>;
+<h2><a name="BindArgs"></a>struct <span class="symbol">BindArgs</span>;
 </h2>
-<div class="declaration-description"><div class="sections"><p>The <span class="symbol">EventArgs</span> struct passed to the UiElementCallback on invocation.</p>
+<div class="declaration-description"><div class="sections"><p>The <span class="symbol">BindArgs</span> struct passed to the UiElementBindCallback on invocation.</p>
 </div>
-<div class="struct-members"><h2><a name="EventArgs.element"></a>UiElement <span class="symbol">element</span>;
+<div class="struct-members"><h2><a name="BindArgs.element"></a>UiElement <span class="symbol">element</span>;
 </h2>
 <div class="declaration-description"><div class="sections"><p>The <span class="symbol">element</span> that raised the event.</p>
 </div>
 </div>
-<h2><a name="EventArgs.binding"></a>string <span class="symbol">binding</span>;
+<h2><a name="BindArgs.binding"></a>string <span class="symbol">binding</span>;
 </h2>
 <div class="declaration-description"><div class="sections"><p>The event that occurred.</p>
 </div>
 </div>
-<h2><a name="EventArgs.callback"></a>UiElementCallback <span class="symbol">callback</span>;
+<h2><a name="BindArgs.callback"></a>UiElementBindCallback <span class="symbol">callback</span>;
 </h2>
-<div class="declaration-description"><div class="sections"><p>The <span class="symbol">callback</span> which was called during the event.</p>
+<div class="declaration-description"><div class="sections"><p>The <span class="symbol">callback</span> which was invoked for the event.</p>
 </div>
 </div>
 </div>

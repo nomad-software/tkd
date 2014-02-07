@@ -181,3 +181,24 @@ abstract class Widget : UiElement
 		this._tk.eval(tkScript);
 	}
 }
+
+/**
+ * Alias representing a widget command callback.
+ */
+alias void delegate(Widget widget, CommandArgs args) WidgetCommandCallback;
+
+/**
+ * The CommandArgs struct passed to the WidgetCommandCallback on invocation.
+ */
+struct CommandArgs
+{
+	/**
+	 * The widget that issued the command.
+	 */
+	Widget widget;
+
+	/**
+	 * The callback which was invoked as the command.
+	 */
+	WidgetCommandCallback callback;
+}
