@@ -87,10 +87,10 @@ abstract class TextWidget : Widget
 	}
 
 	/**
-	 * Add an image to this widget.
+	 * Set the image for this widget.
 	 *
 	 * Params:
-	 *     image = The image to add to the widget.
+	 *     image = The image to set on the widget.
 	 *     imagePosition = The position of the image relative to the text.
 	 *
 	 * See_Also:
@@ -99,7 +99,7 @@ abstract class TextWidget : Widget
 	 *     $(LINK2 ../image/gif.html, tkd.image.gif) $(BR)
 	 *     $(LINK2 ../image/imageposition.html, tkd.image.imageposition) $(BR)
 	 */
-	public void addImage(Image image, string imagePosition = ImagePosition.image)
+	public void setImage(Image image, string imagePosition = ImagePosition.image)
 	{
 		this._image = image;
 

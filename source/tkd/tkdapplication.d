@@ -49,6 +49,10 @@ public import tkd.image;
  * }
  * ---
  *
+ * As shown in the above example, the TkdApplication class supports automatic 
+ * declaration for all widget types so they don't have to be declared 
+ * beforehand. e.g. you can refer to all buttons through the magic property 
+ * `this.button`, all frames through the magic property `this.frame` etc.
  */
 abstract class TkdApplication
 {
@@ -57,25 +61,14 @@ abstract class TkdApplication
 	 */
 	private Tk _tk;
 
-	/**
-	 * Automatic storage for buttons.
+	/*
+	 * Automatic storage for widgets.
 	 */
 	protected Store!(Button) button;
-
-	/**
-	 * Automatic storage for checkbuttons.
-	 */
 	protected Store!(CheckButton) checkbutton;
-
-	/**
-	 * Automatic storage for frames.
-	 */
 	protected Store!(Frame) frame;
-
-	/**
-	 * Automatic storage for images.
-	 */
 	protected Store!(Image) image;
+	protected Store!(ToolButton) toolbutton;
 
 	/**
 	 * constructor.

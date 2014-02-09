@@ -7,11 +7,19 @@
 module tkd.widget.style;
 
 /**
- * Style values of widgets.
+ * Standard style values of widgets.
  */
 enum Style : string
 {
 	button = "TButton",
 	frame  = "TFrame",
 	entry  = "TEntry",
+}
+
+/**
+ * Specific button styles.
+ */
+enum ButtonStyle : string
+{
+	toolbutton = "Toolbutton",
 }

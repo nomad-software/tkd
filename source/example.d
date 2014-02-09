@@ -41,7 +41,7 @@ class Application : TkdApplication
 		this.checkbutton.option = new CheckButton(this.frame.root, "Option");
 
 		this.button.hello.setCommand(&this.button_hello_command);
-		this.button.hello.addImage(new Png!("thumbnail.png"), ImagePosition.top);
+		this.button.hello.setImage(new Png!("thumbnail.png"), ImagePosition.top);
 
 		this.button.exit.setCommand(&this.button_quit_command);
 
