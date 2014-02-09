@@ -67,7 +67,7 @@ class Image : Element
 	 *     format = A valid image format.
 	 *
 	 * See_Also:
-	 *     $(LINK2 imageformat.html, tkd.image.imageformat) for supported formats.
+	 *     $(LINK2 ./imageformat.html, tkd.image.imageformat) for supported formats.
 	 */
 	public void setFormat(string format)
 	{
@@ -79,6 +79,9 @@ class Image : Element
 	 *
 	 * Returns:
 	 *     The image format.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./imageformat.html, tkd.image.imageformat) for returned formats.
 	 */
 	public string getFormat()
 	{
@@ -127,8 +130,13 @@ class Image : Element
 	 * Params:
 	 *     gamma = The destination gamma.
 	 */
-	public void setGamma(string gamma)
+	public void setGamma(float gamma)
 	{
+		if (gamma < 0)
+		{
+			gamma = 1;
+		}
+
 		this._tk.eval("%s configure -gamma %s", this.id, gamma);
 	}
 

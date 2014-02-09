@@ -18,6 +18,9 @@ mixin template command()
 	 *
 	 * Params:
 	 *     callback = The delegate callback to execute when invoking the command.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../widget.html#WidgetCommandCallback, tkd.widget.WidgetCommandCallback)
 	 */
 	public void setCommand(WidgetCommandCallback callback)
 	{

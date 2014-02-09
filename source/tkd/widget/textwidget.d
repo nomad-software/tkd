@@ -17,6 +17,9 @@ import tkd.widget.widget;
 
 /**
  * The text widget base class.
+ *
+ * See_Also:
+ *     $(LINK2 ./widget.html, tkd.widget.widget)
  */
 abstract class TextWidget : Widget
 {
@@ -36,6 +39,9 @@ abstract class TextWidget : Widget
 	 * Params:
 	 *     parent = An optional parent of this widget.
 	 *     text = The widget text.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../element/uielement.html, tkd.element.UiElement)
 	 */
 	public this(UiElement parent = null, string text = null)
 	{
@@ -86,6 +92,12 @@ abstract class TextWidget : Widget
 	 * Params:
 	 *     image = The image to add to the widget.
 	 *     imagePosition = The position of the image relative to the text.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../image/image.html, tkd.image.image) $(BR)
+	 *     $(LINK2 ../image/png.html, tkd.image.png) $(BR)
+	 *     $(LINK2 ../image/gif.html, tkd.image.gif) $(BR)
+	 *     $(LINK2 ../image/imageposition.html, tkd.image.imageposition) $(BR)
 	 */
 	public void addImage(Image image, string imagePosition = ImagePosition.image)
 	{
@@ -100,6 +112,9 @@ abstract class TextWidget : Widget
 	 *
 	 * Params:
 	 *     imagePosition = The position of the image relative to the text.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../image/imageposition.html, tkd.image.imageposition)
 	 */
 	public void setImagePosition(string imagePosition)
 	{

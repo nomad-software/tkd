@@ -17,6 +17,9 @@ import tkd.image.imageformat;
  *
  * Params:
  *     filename = The filename of the image to embed.
+ *
+ * See_Also:
+ *     $(LINK2 ../image/image.html, tkd.image.image) $(BR)
  */
 class Gif(string filename) : Image
 {

@@ -72,6 +72,9 @@ abstract class UiElement : Element
 	 *
 	 * Returns:
 	 *     The widget's class as a string.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./elementclass.html, tkd.element.elementclass) for returned classes.
 	 */
 	public string getClass()
 	{
@@ -89,7 +92,7 @@ abstract class UiElement : Element
 	 * Params:
 	 *     cursor = Any valid widget cursor.
 	 *
-	 * Related:
+	 * See_Also:
 	 *     $(LINK2 ./cursor.html, tkd.element.cursor) for supported cursors.
 	 */
 	public void setCursor(string cursor)
@@ -102,6 +105,9 @@ abstract class UiElement : Element
 	 *
 	 * Returns:
 	 *     The widget's cursor.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./cursor.html, tkd.element.cursor) for returned cursors.
 	 */
 	public string getCursor()
 	{
@@ -115,6 +121,9 @@ abstract class UiElement : Element
 	 * Params:
 	 *     binding = The binding that triggers this event.
 	 *     callback = The delegate callback to execute when the event triggers.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./uielement.html#UiElementBindCallback, tkd.element.uielement.UiElementBindCallback)
 	 */
 	public void bind(string binding, UiElementBindCallback callback)
 	{

@@ -17,6 +17,9 @@ import tkd.widget.state;
 
 /**
  * The widget base class.
+ *
+ * See_Also:
+ *     $(LINK2 ../element/uielement.html, tkd.element.uielement)
  */
 abstract class Widget : UiElement
 {
@@ -25,6 +28,9 @@ abstract class Widget : UiElement
 	 *
 	 * Params:
 	 *     parent = An optional parent of this widget.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../element/uielement.html, tkd.element.uielement)
 	 */
 	public this(UiElement parent = null)
 	{
@@ -40,7 +46,7 @@ abstract class Widget : UiElement
 	 *     state = An array of valid widget states.
 	 *
 	 * See_Also:
-	 *     $(LINK2 state.html, tkd.widget.state) for supported states.
+	 *     $(LINK2 ./state.html, tkd.widget.state) for supported states.
 	 */
 	public void setState(string[] state)
 	{
@@ -54,7 +60,7 @@ abstract class Widget : UiElement
 	 *     An array of valid widget states.
 	 *
 	 * See_Also:
-	 *     $(LINK2 state.html, tkd.widget.state) for supported states.
+	 *     $(LINK2 ./state.html, tkd.widget.state) for returned states.
 	 */
 	public string[] getState()
 	{
@@ -72,7 +78,7 @@ abstract class Widget : UiElement
 	 *     true is the widget is in that state, false if not.
 	 *
 	 * See_Also:
-	 *     $(LINK2 state.html, tkd.widget.state) for supported states.
+	 *     $(LINK2 ./state.html, tkd.widget.state) for supported states.
 	 */
 	public bool inState(string[] state)
 	{
@@ -92,7 +98,7 @@ abstract class Widget : UiElement
 	 *     state = An array of valid widget states.
 	 *
 	 * See_Also:
-	 *     $(LINK2 state.html, tkd.widget.state) for supported states.
+	 *     $(LINK2 ./state.html, tkd.widget.state) for supported states.
 	 */
 	public void removeState(string[] state)
 	{
@@ -103,7 +109,7 @@ abstract class Widget : UiElement
 	 * Reset the widget's state to default.
 	 *
 	 * See_Also:
-	 *     $(LINK2 state.html, tkd.widget.state) for supported states.
+	 *     $(LINK2 ./state.html, tkd.widget.state) for widget states.
 	 */
 	public void resetState()
 	{
@@ -117,7 +123,7 @@ abstract class Widget : UiElement
 	 *     style = A valid widget style.
 	 *
 	 * See_Also:
-	 *     $(LINK2 style.html, tkd.widget.style) for supported styles.
+	 *     $(LINK2 ./style.html, tkd.widget.style) for supported styles.
 	 */
 	public void setStyle(string style)
 	{
@@ -131,7 +137,7 @@ abstract class Widget : UiElement
 	 *     The widget's style.
 	 *
 	 * See_Also:
-	 *     $(LINK2 style.html, tkd.widget.style) for supported styles.
+	 *     $(LINK2 ./style.html, tkd.widget.style) for returned styles.
 	 */
 	public string getStyle()
 	{
@@ -150,7 +156,7 @@ abstract class Widget : UiElement
 	 *     focus = A valid focus setting.
 	 *
 	 * See_Also:
-	 *     $(LINK2 focus.html, tkd.widget.focus) for supported focus states.
+	 *     $(LINK2 ./focus.html, tkd.widget.focus) for supported focus states.
 	 */
 	public void setFocus(string focus)
 	{
@@ -164,7 +170,7 @@ abstract class Widget : UiElement
 	 *     The widget's focus setting.
 	 *
 	 * See_Also:
-	 *     $(LINK2 focus.html, tkd.widget.focus) for supported focus states.
+	 *     $(LINK2 ./focus.html, tkd.widget.focus) for returned focus states.
 	 */
 	public string getFocus()
 	{
@@ -173,7 +179,7 @@ abstract class Widget : UiElement
 	}
 
 	/**
-	 * Geometry method for placing the widget onto the interface.
+	 * Geometry method for placing the widget onto the uielement.
 	 */
 	public void pack()
 	{

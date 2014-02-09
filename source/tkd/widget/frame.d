@@ -15,6 +15,9 @@ import tkd.widget.widget;
 
 /**
  * Class representing a frame widget.
+ *
+ * See_Also:
+ *     $(LINK2 ./widget.html, tkd.widget.widget)
  */
 class Frame : Widget
 {
@@ -23,6 +26,9 @@ class Frame : Widget
 	 *
 	 * Params:
 	 *     parent = An optional parent of this widget.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../element/uielement.html, tkd.element.UiElement)
 	 */
 	public this(UiElement parent = null)
 	{

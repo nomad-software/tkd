@@ -17,7 +17,9 @@
 </div>
 <div class="module-members"><h2><a name="Widget"></a>abstract class <span class="symbol">Widget</span>: tkd.element.uielement.UiElement;
 </h2>
-<div class="declaration-description"><div class="sections"><p>The widget base class.</p>
+<div class="declaration-description"><div class="sections"><p>The widget base class.
+</p>
+<h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.uielement</a></p>
 </div>
 <div class="class-members"><h2><a name="Widget.this"></a> this(UiElement parent = null);
 </h2>
@@ -26,6 +28,7 @@
 <h3>Parameters</h3><table class="parameter-list"><tr><td>UiElement parent</td>
 <td>An optional parent of this widget.</td></tr>
 </table>
+<h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.uielement</a></p>
 </div>
 </div>
 <h2><a name="Widget.setState"></a>void <span class="symbol">setState</span>(string[] state);
@@ -35,7 +38,7 @@
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string[] state</td>
 <td>An array of valid widget states.</td></tr>
 </table>
-<h3>See Also</h3><p><a href="state.html">tkd.widget.state</a> for supported states.</p>
+<h3>See Also</h3><p><a href="./state.html">tkd.widget.state</a> for supported states.</p>
 </div>
 </div>
 <h2><a name="Widget.getState"></a>string[] <span class="symbol">getState</span>();
@@ -45,7 +48,7 @@
 <h3>Return Value</h3><p>An array of valid widget states.
 
 </p>
-<h3>See Also</h3><p><a href="state.html">tkd.widget.state</a> for supported states.</p>
+<h3>See Also</h3><p><a href="./state.html">tkd.widget.state</a> for returned states.</p>
 </div>
 </div>
 <h2><a name="Widget.inState"></a>bool <span class="symbol">inState</span>(string[] state);
@@ -58,7 +61,7 @@
 <h3>Return Value</h3><p><strong>true</strong> is the widget is in that state, <strong>false</strong> if not.
 
 </p>
-<h3>See Also</h3><p><a href="state.html">tkd.widget.state</a> for supported states.</p>
+<h3>See Also</h3><p><a href="./state.html">tkd.widget.state</a> for supported states.</p>
 </div>
 </div>
 <h2><a name="Widget.removeState"></a>void <span class="symbol">removeState</span>(string[] state);
@@ -68,14 +71,14 @@
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string[] state</td>
 <td>An array of valid widget states.</td></tr>
 </table>
-<h3>See Also</h3><p><a href="state.html">tkd.widget.state</a> for supported states.</p>
+<h3>See Also</h3><p><a href="./state.html">tkd.widget.state</a> for supported states.</p>
 </div>
 </div>
 <h2><a name="Widget.resetState"></a>void <span class="symbol">resetState</span>();
 </h2>
 <div class="declaration-description"><div class="sections"><p>Reset the widget's state to default.
 </p>
-<h3>See Also</h3><p><a href="state.html">tkd.widget.state</a> for supported states.</p>
+<h3>See Also</h3><p><a href="./state.html">tkd.widget.state</a> for widget states.</p>
 </div>
 </div>
 <h2><a name="Widget.setStyle"></a>void <span class="symbol">setStyle</span>(string style);
@@ -85,7 +88,7 @@
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string style</td>
 <td>A valid widget style.</td></tr>
 </table>
-<h3>See Also</h3><p><a href="style.html">tkd.widget.style</a> for supported styles.</p>
+<h3>See Also</h3><p><a href="./style.html">tkd.widget.style</a> for supported styles.</p>
 </div>
 </div>
 <h2><a name="Widget.getStyle"></a>string <span class="symbol">getStyle</span>();
@@ -95,7 +98,7 @@
 <h3>Return Value</h3><p>The widget's style.
 
 </p>
-<h3>See Also</h3><p><a href="style.html">tkd.widget.style</a> for supported styles.</p>
+<h3>See Also</h3><p><a href="./style.html">tkd.widget.style</a> for returned styles.</p>
 </div>
 </div>
 <h2><a name="Widget.setFocus"></a>void <span class="symbol">setFocus</span>(string focus);
@@ -105,7 +108,7 @@
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string focus</td>
 <td>A valid focus setting.</td></tr>
 </table>
-<h3>See Also</h3><p><a href="focus.html">tkd.widget.focus</a> for supported focus states.</p>
+<h3>See Also</h3><p><a href="./focus.html">tkd.widget.focus</a> for supported focus states.</p>
 </div>
 </div>
 <h2><a name="Widget.getFocus"></a>string <span class="symbol">getFocus</span>();
@@ -115,12 +118,12 @@
 <h3>Return Value</h3><p>The widget's focus setting.
 
 </p>
-<h3>See Also</h3><p><a href="focus.html">tkd.widget.focus</a> for supported focus states.</p>
+<h3>See Also</h3><p><a href="./focus.html">tkd.widget.focus</a> for returned focus states.</p>
 </div>
 </div>
 <h2><a name="Widget.pack"></a>void <span class="symbol">pack</span>();
 </h2>
-<div class="declaration-description"><div class="sections"><p>Geometry method for placing the widget onto the interface.</p>
+<div class="declaration-description"><div class="sections"><p>Geometry method for placing the widget onto the uielement.</p>
 </div>
 </div>
 </div>
