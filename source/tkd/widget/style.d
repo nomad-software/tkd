@@ -11,15 +11,8 @@ module tkd.widget.style;
  */
 enum Style : string
 {
-	button = "TButton",
-	frame  = "TFrame",
-	entry  = "TEntry",
-}
-
-/**
- * Specific button styles.
- */
-enum ButtonStyle : string
-{
+	button     = "TButton",
+	frame      = "TFrame",
+	entry      = "TEntry",
 	toolbutton = "Toolbutton",
 }

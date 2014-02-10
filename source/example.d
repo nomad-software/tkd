@@ -36,13 +36,11 @@ class Application : TkdApplication
 	override protected void initInterface()
 	{
 		this.frame.root   = new Frame();
-		this.button.hello = new Button(this.frame.root, "Mary");
+		this.button.hello = new Button(this.frame.root, new Png!("thumbnail.png"), "Mary", ImagePosition.top);
 		this.button.exit  = new Button(this.frame.root, "Exit");
 		this.checkbutton.option = new CheckButton(this.frame.root, "Option");
 
 		this.button.hello.setCommand(&this.button_hello_command);
-		this.button.hello.setImage(new Png!("thumbnail.png"), ImagePosition.top);
-
 		this.button.exit.setCommand(&this.button_quit_command);
 
 		this.frame.root.pack();

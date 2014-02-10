@@ -68,7 +68,6 @@ abstract class TkdApplication
 	protected Store!(CheckButton) checkbutton;
 	protected Store!(Frame) frame;
 	protected Store!(Image) image;
-	protected Store!(ToolButton) toolbutton;
 
 	/**
 	 * constructor.

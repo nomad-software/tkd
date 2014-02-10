@@ -11,6 +11,8 @@ module tkd.widget.button;
  */
 import std.string;
 import tkd.element.uielement;
+import tkd.image.image;
+import tkd.image.imageposition;
 import tkd.widget.common.command;
 import tkd.widget.common.default_;
 import tkd.widget.common.invoke;
@@ -52,6 +54,28 @@ class Button : TextWidget
 		string tkScript = format("ttk::button %s -textvariable %s", this.id, this._textVariable);
 
 		this._tk.eval(tkScript);
+	}
+
+	/**
+	 * Construct the widget.
+	 *
+	 * Params:
+	 *     parent = An optional parent of this widget.
+	 *     image = The tool button image.
+	 *     text = The text of the button.
+	 *     imagePosition = The position of the image in relation to the text.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../element/uielement.html, tkd.element.UiElement) $(BR)
+	 *     $(LINK2 ../image/image.html, tkd.image.image) $(BR)
+	 *     $(LINK2 ../image/png.html, tkd.image.png) $(BR)
+	 *     $(LINK2 ../image/gif.html, tkd.image.gif) $(BR)
+	 *     $(LINK2 ../image/imageposition.html, tkd.image.imageposition) $(BR)
+	 */
+	this(UiElement parent, Image image, string text = null, string imagePosition = ImagePosition.image)
+	{
+		this(parent, text);
+		this.setImage(image, imagePosition);
 	}
 
 	/**
