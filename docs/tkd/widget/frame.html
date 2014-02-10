@@ -19,16 +19,43 @@
 </h2>
 <div class="declaration-description"><div class="sections"><p>Class representing a frame widget.
 </p>
+<p><h3>Additional Commands:</h3>
+These are common commands that can be used with this widget.
+     <p>        <a href="./common/border.html">border</a> <br>
+         <a href="./common/height.html">height</a> <br>
+         <a href="./common/padding.html">padding</a> <br>
+         <a href="./common/relief.html">relief</a> <br>
+         <a href="./common/width.html">width</a> <br>
+     </p>
+
+</p>
 <h3>See Also</h3><p><a href="./widget.html">tkd.widget.widget</a></p>
 </div>
-<div class="class-members"><h2><a name="Frame.this"></a> this(UiElement parent = null);
+<div class="class-members"><h2><a name="Frame.this"></a> this(UiElement parent, int width = 2, string relief = Relief.groove);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>UiElement parent</td>
-<td>An optional parent of this widget.</td></tr>
+<td>The parent of this widget.</td></tr>
+<tr><td>int width</td>
+<td>The width of the frame border.</td></tr>
+<tr><td>string relief</td>
+<td>The relief style of the border.</td></tr>
 </table>
-<h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.UiElement</a></p>
+<h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.UiElement</a> <br>
+     <a href="./relief.html">tkd.widget.relief</a> <br></p>
+</div>
+</div>
+<h2><a name="Frame.this"></a> this(int width = 2, string relief = Relief.groove);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Construct the widget.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int width</td>
+<td>The width of the frame border.</td></tr>
+<tr><td>string relief</td>
+<td>The relief style of the border.</td></tr>
+</table>
+<h3>See Also</h3><p><a href="./relief.html">tkd.widget.relief</a></p>
 </div>
 </div>
 </div>
