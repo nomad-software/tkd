@@ -39,28 +39,39 @@ class Button : TextWidget
 	 * Construct the widget.
 	 *
 	 * Params:
-	 *     parent = An optional parent of this widget.
+	 *     parent = The parent of this widget.
 	 *     text = The text of the button.
+	 *     image = The tool button image.
+	 *     imagePosition = The position of the image in relation to the text.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ../element/uielement.html, tkd.element.UiElement)
+	 *     $(LINK2 ../element/uielement.html, tkd.element.UiElement) $(BR)
+	 *     $(LINK2 ../image/image.html, tkd.image.image) $(BR)
+	 *     $(LINK2 ../image/png.html, tkd.image.png) $(BR)
+	 *     $(LINK2 ../image/gif.html, tkd.image.gif) $(BR)
+	 *     $(LINK2 ../image/imageposition.html, tkd.image.imageposition) $(BR)
 	 */
-	this(UiElement parent = null, string text = null)
+	this(UiElement parent, string text, Image image = null, string imagePosition = ImagePosition.top)
 	{
-		super(parent, text);
-
+		super(parent);
 		this._elementId = "button";
 
 		string tkScript = format("ttk::button %s -textvariable %s", this.id, this._textVariable);
-
 		this._tk.eval(tkScript);
+
+		this.setText(text);
+
+		if (image !is null)
+		{
+			this.setImage(image, imagePosition);
+		}
 	}
 
 	/**
 	 * Construct the widget.
 	 *
 	 * Params:
-	 *     parent = An optional parent of this widget.
+	 *     parent = The parent of this widget.
 	 *     image = The tool button image.
 	 *     text = The text of the button.
 	 *     imagePosition = The position of the image in relation to the text.
@@ -74,8 +85,45 @@ class Button : TextWidget
 	 */
 	this(UiElement parent, Image image, string text = null, string imagePosition = ImagePosition.image)
 	{
-		this(parent, text);
-		this.setImage(image, imagePosition);
+		this(parent, text, image, imagePosition);
+	}
+
+	/**
+	 * Construct the widget.
+	 *
+	 * Params:
+	 *     text = The text of the button.
+	 *     image = The tool button image.
+	 *     imagePosition = The position of the image in relation to the text.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../image/image.html, tkd.image.image) $(BR)
+	 *     $(LINK2 ../image/png.html, tkd.image.png) $(BR)
+	 *     $(LINK2 ../image/gif.html, tkd.image.gif) $(BR)
+	 *     $(LINK2 ../image/imageposition.html, tkd.image.imageposition) $(BR)
+	 */
+	this(string text, Image image = null, string imagePosition = ImagePosition.top)
+	{
+		this(null, text, image, imagePosition);
+	}
+
+	/**
+	 * Construct the widget.
+	 *
+	 * Params:
+	 *     image = The tool button image.
+	 *     text = The text of the button.
+	 *     imagePosition = The position of the image in relation to the text.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../image/image.html, tkd.image.image) $(BR)
+	 *     $(LINK2 ../image/png.html, tkd.image.png) $(BR)
+	 *     $(LINK2 ../image/gif.html, tkd.image.gif) $(BR)
+	 *     $(LINK2 ../image/imageposition.html, tkd.image.imageposition) $(BR)
+	 */
+	this(Image image, string text = null, string imagePosition = ImagePosition.image)
+	{
+		this(parent, image, text, imagePosition);
 	}
 
 	/**

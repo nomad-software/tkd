@@ -38,19 +38,16 @@ abstract class TextWidget : Widget
 	 *
 	 * Params:
 	 *     parent = An optional parent of this widget.
-	 *     text = The widget text.
 	 *
 	 * See_Also:
 	 *     $(LINK2 ../element/uielement.html, tkd.element.UiElement)
 	 */
-	public this(UiElement parent = null, string text = null)
+	public this(UiElement parent = null)
 	{
 		super(parent);
 
 		this._elementId    = "textwidget";
 		this._textVariable = format("variable-%s", this.generateHash(this.id));
-
-		this.setText(text);
 	}
 
 	/**

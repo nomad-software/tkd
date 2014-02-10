@@ -43,13 +43,13 @@ class CheckButton : TextWidget
 	 */
 	this(UiElement parent = null, string text = null)
 	{
-		super(parent, text);
-
+		super(parent);
 		this._elementId = "checkbutton";
 
 		string tkScript = format("ttk::checkbutton %s -textvariable %s", this.id, this._textVariable);
-
 		this._tk.eval(tkScript);
+
+		this.setText(text);
 	}
 
 	/**

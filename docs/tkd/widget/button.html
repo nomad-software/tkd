@@ -29,16 +29,24 @@ These are common commands that can be used with this widget.
 </p>
 <h3>See Also</h3><p><a href="./textwidget.html">tkd.widget.textwidget</a></p>
 </div>
-<div class="class-members"><h2><a name="Button.this"></a> this(UiElement parent = null, string text = null);
+<div class="class-members"><h2><a name="Button.this"></a> this(UiElement parent, string text, Image image = null, string imagePosition = ImagePosition.top);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>UiElement parent</td>
-<td>An optional parent of this widget.</td></tr>
+<td>The parent of this widget.</td></tr>
 <tr><td>string text</td>
 <td>The text of the button.</td></tr>
+<tr><td>Image image</td>
+<td>The tool button image.</td></tr>
+<tr><td>string imagePosition</td>
+<td>The position of the image in relation to the text.</td></tr>
 </table>
-<h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.UiElement</a></p>
+<h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.UiElement</a> <br>
+     <a href="../image/image.html">tkd.image.image</a> <br>
+     <a href="../image/png.html">tkd.image.png</a> <br>
+     <a href="../image/gif.html">tkd.image.gif</a> <br>
+     <a href="../image/imageposition.html">tkd.image.imageposition</a> <br></p>
 </div>
 </div>
 <h2><a name="Button.this"></a> this(UiElement parent, Image image, string text = null, string imagePosition = ImagePosition.image);
@@ -46,7 +54,7 @@ These are common commands that can be used with this widget.
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>UiElement parent</td>
-<td>An optional parent of this widget.</td></tr>
+<td>The parent of this widget.</td></tr>
 <tr><td>Image image</td>
 <td>The tool button image.</td></tr>
 <tr><td>string text</td>
@@ -56,6 +64,40 @@ These are common commands that can be used with this widget.
 </table>
 <h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.UiElement</a> <br>
      <a href="../image/image.html">tkd.image.image</a> <br>
+     <a href="../image/png.html">tkd.image.png</a> <br>
+     <a href="../image/gif.html">tkd.image.gif</a> <br>
+     <a href="../image/imageposition.html">tkd.image.imageposition</a> <br></p>
+</div>
+</div>
+<h2><a name="Button.this"></a> this(string text, Image image = null, string imagePosition = ImagePosition.top);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Construct the widget.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string text</td>
+<td>The text of the button.</td></tr>
+<tr><td>Image image</td>
+<td>The tool button image.</td></tr>
+<tr><td>string imagePosition</td>
+<td>The position of the image in relation to the text.</td></tr>
+</table>
+<h3>See Also</h3><p><a href="../image/image.html">tkd.image.image</a> <br>
+     <a href="../image/png.html">tkd.image.png</a> <br>
+     <a href="../image/gif.html">tkd.image.gif</a> <br>
+     <a href="../image/imageposition.html">tkd.image.imageposition</a> <br></p>
+</div>
+</div>
+<h2><a name="Button.this"></a> this(Image image, string text = null, string imagePosition = ImagePosition.image);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Construct the widget.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>Image image</td>
+<td>The tool button image.</td></tr>
+<tr><td>string text</td>
+<td>The text of the button.</td></tr>
+<tr><td>string imagePosition</td>
+<td>The position of the image in relation to the text.</td></tr>
+</table>
+<h3>See Also</h3><p><a href="../image/image.html">tkd.image.image</a> <br>
      <a href="../image/png.html">tkd.image.png</a> <br>
      <a href="../image/gif.html">tkd.image.gif</a> <br>
      <a href="../image/imageposition.html">tkd.image.imageposition</a> <br></p>
