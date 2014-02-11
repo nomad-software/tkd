@@ -35,9 +35,10 @@ class Application : TkdApplication
 	 */
 	override protected void initInterface()
 	{
-		this.frame.root   = new Frame();
-		this.button.hello = new Button(this.frame.root, "Mary", new Png!("thumbnail.png"));
-		this.button.exit  = new Button(this.frame.root, "Exit");
+		this.frame.root        = new Frame();
+		this.button.hello      = new Button(this.frame.root, "Mary", new Png!("thumbnail.png"));
+		this.button.exit       = new Button(this.frame.root, "Exit");
+		this.checkbutton.check = new CheckButton(this.frame.root, "Check");
 
 		this.button.hello.setCommand(&this.button_hello_command);
 		this.button.exit.setCommand(&this.button_quit_command);
@@ -45,6 +46,7 @@ class Application : TkdApplication
 		this.frame.root.pack();
 		this.button.hello.pack();
 		this.button.exit.pack();
+		this.checkbutton.check.pack();
 	}
 }
 

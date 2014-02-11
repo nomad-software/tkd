@@ -54,8 +54,7 @@ class Frame : Widget
 	{
 		super(parent);
 
-		string tkScript = format("ttk::frame %s", this.id);
-		this._tk.eval(tkScript);
+		this._tk.eval("ttk::frame %s", this.id);
 
 		this.setBorderWidth(width);
 		this.setRelief(relief);

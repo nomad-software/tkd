@@ -13,6 +13,7 @@ import std.string;
 import tkd.element.uielement;
 import tkd.widget.common.command;
 import tkd.widget.common.invoke;
+import tkd.widget.common.value;
 import tkd.widget.textwidget;
 import tkd.widget.widget;
 
@@ -24,6 +25,7 @@ import tkd.widget.widget;
  *     $(P
  *         $(LINK2 ./common/command.html, command) $(BR)
  *         $(LINK2 ./common/invoke.html, invoke) $(BR)
+ *         $(LINK2 ./common/value.html, value) $(BR)
  *     )
  *
  * See_Also:
@@ -31,6 +33,18 @@ import tkd.widget.widget;
  */
 class CheckButton : TextWidget
 {
+	/**
+	 * The value of the checkbutton if it's checked.
+	 * The default is '1'.
+	 */
+	private string _onValue = "1";
+
+	/**
+	 * The value of the checkbutton if it's unchecked.
+	 * The default is '1'.
+	 */
+	private string _offValue = "0";
+
 	/**
 	 * Construct the widget.
 	 *
@@ -44,12 +58,72 @@ class CheckButton : TextWidget
 	this(UiElement parent = null, string text = null)
 	{
 		super(parent);
-		this._elementId = "checkbutton";
+		this._elementId     = "checkbutton";
+		this._valueVariable = format("variable-%s", this.generateHash(this.id));
 
-		string tkScript = format("ttk::checkbutton %s -textvariable %s", this.id, this._textVariable);
-		this._tk.eval(tkScript);
+		this._tk.eval("ttk::checkbutton %s -textvariable %s -variable %s", this.id, this._textVariable, this._valueVariable);
 
 		this.setText(text);
+		this.unCheck();
+	}
+
+	/**
+	 * Check the check button.
+	 */
+	public void check()
+	{
+		return this._tk.setVariable(this._valueVariable, this._onValue);
+	}
+
+	/**
+	 * Uncheck the check button.
+	 */
+	public void unCheck()
+	{
+		return this._tk.setVariable(this._valueVariable, this._offValue);
+	}
+
+	/**
+	 * Only half check the check button. This is a kind of halfway state.
+	 */
+	public void halfCheck()
+	{
+		return this._tk.setVariable(this._valueVariable, "");
+	}
+
+	/**
+	 * Check if the check button is checked or not.
+	 *
+	 * Returns:
+	 *     true if the check button is checked, false if not.
+	 */
+	public bool isChecked()
+	{
+		return this._tk.getVariable(this._valueVariable) == this._onValue;
+	}
+
+	/**
+	 * Set the value of the checked state.
+	 *
+	 * Params:
+	 *     value = The value of the widget for the checked state.
+	 */
+	public void setOnValue(string value)
+	{
+		this._onValue = value;
+		this._tk.eval("%s configure -onvalue %s", this.id, this._onValue);
+	}
+
+	/**
+	 * Set the value of the unchecked state.
+	 *
+	 * Params:
+	 *     value = The value of the widget for the unchecked state.
+	 */
+	public void setOffValue(string value)
+	{
+		this._offValue = value;
+		this._tk.eval("%s configure -offvalue %s", this.id, this._offValue);
 	}
 
 	/**
@@ -57,4 +131,5 @@ class CheckButton : TextWidget
 	 */
 	mixin invoke;
 	mixin command;
+	mixin value;
 }

@@ -58,8 +58,7 @@ class Button : TextWidget
 		super(parent);
 		this._elementId = "button";
 
-		string tkScript = format("ttk::button %s -textvariable %s", this.id, this._textVariable);
-		this._tk.eval(tkScript);
+		this._tk.eval("ttk::button %s -textvariable %s", this.id, this._textVariable);
 
 		this.setText(text);
 
