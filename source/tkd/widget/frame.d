@@ -9,14 +9,13 @@ module tkd.widget.frame;
 /**
  * Imports.
  */
-import std.string;
 import tkd.element.uielement;
 import tkd.widget.common.border;
 import tkd.widget.common.height;
 import tkd.widget.common.padding;
 import tkd.widget.common.relief;
 import tkd.widget.common.width;
-import tkd.widget.relief;
+import tkd.widget.reliefstyle;
 import tkd.widget.widget;
 
 /**
@@ -26,11 +25,11 @@ import tkd.widget.widget;
  * Additional_Commands:
  *     These are common commands that can be used with this widget.
  *     $(P
- *         $(LINK2 ./common/border.html, border) $(BR)
- *         $(LINK2 ./common/height.html, height) $(BR)
- *         $(LINK2 ./common/padding.html, padding) $(BR)
- *         $(LINK2 ./common/relief.html, relief) $(BR)
- *         $(LINK2 ./common/width.html, width) $(BR)
+ *         $(LINK2 ./common/border.html, Border) $(BR)
+ *         $(LINK2 ./common/height.html, Height) $(BR)
+ *         $(LINK2 ./common/padding.html, Padding) $(BR)
+ *         $(LINK2 ./common/relief.html, Relief) $(BR)
+ *         $(LINK2 ./common/width.html, Width) $(BR)
  *     )
  *
  * See_Also:
@@ -48,9 +47,9 @@ class Frame : Widget
 	 *
 	 * See_Also:
 	 *     $(LINK2 ../element/uielement.html, tkd.element.UiElement) $(BR)
-	 *     $(LINK2 ./relief.html, tkd.widget.relief) $(BR)
+	 *     $(LINK2 ./reliefstyle.html, tkd.widget.reliefstyle) $(BR)
 	 */
-	public this(UiElement parent, int width = 2, string relief = Relief.groove)
+	public this(UiElement parent, int width = 2, string relief = ReliefStyle.groove)
 	{
 		super(parent);
 
@@ -68,9 +67,9 @@ class Frame : Widget
 	 *     relief = The relief style of the border.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./relief.html, tkd.widget.relief)
+	 *     $(LINK2 ./reliefstyle.html, tkd.widget.reliefstyle) $(BR)
 	 */
-	public this(int width = 2, string relief = Relief.groove)
+	public this(int width = 2, string relief = ReliefStyle.groove)
 	{
 		this(null, width, relief);
 	}
@@ -78,9 +77,9 @@ class Frame : Widget
 	/**
 	 * Mixin common commands.
 	 */
-	mixin border;
-	mixin height;
-	mixin padding;
-	mixin relief;
-	mixin width;
+	mixin Border;
+	mixin Height;
+	mixin Padding;
+	mixin Relief;
+	mixin Width;
 }

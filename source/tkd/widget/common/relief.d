@@ -9,7 +9,7 @@ module tkd.widget.common.relief;
 /**
  * These are common commands that apply to all widgets that have them injected.
  */
-mixin template relief()
+mixin template Relief()
 {
 	/**
 	 * Set the relief type of the widget.

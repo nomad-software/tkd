@@ -9,7 +9,7 @@ module tkd.widget.common.border;
 /**
  * These are common commands that apply to all widgets that have them injected.
  */
-mixin template border()
+mixin template Border()
 {
 	/**
 	 * Set the border width of the widget.

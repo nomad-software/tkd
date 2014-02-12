@@ -9,7 +9,7 @@ module tkd.widget.common.value;
 /**
  * These are common commands that apply to all widgets that have them injected.
  */
-mixin template value()
+mixin template Value()
 {
 	/**
 	 * The name of the variable that contains the widget's value.

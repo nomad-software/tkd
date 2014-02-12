@@ -39,6 +39,10 @@ class Application : TkdApplication
 		this.button.hello      = new Button(this.frame.root, "Mary", new Png!("thumbnail.png"));
 		this.button.exit       = new Button(this.frame.root, "Exit");
 		this.checkbutton.check = new CheckButton(this.frame.root, "Check");
+		this.combobox.select   = new ComboBox(this.frame.root);
+		this.combobox.select.setPostCommand(delegate(Widget widget, CommandArgs args){
+			this.combobox.select.setValues(["Hello World"]);
+		});
 
 		this.button.hello.setCommand(&this.button_hello_command);
 		this.button.exit.setCommand(&this.button_quit_command);
@@ -47,6 +51,7 @@ class Application : TkdApplication
 		this.button.hello.pack();
 		this.button.exit.pack();
 		this.checkbutton.check.pack();
+		this.combobox.select.pack();
 	}
 }
 

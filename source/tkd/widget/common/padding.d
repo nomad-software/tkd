@@ -9,7 +9,7 @@ module tkd.widget.common.padding;
 /**
  * These are common commands that apply to all widgets that have them injected.
  */
-mixin template padding()
+mixin template Padding()
 {
 	/**
 	 * Set the amount of padding within the widget.

@@ -1,31 +1,31 @@
 /**
- * Command module.
+ * Post command module.
  *
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.widget.common.command;
+module tkd.widget.common.postcommand;
 
 /**
  * These are common commands that apply to all widgets that have them injected.
  */
-mixin template Command()
+mixin template PostCommand()
 {
 	import std.string;
 	import tcltk.tk;
 
 	/**
-	 * Add a command to a widget.
+	 * Add a post command to a widget. This is usually to modify the widget after creation.
 	 *
 	 * Params:
-	 *     callback = The delegate callback to execute when invoking the command.
+	 *     callback = The delegate callback to execute when invoking the post command.
 	 *
 	 * See_Also:
 	 *     $(LINK2 ../widget.html#WidgetCommandCallback, tkd.widget.WidgetCommandCallback)
 	 */
-	public void setCommand(WidgetCommandCallback callback)
+	public void setPostCommand(WidgetCommandCallback callback)
 	{
-		this.removeCommand();
+		this.removePostCommand();
 
 		Tcl_CmdProc commandCallbackHandler = function(ClientData data, Tcl_Interp* tclInterpreter, int argc, const(char)** argv)
 		{
@@ -37,7 +37,7 @@ mixin template Command()
 			}
 			catch (Throwable ex)
 			{
-				string error = "Error occurred in command callback. ";
+				string error = "Error occurred in post command callback. ";
 				error ~= ex.msg ~ "\n";
 				error ~= "Widget: " ~ args.widget.id ~ "\n";
 
@@ -58,8 +58,8 @@ mixin template Command()
 		(*args).widget   = this;
 		(*args).callback = callback;
 
-		string command  = format("command-%s", this.generateHash("command" ~ this.id));
-		string tkScript = format("%s configure -command %s", this.id, command);
+		string command  = format("command-%s", this.generateHash("postcommand" ~ this.id));
+		string tkScript = format("%s configure -postcommand %s", this.id, command);
 
 		this._tk.createCommand(command, commandCallbackHandler, args, deleteCallbackHandler);
 		this._tk.eval(tkScript);
@@ -68,10 +68,10 @@ mixin template Command()
 	/**
 	 * Remove a previously set command.
 	 */
-	public void removeCommand()
+	public void removePostCommand()
 	{
-		string command  = format("command-%s", this.generateHash("command" ~ this.id));
-		string tkScript = format("%s configure -command { }", this.id);
+		string command  = format("command-%s", this.generateHash("postcommand" ~ this.id));
+		string tkScript = format("%s configure -postcommand { }", this.id);
 
 		this._tk.deleteCommand(command);
 		this._tk.eval(tkScript);

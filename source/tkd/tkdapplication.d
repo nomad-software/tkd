@@ -66,6 +66,7 @@ abstract class TkdApplication
 	 */
 	protected Store!(Button) button;
 	protected Store!(CheckButton) checkbutton;
+	protected Store!(ComboBox) combobox;
 	protected Store!(Frame) frame;
 	protected Store!(Image) image;
 

@@ -4,12 +4,12 @@
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.widget.relief;
+module tkd.widget.reliefstyle;
 
 /**
  * Standard style values of widgets.
  */
-enum Relief : string
+enum ReliefStyle : string
 {
 	flat   = "flat",
 	groove = "groove",

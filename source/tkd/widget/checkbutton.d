@@ -9,7 +9,6 @@ module tkd.widget.checkbutton;
 /**
  * Imports.
  */
-import std.string;
 import tkd.element.uielement;
 import tkd.widget.common.command;
 import tkd.widget.common.invoke;
@@ -23,9 +22,9 @@ import tkd.widget.widget;
  * Additional_Commands:
  *     These are common commands that can be used with this widget.
  *     $(P
- *         $(LINK2 ./common/command.html, command) $(BR)
- *         $(LINK2 ./common/invoke.html, invoke) $(BR)
- *         $(LINK2 ./common/value.html, value) $(BR)
+ *         $(LINK2 ./common/command.html, Command) $(BR)
+ *         $(LINK2 ./common/invoke.html, Invoke) $(BR)
+ *         $(LINK2 ./common/value.html, Value) $(BR)
  *     )
  *
  * See_Also:
@@ -129,7 +128,7 @@ class CheckButton : TextWidget
 	/**
 	 * Mixin common commands.
 	 */
-	mixin invoke;
-	mixin command;
-	mixin value;
+	mixin Invoke;
+	mixin Command;
+	mixin Value;
 }

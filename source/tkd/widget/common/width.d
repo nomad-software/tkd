@@ -9,7 +9,7 @@ module tkd.widget.common.width;
 /**
  * These are common commands that apply to all widgets that have them injected.
  */
-mixin template width()
+mixin template Width()
 {
 	/**
 	 * Set the width of the widget if the geometry manager allows.

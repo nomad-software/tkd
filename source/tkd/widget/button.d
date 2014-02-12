@@ -9,7 +9,6 @@ module tkd.widget.button;
 /**
  * Imports.
  */
-import std.string;
 import tkd.element.uielement;
 import tkd.image.image;
 import tkd.image.imageposition;
@@ -26,10 +25,10 @@ import tkd.widget.widget;
  * Additional_Commands:
  *     These are common commands that can be used with this widget.
  *     $(P
- *         $(LINK2 ./common/command.html, command) $(BR)
- *         $(LINK2 ./common/default_.html, default) $(BR)
- *         $(LINK2 ./common/invoke.html, invoke) $(BR)
- *         $(LINK2 ./common/width.html, width) $(BR)
+ *         $(LINK2 ./common/command.html, Command) $(BR)
+ *         $(LINK2 ./common/default_.html, Default) $(BR)
+ *         $(LINK2 ./common/invoke.html, Invoke) $(BR)
+ *         $(LINK2 ./common/width.html, Width) $(BR)
  *     )
  *
  * See_Also:
@@ -130,8 +129,8 @@ class Button : TextWidget
 	/**
 	 * Mixin common commands.
 	 */
-	mixin command;
-	mixin default_;
-	mixin invoke;
-	mixin width;
+	mixin Command;
+	mixin Default_;
+	mixin Invoke;
+	mixin Width;
 }
