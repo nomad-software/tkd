@@ -14,8 +14,9 @@ import tkd.widget.common.exportselection;
 import tkd.widget.common.height;
 import tkd.widget.common.justify;
 import tkd.widget.common.postcommand;
-import tkd.widget.common.width;
+import tkd.widget.common.value;
 import tkd.widget.common.values;
+import tkd.widget.common.width;
 import tkd.widget.widget;
 
 /**
@@ -30,6 +31,15 @@ import tkd.widget.widget;
  *         $(LINK2 ./common/postcommand.html, PostCommand) $(BR)
  *         $(LINK2 ./common/width.html, Width) $(BR)
  *         $(LINK2 ./common/values.html, Values) $(BR)
+ *         $(LINK2 ./common/value.html, Value) $(BR)
+ *     )
+ *
+ * Additional_Events:
+ *     Widget specific events that can be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) command.
+ *     $(P
+ *         $(PARAM_TABLE
+ *             $(PARAM_ROW &lt;&lt;ComboboxSelected&gt;&gt;, The combobox widget generates this event when the user selects an element from the list of values.)
+ *         )
  *     )
  *
  * See_Also:
@@ -50,16 +60,17 @@ class ComboBox : Widget
 	{
 		super(parent);
 		this._elementId = "combobox";
+		this._valueVariable = format("variable-%s", this.generateHash(this.id));
 
-		this._tk.eval("ttk::combobox %s", this.id);
+		this._tk.eval("ttk::combobox %s -textvariable %s", this.id, this._valueVariable);
 
 		this.setState(["readonly"]);
-	}
 
-// public void clear()
-// {
-// 	this._tk.eval("%s.entry selection clear", this.id);
-// }
+		this.bind("<<ComboboxSelected>>", delegate(UiElement sender, BindArgs args){
+			pragma(msg, "use entry mixins here");
+			this._tk.eval("%s selection clear", this.id);
+		});
+	}
 
 	/**
 	 * Mixin common commands.
@@ -70,4 +81,6 @@ class ComboBox : Widget
 	mixin PostCommand;
 	mixin Width;
 	mixin Values;
+	mixin Value;
+	pragma(msg, "use entry mixins here");
 }

@@ -116,7 +116,7 @@ abstract class UiElement : Element
 	}
 
 	/**
-	 * Bind an event to this element.
+	 * Bind a callback to a particular event triggered by this element.
 	 *
 	 * Params:
 	 *     binding = The binding that triggers this event.
@@ -170,7 +170,7 @@ abstract class UiElement : Element
 	}
 
 	/**
-	 * Unbind a previous binding.
+	 * Unbind a previous event binding.
 	 *
 	 * Params:
 	 *     binding = The binding to remove.

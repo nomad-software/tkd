@@ -25,7 +25,7 @@ mixin template Value()
 	 * Returns:
 	 *     The string value of the widget.
 	 */
-	public T getValue(T)()
+	public T getValue(T = string)()
 	{
 		import std.conv : to;
 		return this._tk.getVariable(this._valueVariable).to!(T);

@@ -41,7 +41,7 @@ class Application : TkdApplication
 		this.checkbutton.check = new CheckButton(this.frame.root, "Check");
 		this.combobox.select   = new ComboBox(this.frame.root);
 		this.combobox.select.setPostCommand(delegate(Widget widget, CommandArgs args){
-			this.combobox.select.setValues(["Hello World"]);
+			this.combobox.select.setValues(["Hello World", "One two"]);
 		});
 
 		this.button.hello.setCommand(&this.button_hello_command);
