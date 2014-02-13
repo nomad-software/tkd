@@ -23,7 +23,7 @@ mixin template Value()
 	 *     T = The type of the value to return.
 	 *
 	 * Returns:
-	 *     The string value of the widget.
+	 *     The value of the widget.
 	 */
 	public T getValue(T = string)()
 	{

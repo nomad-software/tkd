@@ -19,7 +19,7 @@ import tkd.widget.widget;
 /**
  * Class representing a checkbutton widget.
  *
- * Additional_Commands:
+ * Common_Commands:
  *     These are common commands that can be used with this widget.
  *     $(P
  *         $(LINK2 ./common/command.html, Command) $(BR)

@@ -22,7 +22,7 @@ import tkd.widget.widget;
  * Class representing a frame widget.
  *
  *
- * Additional_Commands:
+ * Common_Commands:
  *     These are common commands that can be used with this widget.
  *     $(P
  *         $(LINK2 ./common/border.html, Border) $(BR)

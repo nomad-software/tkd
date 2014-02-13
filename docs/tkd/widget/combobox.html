@@ -19,7 +19,14 @@
 </h2>
 <div class="declaration-description"><div class="sections"><p>Class representing a combo box widget.
 </p>
-<p><h3>Additional Commands:</h3>
+<p>This widget has two types of values that can be set. First, a list of values
+ can be set to populate the drop-down list which can then be selected via a
+ mouse. Second, the value can be set independently and in addition to the
+ value list. See the below widget specific and common commands for an
+ overview of how this works.
+
+</p>
+<p><h3>Common Commands:</h3>
 These are common commands that can be used with this widget.
      <p>        <a href="./common/exportselection.html">Exportselection</a> <br>
          <a href="./common/height.html">Height</a> <br>
@@ -48,6 +55,44 @@ Widget specific events that can be bound to using the <a href="../element/uielem
 <td>The parent of this widget.</td></tr>
 </table>
 <h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.UiElement</a> <br></p>
+</div>
+</div>
+<h2><a name="ComboBox.getSelected"></a>int <span class="symbol">getSelected</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the index of the selected value from the current widget's list values.
+</p>
+<h3>Return Value</h3><p>The index of the selected list value.
+     Indexes start at 0 and -1 is returned if the current value does not appear in the list.</p>
+</div>
+</div>
+<h2><a name="ComboBox.select"></a>void <span class="symbol">select</span>(int index);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Select the value at a particular index in the value list.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int index</td>
+<td>The index of the value to <span class="symbol">select</span>.</td></tr>
+</table>
+</div>
+</div>
+<h2><a name="ComboBox.getValue"></a>string <span class="symbol">getValue</span>(T = string)();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the selected value.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>T</td>
+<td>The type of the value to return.</td></tr>
+</table>
+<h3>Return Value</h3><p>The value of the widget.</p>
+</div>
+</div>
+<h2><a name="ComboBox.setValue"></a>void <span class="symbol">setValue</span>(string value);
+</h2>
+<div class="declaration-description"><div class="sections"><p>This method has two uses. First it can change the value independently of the existing value list.
+ Second, if setting a value from the value list, it sets the selected index to that of the position in the list.
+ The <a href="./combobox.html#ComboBox.getSelected">getSelected</a> method above then returns the index.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string value</td>
+<td>The new widget value.</td></tr>
+</table>
 </div>
 </div>
 </div>

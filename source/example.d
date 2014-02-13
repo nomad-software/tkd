@@ -35,17 +35,19 @@ class Application : TkdApplication
 	 */
 	override protected void initInterface()
 	{
-		this.frame.root        = new Frame();
-		this.button.hello      = new Button(this.frame.root, "Mary", new Png!("thumbnail.png"));
-		this.button.exit       = new Button(this.frame.root, "Exit");
-		this.checkbutton.check = new CheckButton(this.frame.root, "Check");
-		this.combobox.select   = new ComboBox(this.frame.root);
-		this.combobox.select.setPostCommand(delegate(Widget widget, CommandArgs args){
-			this.combobox.select.setValues(["Hello World", "One two"]);
-		});
+		this.frame.root = new Frame();
 
+		this.button.hello = new Button(this.frame.root, "Mary", new Png!("thumbnail.png"));
 		this.button.hello.setCommand(&this.button_hello_command);
+
+		this.button.exit = new Button(this.frame.root, "Exit");
 		this.button.exit.setCommand(&this.button_quit_command);
+
+		this.checkbutton.check = new CheckButton(this.frame.root, "Check");
+
+		this.combobox.select = new ComboBox(this.frame.root);
+		this.combobox.select.setValues(["One", "Two", "Three", "Four", "Five"]);
+		this.combobox.select.select(0);
 
 		this.frame.root.pack();
 		this.button.hello.pack();
