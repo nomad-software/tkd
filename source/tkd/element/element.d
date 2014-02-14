@@ -9,7 +9,6 @@ module tkd.element.element;
 /**
  * Imports.
  */
-import std.algorithm;
 import std.array;
 import std.conv;
 import std.digest.crc;
