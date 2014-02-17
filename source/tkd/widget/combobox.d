@@ -15,6 +15,7 @@ import tkd.widget.common.exportselection;
 import tkd.widget.common.height;
 import tkd.widget.common.justify;
 import tkd.widget.common.postcommand;
+import tkd.widget.common.selection;
 import tkd.widget.common.value;
 import tkd.widget.common.values;
 import tkd.widget.common.width;
@@ -36,8 +37,10 @@ import tkd.widget.widget;
  *         $(LINK2 ./common/height.html, Height) $(BR)
  *         $(LINK2 ./common/justify.html, Justify) $(BR)
  *         $(LINK2 ./common/postcommand.html, PostCommand) $(BR)
- *         $(LINK2 ./common/width.html, Width) $(BR)
+ *         $(LINK2 ./common/selection.html, Selection) $(BR)
+ *         $(LINK2 ./common/value.html, Values) $(BR)
  *         $(LINK2 ./common/values.html, Values) $(BR)
+ *         $(LINK2 ./common/width.html, Width) $(BR)
  *     )
  *
  * Additional_Events:
@@ -66,14 +69,14 @@ class ComboBox : Widget
 	{
 		super(parent);
 		this._elementId = "combobox";
+		this._valueVariable = format("variable-%s", this.generateHash(this.id));
 
-		this._tk.eval("ttk::combobox %s", this.id);
+		this._tk.eval("ttk::combobox %s -textvariable %s", this.id, this._valueVariable);
 
 		this.setState(["readonly"]);
 
 		this.bind("<<ComboboxSelected>>", delegate(UiElement sender, BindArgs args){
-			pragma(msg, "use entry mixins here");
-			this._tk.eval("%s selection clear", this.id);
+			this.deselectText();
 		});
 	}
 
@@ -102,34 +105,6 @@ class ComboBox : Widget
 	}
 
 	/**
-	 * Get the selected value.
-	 *
-	 * Params:
-	 *     T = The type of the value to return.
-	 *
-	 * Returns:
-	 *     The value of the widget.
-	 */
-	public string getValue(T = string)()
-	{
-		this._tk.eval("%s get", this.id);
-		return this._tk.getResult().to!(T);
-	}
-
-	/**
-	 * This method has two uses. First it can change the value independently of the existing value list.
-	 * Second, if setting a value from the value list, it sets the selected index to that of the position in the list.
-	 * The $(LINK2 ./combobox.html#ComboBox.getSelected, getSelected) method above then returns the index.
-	 *
-	 * Params:
-	 *     value = The new widget value.
-	 */
-	public void setValue(string value)
-	{
-		this._tk.eval("%s set %s", this.id, value);
-	}
-
-	/**
 	 * Mixin common commands.
 	 */
 	mixin ExportSelection;
@@ -138,5 +113,7 @@ class ComboBox : Widget
 	mixin PostCommand;
 	mixin Width;
 	mixin Values;
+	mixin Value;
+	mixin Selection;
 	pragma(msg, "use entry mixins here");
 }
