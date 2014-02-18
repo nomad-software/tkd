@@ -11,8 +11,13 @@ module tkd.widget.combobox;
  */
 import std.conv;
 import tkd.element.uielement;
+import tkd.widget.common.boundingbox;
+import tkd.widget.common.cursor;
+import tkd.widget.common.delete_;
 import tkd.widget.common.exportselection;
 import tkd.widget.common.height;
+import tkd.widget.common.index;
+import tkd.widget.common.insert;
 import tkd.widget.common.justify;
 import tkd.widget.common.postcommand;
 import tkd.widget.common.selection;
@@ -33,8 +38,13 @@ import tkd.widget.widget;
  * Common_Commands:
  *     These are common commands that can be used with this widget.
  *     $(P
+ *         $(LINK2 ./common/boundingbox.html, BoundingBox) $(BR)
+ *         $(LINK2 ./common/cursor.html, Cursor) $(BR)
+ *         $(LINK2 ./common/delete_.html, Delete) $(BR)
  *         $(LINK2 ./common/exportselection.html, Exportselection) $(BR)
  *         $(LINK2 ./common/height.html, Height) $(BR)
+ *         $(LINK2 ./common/index.html, Index) $(BR)
+ *         $(LINK2 ./common/insert.html, Insert) $(BR)
  *         $(LINK2 ./common/justify.html, Justify) $(BR)
  *         $(LINK2 ./common/postcommand.html, PostCommand) $(BR)
  *         $(LINK2 ./common/selection.html, Selection) $(BR)
@@ -107,13 +117,18 @@ class ComboBox : Widget
 	/**
 	 * Mixin common commands.
 	 */
+	mixin BoundingBox;
+	mixin Cursor;
+	mixin Delete_;
 	mixin ExportSelection;
 	mixin Height;
+	mixin Index;
+	mixin Insert;
 	mixin Justify;
 	mixin PostCommand;
-	mixin Width;
-	mixin Values;
-	mixin Value;
 	mixin Selection;
+	mixin Value;
+	mixin Values;
+	mixin Width;
 	pragma(msg, "use entry mixins here");
 }

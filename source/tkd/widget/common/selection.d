@@ -32,11 +32,11 @@ mixin template Selection()
 	 * Select the text.
 	 *
 	 * Params:
-	 *     startIndex = The index where the selection starts.
-	 *     endIndex = The index where the selection ends.
+	 *     startCharIndex = The index where the selection starts.
+	 *     endCharIndex = The index where the selection ends.
 	 */
-	public void selectText(int startIndex = 0, int endIndex = int.max)
+	public void selectText(int startCharIndex = 0, int endCharIndex = int.max)
 	{
-		this._tk.eval("%s selection range %s %s", this.id, startIndex, endIndex);
+		this._tk.eval("%s selection range %s %s", this.id, startCharIndex, endCharIndex);
 	}
 }

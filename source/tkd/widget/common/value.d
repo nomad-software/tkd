@@ -11,6 +11,8 @@ module tkd.widget.common.value;
  */
 mixin template Value()
 {
+	import std.conv;
+
 	/**
 	 * The name of the variable that contains the widget's value.
 	 */
@@ -27,7 +29,6 @@ mixin template Value()
 	 */
 	public T getValue(T = string)()
 	{
-		import std.conv : to;
 		return this._tk.getVariable(this._valueVariable).to!(T);
 	}
 

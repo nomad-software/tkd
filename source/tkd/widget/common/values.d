@@ -14,6 +14,18 @@ mixin template Values()
 	import std.array;
 
 	/**
+	 * Get the values of the widget.
+	 *
+	 * Returns:
+	 *     An array of the values.
+	 */
+	public string[] getValues()
+	{
+		this._tk.eval("%s cget -values", this.id);
+		return this._tk.getResult.replace("\"", "").split();
+	}
+
+	/**
 	 * Set the values of the widget.
 	 *
 	 * Params:
