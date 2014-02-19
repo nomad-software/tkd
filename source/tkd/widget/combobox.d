@@ -24,6 +24,8 @@ import tkd.widget.common.selection;
 import tkd.widget.common.value;
 import tkd.widget.common.values;
 import tkd.widget.common.width;
+// import tkd.widget.common.xscrollcommand;
+import tkd.widget.common.xview;
 import tkd.widget.widget;
 
 /**
@@ -51,6 +53,8 @@ import tkd.widget.widget;
  *         $(LINK2 ./common/value.html, Values) $(BR)
  *         $(LINK2 ./common/values.html, Values) $(BR)
  *         $(LINK2 ./common/width.html, Width) $(BR)
+ *         $(LINK2 ./common/xscrollcommand.html, XScrollCommand) $(BR)
+ *         $(LINK2 ./common/xview.html, XView) $(BR)
  *     )
  *
  * Additional_Events:
@@ -130,5 +134,6 @@ class ComboBox : Widget
 	mixin Value;
 	mixin Values;
 	mixin Width;
-	pragma(msg, "use entry mixins here");
+	// mixin XScrollCommand;
+	mixin XView;
 }
