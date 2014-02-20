@@ -15,7 +15,59 @@
 </p>
 <h3>License</h3><p>MIT. See LICENSE for full details.</p>
 </div>
-<div class="module-members"><h2><a name="XScrollbar"></a>class <span class="symbol">XScrollbar</span>: tkd.widget.widget.Widget;
+<div class="module-members"><h2><a name="Scrollbar"></a>abstract class <span class="symbol">Scrollbar</span>: tkd.widget.widget.Widget;
+</h2>
+<div class="declaration-description"><div class="sections"><p><span class="symbol">Scrollbar</span> base class.</p>
+</div>
+<div class="class-members"><h2><a name="Scrollbar.this"></a> this(UiElement parent = null);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Construct the widget.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>UiElement parent</td>
+<td>The parent of this widget.</td></tr>
+</table>
+<h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.uielement</a> <br></p>
+</div>
+</div>
+<h2><a name="Scrollbar.getDelta"></a>float <span class="symbol">getDelta</span>(int deltaX, int deltaY);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Returns a real number indicating the fractional change in the scrollbar
+ setting that corresponds to a given change in thumb position. For
+ example, if the scrollbar is horizontal, the result indicates how much
+ the scrollbar setting must change to move the thumb deltaX pixels to the
+ right (deltaY is ignored in this case). If the scrollbar is vertical,
+ the result indicates how much the scrollbar setting must change to move
+ the thumb deltaY pixels down. The arguments and the result may be zero
+ or negative.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int deltaX</td>
+<td>The amount to move horizontally.</td></tr>
+<tr><td>int deltaY</td>
+<td>The amount to move vertically.</td></tr>
+</table>
+<h3>Return Value</h3><p>The fractional change.</p>
+</div>
+</div>
+<h2><a name="Scrollbar.getFraction"></a>float <span class="symbol">getFraction</span>(int x, int y);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Returns a real number between 0 and 1 indicating where the point given
+ by x and y lies in the trough area of the scrollbar, where 0.0
+ corresponds to the top or left of the trough and 1.0 corresponds to the
+ bottom or right. X and y are pixel coordinates relative to the scrollbar
+ widget. If x and y refer to a point outside the trough, the closest
+ point in the trough is used.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int x</td>
+<td>The x position.</td></tr>
+<tr><td>int y</td>
+<td>The y position.</td></tr>
+</table>
+<h3>Return Value</h3><p>The fractional position.</p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="XScrollbar"></a>class <span class="symbol">XScrollbar</span>: tkd.widget.scrollbar.Scrollbar;
 </h2>
 <div class="declaration-description"><div class="sections"><p>Class representing a horizontal scrollbar widget.
 </p>
@@ -28,7 +80,7 @@
 <h3>Parameters</h3><table class="parameter-list"><tr><td>UiElement parent</td>
 <td>The parent of this widget.</td></tr>
 </table>
-<h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.UiElement</a> <br></p>
+<h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.uielement</a> <br></p>
 </div>
 </div>
 <h2><a name="XScrollbar.attachWidget"></a>void <span class="symbol">attachWidget</span>(IXScrollable scrollableWidget);
@@ -38,11 +90,12 @@
 <h3>Parameters</h3><table class="parameter-list"><tr><td>IXScrollable scrollableWidget</td>
 <td>A horizontally scrollable widget.</td></tr>
 </table>
+<h3>See Also</h3><p><a href="./common/xscrollcommand.html">tkd.widget.common.xscrollcommand</a> <br></p>
 </div>
 </div>
 </div>
 </div>
-<h2><a name="YScrollbar"></a>class <span class="symbol">YScrollbar</span>: tkd.widget.widget.Widget;
+<h2><a name="YScrollbar"></a>class <span class="symbol">YScrollbar</span>: tkd.widget.scrollbar.Scrollbar;
 </h2>
 <div class="declaration-description"><div class="sections"><p>Class representing a vertical scrollbar widget.
 </p>
@@ -55,7 +108,7 @@
 <h3>Parameters</h3><table class="parameter-list"><tr><td>UiElement parent</td>
 <td>The parent of this widget.</td></tr>
 </table>
-<h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.UiElement</a> <br></p>
+<h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.uielement</a> <br></p>
 </div>
 </div>
 <h2><a name="YScrollbar.attachWidget"></a>void <span class="symbol">attachWidget</span>(IYScrollable scrollableWidget);
@@ -65,6 +118,7 @@
 <h3>Parameters</h3><table class="parameter-list"><tr><td>IYScrollable scrollableWidget</td>
 <td>A vertically scrollable widget.</td></tr>
 </table>
+<h3>See Also</h3><p><a href="./common/yscrollcommand.html">tkd.widget.common.yscrollcommand</a> <br></p>
 </div>
 </div>
 </div>

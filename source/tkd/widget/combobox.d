@@ -82,7 +82,7 @@ class ComboBox : Widget, IXScrollable
 	 *     parent = The parent of this widget.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ../element/uielement.html, tkd.element.UiElement) $(BR)
+	 *     $(LINK2 ../element/uielement.html, tkd.element.uielement) $(BR)
 	 */
 	this(UiElement parent = null)
 	{

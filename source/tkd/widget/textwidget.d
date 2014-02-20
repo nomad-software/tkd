@@ -40,7 +40,7 @@ abstract class TextWidget : Widget
 	 *     parent = An optional parent of this widget.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ../element/uielement.html, tkd.element.UiElement)
+	 *     $(LINK2 ../element/uielement.html, tkd.element.uielement)
 	 */
 	public this(UiElement parent = null)
 	{

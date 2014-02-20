@@ -9,18 +9,16 @@ module tkd.widget.scrollbar;
 /**
  * Imports.
  */
+import std.conv;
 import tkd.element.uielement;
 import tkd.widget.common.xscrollcommand;
 import tkd.widget.common.yscrollcommand;
 import tkd.widget.widget;
 
 /**
- * Class representing a horizontal scrollbar widget.
- *
- * See_Also:
- *     $(LINK2 ./widget.html, tkd.widget.widget)
+ * Scrollbar base class.
  */
-class XScrollbar : Widget
+abstract class Scrollbar : Widget
 {
 	/**
 	 * Construct the widget.
@@ -29,14 +27,82 @@ class XScrollbar : Widget
 	 *     parent = The parent of this widget.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ../element/uielement.html, tkd.element.UiElement) $(BR)
+	 *     $(LINK2 ../element/uielement.html, tkd.element.uielement) $(BR)
 	 */
 	this(UiElement parent = null)
 	{
 		super(parent);
-		this._elementId = "xscrollbar";
+		this._elementId = "scrollbar";
 
-		this._tk.eval("ttk::scrollbar %s -orient horizontal", this.id);
+		this._tk.eval("ttk::scrollbar %s", this.id);
+	}
+
+	/**
+	 * Returns a real number indicating the fractional change in the scrollbar 
+	 * setting that corresponds to a given change in thumb position. For 
+	 * example, if the scrollbar is horizontal, the result indicates how much 
+	 * the scrollbar setting must change to move the thumb deltaX pixels to the 
+	 * right (deltaY is ignored in this case). If the scrollbar is vertical, 
+	 * the result indicates how much the scrollbar setting must change to move 
+	 * the thumb deltaY pixels down. The arguments and the result may be zero 
+	 * or negative.
+	 *
+	 * Params:
+	 *     deltaX = The amount to move horizontally.
+	 *     deltaY = The amount to move vertically.
+	 *
+	 * Returns:
+	 *     The fractional change.
+	 */
+	public float getDelta(int deltaX, int deltaY)
+	{
+		this._tk.eval("%s delta %s %s", this.id, deltaX, deltaY);
+		return this._tk.getResult().to!(float);
+	}
+
+	/**
+	 * Returns a real number between 0 and 1 indicating where the point given 
+	 * by x and y lies in the trough area of the scrollbar, where 0.0 
+	 * corresponds to the top or left of the trough and 1.0 corresponds to the 
+	 * bottom or right. X and y are pixel coordinates relative to the scrollbar 
+	 * widget. If x and y refer to a point outside the trough, the closest 
+	 * point in the trough is used.
+	 *
+	 * Params:
+	 *     x = The x position.
+	 *     y = The y position.
+	 *
+	 * Returns:
+	 *     The fractional position.
+	 */
+	public float getFraction(int x, int y)
+	{
+		this._tk.eval("%s fraction %s %s", this.id, x, y);
+		return this._tk.getResult().to!(float);
+	}
+}
+
+/**
+ * Class representing a horizontal scrollbar widget.
+ *
+ * See_Also:
+ *     $(LINK2 ./widget.html, tkd.widget.widget)
+ */
+class XScrollbar : Scrollbar
+{
+	/**
+	 * Construct the widget.
+	 *
+	 * Params:
+	 *     parent = The parent of this widget.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../element/uielement.html, tkd.element.uielement) $(BR)
+	 */
+	this(UiElement parent = null)
+	{
+		super(parent);
+		this._tk.eval("%s configure -orient horizontal", this.id);
 	}
 
 	/**
@@ -44,6 +110,9 @@ class XScrollbar : Widget
 	 *
 	 * Params:
 	 *     scrollableWidget = A horizontally scrollable widget.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./common/xscrollcommand.html, tkd.widget.common.xscrollcommand) $(BR)
 	 */
 	public void attachWidget(IXScrollable scrollableWidget)
 	{
@@ -51,6 +120,7 @@ class XScrollbar : Widget
 
 		this._tk.eval("%s configure -command [list %s xview]", this.id, widget.id);
 	}
+
 }
 
 /**
@@ -59,7 +129,7 @@ class XScrollbar : Widget
  * See_Also:
  *     $(LINK2 ./widget.html, tkd.widget.widget)
  */
-class YScrollbar : Widget
+class YScrollbar : Scrollbar
 {
 	/**
 	 * Construct the widget.
@@ -68,14 +138,12 @@ class YScrollbar : Widget
 	 *     parent = The parent of this widget.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ../element/uielement.html, tkd.element.UiElement) $(BR)
+	 *     $(LINK2 ../element/uielement.html, tkd.element.uielement) $(BR)
 	 */
 	this(UiElement parent = null)
 	{
 		super(parent);
-		this._elementId = "yscrollbar";
-
-		this._tk.eval("ttk::scrollbar %s -orient vertical", this.id);
+		this._tk.eval("%s configure -orient vertical", this.id);
 	}
 
 	/**
@@ -83,6 +151,9 @@ class YScrollbar : Widget
 	 *
 	 * Params:
 	 *     scrollableWidget = A vertically scrollable widget.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./common/yscrollcommand.html, tkd.widget.common.yscrollcommand) $(BR)
 	 */
 	public void attachWidget(IYScrollable scrollableWidget)
 	{

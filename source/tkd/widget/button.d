@@ -46,7 +46,7 @@ class Button : TextWidget
 	 *     imagePosition = The position of the image in relation to the text.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ../element/uielement.html, tkd.element.UiElement) $(BR)
+	 *     $(LINK2 ../element/uielement.html, tkd.element.uielement) $(BR)
 	 *     $(LINK2 ../image/image.html, tkd.image.image) $(BR)
 	 *     $(LINK2 ../image/png.html, tkd.image.png) $(BR)
 	 *     $(LINK2 ../image/gif.html, tkd.image.gif) $(BR)
@@ -77,7 +77,7 @@ class Button : TextWidget
 	 *     imagePosition = The position of the image in relation to the text.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ../element/uielement.html, tkd.element.UiElement) $(BR)
+	 *     $(LINK2 ../element/uielement.html, tkd.element.uielement) $(BR)
 	 *     $(LINK2 ../image/image.html, tkd.image.image) $(BR)
 	 *     $(LINK2 ../image/png.html, tkd.image.png) $(BR)
 	 *     $(LINK2 ../image/gif.html, tkd.image.gif) $(BR)

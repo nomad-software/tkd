@@ -57,7 +57,7 @@ class CheckButton : TextWidget
 	 *     text = The text of the checkbutton.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ../element/uielement.html, tkd.element.UiElement)
+	 *     $(LINK2 ../element/uielement.html, tkd.element.uielement)
 	 */
 	this(UiElement parent = null, string text = null)
 	{
