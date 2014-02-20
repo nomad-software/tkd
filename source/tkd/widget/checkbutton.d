@@ -33,6 +33,11 @@ import tkd.widget.widget;
 class CheckButton : TextWidget
 {
 	/**
+	 * The name of the variable that contains the widget's value.
+	 */
+	private string _valueVariable;
+
+	/**
 	 * The value of the checkbutton if it's checked.
 	 * The default is '1'.
 	 */
@@ -130,5 +135,5 @@ class CheckButton : TextWidget
 	 */
 	mixin Invoke;
 	mixin Command;
-	mixin Value;
+	mixin Value!(this._valueVariable);
 }

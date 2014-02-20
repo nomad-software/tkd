@@ -71,6 +71,11 @@ import tkd.widget.widget;
 class ComboBox : Widget
 {
 	/**
+	 * The name of the variable that contains the widget's value.
+	 */
+	private string _valueVariable;
+
+	/**
 	 * Construct the widget.
 	 *
 	 * Params:
@@ -131,7 +136,7 @@ class ComboBox : Widget
 	mixin Justify;
 	mixin PostCommand;
 	mixin Selection;
-	mixin Value;
+	mixin Value!(this._valueVariable);
 	mixin Values;
 	mixin Width;
 	// mixin XScrollCommand;
