@@ -69,6 +69,8 @@ abstract class TkdApplication
 	protected Store!(ComboBox) combobox;
 	protected Store!(Frame) frame;
 	protected Store!(Image) image;
+	protected Store!(XScrollbar) xscrollbar;
+	protected Store!(YScrollbar) yscrollbar;
 
 	/**
 	 * constructor.

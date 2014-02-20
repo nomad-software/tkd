@@ -13,6 +13,7 @@ public import tkd.widget.combobox;
 public import tkd.widget.focus;
 public import tkd.widget.frame;
 public import tkd.widget.reliefstyle;
+public import tkd.widget.scrollbar;
 public import tkd.widget.state;
 public import tkd.widget.style;
 public import tkd.widget.widget;

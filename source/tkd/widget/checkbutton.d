@@ -72,6 +72,17 @@ class CheckButton : TextWidget
 	}
 
 	/**
+	 * Construct the widget.
+	 *
+	 * Params:
+	 *     text = The text of the checkbutton.
+	 */
+	this(string text = null)
+	{
+		this(null, text);
+	}
+
+	/**
 	 * Check the check button.
 	 */
 	public void check()

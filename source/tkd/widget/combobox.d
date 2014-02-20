@@ -24,7 +24,7 @@ import tkd.widget.common.selection;
 import tkd.widget.common.value;
 import tkd.widget.common.values;
 import tkd.widget.common.width;
-// import tkd.widget.common.xscrollcommand;
+import tkd.widget.common.xscrollcommand;
 import tkd.widget.common.xview;
 import tkd.widget.widget;
 
@@ -68,7 +68,7 @@ import tkd.widget.widget;
  * See_Also:
  *     $(LINK2 ./widget.html, tkd.widget.widget)
  */
-class ComboBox : Widget
+class ComboBox : Widget, IXScrollable
 {
 	/**
 	 * The name of the variable that contains the widget's value.
@@ -139,6 +139,6 @@ class ComboBox : Widget
 	mixin Value!(this._valueVariable);
 	mixin Values;
 	mixin Width;
-	// mixin XScrollCommand;
+	mixin XScrollCommand;
 	mixin XView;
 }
