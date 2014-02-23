@@ -58,7 +58,7 @@ import tkd.widget.widget;
  *     )
  *
  * Additional_Events:
- *     Additional events that can also be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) command.
+ *     Additional events that can also be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) method.
  *     $(P
  *         &lt;&lt;Clear&gt;&gt;,
  *         &lt;&lt;Copy&gt;&gt;,

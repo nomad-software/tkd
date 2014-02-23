@@ -20,7 +20,7 @@ import tkd.widget.widget;
  * This class is not used directly, instead use the XScrollbar and YScrollbar class below.
  *
  * Additional_Events:
- *     Additional events that can also be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) command.
+ *     Additional events that can also be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) method.
  *     $(P
  *         &lt;&lt;PrevWindow&gt;&gt;,
  *         &lt;Alt-Key&gt;,
