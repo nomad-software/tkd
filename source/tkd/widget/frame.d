@@ -23,13 +23,22 @@ import tkd.widget.widget;
  *
  *
  * Common_Commands:
- *     These are common commands that can be used with this widget.
+ *     These are injected common commands that can also be used with this widget.
  *     $(P
  *         $(LINK2 ./common/border.html, Border) $(BR)
  *         $(LINK2 ./common/height.html, Height) $(BR)
  *         $(LINK2 ./common/padding.html, Padding) $(BR)
  *         $(LINK2 ./common/relief.html, Relief) $(BR)
  *         $(LINK2 ./common/width.html, Width) $(BR)
+ *     )
+ *
+ * Additional_Events:
+ *     Additional events that can also be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) command.
+ *     $(P
+ *         &lt;&lt;PrevWindow&gt;&gt;,
+ *         &lt;Alt-Key&gt;,
+ *         &lt;Key-F10&gt;,
+ *         &lt;Key-Tab&gt;,
  *     )
  *
  * See_Also:

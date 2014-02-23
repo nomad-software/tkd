@@ -17,6 +17,25 @@ import tkd.widget.widget;
 
 /**
  * Scrollbar base class.
+ * This class is not used directly, instead use the XScrollbar and YScrollbar class below.
+ *
+ * Additional_Events:
+ *     Additional events that can also be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) command.
+ *     $(P
+ *         &lt;&lt;PrevWindow&gt;&gt;,
+ *         &lt;Alt-Key&gt;,
+ *         &lt;B1-Motion&gt;,
+ *         &lt;B2-Motion&gt;,
+ *         &lt;Button-1&gt;,
+ *         &lt;Button-2&gt;,
+ *         &lt;ButtonRelease-1&gt;,
+ *         &lt;ButtonRelease-2&gt;,
+ *         &lt;Key-F10&gt;,
+ *         &lt;Key-Tab&gt;,
+ *     )
+ *
+ * See_Also:
+ *     $(LINK2 ./widget.html, tkd.widget.widget)
  */
 abstract class Scrollbar : Widget
 {
@@ -84,9 +103,6 @@ abstract class Scrollbar : Widget
 
 /**
  * Class representing a horizontal scrollbar widget.
- *
- * See_Also:
- *     $(LINK2 ./widget.html, tkd.widget.widget)
  */
 class XScrollbar : Scrollbar
 {
@@ -125,9 +141,6 @@ class XScrollbar : Scrollbar
 
 /**
  * Class representing a vertical scrollbar widget.
- *
- * See_Also:
- *     $(LINK2 ./widget.html, tkd.widget.widget)
  */
 class YScrollbar : Scrollbar
 {

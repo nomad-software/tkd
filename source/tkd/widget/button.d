@@ -23,12 +23,29 @@ import tkd.widget.widget;
  * Class representing a button widget.
  *
  * Common_Commands:
- *     These are common commands that can be used with this widget.
+ *     These are injected common commands that can also be used with this widget.
  *     $(P
  *         $(LINK2 ./common/command.html, Command) $(BR)
  *         $(LINK2 ./common/default_.html, Default) $(BR)
  *         $(LINK2 ./common/invoke.html, Invoke) $(BR)
  *         $(LINK2 ./common/width.html, Width) $(BR)
+ *     )
+ *
+ * Additional_Events:
+ *     Additional events that can also be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) command.
+ *     $(P
+ *         &lt;&lt;Invoke&gt;&gt;,
+ *         &lt;&lt;PrevWindow&gt;&gt;,
+ *         &lt;Alt-Key&gt;,
+ *         &lt;B1-Enter&gt;,
+ *         &lt;B1-Leave&gt;,
+ *         &lt;Button-1&gt;,
+ *         &lt;ButtonRelease-1&gt;,
+ *         &lt;Enter&gt;,
+ *         &lt;Key-F10&gt;,
+ *         &lt;Key-Tab&gt;,
+ *         &lt;Key-space&gt;,
+ *         &lt;Leave&gt;,
  *     )
  *
  * See_Also:

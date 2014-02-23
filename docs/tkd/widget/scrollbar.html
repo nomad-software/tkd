@@ -17,7 +17,25 @@
 </div>
 <div class="module-members"><h2><a name="Scrollbar"></a>abstract class <span class="symbol">Scrollbar</span>: tkd.widget.widget.Widget;
 </h2>
-<div class="declaration-description"><div class="sections"><p><span class="symbol">Scrollbar</span> base class.</p>
+<div class="declaration-description"><div class="sections"><p><span class="symbol">Scrollbar</span> base class.
+ This class is not used directly, instead use the XScrollbar and YScrollbar class below.
+</p>
+<p><h3>Additional Events:</h3>
+Additional events that can also be bound to using the <a href="../element/uielement.html#UiElement.bind">bind</a> command.
+     <p>        &lt;&lt;PrevWindow&gt;&gt;,
+         &lt;Alt-Key&gt;,
+         &lt;B1-Motion&gt;,
+         &lt;B2-Motion&gt;,
+         &lt;Button-1&gt;,
+         &lt;Button-2&gt;,
+         &lt;ButtonRelease-1&gt;,
+         &lt;ButtonRelease-2&gt;,
+         &lt;Key-F10&gt;,
+         &lt;Key-Tab&gt;,
+     </p>
+
+</p>
+<h3>See Also</h3><p><a href="./widget.html">tkd.widget.widget</a></p>
 </div>
 <div class="class-members"><h2><a name="Scrollbar.this"></a> this(UiElement parent = null);
 </h2>
@@ -69,9 +87,7 @@
 </div>
 <h2><a name="XScrollbar"></a>class <span class="symbol">XScrollbar</span>: tkd.widget.scrollbar.Scrollbar;
 </h2>
-<div class="declaration-description"><div class="sections"><p>Class representing a horizontal scrollbar widget.
-</p>
-<h3>See Also</h3><p><a href="./widget.html">tkd.widget.widget</a></p>
+<div class="declaration-description"><div class="sections"><p>Class representing a horizontal scrollbar widget.</p>
 </div>
 <div class="class-members"><h2><a name="XScrollbar.this"></a> this(UiElement parent = null);
 </h2>
@@ -97,9 +113,7 @@
 </div>
 <h2><a name="YScrollbar"></a>class <span class="symbol">YScrollbar</span>: tkd.widget.scrollbar.Scrollbar;
 </h2>
-<div class="declaration-description"><div class="sections"><p>Class representing a vertical scrollbar widget.
-</p>
-<h3>See Also</h3><p><a href="./widget.html">tkd.widget.widget</a></p>
+<div class="declaration-description"><div class="sections"><p>Class representing a vertical scrollbar widget.</p>
 </div>
 <div class="class-members"><h2><a name="YScrollbar.this"></a> this(UiElement parent = null);
 </h2>
