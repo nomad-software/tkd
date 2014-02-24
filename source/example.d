@@ -44,6 +44,9 @@ class Application : TkdApplication
 		this.button.exit = new Button(this.frame.root, "Exit");
 		this.button.exit.setCommand(&this.button_quit_command);
 
+		this.label.text = new Label(this.frame.root, "Lorem ipsum dolor sit amet.");
+		this.label.text.setImage(new Gif!("thumbnail.gif"), ImagePosition.top);
+
 		this.entry.text = new Entry(this.frame.root);
 		this.entry.text.setValue("Lorem");
 
@@ -55,6 +58,7 @@ class Application : TkdApplication
 
 		this.frame.root.pack();
 		this.button.hello.pack();
+		this.label.text.pack();
 		this.entry.text.pack();
 		this.checkbutton.check.pack();
 		this.combobox.select.pack();

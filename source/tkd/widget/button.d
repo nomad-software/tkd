@@ -17,7 +17,6 @@ import tkd.widget.common.default_;
 import tkd.widget.common.invoke;
 import tkd.widget.common.width;
 import tkd.widget.textwidget;
-import tkd.widget.widget;
 
 /**
  * Class representing a button widget.

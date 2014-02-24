@@ -70,6 +70,7 @@ abstract class TkdApplication
 	protected Store!(Entry) entry;
 	protected Store!(Frame) frame;
 	protected Store!(Image) image;
+	protected Store!(Label) label;
 	protected Store!(XScrollbar) xscrollbar;
 	protected Store!(YScrollbar) yscrollbar;
 

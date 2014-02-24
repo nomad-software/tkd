@@ -13,6 +13,7 @@ mixin template Command()
 {
 	import std.string;
 	import tcltk.tk;
+	import tkd.widget.widget;
 
 	/**
 	 * Add a command to a widget.

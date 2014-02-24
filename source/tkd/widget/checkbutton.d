@@ -14,7 +14,6 @@ import tkd.widget.common.command;
 import tkd.widget.common.invoke;
 import tkd.widget.common.value;
 import tkd.widget.textwidget;
-import tkd.widget.widget;
 
 /**
  * Class representing a checkbutton widget.
