@@ -13,10 +13,17 @@ import std.string;
 import tkd.element.uielement;
 import tkd.image.image;
 import tkd.image.imageposition;
+import tkd.widget.common.underline;
 import tkd.widget.widget;
 
 /**
  * The text widget base class.
+ *
+ * Common_Commands:
+ *     These are injected common commands that can also be used with this widget.
+ *     $(P
+ *         $(LINK2 ./common/underline.html, Underline) $(BR)
+ *     )
  *
  * See_Also:
  *     $(LINK2 ./widget.html, tkd.widget.widget)
@@ -73,17 +80,6 @@ abstract class TextWidget : Widget
 	}
 
 	/**
-	 * Underline one of the characters in the widget text.
-	 *
-	 * Params:
-	 *     index = The index of the character to underline.
-	 */
-	public void underlineChar(int index)
-	{
-		this._tk.eval("%s configure -underline %s", this.id, index);
-	}
-
-	/**
 	 * Set the image for this widget.
 	 *
 	 * Params:
@@ -128,4 +124,9 @@ abstract class TextWidget : Widget
 	{
 		this._tk.eval("%s configure -width %s", this.id, characterWidth);
 	}
+
+	/**
+	 * Mixin common commands.
+	 */
+	mixin Underline;
 }

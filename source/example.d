@@ -38,25 +38,28 @@ class Application : TkdApplication
 	{
 		this.frame.root = new Frame();
 
-		this.button.hello = new Button(this.frame.root, "Lorem", new Png!("thumbnail.png"));
+		this.labelframe.inner = new LabelFrame(this.frame.root, "Label frame");
+
+		this.button.hello = new Button(this.labelframe.inner, "Lorem", new Png!("thumbnail.png"));
 		this.button.hello.setCommand(&this.button_hello_command);
 
-		this.button.exit = new Button(this.frame.root, "Exit");
+		this.button.exit = new Button(this.labelframe.inner, "Exit");
 		this.button.exit.setCommand(&this.button_quit_command);
 
-		this.label.text = new Label(this.frame.root, "Lorem ipsum dolor sit amet.");
+		this.label.text = new Label(this.labelframe.inner, "Label");
 		this.label.text.setImage(new Gif!("thumbnail.gif"), ImagePosition.top);
 
-		this.entry.text = new Entry(this.frame.root);
+		this.entry.text = new Entry(this.labelframe.inner);
 		this.entry.text.setValue("Lorem");
 
 		this.combobox.select = new ComboBox(this.frame.root);
 		this.combobox.select.setValues(["Lorem", "ipsum", "dolor", "sit", "amet"]);
 		this.combobox.select.select(0);
 
-		this.checkbutton.check = new CheckButton(this.frame.root, "Check");
+		this.checkbutton.check = new CheckButton(this.frame.root, "Check button");
 
 		this.frame.root.pack();
+		this.labelframe.inner.pack();
 		this.button.hello.pack();
 		this.label.text.pack();
 		this.entry.text.pack();
