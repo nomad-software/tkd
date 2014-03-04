@@ -10,7 +10,6 @@ module tkd.tkdapplication;
  * Private imports.
  */
 import tkd.interpreter;
-import tkd.store;
 
 /**
  * Public imports.
@@ -60,20 +59,6 @@ abstract class TkdApplication
 	 * The Tk interpreter.
 	 */
 	private Tk _tk;
-
-	/*
-	 * Automatic storage for widgets.
-	 */
-	protected Store!(Button) button;
-	protected Store!(CheckButton) checkbutton;
-	protected Store!(ComboBox) combobox;
-	protected Store!(Entry) entry;
-	protected Store!(Frame) frame;
-	protected Store!(Image) image;
-	protected Store!(Label) label;
-	protected Store!(LabelFrame) labelframe;
-	protected Store!(XScrollbar) xscrollbar;
-	protected Store!(YScrollbar) yscrollbar;
 
 	/**
 	 * constructor.

@@ -65,7 +65,7 @@ abstract class Widget : UiElement
 	public string[] getState()
 	{
 		this._tk.eval("%s state", this.id);
-		return this._tk.getResult().split();
+		return this._tk.getResult!(string).split();
 	}
 
 	/**
@@ -88,7 +88,7 @@ abstract class Widget : UiElement
 		}
 
 		this._tk.eval("%s instate { %s }", this.id, state.join(" "));
-		return this._tk.getResult() == "1";
+		return this._tk.getResult!(int) == 1;
 	}
 
 	/**
@@ -142,11 +142,11 @@ abstract class Widget : UiElement
 	public string getStyle()
 	{
 		this._tk.eval("%s cget -style", this.id);
-		if (this._tk.getResult().empty())
+		if (this._tk.getResult!(string).empty())
 		{
 			return this.getClass();
 		}
-		return this._tk.getResult();
+		return this._tk.getResult!(string);
 	}
 
 	/**
@@ -175,7 +175,7 @@ abstract class Widget : UiElement
 	public string getFocus()
 	{
 		this._tk.eval("%s cget -takefocus", this.id);
-		return this._tk.getResult();
+		return this._tk.getResult!(string);
 	}
 
 	/**

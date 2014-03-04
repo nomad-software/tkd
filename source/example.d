@@ -14,19 +14,32 @@ import tkd.tkdapplication;
 class Application : TkdApplication
 {
 	/**
+	 * Wigets.
+	 */
+	private Button _button;
+	private Button _exit;
+	private CheckButton _checkbox;
+	private ComboBox _combobox;
+	private Entry _entry;
+	private Frame _rootFrame;
+	private Label _label;
+	private LabelFrame _labelFrame;
+	private NoteBook _noteBook;
+
+	/**
 	 * Event callbacks.
 	 */
-	private void button_hello_command(Widget widget, CommandArgs args)
+	private void manipulateText(Widget widget, CommandArgs args)
 	{
 		string[] words     = ["Lorem", "ipsum", "dolor", "sit", "amet"];
-		string currentWord = this.button.hello.getText();
+		string currentWord = this._button.getText();
 		string nextword    = words.cycle.find(currentWord).dropOne.front;
 
-		this.button.hello.setText(nextword);
-		this.entry.text.appendText(nextword);
+		this._button.setText(nextword);
+		this._entry.appendText(nextword);
 	}
 
-	private void button_quit_command(Widget widget, CommandArgs args)
+	private void exitCommand(Widget widget, CommandArgs args)
 	{
 		this.exit();
 	}
@@ -36,36 +49,42 @@ class Application : TkdApplication
 	 */
 	override protected void initInterface()
 	{
-		this.frame.root = new Frame();
+		this._noteBook = new NoteBook();
 
-		this.labelframe.inner = new LabelFrame(this.frame.root, "Label frame");
+		this._noteBook.addTab("Hello", new Button("Lorem"));
+		this._noteBook.pack();
 
-		this.button.hello = new Button(this.labelframe.inner, "Lorem", new Png!("thumbnail.png"));
-		this.button.hello.setCommand(&this.button_hello_command);
+		// this._rootFrame = new Frame();
 
-		this.button.exit = new Button(this.labelframe.inner, "Exit");
-		this.button.exit.setCommand(&this.button_quit_command);
+		// 	this._labelFrame = new LabelFrame(this._rootFrame, "Label frame");
 
-		this.label.text = new Label(this.labelframe.inner, "Label");
-		this.label.text.setImage(new Gif!("thumbnail.gif"), ImagePosition.top);
+		// 		this._button = new Button(this._labelFrame, "Lorem", new Png!("thumbnail.png"));
+		// 		this._button.setCommand(&this.manipulateText);
+		// 		this._button.pack();
 
-		this.entry.text = new Entry(this.labelframe.inner);
-		this.entry.text.setValue("Lorem");
+		// 		this._entry = new Entry(this._labelFrame);
+		// 		this._entry.setValue("Lorem");
+		// 		this._entry.pack();
 
-		this.combobox.select = new ComboBox(this.frame.root);
-		this.combobox.select.setValues(["Lorem", "ipsum", "dolor", "sit", "amet"]);
-		this.combobox.select.select(0);
+		// 	this._labelFrame.pack();
 
-		this.checkbutton.check = new CheckButton(this.frame.root, "Check button");
+		// 	this._label = new Label(this._rootFrame, "Label");
+		// 	this._label.setImage(new Gif!("thumbnail.gif"), ImagePosition.top);
+		// 	this._label.pack();
 
-		this.frame.root.pack();
-		this.labelframe.inner.pack();
-		this.button.hello.pack();
-		this.label.text.pack();
-		this.entry.text.pack();
-		this.checkbutton.check.pack();
-		this.combobox.select.pack();
-		this.button.exit.pack();
+		// 	this._combobox = new ComboBox(this._rootFrame);
+		// 	this._combobox.setValues(["Lorem", "ipsum", "dolor", "sit", "amet"]);
+		// 	this._combobox.select(0);
+		// 	this._combobox.pack();
+
+		// 	this._checkbox = new CheckButton(this._rootFrame, "Check button");
+		// 	this._checkbox.pack();
+
+		// 	this._exit = new Button(this._rootFrame, "Exit");
+		// 	this._exit.setCommand(&this.exitCommand);
+		// 	this._exit.pack();
+
+		// this._rootFrame.pack();
 	}
 }
 

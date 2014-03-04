@@ -104,11 +104,11 @@ abstract class UiElement : Element
 	public string getClass()
 	{
 		this._tk.eval(format("%s cget -class", this.id));
-		if (this._tk.getResult().empty())
+		if (this._tk.getResult!(string).empty())
 		{
 			this._tk.eval(format("winfo class %s", this.id));
 		}
-		return this._tk.getResult();
+		return this._tk.getResult!(string);
 	}
 
 	/**
@@ -137,7 +137,7 @@ abstract class UiElement : Element
 	public string getCursor()
 	{
 		this._tk.eval(format("%s cget -cursor", this.id));
-		return this._tk.getResult();
+		return this._tk.getResult!(string);
 	}
 
 	/**

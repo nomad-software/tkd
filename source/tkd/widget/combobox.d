@@ -162,7 +162,7 @@ class ComboBox : Widget, IXScrollable
 	public int getSelected()
 	{
 		this._tk.eval("%s current", this.id);
-		return this._tk.getResult().to!(int);
+		return this._tk.getResult!(int);
 	}
 
 	/**

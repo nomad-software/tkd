@@ -29,7 +29,7 @@ mixin template XView()
 	public float[] getXView()
 	{
 		this._tk.eval("%s xview", this.id);
-		return this._tk.getResult().split().map!(to!(float)).array;
+		return this._tk.getResult!(string).split().map!(to!(float)).array;
 	}
 
 	/**

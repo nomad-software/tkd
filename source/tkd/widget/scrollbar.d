@@ -76,7 +76,7 @@ abstract class Scrollbar : Widget
 	public float getDelta(int deltaX, int deltaY)
 	{
 		this._tk.eval("%s delta %s %s", this.id, deltaX, deltaY);
-		return this._tk.getResult().to!(float);
+		return this._tk.getResult!(float);
 	}
 
 	/**
@@ -97,7 +97,7 @@ abstract class Scrollbar : Widget
 	public float getFraction(int x, int y)
 	{
 		this._tk.eval("%s fraction %s %s", this.id, x, y);
-		return this._tk.getResult().to!(float);
+		return this._tk.getResult!(float);
 	}
 }
 

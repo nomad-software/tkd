@@ -27,6 +27,6 @@ mixin template BoundingBox()
 	public int[] getCharBoundingBox(int charIndex)
 	{
 		this._tk.eval("%s bbox %s", this.id, charIndex);
-		return this._tk.getResult().split().map!(to!(int)).array;
+		return this._tk.getResult!(string).split().map!(to!(int)).array;
 	}
 }

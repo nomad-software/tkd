@@ -96,7 +96,7 @@ class Tcl
 
 		if (result == TCL_ERROR)
 		{
-			throw new Exception(this.getResult());
+			throw new Exception(this.getResult!(string));
 		}
 	}
 
@@ -120,11 +120,11 @@ class Tcl
 	 * Returns:
 	 *     A string representing the result of the last script fragment evaluated.
 	 */
-	public string getResult()
+	public T getResult(T)()
 	{
 		string result = Tcl_GetStringResult(this._interpreter).to!(string);
 		debug this._log.info("Getting interpreter result '%s'", result);
-		return result;
+		return result.to!(T);
 	}
 
 	/**
@@ -162,7 +162,7 @@ class Tcl
 
 		if (result == TCL_ERROR)
 		{
-			throw new Exception(this.getResult());
+			throw new Exception(this.getResult!(string));
 		}
 	}
 
@@ -213,7 +213,7 @@ class Tcl
 
 		if (result == TCL_ERROR)
 		{
-			throw new Exception(this.getResult());
+			throw new Exception(this.getResult!(string));
 		}
 	}
 

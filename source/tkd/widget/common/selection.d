@@ -25,7 +25,7 @@ mixin template Selection()
 	public bool isTextSelected()
 	{
 		this._tk.eval("%s selection present", this.id);
-		return this._tk.getResult() == "1";
+		return this._tk.getResult!(int) == 1;
 	}
 
 	/**

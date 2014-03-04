@@ -56,7 +56,7 @@ class Image : Element
 	public string getData()
 	{
 		this._tk.eval("%s cget -data", this.id);
-		return this._tk.getResult();
+		return this._tk.getResult!(string);
 	}
 
 	/**
@@ -86,7 +86,7 @@ class Image : Element
 	public string getFormat()
 	{
 		this._tk.eval("%s cget -format", this.id);
-		return this._tk.getResult();
+		return this._tk.getResult!(string);
 	}
 
 	/**
@@ -121,7 +121,7 @@ class Image : Element
 	public string getFile()
 	{
 		this._tk.eval("%s cget -file", this.id);
-		return this._tk.getResult();
+		return this._tk.getResult!(string);
 	}
 
 	/**
@@ -149,7 +149,7 @@ class Image : Element
 	public string getGamma()
 	{
 		this._tk.eval("%s cget -gamma", this.id);
-		return this._tk.getResult();
+		return this._tk.getResult!(string);
 	}
 
 	/**
@@ -172,7 +172,7 @@ class Image : Element
 	public string getHeight()
 	{
 		this._tk.eval("%s cget -height", this.id);
-		return this._tk.getResult();
+		return this._tk.getResult!(string);
 	}
 
 	/**
@@ -201,7 +201,7 @@ class Image : Element
 	public string getPalette()
 	{
 		this._tk.eval("%s cget -palette", this.id);
-		return this._tk.getResult();
+		return this._tk.getResult!(string);
 	}
 
 	/**
@@ -224,7 +224,7 @@ class Image : Element
 	public string getWidth()
 	{
 		this._tk.eval("%s cget -width", this.id);
-		return this._tk.getResult();
+		return this._tk.getResult!(string);
 	}
 }
 

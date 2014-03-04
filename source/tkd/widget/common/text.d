@@ -20,7 +20,7 @@ mixin template Text()
 	public string getText()
 	{
 		this._tk.eval("%s cget -text", this.id);
-		return this._tk.getResult();
+		return this._tk.getResult!(string);
 	}
 
 	/**

@@ -22,7 +22,7 @@ mixin template Values()
 	public string[] getValues()
 	{
 		this._tk.eval("%s cget -values", this.id);
-		return this._tk.getResult.replace("\"", "").split();
+		return this._tk.getResult!(string).replace("\"", "").split();
 	}
 
 	/**

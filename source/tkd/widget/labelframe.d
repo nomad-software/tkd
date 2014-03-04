@@ -16,7 +16,6 @@ import tkd.widget.common.padding;
 import tkd.widget.common.text;
 import tkd.widget.common.underline;
 import tkd.widget.common.width;
-import tkd.widget.label;
 import tkd.widget.widget;
 
 /**
@@ -79,17 +78,17 @@ class LabelFrame : Widget
 	}
 
 	/**
-	 * Set the label widget to use for the label. The label must be a child of 
-	 * the labelframe widget or one of the labelframe's ancestors, and must 
-	 * belong to the same top-level widget as the labelframe. If set, overrides 
-	 * the text parameter.
+	 * Set a widget to use for the label. The widget must be a child of the 
+	 * labelframe widget or one of the labelframe's ancestors, and must belong 
+	 * to the same top-level widget as the labelframe. If set, overrides the 
+	 * text parameter.
 	 *
 	 * Params:
-	 *     label = The label widget to use as the label.
+	 *     widget = The widget to use as the label.
 	 */
-	public void setLabel(Label label)
+	public void setLabel(Widget widget)
 	{
-		this._tk.eval("%s configure -labelwidget %s", this.id, label.id);
+		this._tk.eval("%s configure -labelwidget %s", this.id, widget.id);
 	}
 
 	/**

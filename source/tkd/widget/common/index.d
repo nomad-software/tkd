@@ -11,8 +11,6 @@ module tkd.widget.common.index;
  */
 mixin template Index()
 {
-	import std.conv;
-
 	/**
 	 * Get the length of the text.
 	 *
@@ -22,7 +20,7 @@ mixin template Index()
 	public int getTextLength()
 	{
 		this._tk.eval("%s index end", this.id);
-		return this._tk.getResult().to!(int);
+		return this._tk.getResult!(int);
 	}
 
 	/**
@@ -34,7 +32,7 @@ mixin template Index()
 	public int getCursorIndex()
 	{
 		this._tk.eval("%s index insert", this.id);
-		return this._tk.getResult().to!(int);
+		return this._tk.getResult!(int);
 	}
 
 	/**
@@ -48,10 +46,10 @@ mixin template Index()
 		int[] result;
 
 		this._tk.eval("%s index sel.first", this.id);
-		result ~= this._tk.getResult().to!(int);
+		result ~= this._tk.getResult!(int);
 
 		this._tk.eval("%s index sel.last", this.id);
-		result ~= this._tk.getResult().to!(int);
+		result ~= this._tk.getResult!(int);
 
 		return result;
 	}
