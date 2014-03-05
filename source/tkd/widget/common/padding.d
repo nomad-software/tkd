@@ -16,9 +16,13 @@ mixin template Padding()
 	 *
 	 * Params:
 	 *     padding = The desired widget padding.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void setPadding(int padding)
+	public auto setPadding(int padding)
 	{
 		this._tk.eval("%s configure -padding %s", this.id, padding);
+		return this;
 	}
 }

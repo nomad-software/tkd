@@ -16,9 +16,13 @@ mixin template Height()
 	 *
 	 * Params:
 	 *     height = The desired widget height.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void setHeight(int height)
+	public auto setHeight(int height)
 	{
 		this._tk.eval("%s configure -height %s", this.id, height);
+		return this;
 	}
 }

@@ -16,9 +16,13 @@ mixin template Underline()
 	 *
 	 * Params:
 	 *     index = The index of the character to underline.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void underlineChar(int index)
+	public auto underlineChar(int index)
 	{
 		this._tk.eval("%s configure -underline %s", this.id, index);
+		return this;
 	}
 }

@@ -21,10 +21,13 @@ mixin template Command()
 	 * Params:
 	 *     callback = The delegate callback to execute when invoking the command.
 	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ../widget.html#WidgetCommandCallback, tkd.widget.WidgetCommandCallback)
 	 */
-	public void setCommand(WidgetCommandCallback callback)
+	public auto setCommand(WidgetCommandCallback callback)
 	{
 		this.removeCommand();
 
@@ -64,17 +67,24 @@ mixin template Command()
 
 		this._tk.createCommand(command, commandCallbackHandler, args, deleteCallbackHandler);
 		this._tk.eval(tkScript);
+
+		return this;
 	}
 
 	/**
 	 * Remove a previously set command.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void removeCommand()
+	public auto removeCommand()
 	{
 		string command  = format("command-%s", this.generateHash("command" ~ this.id));
 		string tkScript = format("%s configure -command { }", this.id);
 
 		this._tk.deleteCommand(command);
 		this._tk.eval(tkScript);
+
+		return this;
 	}
 }

@@ -16,9 +16,13 @@ mixin template Cursor()
 	 *
 	 * Params:
 	 *     charIndex = The index of the character after the cursor.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void setCursorPosition(int charIndex)
+	public auto setCursorPosition(int charIndex)
 	{
 		this._tk.eval("%s icursor %s", this.id, charIndex);
+		return this;
 	}
 }

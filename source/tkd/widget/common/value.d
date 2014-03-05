@@ -35,9 +35,13 @@ mixin template Value(alias valueVariable)
 	 *
 	 * Params:
 	 *     value = The new widget value.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void setValue(string value)
+	public auto setValue(string value)
 	{
-		return this._tk.setVariable(valueVariable, value);
+		this._tk.setVariable(valueVariable, value);
+		return this;
 	}
 }

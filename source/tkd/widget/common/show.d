@@ -17,9 +17,13 @@ mixin template Show()
 	 *
 	 * Params:
 	 *     character = The character to use as a substitute.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void showCharsAs(char character)
+	public auto showCharsAs(char character)
 	{
 		this._tk.eval("%s configure -show %s", this.id, character);
+		return this;
 	}
 }

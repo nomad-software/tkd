@@ -16,9 +16,16 @@ mixin template Justify()
 	 *
 	 * Params:
 	 *     alignment = The alignment of the text.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../alignment.html, tkd.widget.alignment)
 	 */
-	public void setTextAlignment(string alignment)
+	public auto setTextAlignment(string alignment)
 	{
 		this._tk.eval("%s configure -justify %s", this.id, alignment);
+		return this;
 	}
 }

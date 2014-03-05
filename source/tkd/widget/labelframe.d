@@ -85,10 +85,14 @@ class LabelFrame : Widget
 	 *
 	 * Params:
 	 *     widget = The widget to use as the label.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void setLabel(Widget widget)
+	public auto setLabel(Widget widget)
 	{
 		this._tk.eval("%s configure -labelwidget %s", this.id, widget.id);
+		return this;
 	}
 
 	/**

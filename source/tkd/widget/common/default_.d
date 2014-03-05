@@ -13,9 +13,13 @@ mixin template Default_()
 {
 	/**
 	 * Make the widget the default one on the interface.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void setDefault()
+	public auto setDefault()
 	{
 		this._tk.eval("%s configure -default active", this.id);
+		return this;
 	}
 }

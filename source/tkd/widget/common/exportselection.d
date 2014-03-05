@@ -14,9 +14,13 @@ mixin template ExportSelection()
 	/**
 	 * Disable the selection export. This is only applicable to X based 
 	 * operating systems.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void disableExportSelection()
+	public auto disableExportSelection()
 	{
 		this._tk.eval("%s configure -exportselection 0", this.id);
+		return this;
 	}
 }

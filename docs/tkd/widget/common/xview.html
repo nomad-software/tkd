@@ -30,7 +30,7 @@
 <h3>Return Value</h3><p>An array containing two floating point values.</p>
 </div>
 </div>
-<h2><a name="setXView"></a>void <span class="symbol">setXView</span>(float position);
+<h2><a name="setXView"></a>auto <span class="symbol">setXView</span>(float position);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Adjusts the view in the window so that the position appears at the left
  edge of the window. Position must be a fraction between 0.0 (start of
@@ -39,9 +39,10 @@
 <h3>Parameters</h3><table class="parameter-list"><tr><td>float position</td>
 <td>The character index to scroll to.</td></tr>
 </table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
-<h2><a name="scrollToChar"></a>void <span class="symbol">scrollToChar</span>(int charIndex);
+<h2><a name="scrollToChar"></a>auto <span class="symbol">scrollToChar</span>(int charIndex);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Adjusts the view in the window so that the character index passed is
  displayed at the left edge of the window.
@@ -49,9 +50,10 @@
 <h3>Parameters</h3><table class="parameter-list"><tr><td>int charIndex</td>
 <td>The character index to scroll to.</td></tr>
 </table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
-<h2><a name="scrollChars"></a>void <span class="symbol">scrollChars</span>(int numberOfChars);
+<h2><a name="scrollChars"></a>auto <span class="symbol">scrollChars</span>(int numberOfChars);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Scroll the text by a specified amount of characters. Positive values
  scroll text to the left, negative values scroll text to the right.
@@ -59,9 +61,10 @@
 <h3>Parameters</h3><table class="parameter-list"><tr><td>int numberOfChars</td>
 <td>The number of characters to scroll by.</td></tr>
 </table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
-<h2><a name="scrollPages"></a>void <span class="symbol">scrollPages</span>(int numberOfPages);
+<h2><a name="scrollPages"></a>auto <span class="symbol">scrollPages</span>(int numberOfPages);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Scroll the text by a specified amount of pages. Positive values scroll
  text to the left, negative values scroll text to the right.
@@ -69,6 +72,7 @@
 <h3>Parameters</h3><table class="parameter-list"><tr><td>int numberOfPages</td>
 <td>The number of characters to scroll by.</td></tr>
 </table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
 </div>

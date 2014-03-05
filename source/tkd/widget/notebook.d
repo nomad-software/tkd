@@ -75,10 +75,14 @@ class NoteBook : Widget
 	 * Params:
 	 *     text = The text of the tab.
 	 *     widget = The widget to add as the tab pane.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void addTab(string text, Widget widget)
+	public auto addTab(string text, Widget widget)
 	{
 		this.insertTab("end", text, widget);
+		return this;
 	}
 
 	/**
@@ -92,10 +96,14 @@ class NoteBook : Widget
 	 *     tabIndex = The index where the new tab will be created.
 	 *     text = The text of the tab.
 	 *     widget = The widget to add as the tab pane.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void insertTab(int tabIndex, string text, Widget widget)
+	public auto insertTab(int tabIndex, string text, Widget widget)
 	{
 		this._tk.eval("%s insert %s %s -text \"%s\"", this.id, tabIndex, widget.id, text);
+		return this;
 	}
 
 	/**
@@ -109,10 +117,14 @@ class NoteBook : Widget
 	 *     tabId = The tab id to position the tab before.
 	 *     text = The text of the tab.
 	 *     widget = The widget to add as the tab pane.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void insertTab(string tabId, string text, Widget widget)
+	public auto insertTab(string tabId, string text, Widget widget)
 	{
 		this._tk.eval("%s insert %s %s -text \"%s\"", this.id, tabId, widget.id, text);
+		return this;
 	}
 
 	/**
@@ -120,10 +132,14 @@ class NoteBook : Widget
 	 *
 	 * Params:
 	 *     tabIndex = The index of the tab to select.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void selectTab(int tabIndex)
+	public auto selectTab(int tabIndex)
 	{
 		this._tk.eval("%s select %s", this.id, tabIndex);
+		return this;
 	}
 
 	/**
@@ -131,10 +147,14 @@ class NoteBook : Widget
 	 *
 	 * Params:
 	 *     tabId = The id of the tab to select.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void selectTab(string tabId)
+	public auto selectTab(string tabId)
 	{
 		this._tk.eval("%s select %s", this.id, tabId);
+		return this;
 	}
 
 	/**
@@ -142,10 +162,14 @@ class NoteBook : Widget
 	 *
 	 * Params:
 	 *     tabIndex = The zero based index of the tab to remove.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void removeTab(int tabIndex)
+	public auto removeTab(int tabIndex)
 	{
 		this._tk.eval("%s forget %s", this.id, tabIndex);
+		return this;
 	}
 
 	/**
@@ -154,10 +178,14 @@ class NoteBook : Widget
 	 *
 	 * Params:
 	 *     tabId = The tab id of the tab to remove.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void removeTab(string tabId)
+	public auto removeTab(string tabId)
 	{
 		this._tk.eval("%s forget %s", this.id, tabId);
+		return this;
 	}
 
 	/**
@@ -165,10 +193,14 @@ class NoteBook : Widget
 	 *
 	 * Params:
 	 *     tabIndex = The zero based index of the tab to hide.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void hideTab(int tabIndex)
+	public auto hideTab(int tabIndex)
 	{
 		this._tk.eval("%s hide %s", this.id, tabIndex);
+		return this;
 	}
 
 	/**
@@ -177,10 +209,14 @@ class NoteBook : Widget
 	 *
 	 * Params:
 	 *     tabId = The tab id of the tab to hide.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void hideTab(string tabId)
+	public auto hideTab(string tabId)
 	{
 		this._tk.eval("%s hide %s", this.id, tabId);
+		return this;
 	}
 
 	/**
@@ -214,12 +250,16 @@ class NoteBook : Widget
 	 *     tabIdentifier = The zero based index or string id of the tab.
 	 *     state = A widget state.
 	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ./state.html, tkd.widget.state) for states.
 	 */
-	public void setTabState(T)(T tabIdentifier, string state) if (is(T == int) || is(T == string))
+	public auto setTabState(T)(T tabIdentifier, string state) if (is(T == int) || is(T == string))
 	{
 		this._tk.eval("%s tab %s -state %s", this.id, tabIdentifier, state);
+		return this;
 	}
 
 	/**
@@ -232,10 +272,14 @@ class NoteBook : Widget
 	 * Params:
 	 *     tabIdentifier = The zero based index or string id of the tab.
 	 *     stickyState = A widget state.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void setPaneStickyState(T)(T tabIdentifier, string stickyState) if (is(T == int) || is(T == string))
+	public auto setPaneStickyState(T)(T tabIdentifier, string stickyState) if (is(T == int) || is(T == string))
 	{
 		this._tk.eval("%s tab %s -sticky %s", this.id, tabIdentifier, stickyState);
+		return this;
 	}
 
 	/**
@@ -244,10 +288,14 @@ class NoteBook : Widget
 	 * Params:
 	 *     tabIdentifier = The zero based index or string id of the tab.
 	 *     padding = The desired widget padding.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void setPanePadding(T)(T tabIdentifier, int padding) if (is(T == int) || is(T == string))
+	public auto setPanePadding(T)(T tabIdentifier, int padding) if (is(T == int) || is(T == string))
 	{
 		this._tk.eval("%s tab %s -padding %s", this.id, tabIdentifier, padding);
+		return this;
 	}
 
 	/**
@@ -256,10 +304,14 @@ class NoteBook : Widget
 	 * Params:
 	 *     tabIdentifier = The zero based index or string id of the tab.
 	 *     text = The tab text.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void setTabText(T)(T tabIdentifier, string text) if (is(T == int) || is(T == string))
+	public auto setTabText(T)(T tabIdentifier, string text) if (is(T == int) || is(T == string))
 	{
 		this._tk.eval("%s tab %s -text \"%s\"", this.id, tabIdentifier, text);
+		return this;
 	}
 
 	/**
@@ -270,16 +322,20 @@ class NoteBook : Widget
 	 *     image = The image to set on the widget.
 	 *     imagePosition = The position of the image relative to the text.
 	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ../image/image.html, tkd.image.image) $(BR)
 	 *     $(LINK2 ../image/png.html, tkd.image.png) $(BR)
 	 *     $(LINK2 ../image/gif.html, tkd.image.gif) $(BR)
 	 *     $(LINK2 ../image/imageposition.html, tkd.image.imageposition) $(BR)
 	 */
-	public void setTabImage(T)(T tabIdentifier, Image image, string imagePosition = ImagePosition.image) if (is(T == int) || is(T == string))
+	public auto setTabImage(T)(T tabIdentifier, Image image, string imagePosition = ImagePosition.image) if (is(T == int) || is(T == string))
 	{
 		this._tk.eval("%s tab %s -image %s", this.id, tabIdentifier, image.id);
 		this.setTabImagePosition(tabIdentifier, imagePosition);
+		return this;
 	}
 
 	/**
@@ -289,12 +345,16 @@ class NoteBook : Widget
 	 *     tabIdentifier = The zero based index or string id of the tab.
 	 *     imagePosition = The position of the image relative to the text.
 	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ../image/imageposition.html, tkd.image.imageposition)
 	 */
-	public void setTabImagePosition(T)(T tabIdentifier, string imagePosition)
+	public auto setTabImagePosition(T)(T tabIdentifier, string imagePosition)
 	{
 		this._tk.eval("%s tab %s -compound %s", this.id, tabIdentifier, imagePosition);
+		return this;
 	}
 
 	/**
@@ -305,13 +365,17 @@ class NoteBook : Widget
 	 *     tabIdentifier = The zero based index or string id of the tab.
 	 *     index = The index of the character to underline.
 	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ../image/imageposition.html, tkd.image.imageposition) $(BR)
 	 *     $(LINK2 ./notebook.html#NoteBook.enableKeyboardTraversal, enableKeyboardTraversal()) $(BR)
 	 */
-	public void underlineTabChar(T)(T tabIdentifier, int index)
+	public auto underlineTabChar(T)(T tabIdentifier, int index)
 	{
 		this._tk.eval("%s tab %s -underline %s", this.id, tabIdentifier, index);
+		return this;
 	}
 
 	/**
@@ -327,12 +391,16 @@ class NoteBook : Widget
 	 * including nested notebooks. However, notebook traversal only works 
 	 * properly if all widget panes are direct children of the notebook.
 	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ./notebook.html#NoteBook.underlineTabChar, underlineTabChar(...)) $(BR)
 	 */
-	public void enableKeyboardTraversal()
+	public auto enableKeyboardTraversal()
 	{
 		this._tk.eval("ttk::notebook::enableTraversal %s", this.id);
+		return this;
 	}
 
 	/**

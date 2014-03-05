@@ -16,9 +16,13 @@ mixin template Border()
 	 *
 	 * Params:
 	 *     width = The desired border width.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void setBorderWidth(int width)
+	public auto setBorderWidth(int width)
 	{
 		this._tk.eval("%s configure -borderwidth %s", this.id, width);
+		return this;
 	}
 }

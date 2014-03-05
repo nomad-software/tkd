@@ -11,6 +11,6 @@ module tkd.image.imageformat;
  */
 enum ImageFormat : string
 {
-	gif = "gif",
-	png = "png",
+	gif = "gif", /// Gif format.
+	png = "png", /// Png format.
 }

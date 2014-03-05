@@ -51,8 +51,11 @@ class Application : TkdApplication
 	{
 		this._noteBook = new NoteBook();
 
-		this._noteBook.addTab("Hello", new Button("Lorem"));
-		this._noteBook.pack();
+		auto x = new Label("content");
+		this._noteBook
+			.addTab("Hello", new Button("Lorem"))
+			.addTab("World", x)
+			.pack();
 
 		// this._rootFrame = new Frame();
 

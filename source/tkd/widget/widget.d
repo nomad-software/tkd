@@ -45,12 +45,16 @@ abstract class Widget : UiElement
 	 * Params:
 	 *     state = An array of widget states.
 	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ./state.html, tkd.widget.state) for states.
 	 */
-	public void setState(string[] state)
+	public auto setState(string[] state)
 	{
 		this._tk.eval("%s state { %s }", this.id, state.join(" "));
+		return this;
 	}
 
 	/**
@@ -97,23 +101,31 @@ abstract class Widget : UiElement
 	 * Params:
 	 *     state = An array of widget states.
 	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ./state.html, tkd.widget.state) for states.
 	 */
-	public void removeState(string[] state)
+	public auto removeState(string[] state)
 	{
 		this._tk.eval("%s state { !%s }", this.id, state.join(" !"));
+		return this;
 	}
 
 	/**
 	 * Reset the widget's state to default.
 	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ./state.html, tkd.widget.state) for widget states.
 	 */
-	public void resetState()
+	public auto resetState()
 	{
 		this.removeState(this.getState());
+		return this;
 	}
 
 	/**
@@ -122,12 +134,16 @@ abstract class Widget : UiElement
 	 * Params:
 	 *     style = A widget style.
 	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ./style.html, tkd.widget.style) for styles.
 	 */
-	public void setStyle(string style)
+	public auto setStyle(string style)
 	{
 		this._tk.eval("%s configure -style %s", this.id, style);
+		return this;
 	}
 
 	/**
@@ -155,12 +171,16 @@ abstract class Widget : UiElement
 	 * Params:
 	 *     focus = A focus setting.
 	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ./focus.html, tkd.widget.focus) for focus states.
 	 */
-	public void setFocus(string focus)
+	public auto setFocus(string focus)
 	{
 		this._tk.eval("%s configure -takefocus %s", this.id, focus);
+		return this;
 	}
 
 	/**

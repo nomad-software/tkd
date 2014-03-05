@@ -13,10 +13,14 @@ mixin template Selection()
 {
 	/**
 	 * Clear the text selection.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void deselectText()
+	public auto deselectText()
 	{
 		this._tk.eval("%s selection clear", this.id);
+		return this;
 	}
 
 	/**
@@ -34,9 +38,13 @@ mixin template Selection()
 	 * Params:
 	 *     startCharIndex = The index where the selection starts.
 	 *     endCharIndex = The index where the selection ends.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void selectText(int startCharIndex = 0, int endCharIndex = int.max)
+	public auto selectText(int startCharIndex = 0, int endCharIndex = int.max)
 	{
 		this._tk.eval("%s selection range %s %s", this.id, startCharIndex, endCharIndex);
+		return this;
 	}
 }

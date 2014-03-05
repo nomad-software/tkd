@@ -21,6 +21,9 @@ interface IXScrollable
 	 *
 	 * Params:
 	 *     scrollbar = The scrollbar to attach.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
 	public void attachXScrollbar(XScrollbar scrollbar);
 }

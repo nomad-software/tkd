@@ -20,10 +20,13 @@ mixin template PostCommand()
 	 * Params:
 	 *     callback = The delegate callback to execute when invoking the post command.
 	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ../widget.html#WidgetCommandCallback, tkd.widget.WidgetCommandCallback)
 	 */
-	public void setPostCommand(WidgetCommandCallback callback)
+	public auto setPostCommand(WidgetCommandCallback callback)
 	{
 		this.removePostCommand();
 
@@ -63,17 +66,24 @@ mixin template PostCommand()
 
 		this._tk.createCommand(command, commandCallbackHandler, args, deleteCallbackHandler);
 		this._tk.eval(tkScript);
+
+		return this;
 	}
 
 	/**
 	 * Remove a previously set command.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void removePostCommand()
+	public auto removePostCommand()
 	{
 		string command  = format("command-%s", this.generateHash("postcommand" ~ this.id));
 		string tkScript = format("%s configure -postcommand { }", this.id);
 
 		this._tk.deleteCommand(command);
 		this._tk.eval(tkScript);
+
+		return this;
 	}
 }

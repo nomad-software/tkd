@@ -28,9 +28,13 @@ mixin template Text()
 	 *
 	 * Params:
 	 *     text = The widget text to set.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void setText(string text)
+	public auto setText(string text)
 	{
 		this._tk.eval("%s configure -text %s", this.id, text);
+		return this;
 	}
 }

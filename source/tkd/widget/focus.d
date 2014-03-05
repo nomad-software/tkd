@@ -11,7 +11,7 @@ module tkd.widget.focus;
  */
 enum Focus : string
 {
-	normal  = "ttk::takefocus",
-	enable  = "1",
-	disable = "0",
+	normal  = "ttk::takefocus", /// Default focus setting.
+	enable  = "1",              /// Enable widget focus.
+	disable = "0",              /// Disable widget focus.
 }

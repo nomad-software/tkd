@@ -19,9 +19,13 @@ mixin template WrapLength()
 	 *
 	 * Params:
 	 *     pixels = The maximum width in pixels.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void setWrapLength(int pixels)
+	public auto setWrapLength(int pixels)
 	{
 		this._tk.eval("%s configure -wraplength %s", this.id, pixels);
+		return this;
 	}
 }

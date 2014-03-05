@@ -17,9 +17,13 @@ mixin template Delete_()
 	 * Params:
 	 *     startCharIndex = The index where the deletion starts.
 	 *     endCharIndex = The index where the deletion ends.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void deleteText(int startCharIndex = 0, int endCharIndex = int.max)
+	public auto deleteText(int startCharIndex = 0, int endCharIndex = int.max)
 	{
 		this._tk.eval("%s delete %s %s", this.id, startCharIndex, endCharIndex);
+		return this;
 	}
 }

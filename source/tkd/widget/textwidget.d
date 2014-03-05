@@ -62,10 +62,14 @@ abstract class TextWidget : Widget
 	 *
 	 * Params:
 	 *     text = The widget text.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void setText(string text)
+	public auto setText(string text)
 	{
 		this._tk.setVariable(this._textVariable, text);
+		return this;
 	}
 
 	/**
@@ -86,18 +90,22 @@ abstract class TextWidget : Widget
 	 *     image = The image to set on the widget.
 	 *     imagePosition = The position of the image relative to the text.
 	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ../image/image.html, tkd.image.image) $(BR)
 	 *     $(LINK2 ../image/png.html, tkd.image.png) $(BR)
 	 *     $(LINK2 ../image/gif.html, tkd.image.gif) $(BR)
 	 *     $(LINK2 ../image/imageposition.html, tkd.image.imageposition) $(BR)
 	 */
-	public void setImage(Image image, string imagePosition = ImagePosition.image)
+	public auto setImage(Image image, string imagePosition = ImagePosition.image)
 	{
 		this._image = image;
 
 		this._tk.eval("%s configure -image %s", this.id, this._image.id);
 		this.setImagePosition(imagePosition);
+		return this;
 	}
 
 	/**
@@ -106,12 +114,16 @@ abstract class TextWidget : Widget
 	 * Params:
 	 *     imagePosition = The position of the image relative to the text.
 	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ../image/imageposition.html, tkd.image.imageposition)
 	 */
-	public void setImagePosition(string imagePosition)
+	public auto setImagePosition(string imagePosition)
 	{
 		this._tk.eval("%s configure -compound %s", this.id, imagePosition);
+		return this;
 	}
 
 	/**
@@ -119,10 +131,14 @@ abstract class TextWidget : Widget
 	 *
 	 * Params:
 	 *     characterWidth = The width of characters to set the label to.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void setTextCharacterWidth(int characterWidth)
+	public auto setTextCharacterWidth(int characterWidth)
 	{
 		this._tk.eval("%s configure -width %s", this.id, characterWidth);
+		return this;
 	}
 
 	/**

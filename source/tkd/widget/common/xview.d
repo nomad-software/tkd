@@ -39,10 +39,14 @@ mixin template XView()
 	 *
 	 * Params:
 	 *     position = The character index to scroll to.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void setXView(float position)
+	public auto setXView(float position)
 	{
 		this._tk.eval("%s xview moveto %s", this.id, position);
+		return this;
 	}
 
 	/**
@@ -51,10 +55,14 @@ mixin template XView()
 	 *
 	 * Params:
 	 *     charIndex = The character index to scroll to.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void scrollToChar(int charIndex)
+	public auto scrollToChar(int charIndex)
 	{
 		this._tk.eval("%s xview %s", this.id, charIndex);
+		return this;
 	}
 
 	/**
@@ -63,10 +71,14 @@ mixin template XView()
 	 *
 	 * Params:
 	 *     numberOfChars = The number of characters to scroll by.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void scrollChars(int numberOfChars)
+	public auto scrollChars(int numberOfChars)
 	{
 		this._tk.eval("%s xview scroll %s units", this.id, numberOfChars);
+		return this;
 	}
 
 	/**
@@ -75,9 +87,13 @@ mixin template XView()
 	 *
 	 * Params:
 	 *     numberOfPages = The number of characters to scroll by.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void scrollPages(int numberOfPages)
+	public auto scrollPages(int numberOfPages)
 	{
 		this._tk.eval("%s xview scroll %s pages", this.id, numberOfPages);
+		return this;
 	}
 }

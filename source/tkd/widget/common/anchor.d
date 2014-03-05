@@ -20,11 +20,15 @@ mixin template Anchor(string anchorCommand = "-anchor")
 	 * Params:
 	 *     position = The position of the anchor.
 	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ../anchorposition.html, tkd.widget.anchorposition) $(BR)
 	 */
-	public void setTextAnchor(string position)
+	public auto setTextAnchor(string position)
 	{
 		this._tk.eval("%s configure " ~ anchorCommand ~ " %s", this.id, position);
+		return this;
 	}
 }

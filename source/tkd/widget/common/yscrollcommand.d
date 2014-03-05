@@ -41,5 +41,6 @@ mixin template YScrollCommand()
 	public void attachYScrollbar(YScrollbar scrollbar)
 	{
 		this._tk.eval("%s configure -yscrollcommand [list %s set]", this.id, scrollbar.id);
+		return this;
 	}
 }

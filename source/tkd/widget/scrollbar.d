@@ -127,14 +127,18 @@ class XScrollbar : Scrollbar
 	 * Params:
 	 *     scrollableWidget = A horizontally scrollable widget.
 	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ./common/xscrollcommand.html, tkd.widget.common.xscrollcommand) $(BR)
 	 */
-	public void attachWidget(IXScrollable scrollableWidget)
+	public auto attachWidget(IXScrollable scrollableWidget)
 	{
 		auto widget = cast(Widget)scrollableWidget;
 
 		this._tk.eval("%s configure -command [list %s xview]", this.id, widget.id);
+		return this;
 	}
 
 }
@@ -165,13 +169,17 @@ class YScrollbar : Scrollbar
 	 * Params:
 	 *     scrollableWidget = A vertically scrollable widget.
 	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ./common/yscrollcommand.html, tkd.widget.common.yscrollcommand) $(BR)
 	 */
-	public void attachWidget(IYScrollable scrollableWidget)
+	public auto attachWidget(IYScrollable scrollableWidget)
 	{
 		auto widget = cast(Widget)scrollableWidget;
 
 		this._tk.eval("%s configure -command [list %s yview]", this.id, widget.id);
+		return this;
 	}
 }

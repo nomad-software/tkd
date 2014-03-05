@@ -16,9 +16,13 @@ mixin template Width()
 	 *
 	 * Params:
 	 *     width = The desired widget width.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void setWidth(int width)
+	public auto setWidth(int width)
 	{
 		this._tk.eval("%s configure -width %s", this.id, width);
+		return this;
 	}
 }

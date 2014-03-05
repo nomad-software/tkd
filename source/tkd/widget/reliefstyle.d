@@ -11,10 +11,10 @@ module tkd.widget.reliefstyle;
  */
 enum ReliefStyle : string
 {
-	flat   = "flat",
-	groove = "groove",
-	raised = "raised",
-	ridge  = "ridge",
-	solid  = "solid",
-	sunken = "sunken",
+	flat   = "flat",   /// Flat relief style.
+	groove = "groove", /// Groove relief style.
+	raised = "raised", /// Raised relief style.
+	ridge  = "ridge",  /// Ridge relief style.
+	solid  = "solid",  /// Solid relief style.
+	sunken = "sunken", /// Sunken relief style.
 }

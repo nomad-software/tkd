@@ -170,10 +170,14 @@ class ComboBox : Widget, IXScrollable
 	 *
 	 * Params:
 	 *     index = The index of the value to select.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void select(int index)
+	public auto select(int index)
 	{
 		this._tk.eval("%s current %s", this.id, index);
+		return this;
 	}
 
 	/**

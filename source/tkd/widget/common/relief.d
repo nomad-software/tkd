@@ -16,9 +16,13 @@ mixin template Relief()
 	 *
 	 * Params:
 	 *     relief = The relief type of the widget.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void setRelief(string relief)
+	public auto setRelief(string relief)
 	{
 		this._tk.eval("%s configure -relief %s", this.id, relief);
+		return this;
 	}
 }

@@ -100,26 +100,38 @@ class CheckButton : TextWidget
 
 	/**
 	 * Check the check button.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void check()
+	public auto check()
 	{
-		return this._tk.setVariable(this._valueVariable, this._onValue);
+		this._tk.setVariable(this._valueVariable, this._onValue);
+		return this;
 	}
 
 	/**
 	 * Uncheck the check button.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void unCheck()
+	public auto unCheck()
 	{
-		return this._tk.setVariable(this._valueVariable, this._offValue);
+		this._tk.setVariable(this._valueVariable, this._offValue);
+		return this;
 	}
 
 	/**
 	 * Only half check the check button. This is a kind of halfway state.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void halfCheck()
+	public auto halfCheck()
 	{
-		return this._tk.setVariable(this._valueVariable, "");
+		this._tk.setVariable(this._valueVariable, "");
+		return this;
 	}
 
 	/**
@@ -138,11 +150,15 @@ class CheckButton : TextWidget
 	 *
 	 * Params:
 	 *     value = The value of the widget for the checked state.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void setOnValue(string value)
+	public auto setOnValue(string value)
 	{
 		this._onValue = value;
 		this._tk.eval("%s configure -onvalue %s", this.id, this._onValue);
+		return this;
 	}
 
 	/**
@@ -150,11 +166,15 @@ class CheckButton : TextWidget
 	 *
 	 * Params:
 	 *     value = The value of the widget for the unchecked state.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void setOffValue(string value)
+	public auto setOffValue(string value)
 	{
 		this._offValue = value;
 		this._tk.eval("%s configure -offvalue %s", this.id, this._offValue);
+		return this;
 	}
 
 	/**

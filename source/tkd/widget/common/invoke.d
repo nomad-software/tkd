@@ -13,9 +13,13 @@ mixin template Invoke()
 {
 	/**
 	 * Invoke the command associated with the widget.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void invokeCommand()
+	public auto invokeCommand()
 	{
 		this._tk.eval("%s invoke", this.id);
+		return this;
 	}
 }
