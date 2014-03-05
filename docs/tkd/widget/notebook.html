@@ -29,17 +29,18 @@ These are injected common commands that can also be used with this widget.
 </p>
 <p><h3>Additional Events:</h3>
 Additional events that can also be bound to using the <a href="../element/uielement.html#UiElement.bind">bind</a> method.
-     <p>        &lt;Destroy&gt;,
+     <p>        &lt;&lt;NotebookTabChanged&gt;&gt;,
+         &lt;&lt;PrevWindow&gt;&gt;,
+         &lt;Alt-Key&gt;,
+         &lt;Button-1&gt;,
          &lt;Control-Key-ISO_Left_Tab&gt;,
-         &lt;Control-Shift-Key-Tab&gt;,
          &lt;Control-Key-Tab&gt;,
+         &lt;Control-Shift-Key-Tab&gt;,
+         &lt;Destroy&gt;,
+         &lt;Key-F10&gt;,
          &lt;Key-Left&gt;,
          &lt;Key-Right&gt;,
-         &lt;Button-1&gt;,
-         &lt;&lt;PrevWindow&gt;&gt;,
          &lt;Key-Tab&gt;,
-         &lt;Key-F10&gt;,
-         &lt;Alt-Key&gt;,
      </p>
 
 </p>
@@ -102,6 +103,24 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </table>
 </div>
 </div>
+<h2><a name="NoteBook.selectTab"></a>void <span class="symbol">selectTab</span>(int tabIndex);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Select a tab in the notebook by its index.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int tabIndex</td>
+<td>The index of the tab to select.</td></tr>
+</table>
+</div>
+</div>
+<h2><a name="NoteBook.selectTab"></a>void <span class="symbol">selectTab</span>(string tabId);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Select a tab in the notebook by its id.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string tabId</td>
+<td>The id of the tab to select.</td></tr>
+</table>
+</div>
+</div>
 <h2><a name="NoteBook.removeTab"></a>void <span class="symbol">removeTab</span>(int tabIndex);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Remove a tab from the notbook via its index.
@@ -113,11 +132,11 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </div>
 <h2><a name="NoteBook.removeTab"></a>void <span class="symbol">removeTab</span>(string tabId);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Remove a tab from the notbook via its string id. The string id is the
- widget id that was added as the tab.
+<div class="declaration-description"><div class="sections"><p>Remove a tab from the notbook via its id. The id is the widget id that
+ was added as the tab.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string tabId</td>
-<td>The tab string id of the tab to remove.</td></tr>
+<td>The tab id of the tab to remove.</td></tr>
 </table>
 </div>
 </div>
@@ -132,27 +151,22 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </div>
 <h2><a name="NoteBook.hideTab"></a>void <span class="symbol">hideTab</span>(string tabId);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Hide a tab from the notbook via its string id. The string id is the
- widget id that was added as the tab.
+<div class="declaration-description"><div class="sections"><p>Hide a tab from the notbook via its id. The id is the widget id that was
+ added as the tab.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string tabId</td>
-<td>The tab string id of the tab to hide.</td></tr>
+<td>The tab id of the tab to hide.</td></tr>
 </table>
 </div>
 </div>
 <h2><a name="NoteBook.getTabIndexById"></a>int <span class="symbol">getTabIndexById</span>(string tabId);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Get the tab index from its string id. The string id is the
- widget id that was added as the tab.
+<div class="declaration-description"><div class="sections"><p>Get the tab index from its id. The id is the widget id that was added as
+ the tab.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string tabId</td>
-<td>The tab string id of the tab.</td></tr>
+<td>The tab id of the tab.</td></tr>
 </table>
-</div>
-</div>
-<h2><a name="NoteBook.enableKeyboardTraversal"></a>void <span class="symbol">enableKeyboardTraversal</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Call to enable keyboard traversal of the tabs.</p>
 </div>
 </div>
 <h2><a name="NoteBook.getNumberOfTabs"></a>int <span class="symbol">getNumberOfTabs</span>();
@@ -160,6 +174,122 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <div class="declaration-description"><div class="sections"><p>Get the number of tabs in the notebook.
 </p>
 <h3>Return Value</h3><p>The number of tabs.</p>
+</div>
+</div>
+<h2><a name="NoteBook.setTabState"></a>void <span class="symbol">setTabState</span>(T)(T tabIdentifier, string state) if (is(T == int) || is(T == string));
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set a tab's state.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>T tabIdentifier</td>
+<td>The zero based index or string id of the tab.</td></tr>
+<tr><td>string state</td>
+<td>A widget state.</td></tr>
+</table>
+<h3>See Also</h3><p><a href="./state.html">tkd.widget.state</a> for states.</p>
+</div>
+</div>
+<h2><a name="NoteBook.setPaneStickyState"></a>void <span class="symbol">setPaneStickyState</span>(T)(T tabIdentifier, string stickyState) if (is(T == int) || is(T == string));
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set a tab pane's sticky state. Specifies how the slave widget is
+ positioned within the pane area. Sticky state is a string containing
+ zero or more of the characters n, s, e, or w. Each letter refers to a
+ side (north, south, east, or west) that the slave window will "stick"
+ to, as per the grid geometry manager.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>T tabIdentifier</td>
+<td>The zero based index or string id of the tab.</td></tr>
+<tr><td>string stickyState</td>
+<td>A widget state.</td></tr>
+</table>
+</div>
+</div>
+<h2><a name="NoteBook.setPanePadding"></a>void <span class="symbol">setPanePadding</span>(T)(T tabIdentifier, int padding) if (is(T == int) || is(T == string));
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set a tab pane's padding.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>T tabIdentifier</td>
+<td>The zero based index or string id of the tab.</td></tr>
+<tr><td>int padding</td>
+<td>The desired widget padding.</td></tr>
+</table>
+</div>
+</div>
+<h2><a name="NoteBook.setTabText"></a>void <span class="symbol">setTabText</span>(T)(T tabIdentifier, string text) if (is(T == int) || is(T == string));
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set a tab's text.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>T tabIdentifier</td>
+<td>The zero based index or string id of the tab.</td></tr>
+<tr><td>string text</td>
+<td>The tab text.</td></tr>
+</table>
+</div>
+</div>
+<h2><a name="NoteBook.setTabImage"></a>void <span class="symbol">setTabImage</span>(T)(T tabIdentifier, Image image, string imagePosition = ImagePosition.image) if (is(T == int) || is(T == string));
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set a tab's image.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>T tabIdentifier</td>
+<td>The zero based index or string id of the tab.</td></tr>
+<tr><td>Image image</td>
+<td>The image to set on the widget.</td></tr>
+<tr><td>string imagePosition</td>
+<td>The position of the image relative to the text.</td></tr>
+</table>
+<h3>See Also</h3><p><a href="../image/image.html">tkd.image.image</a> <br>
+     <a href="../image/png.html">tkd.image.png</a> <br>
+     <a href="../image/gif.html">tkd.image.gif</a> <br>
+     <a href="../image/imageposition.html">tkd.image.imageposition</a> <br></p>
+</div>
+</div>
+<h2><a name="NoteBook.setTabImagePosition"></a>void <span class="symbol">setTabImagePosition</span>(T)(T tabIdentifier, string imagePosition);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Change the position of the tab image in relation to the text.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>T tabIdentifier</td>
+<td>The zero based index or string id of the tab.</td></tr>
+<tr><td>string imagePosition</td>
+<td>The position of the image relative to the text.</td></tr>
+</table>
+<h3>See Also</h3><p><a href="../image/imageposition.html">tkd.image.imageposition</a></p>
+</div>
+</div>
+<h2><a name="NoteBook.underlineTabChar"></a>void <span class="symbol">underlineTabChar</span>(T)(T tabIdentifier, int index);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Underline a character in the tab text. The underlined character is used
+ for mnemonic activation if keyboard traversal is enabled.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>T tabIdentifier</td>
+<td>The zero based index or string id of the tab.</td></tr>
+<tr><td>int index</td>
+<td>The index of the character to underline.</td></tr>
+</table>
+<h3>See Also</h3><p><a href="../image/imageposition.html">tkd.image.imageposition</a> <br>
+     <a href="./notebook.html#NoteBook.enableKeyboardTraversal">enableKeyboardTraversal()</a> <br></p>
+</div>
+</div>
+<h2><a name="NoteBook.enableKeyboardTraversal"></a>void <span class="symbol">enableKeyboardTraversal</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Call to enable keyboard traversal of the tabs.
+</p>
+<p>This will extend the bindings for the toplevel window containing the notebook as follows:
+ <ul>    <li>Control-Tab selects the tab following the currently selected one.</li>
+     <li>Control-Shift-Tab selects the tab preceding the currently selected one.</li>
+     <li>Alt-c, where c is the mnemonic (underlined) character of any tab, will select that tab.</li>
+ </ul>
+ Multiple notebooks in a single window may be enabled for traversal,
+ including nested notebooks. However, notebook traversal only works
+ properly if all widget panes are direct children of the notebook.
+
+</p>
+<h3>See Also</h3><p><a href="./notebook.html#NoteBook.underlineTabChar">underlineTabChar(...)</a> <br></p>
+</div>
+</div>
+<h2><a name="NoteBook.getTabIds"></a>string[] <span class="symbol">getTabIds</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get an array of all the current tab id's.
+</p>
+<h3>Return Value</h3><p>An array containing all the tab id's.</p>
 </div>
 </div>
 </div>

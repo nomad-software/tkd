@@ -9,7 +9,10 @@ module tkd.widget.notebook;
 /**
  * Imports.
  */
+import std.array;
 import tkd.element.uielement;
+import tkd.image.image;
+import tkd.image.imageposition;
 import tkd.widget.common.height;
 import tkd.widget.common.padding;
 import tkd.widget.common.width;
@@ -29,17 +32,18 @@ import tkd.widget.widget;
  * Additional_Events:
  *     Additional events that can also be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) method.
  *     $(P
- *         &lt;Destroy&gt;,
+ *         &lt;&lt;NotebookTabChanged&gt;&gt;,
+ *         &lt;&lt;PrevWindow&gt;&gt;,
+ *         &lt;Alt-Key&gt;,
+ *         &lt;Button-1&gt;,
  *         &lt;Control-Key-ISO_Left_Tab&gt;,
- *         &lt;Control-Shift-Key-Tab&gt;,
  *         &lt;Control-Key-Tab&gt;,
+ *         &lt;Control-Shift-Key-Tab&gt;,
+ *         &lt;Destroy&gt;,
+ *         &lt;Key-F10&gt;,
  *         &lt;Key-Left&gt;,
  *         &lt;Key-Right&gt;,
- *         &lt;Button-1&gt;,
- *         &lt;&lt;PrevWindow&gt;&gt;,
  *         &lt;Key-Tab&gt;,
- *         &lt;Key-F10&gt;,
- *         &lt;Alt-Key&gt;,
  *     )
  *
  * See_Also:
@@ -112,6 +116,28 @@ class NoteBook : Widget
 	}
 
 	/**
+	 * Select a tab in the notebook by its index.
+	 *
+	 * Params:
+	 *     tabIndex = The index of the tab to select.
+	 */
+	public void selectTab(int tabIndex)
+	{
+		this._tk.eval("%s select %s", this.id, tabIndex);
+	}
+
+	/**
+	 * Select a tab in the notebook by its id.
+	 *
+	 * Params:
+	 *     tabId = The id of the tab to select.
+	 */
+	public void selectTab(string tabId)
+	{
+		this._tk.eval("%s select %s", this.id, tabId);
+	}
+
+	/**
 	 * Remove a tab from the notbook via its index.
 	 *
 	 * Params:
@@ -123,11 +149,11 @@ class NoteBook : Widget
 	}
 
 	/**
-	 * Remove a tab from the notbook via its string id. The string id is the 
-	 * widget id that was added as the tab.
+	 * Remove a tab from the notbook via its id. The id is the widget id that 
+	 * was added as the tab.
 	 *
 	 * Params:
-	 *     tabId = The tab string id of the tab to remove.
+	 *     tabId = The tab id of the tab to remove.
 	 */
 	public void removeTab(string tabId)
 	{
@@ -146,11 +172,11 @@ class NoteBook : Widget
 	}
 
 	/**
-	 * Hide a tab from the notbook via its string id. The string id is the 
-	 * widget id that was added as the tab.
+	 * Hide a tab from the notbook via its id. The id is the widget id that was 
+	 * added as the tab.
 	 *
 	 * Params:
-	 *     tabId = The tab string id of the tab to hide.
+	 *     tabId = The tab id of the tab to hide.
 	 */
 	public void hideTab(string tabId)
 	{
@@ -158,24 +184,16 @@ class NoteBook : Widget
 	}
 
 	/**
-	 * Get the tab index from its string id. The string id is the 
-	 * widget id that was added as the tab.
+	 * Get the tab index from its id. The id is the widget id that was added as 
+	 * the tab.
 	 *
 	 * Params:
-	 *     tabId = The tab string id of the tab.
+	 *     tabId = The tab id of the tab.
 	 */
 	public int getTabIndexById(string tabId)
 	{
 		this._tk.eval("%s index %s", this.id, tabId);
 		return this._tk.getResult!(int);
-	}
-
-	/**
-	 * Call to enable keyboard traversal of the tabs.
-	 */
-	public void enableKeyboardTraversal()
-	{
-		this._tk.eval("ttk::notebook::enableTraversal %s", this.id);
 	}
 
 	/**
@@ -187,6 +205,146 @@ class NoteBook : Widget
 	public int getNumberOfTabs()
 	{
 		return this.getTabIndexById("end");
+	}
+
+	/**
+	 * Set a tab's state.
+	 *
+	 * Params:
+	 *     tabIdentifier = The zero based index or string id of the tab.
+	 *     state = A widget state.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./state.html, tkd.widget.state) for states.
+	 */
+	public void setTabState(T)(T tabIdentifier, string state) if (is(T == int) || is(T == string))
+	{
+		this._tk.eval("%s tab %s -state %s", this.id, tabIdentifier, state);
+	}
+
+	/**
+	 * Set a tab pane's sticky state. Specifies how the slave widget is 
+	 * positioned within the pane area. Sticky state is a string containing 
+	 * zero or more of the characters n, s, e, or w. Each letter refers to a 
+	 * side (north, south, east, or west) that the slave window will "stick" 
+	 * to, as per the grid geometry manager.
+	 *
+	 * Params:
+	 *     tabIdentifier = The zero based index or string id of the tab.
+	 *     stickyState = A widget state.
+	 */
+	public void setPaneStickyState(T)(T tabIdentifier, string stickyState) if (is(T == int) || is(T == string))
+	{
+		this._tk.eval("%s tab %s -sticky %s", this.id, tabIdentifier, stickyState);
+	}
+
+	/**
+	 * Set a tab pane's padding.
+	 *
+	 * Params:
+	 *     tabIdentifier = The zero based index or string id of the tab.
+	 *     padding = The desired widget padding.
+	 */
+	public void setPanePadding(T)(T tabIdentifier, int padding) if (is(T == int) || is(T == string))
+	{
+		this._tk.eval("%s tab %s -padding %s", this.id, tabIdentifier, padding);
+	}
+
+	/**
+	 * Set a tab's text.
+	 *
+	 * Params:
+	 *     tabIdentifier = The zero based index or string id of the tab.
+	 *     text = The tab text.
+	 */
+	public void setTabText(T)(T tabIdentifier, string text) if (is(T == int) || is(T == string))
+	{
+		this._tk.eval("%s tab %s -text \"%s\"", this.id, tabIdentifier, text);
+	}
+
+	/**
+	 * Set a tab's image.
+	 *
+	 * Params:
+	 *     tabIdentifier = The zero based index or string id of the tab.
+	 *     image = The image to set on the widget.
+	 *     imagePosition = The position of the image relative to the text.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../image/image.html, tkd.image.image) $(BR)
+	 *     $(LINK2 ../image/png.html, tkd.image.png) $(BR)
+	 *     $(LINK2 ../image/gif.html, tkd.image.gif) $(BR)
+	 *     $(LINK2 ../image/imageposition.html, tkd.image.imageposition) $(BR)
+	 */
+	public void setTabImage(T)(T tabIdentifier, Image image, string imagePosition = ImagePosition.image) if (is(T == int) || is(T == string))
+	{
+		this._tk.eval("%s tab %s -image %s", this.id, tabIdentifier, image.id);
+		this.setTabImagePosition(tabIdentifier, imagePosition);
+	}
+
+	/**
+	 * Change the position of the tab image in relation to the text.
+	 *
+	 * Params:
+	 *     tabIdentifier = The zero based index or string id of the tab.
+	 *     imagePosition = The position of the image relative to the text.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../image/imageposition.html, tkd.image.imageposition)
+	 */
+	public void setTabImagePosition(T)(T tabIdentifier, string imagePosition)
+	{
+		this._tk.eval("%s tab %s -compound %s", this.id, tabIdentifier, imagePosition);
+	}
+
+	/**
+	 * Underline a character in the tab text. The underlined character is used 
+	 * for mnemonic activation if keyboard traversal is enabled.
+	 *
+	 * Params:
+	 *     tabIdentifier = The zero based index or string id of the tab.
+	 *     index = The index of the character to underline.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../image/imageposition.html, tkd.image.imageposition) $(BR)
+	 *     $(LINK2 ./notebook.html#NoteBook.enableKeyboardTraversal, enableKeyboardTraversal()) $(BR)
+	 */
+	public void underlineTabChar(T)(T tabIdentifier, int index)
+	{
+		this._tk.eval("%s tab %s -underline %s", this.id, tabIdentifier, index);
+	}
+
+	/**
+	 * Call to enable keyboard traversal of the tabs.
+	 *
+	 * This will extend the bindings for the toplevel window containing the notebook as follows:
+	 * $(UL
+	 *     $(LI Control-Tab selects the tab following the currently selected one.)
+	 *     $(LI Control-Shift-Tab selects the tab preceding the currently selected one.)
+	 *     $(LI Alt-c, where c is the mnemonic (underlined) character of any tab, will select that tab.)
+	 * )
+	 * Multiple notebooks in a single window may be enabled for traversal, 
+	 * including nested notebooks. However, notebook traversal only works 
+	 * properly if all widget panes are direct children of the notebook.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./notebook.html#NoteBook.underlineTabChar, underlineTabChar(...)) $(BR)
+	 */
+	public void enableKeyboardTraversal()
+	{
+		this._tk.eval("ttk::notebook::enableTraversal %s", this.id);
+	}
+
+	/**
+	 * Get an array of all the current tab id's.
+	 *
+	 * Returns:
+	 *     An array containing all the tab id's.
+	 */
+	public string[] getTabIds()
+	{
+		this._tk.eval("%s tabs", this.id);
+		return this._tk.getResult!(string).split();
 	}
 
 	/**

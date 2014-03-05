@@ -43,10 +43,10 @@ abstract class Widget : UiElement
 	 * Set the widget's state.
 	 *
 	 * Params:
-	 *     state = An array of valid widget states.
+	 *     state = An array of widget states.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./state.html, tkd.widget.state) for supported states.
+	 *     $(LINK2 ./state.html, tkd.widget.state) for states.
 	 */
 	public void setState(string[] state)
 	{
@@ -57,7 +57,7 @@ abstract class Widget : UiElement
 	 * Get the widget's state.
 	 *
 	 * Returns:
-	 *     An array of valid widget states.
+	 *     An array of widget states.
 	 *
 	 * See_Also:
 	 *     $(LINK2 ./state.html, tkd.widget.state) for returned states.
@@ -72,13 +72,13 @@ abstract class Widget : UiElement
 	 * Test if a widget is in a particular state.
 	 *
 	 * Params:
-	 *     state = An array of valid widget states.
+	 *     state = An array of widget states.
 	 *
 	 * Returns:
 	 *     true is the widget is in that state, false if not.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./state.html, tkd.widget.state) for supported states.
+	 *     $(LINK2 ./state.html, tkd.widget.state) for states.
 	 */
 	public bool inState(string[] state)
 	{
@@ -95,10 +95,10 @@ abstract class Widget : UiElement
 	 * Remove the widget's state.
 	 *
 	 * Params:
-	 *     state = An array of valid widget states.
+	 *     state = An array of widget states.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./state.html, tkd.widget.state) for supported states.
+	 *     $(LINK2 ./state.html, tkd.widget.state) for states.
 	 */
 	public void removeState(string[] state)
 	{
@@ -120,10 +120,10 @@ abstract class Widget : UiElement
 	 * Set the widget's style.
 	 *
 	 * Params:
-	 *     style = A valid widget style.
+	 *     style = A widget style.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./style.html, tkd.widget.style) for supported styles.
+	 *     $(LINK2 ./style.html, tkd.widget.style) for styles.
 	 */
 	public void setStyle(string style)
 	{
@@ -153,10 +153,10 @@ abstract class Widget : UiElement
 	 * Set if the widget can recieve focus during keyboard traversal.
 	 *
 	 * Params:
-	 *     focus = A valid focus setting.
+	 *     focus = A focus setting.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./focus.html, tkd.widget.focus) for supported focus states.
+	 *     $(LINK2 ./focus.html, tkd.widget.focus) for focus states.
 	 */
 	public void setFocus(string focus)
 	{
