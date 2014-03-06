@@ -32,9 +32,10 @@ mixin template Text()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setText(string text)
+	public auto setText(this T)(string text)
 	{
 		this._tk.eval("%s configure -text %s", this.id, text);
-		return this;
+
+		return cast(T) this;
 	}
 }

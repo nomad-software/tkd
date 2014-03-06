@@ -34,9 +34,10 @@ mixin template Values()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setValues(string[] values)
+	public auto setValues(this T)(string[] values)
 	{
 		this._tk.eval("%s configure -values { \"%s\" }", this.id, values.join("\" \""));
-		return this;
+
+		return cast(T) this;
 	}
 }

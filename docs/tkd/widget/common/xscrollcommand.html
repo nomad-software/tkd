@@ -15,11 +15,11 @@
 </p>
 <h3>License</h3><p>MIT. See LICENSE for full details.</p>
 </div>
-<div class="module-members"><h2><a name="IXScrollable"></a>interface <span class="symbol">IXScrollable</span>;
+<div class="module-members"><h2><a name="IXScrollable"></a>interface <span class="symbol">IXScrollable</span>(T);
 </h2>
 <div class="declaration-description"><div class="sections"><p>If implemented this widget has a text display that is scrollable horizontally.</p>
 </div>
-<div class="class-members"><h2><a name="IXScrollable.attachXScrollbar"></a>abstract void <span class="symbol">attachXScrollbar</span>(XScrollbar scrollbar);
+<div class="class-members"><h2><a name="attachXScrollbar"></a>T <span class="symbol">attachXScrollbar</span>(XScrollbar scrollbar);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Attach a horizontal scrollbar.
 </p>
@@ -31,10 +31,10 @@
 </div>
 </div>
 </div>
-<h2><a name="XScrollCommand"></a>template <span class="symbol">XScrollCommand</span>()</h2>
+<h2><a name="XScrollCommand"></a>template <span class="symbol">XScrollCommand</span>(T)</h2>
 <div class="declaration-description"><div class="sections"><p>These are common commands that apply to all widgets that have them injected.</p>
 </div>
-<div class="template-members"><h2><a name="attachXScrollbar"></a>void <span class="symbol">attachXScrollbar</span>(XScrollbar scrollbar);
+<div class="template-members"><h2><a name="attachXScrollbar"></a>T <span class="symbol">attachXScrollbar</span>(XScrollbar scrollbar);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Attach a horizontal scrollbar.
 </p>

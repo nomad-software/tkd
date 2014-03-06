@@ -26,7 +26,7 @@ mixin template PostCommand()
 	 * See_Also:
 	 *     $(LINK2 ../widget.html#WidgetCommandCallback, tkd.widget.WidgetCommandCallback)
 	 */
-	public auto setPostCommand(WidgetCommandCallback callback)
+	public auto setPostCommand(this T)(WidgetCommandCallback callback)
 	{
 		this.removePostCommand();
 
@@ -67,7 +67,7 @@ mixin template PostCommand()
 		this._tk.createCommand(command, commandCallbackHandler, args, deleteCallbackHandler);
 		this._tk.eval(tkScript);
 
-		return this;
+		return cast(T) this;
 	}
 
 	/**
@@ -76,7 +76,7 @@ mixin template PostCommand()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto removePostCommand()
+	public auto removePostCommand(this T)()
 	{
 		string command  = format("command-%s", this.generateHash("postcommand" ~ this.id));
 		string tkScript = format("%s configure -postcommand { }", this.id);
@@ -84,6 +84,6 @@ mixin template PostCommand()
 		this._tk.deleteCommand(command);
 		this._tk.eval(tkScript);
 
-		return this;
+		return cast(T) this;
 	}
 }

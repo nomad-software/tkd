@@ -18,9 +18,10 @@ mixin template ExportSelection()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto disableExportSelection()
+	public auto disableExportSelection(this T)()
 	{
 		this._tk.eval("%s configure -exportselection 0", this.id);
-		return this;
+
+		return cast(T) this;
 	}
 }

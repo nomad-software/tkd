@@ -27,7 +27,7 @@ mixin template Command()
 	 * See_Also:
 	 *     $(LINK2 ../widget.html#WidgetCommandCallback, tkd.widget.WidgetCommandCallback)
 	 */
-	public auto setCommand(WidgetCommandCallback callback)
+	public auto setCommand(this T)(WidgetCommandCallback callback)
 	{
 		this.removeCommand();
 
@@ -68,7 +68,7 @@ mixin template Command()
 		this._tk.createCommand(command, commandCallbackHandler, args, deleteCallbackHandler);
 		this._tk.eval(tkScript);
 
-		return this;
+		return cast(T) this;
 	}
 
 	/**
@@ -77,7 +77,7 @@ mixin template Command()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto removeCommand()
+	public auto removeCommand(this T)()
 	{
 		string command  = format("command-%s", this.generateHash("command" ~ this.id));
 		string tkScript = format("%s configure -command { }", this.id);
@@ -85,6 +85,6 @@ mixin template Command()
 		this._tk.deleteCommand(command);
 		this._tk.eval(tkScript);
 
-		return this;
+		return cast(T) this;
 	}
 }

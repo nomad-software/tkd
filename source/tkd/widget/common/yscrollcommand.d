@@ -14,7 +14,7 @@ import tkd.widget.scrollbar;
 /**
  * If implemented this widget has a text display that is scrollable vertically.
  */
-interface IYScrollable
+interface IYScrollable(T)
 {
 	/**
 	 * Attach a vertical scrollbar.
@@ -22,13 +22,13 @@ interface IYScrollable
 	 * Params:
 	 *     scrollbar = The scrollbar to attach.
 	 */
-	public void attachYScrollbar(YScrollbar scrollbar);
+	public T attachYScrollbar(YScrollbar scrollbar);
 }
 
 /**
  * These are common commands that apply to all widgets that have them injected.
  */
-mixin template YScrollCommand()
+mixin template YScrollCommand(T)
 {
 	import tkd.widget.scrollbar;
 
@@ -38,9 +38,10 @@ mixin template YScrollCommand()
 	 * Params:
 	 *     scrollbar = The scrollbar to attach.
 	 */
-	public void attachYScrollbar(YScrollbar scrollbar)
+	public T attachYScrollbar(YScrollbar scrollbar)
 	{
 		this._tk.eval("%s configure -yscrollcommand [list %s set]", this.id, scrollbar.id);
+
 		return this;
 	}
 }

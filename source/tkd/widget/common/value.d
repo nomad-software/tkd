@@ -39,9 +39,10 @@ mixin template Value(alias valueVariable)
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setValue(string value)
+	public auto setValue(this T)(string value)
 	{
 		this._tk.setVariable(valueVariable, value);
-		return this;
+
+		return cast(T) this;
 	}
 }

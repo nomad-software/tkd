@@ -21,9 +21,10 @@ mixin template Delete_()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto deleteText(int startCharIndex = 0, int endCharIndex = int.max)
+	public auto deleteText(this T)(int startCharIndex = 0, int endCharIndex = int.max)
 	{
 		this._tk.eval("%s delete %s %s", this.id, startCharIndex, endCharIndex);
-		return this;
+
+		return cast(T) this;
 	}
 }

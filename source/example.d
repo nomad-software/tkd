@@ -49,45 +49,49 @@ class Application : TkdApplication
 	 */
 	override protected void initInterface()
 	{
-		this._noteBook = new NoteBook();
+		// this._noteBook = new NoteBook();
+		// auto x = new Label("content");
+		// this._noteBook
+		// 	.addTab("Hello", new Button("Lorem"))
+		// 	.addTab("World", x)
+		// 	.pack();
 
-		auto x = new Label("content");
-		this._noteBook
-			.addTab("Hello", new Button("Lorem"))
-			.addTab("World", x)
+		this._rootFrame = new Frame()
 			.pack();
 
-		// this._rootFrame = new Frame();
+		this._labelFrame = new LabelFrame(this._rootFrame, "Label frame")
+			.pack();
 
-		// 	this._labelFrame = new LabelFrame(this._rootFrame, "Label frame");
+		this._button = new Button(this._labelFrame, "Lorem")
+			.setImage(new Png!("thumbnail.png"), ImagePosition.top)
+			.setCommand(&this.manipulateText)
+			.pack();
 
-		// 		this._button = new Button(this._labelFrame, "Lorem", new Png!("thumbnail.png"));
-		// 		this._button.setCommand(&this.manipulateText);
-		// 		this._button.pack();
+		XScrollbar scroll = new XScrollbar(this._labelFrame);
 
-		// 		this._entry = new Entry(this._labelFrame);
-		// 		this._entry.setValue("Lorem");
-		// 		this._entry.pack();
+		this._entry = new Entry(this._labelFrame)
+			.setValue("Lorem")
+			.attachXScrollbar(scroll)
+			.pack();
 
-		// 	this._labelFrame.pack();
+		scroll.attachWidget(this._entry)
+			.pack();
 
-		// 	this._label = new Label(this._rootFrame, "Label");
-		// 	this._label.setImage(new Gif!("thumbnail.gif"), ImagePosition.top);
-		// 	this._label.pack();
+		this._label = new Label(this._rootFrame, "Label")
+			.setImage(new Gif!("thumbnail.gif"), ImagePosition.top)
+			.pack();
 
-		// 	this._combobox = new ComboBox(this._rootFrame);
-		// 	this._combobox.setValues(["Lorem", "ipsum", "dolor", "sit", "amet"]);
-		// 	this._combobox.select(0);
-		// 	this._combobox.pack();
+		this._combobox = new ComboBox(this._rootFrame)
+			.setValues(["Lorem", "ipsum", "dolor", "sit", "amet"])
+			.select(0)
+			.pack();
 
-		// 	this._checkbox = new CheckButton(this._rootFrame, "Check button");
-		// 	this._checkbox.pack();
+		this._checkbox = new CheckButton(this._rootFrame, "Check button")
+			.pack();
 
-		// 	this._exit = new Button(this._rootFrame, "Exit");
-		// 	this._exit.setCommand(&this.exitCommand);
-		// 	this._exit.pack();
-
-		// this._rootFrame.pack();
+		this._exit = new Button(this._rootFrame, "Exit")
+			.setCommand(&this.exitCommand)
+			.pack();
 	}
 }
 

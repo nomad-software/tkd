@@ -117,12 +117,17 @@ abstract class UiElement : Element
 	 * Params:
 	 *     cursor = Any valid widget cursor.
 	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ./cursor.html, tkd.element.cursor) for supported cursors.
 	 */
-	public void setCursor(string cursor)
+	public auto setCursor(this T)(string cursor)
 	{
 		this._tk.eval(format("%s configure -cursor %s", this.id, cursor));
+
+		return cast(T) this;
 	}
 
 	/**
@@ -147,10 +152,13 @@ abstract class UiElement : Element
 	 *     binding = The binding that triggers this event.
 	 *     callback = The delegate callback to execute when the event triggers.
 	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ./uielement.html#UiElementBindCallback, tkd.element.uielement.UiElementBindCallback)
 	 */
-	public void bind(string binding, UiElementBindCallback callback)
+	public auto bind(this T)(string binding, UiElementBindCallback callback)
 	{
 		this.unbind(binding);
 
@@ -192,6 +200,8 @@ abstract class UiElement : Element
 
 		this._tk.createCommand(command, bindCallbackHandler, args, deleteBindCallbackHandler);
 		this._tk.eval(tkScript);
+
+		return cast(T) this;
 	}
 
 	/**
@@ -199,14 +209,19 @@ abstract class UiElement : Element
 	 *
 	 * Params:
 	 *     binding = The binding to remove.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public void unbind(string binding)
+	public auto unbind(this T)(string binding)
 	{
 		string command  = format("command-%s", this.generateHash(binding ~ this.id));
 		string tkScript = format("bind %s %s { }", this.id, binding);
 
 		this._tk.deleteCommand(command);
 		this._tk.eval(tkScript);
+
+		return cast(T) this;
 	}
 }
 

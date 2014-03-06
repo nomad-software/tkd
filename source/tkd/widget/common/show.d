@@ -21,9 +21,10 @@ mixin template Show()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto showCharsAs(char character)
+	public auto showCharsAs(this T)(char character)
 	{
 		this._tk.eval("%s configure -show %s", this.id, character);
-		return this;
+
+		return cast(T) this;
 	}
 }

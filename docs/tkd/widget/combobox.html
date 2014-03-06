@@ -15,7 +15,7 @@
 </p>
 <h3>License</h3><p>MIT. See LICENSE for full details.</p>
 </div>
-<div class="module-members"><h2><a name="ComboBox"></a>class <span class="symbol">ComboBox</span>: tkd.widget.widget.Widget, tkd.widget.common.xscrollcommand.IXScrollable;
+<div class="module-members"><h2><a name="ComboBox"></a>class <span class="symbol">ComboBox</span>: tkd.widget.widget.Widget, tkd.widget.common.xscrollcommand.IXScrollable!(<span class="symbol">ComboBox</span>).IXScrollable;
 </h2>
 <div class="declaration-description"><div class="sections"><p>Class representing a combo box widget.
 </p>
@@ -127,7 +127,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
      Indexes start at 0 and -1 is returned if the current value does not appear in the list.</p>
 </div>
 </div>
-<h2><a name="ComboBox.select"></a>auto <span class="symbol">select</span>(int index);
+<h2><a name="ComboBox.select"></a>auto <span class="symbol">select</span>(this T)(int index);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Select the value at a particular index in the value list.
 </p>

@@ -18,7 +18,7 @@
 <div class="module-members"><h2><a name="Insert"></a>template <span class="symbol">Insert</span>()</h2>
 <div class="declaration-description"><div class="sections"><p>These are common commands that apply to all widgets that have them injected.</p>
 </div>
-<div class="template-members"><h2><a name="insertTextAt"></a>auto <span class="symbol">insertTextAt</span>(string text, int charIndex);
+<div class="template-members"><h2><a name="insertTextAt"></a>auto <span class="symbol">insertTextAt</span>(this T)(string text, int charIndex);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Insert text at an index.
 </p>
@@ -30,7 +30,7 @@
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
-<h2><a name="appendText"></a>auto <span class="symbol">appendText</span>(string text);
+<h2><a name="appendText"></a>auto <span class="symbol">appendText</span>(this T)(string text);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Append text to the end.
 </p>
@@ -40,7 +40,7 @@
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
-<h2><a name="insertTextAtCursor"></a>auto <span class="symbol">insertTextAtCursor</span>(string text);
+<h2><a name="insertTextAtCursor"></a>auto <span class="symbol">insertTextAtCursor</span>(this T)(string text);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Insert text at the cursor position.
 </p>

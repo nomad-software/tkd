@@ -66,10 +66,11 @@ abstract class TextWidget : Widget
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setText(string text)
+	public auto setText(this T)(string text)
 	{
 		this._tk.setVariable(this._textVariable, text);
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**
@@ -99,13 +100,14 @@ abstract class TextWidget : Widget
 	 *     $(LINK2 ../image/gif.html, tkd.image.gif) $(BR)
 	 *     $(LINK2 ../image/imageposition.html, tkd.image.imageposition) $(BR)
 	 */
-	public auto setImage(Image image, string imagePosition = ImagePosition.image)
+	public auto setImage(this T)(Image image, string imagePosition = ImagePosition.image)
 	{
 		this._image = image;
 
 		this._tk.eval("%s configure -image %s", this.id, this._image.id);
 		this.setImagePosition(imagePosition);
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**
@@ -120,10 +122,11 @@ abstract class TextWidget : Widget
 	 * See_Also:
 	 *     $(LINK2 ../image/imageposition.html, tkd.image.imageposition)
 	 */
-	public auto setImagePosition(string imagePosition)
+	public auto setImagePosition(this T)(string imagePosition)
 	{
 		this._tk.eval("%s configure -compound %s", this.id, imagePosition);
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**
@@ -135,10 +138,11 @@ abstract class TextWidget : Widget
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setTextCharacterWidth(int characterWidth)
+	public auto setTextCharacterWidth(this T)(int characterWidth)
 	{
 		this._tk.eval("%s configure -width %s", this.id, characterWidth);
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**

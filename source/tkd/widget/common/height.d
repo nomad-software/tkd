@@ -20,9 +20,10 @@ mixin template Height()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setHeight(int height)
+	public auto setHeight(this T)(int height)
 	{
 		this._tk.eval("%s configure -height %s", this.id, height);
-		return this;
+
+		return cast(T) this;
 	}
 }

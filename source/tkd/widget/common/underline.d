@@ -20,9 +20,10 @@ mixin template Underline()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto underlineChar(int index)
+	public auto underlineChar(this T)(int index)
 	{
 		this._tk.eval("%s configure -underline %s", this.id, index);
-		return this;
+
+		return cast(T) this;
 	}
 }

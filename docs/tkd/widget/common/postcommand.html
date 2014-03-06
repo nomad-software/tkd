@@ -18,7 +18,7 @@
 <div class="module-members"><h2><a name="PostCommand"></a>template <span class="symbol">PostCommand</span>()</h2>
 <div class="declaration-description"><div class="sections"><p>These are common commands that apply to all widgets that have them injected.</p>
 </div>
-<div class="template-members"><h2><a name="setPostCommand"></a>auto <span class="symbol">setPostCommand</span>(WidgetCommandCallback callback);
+<div class="template-members"><h2><a name="setPostCommand"></a>auto <span class="symbol">setPostCommand</span>(this T)(WidgetCommandCallback callback);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Add a post command to a widget. This is usually to modify the widget after creation.
 </p>
@@ -31,7 +31,7 @@
 <h3>See Also</h3><p><a href="../widget.html#WidgetCommandCallback">tkd.widget.WidgetCommandCallback</a></p>
 </div>
 </div>
-<h2><a name="removePostCommand"></a>auto <span class="symbol">removePostCommand</span>();
+<h2><a name="removePostCommand"></a>auto <span class="symbol">removePostCommand</span>(this T)();
 </h2>
 <div class="declaration-description"><div class="sections"><p>Remove a previously set command.
 </p>

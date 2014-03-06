@@ -20,9 +20,10 @@ mixin template Width()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setWidth(int width)
+	public auto setWidth(this T)(int width)
 	{
 		this._tk.eval("%s configure -width %s", this.id, width);
-		return this;
+
+		return cast(T) this;
 	}
 }

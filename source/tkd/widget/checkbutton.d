@@ -104,10 +104,11 @@ class CheckButton : TextWidget
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto check()
+	public auto check(this T)()
 	{
 		this._tk.setVariable(this._valueVariable, this._onValue);
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**
@@ -116,10 +117,11 @@ class CheckButton : TextWidget
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto unCheck()
+	public auto unCheck(this T)()
 	{
 		this._tk.setVariable(this._valueVariable, this._offValue);
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**
@@ -128,10 +130,11 @@ class CheckButton : TextWidget
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto halfCheck()
+	public auto halfCheck(this T)()
 	{
 		this._tk.setVariable(this._valueVariable, "");
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**
@@ -154,11 +157,12 @@ class CheckButton : TextWidget
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setOnValue(string value)
+	public auto setOnValue(this T)(string value)
 	{
 		this._onValue = value;
 		this._tk.eval("%s configure -onvalue %s", this.id, this._onValue);
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**
@@ -170,11 +174,12 @@ class CheckButton : TextWidget
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setOffValue(string value)
+	public auto setOffValue(this T)(string value)
 	{
 		this._offValue = value;
 		this._tk.eval("%s configure -offvalue %s", this.id, this._offValue);
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**

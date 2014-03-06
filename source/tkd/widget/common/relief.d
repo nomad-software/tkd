@@ -20,9 +20,10 @@ mixin template Relief()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setRelief(string relief)
+	public auto setRelief(this T)(string relief)
 	{
 		this._tk.eval("%s configure -relief %s", this.id, relief);
-		return this;
+
+		return cast(T) this;
 	}
 }

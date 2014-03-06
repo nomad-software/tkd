@@ -17,9 +17,10 @@ mixin template Invoke()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto invokeCommand()
+	public auto invokeCommand(this T)()
 	{
 		this._tk.eval("%s invoke", this.id);
-		return this;
+
+		return cast(T) this;
 	}
 }

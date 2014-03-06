@@ -17,10 +17,11 @@ mixin template Selection()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto deselectText()
+	public auto deselectText(this T)()
 	{
 		this._tk.eval("%s selection clear", this.id);
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**
@@ -42,9 +43,10 @@ mixin template Selection()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto selectText(int startCharIndex = 0, int endCharIndex = int.max)
+	public auto selectText(this T)(int startCharIndex = 0, int endCharIndex = int.max)
 	{
 		this._tk.eval("%s selection range %s %s", this.id, startCharIndex, endCharIndex);
-		return this;
+
+		return cast(T) this;
 	}
 }

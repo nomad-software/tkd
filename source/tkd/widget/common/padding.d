@@ -20,9 +20,10 @@ mixin template Padding()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setPadding(int padding)
+	public auto setPadding(this T)(int padding)
 	{
 		this._tk.eval("%s configure -padding %s", this.id, padding);
-		return this;
+
+		return cast(T) this;
 	}
 }

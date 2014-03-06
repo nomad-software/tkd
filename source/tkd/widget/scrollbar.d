@@ -133,12 +133,13 @@ class XScrollbar : Scrollbar
 	 * See_Also:
 	 *     $(LINK2 ./common/xscrollcommand.html, tkd.widget.common.xscrollcommand) $(BR)
 	 */
-	public auto attachWidget(IXScrollable scrollableWidget)
+	public auto attachWidget(this T, S)(IXScrollable!(S) scrollableWidget)
 	{
 		auto widget = cast(Widget)scrollableWidget;
 
 		this._tk.eval("%s configure -command [list %s xview]", this.id, widget.id);
-		return this;
+
+		return cast(T) this;
 	}
 
 }
@@ -175,11 +176,12 @@ class YScrollbar : Scrollbar
 	 * See_Also:
 	 *     $(LINK2 ./common/yscrollcommand.html, tkd.widget.common.yscrollcommand) $(BR)
 	 */
-	public auto attachWidget(IYScrollable scrollableWidget)
+	public auto attachWidget(this T, S)(IYScrollable!(S) scrollableWidget)
 	{
 		auto widget = cast(Widget)scrollableWidget;
 
 		this._tk.eval("%s configure -command [list %s yview]", this.id, widget.id);
-		return this;
+
+		return cast(T) this;
 	}
 }

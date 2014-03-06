@@ -51,10 +51,11 @@ abstract class Widget : UiElement
 	 * See_Also:
 	 *     $(LINK2 ./state.html, tkd.widget.state) for states.
 	 */
-	public auto setState(string[] state)
+	public auto setState(this T)(string[] state)
 	{
 		this._tk.eval("%s state { %s }", this.id, state.join(" "));
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**
@@ -107,10 +108,11 @@ abstract class Widget : UiElement
 	 * See_Also:
 	 *     $(LINK2 ./state.html, tkd.widget.state) for states.
 	 */
-	public auto removeState(string[] state)
+	public auto removeState(this T)(string[] state)
 	{
 		this._tk.eval("%s state { !%s }", this.id, state.join(" !"));
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**
@@ -122,10 +124,11 @@ abstract class Widget : UiElement
 	 * See_Also:
 	 *     $(LINK2 ./state.html, tkd.widget.state) for widget states.
 	 */
-	public auto resetState()
+	public auto resetState(this T)()
 	{
 		this.removeState(this.getState());
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**
@@ -140,10 +143,11 @@ abstract class Widget : UiElement
 	 * See_Also:
 	 *     $(LINK2 ./style.html, tkd.widget.style) for styles.
 	 */
-	public auto setStyle(string style)
+	public auto setStyle(this T)(string style)
 	{
 		this._tk.eval("%s configure -style %s", this.id, style);
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**
@@ -177,10 +181,11 @@ abstract class Widget : UiElement
 	 * See_Also:
 	 *     $(LINK2 ./focus.html, tkd.widget.focus) for focus states.
 	 */
-	public auto setFocus(string focus)
+	public auto setFocus(this T)(string focus)
 	{
 		this._tk.eval("%s configure -takefocus %s", this.id, focus);
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**
@@ -201,10 +206,12 @@ abstract class Widget : UiElement
 	/**
 	 * Geometry method for placing the widget onto the uielement.
 	 */
-	public void pack()
+	public auto pack(this T)()
 	{
 		string tkScript = format("pack %s -padx 10 -pady 10", this.id);
 		this._tk.eval(tkScript);
+
+		return cast(T) this;
 	}
 }
 

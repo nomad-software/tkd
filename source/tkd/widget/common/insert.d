@@ -21,10 +21,11 @@ mixin template Insert()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto insertTextAt(string text, int charIndex)
+	public auto insertTextAt(this T)(string text, int charIndex)
 	{
 		this._tk.eval("%s insert %s %s", this.id, charIndex, text);
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**
@@ -36,10 +37,11 @@ mixin template Insert()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto appendText(string text)
+	public auto appendText(this T)(string text)
 	{
 		this._tk.eval("%s insert end %s", this.id, text);
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**
@@ -55,9 +57,10 @@ mixin template Insert()
 	 *     $(LINK2 ./cursor.html, tkd.widget.common.cursor) $(BR)
 	 *     $(LINK2 ./index.html, tkd.widget.common.index) $(BR)
 	 */
-	public auto insertTextAtCursor(string text)
+	public auto insertTextAtCursor(this T)(string text)
 	{
 		this._tk.eval("%s insert insert %s", this.id, text);
-		return this;
+
+		return cast(T) this;
 	}
 }

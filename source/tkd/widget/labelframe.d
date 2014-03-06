@@ -89,10 +89,11 @@ class LabelFrame : Widget
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setLabel(Widget widget)
+	public auto setLabel(this T)(Widget widget)
 	{
 		this._tk.eval("%s configure -labelwidget %s", this.id, widget.id);
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**

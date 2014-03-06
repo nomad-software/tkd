@@ -17,9 +17,10 @@ mixin template Default_()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setDefault()
+	public auto setDefault(this T)()
 	{
 		this._tk.eval("%s configure -default active", this.id);
-		return this;
+
+		return cast(T) this;
 	}
 }

@@ -23,9 +23,10 @@ mixin template Justify()
 	 * See_Also:
 	 *     $(LINK2 ../alignment.html, tkd.widget.alignment)
 	 */
-	public auto setTextAlignment(string alignment)
+	public auto setTextAlignment(this T)(string alignment)
 	{
 		this._tk.eval("%s configure -justify %s", this.id, alignment);
-		return this;
+
+		return cast(T) this;
 	}
 }

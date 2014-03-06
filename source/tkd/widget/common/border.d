@@ -20,9 +20,10 @@ mixin template Border()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setBorderWidth(int width)
+	public auto setBorderWidth(this T)(int width)
 	{
 		this._tk.eval("%s configure -borderwidth %s", this.id, width);
-		return this;
+
+		return cast(T) this;
 	}
 }

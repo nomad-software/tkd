@@ -109,7 +109,7 @@ import tkd.widget.widget;
  * See_Also:
  *     $(LINK2 ./widget.html, tkd.widget.widget)
  */
-class Entry : Widget, IXScrollable
+class Entry : Widget, IXScrollable!(Entry)
 {
 	/**
 	 * The name of the variable that contains the widget's value.
@@ -148,6 +148,6 @@ class Entry : Widget, IXScrollable
 	mixin Show;
 	mixin Value!(this._valueVariable);
 	mixin Width;
-	mixin XScrollCommand;
+	mixin XScrollCommand!(Entry);
 	mixin XView;
 }

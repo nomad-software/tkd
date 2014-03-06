@@ -23,9 +23,10 @@ mixin template WrapLength()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setWrapLength(int pixels)
+	public auto setWrapLength(this T)(int pixels)
 	{
 		this._tk.eval("%s configure -wraplength %s", this.id, pixels);
-		return this;
+
+		return cast(T) this;
 	}
 }

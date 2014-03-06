@@ -121,7 +121,7 @@ import tkd.widget.widget;
  * See_Also:
  *     $(LINK2 ./widget.html, tkd.widget.widget)
  */
-class ComboBox : Widget, IXScrollable
+class ComboBox : Widget, IXScrollable!(ComboBox)
 {
 	/**
 	 * The name of the variable that contains the widget's value.
@@ -174,10 +174,11 @@ class ComboBox : Widget, IXScrollable
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto select(int index)
+	public auto select(this T)(int index)
 	{
 		this._tk.eval("%s current %s", this.id, index);
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**
@@ -196,6 +197,6 @@ class ComboBox : Widget, IXScrollable
 	mixin Value!(this._valueVariable);
 	mixin Values;
 	mixin Width;
-	mixin XScrollCommand;
+	mixin XScrollCommand!(ComboBox);
 	mixin XView;
 }

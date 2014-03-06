@@ -15,11 +15,11 @@
 </p>
 <h3>License</h3><p>MIT. See LICENSE for full details.</p>
 </div>
-<div class="module-members"><h2><a name="IYScrollable"></a>interface <span class="symbol">IYScrollable</span>;
+<div class="module-members"><h2><a name="IYScrollable"></a>interface <span class="symbol">IYScrollable</span>(T);
 </h2>
 <div class="declaration-description"><div class="sections"><p>If implemented this widget has a text display that is scrollable vertically.</p>
 </div>
-<div class="class-members"><h2><a name="IYScrollable.attachYScrollbar"></a>abstract void <span class="symbol">attachYScrollbar</span>(YScrollbar scrollbar);
+<div class="class-members"><h2><a name="attachYScrollbar"></a>T <span class="symbol">attachYScrollbar</span>(YScrollbar scrollbar);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Attach a vertical scrollbar.
 </p>
@@ -30,10 +30,10 @@
 </div>
 </div>
 </div>
-<h2><a name="YScrollCommand"></a>template <span class="symbol">YScrollCommand</span>()</h2>
+<h2><a name="YScrollCommand"></a>template <span class="symbol">YScrollCommand</span>(T)</h2>
 <div class="declaration-description"><div class="sections"><p>These are common commands that apply to all widgets that have them injected.</p>
 </div>
-<div class="template-members"><h2><a name="attachYScrollbar"></a>void <span class="symbol">attachYScrollbar</span>(YScrollbar scrollbar);
+<div class="template-members"><h2><a name="attachYScrollbar"></a>T <span class="symbol">attachYScrollbar</span>(YScrollbar scrollbar);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Attach a vertical scrollbar.
 </p>

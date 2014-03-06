@@ -20,9 +20,10 @@ mixin template Cursor()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setCursorPosition(int charIndex)
+	public auto setCursorPosition(this T)(int charIndex)
 	{
 		this._tk.eval("%s icursor %s", this.id, charIndex);
-		return this;
+
+		return cast(T) this;
 	}
 }

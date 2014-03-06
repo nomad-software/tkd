@@ -43,10 +43,11 @@ mixin template XView()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setXView(float position)
+	public auto setXView(this T)(float position)
 	{
 		this._tk.eval("%s xview moveto %s", this.id, position);
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**
@@ -59,10 +60,11 @@ mixin template XView()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto scrollToChar(int charIndex)
+	public auto scrollToChar(this T)(int charIndex)
 	{
 		this._tk.eval("%s xview %s", this.id, charIndex);
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**
@@ -75,10 +77,11 @@ mixin template XView()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto scrollChars(int numberOfChars)
+	public auto scrollChars(this T)(int numberOfChars)
 	{
 		this._tk.eval("%s xview scroll %s units", this.id, numberOfChars);
-		return this;
+
+		return cast(T) this;
 	}
 
 	/**
@@ -91,9 +94,10 @@ mixin template XView()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto scrollPages(int numberOfPages)
+	public auto scrollPages(this T)(int numberOfPages)
 	{
 		this._tk.eval("%s xview scroll %s pages", this.id, numberOfPages);
-		return this;
+
+		return cast(T) this;
 	}
 }
