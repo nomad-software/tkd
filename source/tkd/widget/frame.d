@@ -60,6 +60,7 @@ class Frame : Widget
 	public this(UiElement parent, int width = 2, string relief = ReliefStyle.groove)
 	{
 		super(parent);
+		this._elementId = "frame";
 
 		this._tk.eval("ttk::frame %s", this.id);
 

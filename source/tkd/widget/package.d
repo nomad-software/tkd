@@ -17,6 +17,8 @@ public import tkd.widget.frame;
 public import tkd.widget.label;
 public import tkd.widget.labelframe;
 public import tkd.widget.notebook;
+public import tkd.widget.orientation;
+public import tkd.widget.panedwindow;
 public import tkd.widget.reliefstyle;
 public import tkd.widget.scrollbar;
 public import tkd.widget.state;

@@ -25,6 +25,7 @@ class Application : TkdApplication
 	private Label _label;
 	private LabelFrame _labelFrame;
 	private NoteBook _noteBook;
+	private PanedWindow _panedWindow;
 
 	/**
 	 * Event callbacks.
@@ -49,12 +50,17 @@ class Application : TkdApplication
 	 */
 	override protected void initInterface()
 	{
-		// this._noteBook = new NoteBook();
-		// auto x = new Label("content");
-		// this._noteBook
-		// 	.addTab("Hello", new Button("Lorem"))
-		// 	.addTab("World", x)
-		// 	.pack();
+		this._panedWindow = new PanedWindow();
+		this._panedWindow
+			.addPane(new Button("Foo"))
+			.addPane(new Button("Bar"))
+			.pack();
+
+		this._noteBook = new NoteBook();
+		this._noteBook
+			.addTab("Hello", new Button("Lorem"))
+			.addTab("World", new Label("content"))
+			.pack();
 
 		this._rootFrame = new Frame()
 			.pack();
@@ -63,7 +69,8 @@ class Application : TkdApplication
 			.pack();
 
 		this._button = new Button(this._labelFrame, "Lorem")
-			.setImage(new Png!("thumbnail.png"), ImagePosition.top)
+			.setImage(new Png!("thumbnail.png"))
+			.setImagePosition(ImagePosition.top)
 			.setCommand(&this.manipulateText)
 			.pack();
 
@@ -78,7 +85,8 @@ class Application : TkdApplication
 			.pack();
 
 		this._label = new Label(this._rootFrame, "Label")
-			.setImage(new Gif!("thumbnail.gif"), ImagePosition.top)
+			.setImage(new Gif!("thumbnail.gif"))
+			.setImagePosition(ImagePosition.top)
 			.pack();
 
 		this._combobox = new ComboBox(this._rootFrame)

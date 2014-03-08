@@ -60,6 +60,7 @@ class LabelFrame : Widget
 	public this(UiElement parent, string text)
 	{
 		super(parent);
+		this._elementId = "labelframe";
 
 		this._tk.eval("ttk::labelframe %s -text \"%s\"", this.id, text);
 	}

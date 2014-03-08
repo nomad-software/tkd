@@ -57,12 +57,20 @@ class NoteBook : Widget
 	 * Params:
 	 *     parent = The parent of this widget.
 	 *
+	 * Bugs:
+	 *     Because this widget contains and handles other widget's geometry, it 
+	 *     is important that the constructor is not chained with methods that 
+	 *     add new tabs. If it is chained, tabs will not be handled correctly 
+	 *     and might not show at all. This seems to be a limitation with 
+	 *     Tcl/Tk.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ../element/uielement.html, tkd.element.UiElement) $(BR)
 	 */
 	public this(UiElement parent = null)
 	{
 		super(parent);
+		this._elementId = "notebook";
 
 		this._tk.eval("ttk::notebook %s", this.id);
 	}
@@ -94,162 +102,66 @@ class NoteBook : Widget
 	 * one will be moved to the new position.
 	 *
 	 * Params:
-	 *     tabIndex = The index where the new tab will be created.
+	 *     tabIdentifier = The zero based index or string id of the tab.
 	 *     text = The text of the tab.
 	 *     widget = The widget to add as the tab pane.
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto insertTab(this T)(int tabIndex, string text, Widget widget)
+	public auto insertTab(this T, I)(I tabIdentifier, string text, Widget widget) if (is(I == int) || is(I == string))
 	{
-		this._tk.eval("%s insert %s %s -text \"%s\"", this.id, tabIndex, widget.id, text);
+		this._tk.eval("%s insert %s %s -text \"%s\"", this.id, tabIdentifier, widget.id, text);
 
 		return cast(T) this;
 	}
 
 	/**
-	 * Insert a tab into the notebook before the specified tabId. When adding a 
-	 * tab to the notebook the tab gains an id that is equal to the passed 
-	 * widget's id and can be used later to refer to the new tab. If the id of 
-	 * the widget passed is already used as a tab id then that existing one 
-	 * will be moved to the new position.
+	 * Select a tab in the notebook.
 	 *
 	 * Params:
-	 *     tabId = The tab id to position the tab before.
-	 *     text = The text of the tab.
-	 *     widget = The widget to add as the tab pane.
+	 *     tabIdentifier = The zero based index or string id of the tab.
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto insertTab(this T)(string tabId, string text, Widget widget)
+	public auto selectTab(this T, I)(I tabIdentifier) if (is(I == int) || is(I == string))
 	{
-		this._tk.eval("%s insert %s %s -text \"%s\"", this.id, tabId, widget.id, text);
+		this._tk.eval("%s select %s", this.id, tabIdentifier);
 
 		return cast(T) this;
 	}
 
 	/**
-	 * Select a tab in the notebook by its index.
+	 * Remove a tab from the notbook.
 	 *
 	 * Params:
-	 *     tabIndex = The index of the tab to select.
+	 *     tabIdentifier = The zero based index or string id of the tab.
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto selectTab(this T)(int tabIndex)
+	public auto removeTab(this T, I)(I tabIdentifier) if (is(I == int) || is(I == string))
 	{
-		this._tk.eval("%s select %s", this.id, tabIndex);
+		this._tk.eval("%s forget %s", this.id, tabIdentifier);
 
 		return cast(T) this;
 	}
 
 	/**
-	 * Select a tab in the notebook by its id.
+	 * Hide a tab from the notbook.
 	 *
 	 * Params:
-	 *     tabId = The id of the tab to select.
+	 *     tabIdentifier = The zero based index or string id of the tab.
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto selectTab(this T)(string tabId)
+	public auto hideTab(this T, I)(I tabIdentifier) if (is(I == int) || is(I == string))
 	{
-		this._tk.eval("%s select %s", this.id, tabId);
+		this._tk.eval("%s hide %s", this.id, tabIdentifier);
 
 		return cast(T) this;
-	}
-
-	/**
-	 * Remove a tab from the notbook via its index.
-	 *
-	 * Params:
-	 *     tabIndex = The zero based index of the tab to remove.
-	 *
-	 * Returns:
-	 *     This widget to aid method chaining.
-	 */
-	public auto removeTab(this T)(int tabIndex)
-	{
-		this._tk.eval("%s forget %s", this.id, tabIndex);
-
-		return cast(T) this;
-	}
-
-	/**
-	 * Remove a tab from the notbook via its id. The id is the widget id that 
-	 * was added as the tab.
-	 *
-	 * Params:
-	 *     tabId = The tab id of the tab to remove.
-	 *
-	 * Returns:
-	 *     This widget to aid method chaining.
-	 */
-	public auto removeTab(this T)(string tabId)
-	{
-		this._tk.eval("%s forget %s", this.id, tabId);
-
-		return cast(T) this;
-	}
-
-	/**
-	 * Hide a tab from the notbook via its index.
-	 *
-	 * Params:
-	 *     tabIndex = The zero based index of the tab to hide.
-	 *
-	 * Returns:
-	 *     This widget to aid method chaining.
-	 */
-	public auto hideTab(this T)(int tabIndex)
-	{
-		this._tk.eval("%s hide %s", this.id, tabIndex);
-
-		return cast(T) this;
-	}
-
-	/**
-	 * Hide a tab from the notbook via its id. The id is the widget id that was 
-	 * added as the tab.
-	 *
-	 * Params:
-	 *     tabId = The tab id of the tab to hide.
-	 *
-	 * Returns:
-	 *     This widget to aid method chaining.
-	 */
-	public auto hideTab(this T)(string tabId)
-	{
-		this._tk.eval("%s hide %s", this.id, tabId);
-
-		return cast(T) this;
-	}
-
-	/**
-	 * Get the tab index from its id. The id is the widget id that was added as 
-	 * the tab.
-	 *
-	 * Params:
-	 *     tabId = The tab id of the tab.
-	 */
-	public int getTabIndexById(string tabId)
-	{
-		this._tk.eval("%s index %s", this.id, tabId);
-		return this._tk.getResult!(int);
-	}
-
-	/**
-	 * Get the number of tabs in the notebook.
-	 *
-	 * Returns:
-	 *     The number of tabs.
-	 */
-	public int getNumberOfTabs()
-	{
-		return this.getTabIndexById("end");
 	}
 
 	/**
@@ -430,6 +342,30 @@ class NoteBook : Widget
 	{
 		this._tk.eval("%s tabs", this.id);
 		return this._tk.getResult!(string).split();
+	}
+
+	/**
+	 * Get the tab index from its id. The id is the widget id that was added as 
+	 * the tab.
+	 *
+	 * Params:
+	 *     tabId = The tab id of the tab.
+	 */
+	public int getTabIndexById(string tabId)
+	{
+		this._tk.eval("%s index %s", this.id, tabId);
+		return this._tk.getResult!(int);
+	}
+
+	/**
+	 * Get the number of tabs in the notebook.
+	 *
+	 * Returns:
+	 *     The number of tabs.
+	 */
+	public int getNumberOfTabs()
+	{
+		return this.getTabIndexById("end");
 	}
 
 	/**
