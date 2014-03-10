@@ -17,7 +17,9 @@ import tkd.widget.orientation;
 import tkd.widget.widget;
 
 /**
- * Class representing a frame widget.
+ * A paned window widget displays a number of subwindows, stacked either 
+ * vertically or horizontally. The user may adjust the relative sizes of the 
+ * subwindows by dragging the sash between panes.
  *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.

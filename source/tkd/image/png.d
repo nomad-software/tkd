@@ -40,7 +40,7 @@ class Png(string filename) : Image
 	 * Params:
 	 *     alpha = The alpha of the image.
 	 */
-	public void setAlpha(float alpha)
+	public void setAlpha(double alpha)
 	{
 		if (alpha < 0f || alpha > 1.0f)
 		{

@@ -18,7 +18,7 @@ import tkd.widget.common.wraplength;
 import tkd.widget.textwidget;
 
 /**
- * Class representing a label widget.
+ * A label widget displays a textual label and/or image.
  *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.

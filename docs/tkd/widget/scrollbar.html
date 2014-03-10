@@ -15,10 +15,16 @@
 </p>
 <h3>License</h3><p>MIT. See LICENSE for full details.</p>
 </div>
-<div class="module-members"><h2><a name="Scrollbar"></a>abstract class <span class="symbol">Scrollbar</span>: tkd.widget.widget.Widget;
+<div class="module-members"><h2><a name="ScrollBar"></a>abstract class <span class="symbol">ScrollBar</span>: tkd.widget.widget.Widget;
 </h2>
-<div class="declaration-description"><div class="sections"><p><span class="symbol">Scrollbar</span> base class.
- This class is not used directly, instead use the XScrollbar and YScrollbar class below.
+<div class="declaration-description"><div class="sections"><p>Scrollbar widgets are typically linked to an associated window that displays
+ a document of some sort, such as a file being edited or a drawing. A
+ scrollbar displays a thumb in the middle portion of the scrollbar, whose
+ position and size provides information about the portion of the document
+ visible in the associated window. The thumb may be dragged by the user to
+ control the visible region. Depending on the theme, two or more arrow
+ buttons may also be present; these are used to scroll the visible region in
+ discrete units.
 </p>
 <p><h3>Additional Events:</h3>
 Additional events that can also be bound to using the <a href="../element/uielement.html#UiElement.bind">bind</a> method.
@@ -37,7 +43,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </p>
 <h3>See Also</h3><p><a href="./widget.html">tkd.widget.widget</a></p>
 </div>
-<div class="class-members"><h2><a name="Scrollbar.this"></a> this(UiElement parent = null);
+<div class="class-members"><h2><a name="ScrollBar.this"></a> this(UiElement parent = null);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
@@ -47,7 +53,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.uielement</a> <br></p>
 </div>
 </div>
-<h2><a name="Scrollbar.getDelta"></a>float <span class="symbol">getDelta</span>(int deltaX, int deltaY);
+<h2><a name="ScrollBar.getDelta"></a>double <span class="symbol">getDelta</span>(int deltaX, int deltaY);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Returns a real number indicating the fractional change in the scrollbar
  setting that corresponds to a given change in thumb position. For
@@ -66,7 +72,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>Return Value</h3><p>The fractional change.</p>
 </div>
 </div>
-<h2><a name="Scrollbar.getFraction"></a>float <span class="symbol">getFraction</span>(int x, int y);
+<h2><a name="ScrollBar.getFraction"></a>double <span class="symbol">getFraction</span>(int x, int y);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Returns a real number between 0 and 1 indicating where the point given
  by x and y lies in the trough area of the scrollbar, where 0.0
@@ -85,11 +91,11 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </div>
 </div>
 </div>
-<h2><a name="XScrollbar"></a>class <span class="symbol">XScrollbar</span>: tkd.widget.scrollbar.Scrollbar;
+<h2><a name="XScrollBar"></a>class <span class="symbol">XScrollBar</span>: tkd.widget.scrollbar.ScrollBar;
 </h2>
 <div class="declaration-description"><div class="sections"><p>Class representing a horizontal scrollbar widget.</p>
 </div>
-<div class="class-members"><h2><a name="XScrollbar.this"></a> this(UiElement parent = null);
+<div class="class-members"><h2><a name="XScrollBar.this"></a> this(UiElement parent = null);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
@@ -99,7 +105,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.uielement</a> <br></p>
 </div>
 </div>
-<h2><a name="XScrollbar.attachWidget"></a>auto <span class="symbol">attachWidget</span>(this T, S)(IXScrollable!S scrollableWidget);
+<h2><a name="XScrollBar.attachWidget"></a>auto <span class="symbol">attachWidget</span>(this T, S)(IXScrollable!S scrollableWidget);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Attach a horizontally scrollable widget to this scrollbar.
 </p>
@@ -114,11 +120,11 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </div>
 </div>
 </div>
-<h2><a name="YScrollbar"></a>class <span class="symbol">YScrollbar</span>: tkd.widget.scrollbar.Scrollbar;
+<h2><a name="YScrollBar"></a>class <span class="symbol">YScrollBar</span>: tkd.widget.scrollbar.ScrollBar;
 </h2>
 <div class="declaration-description"><div class="sections"><p>Class representing a vertical scrollbar widget.</p>
 </div>
-<div class="class-members"><h2><a name="YScrollbar.this"></a> this(UiElement parent = null);
+<div class="class-members"><h2><a name="YScrollBar.this"></a> this(UiElement parent = null);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
@@ -128,7 +134,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.uielement</a> <br></p>
 </div>
 </div>
-<h2><a name="YScrollbar.attachWidget"></a>auto <span class="symbol">attachWidget</span>(this T, S)(IYScrollable!S scrollableWidget);
+<h2><a name="YScrollBar.attachWidget"></a>auto <span class="symbol">attachWidget</span>(this T, S)(IYScrollable!S scrollableWidget);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Attach a vertically scrollable widget to this scrollbar.
 </p>

@@ -19,7 +19,7 @@ import tkd.widget.reliefstyle;
 import tkd.widget.widget;
 
 /**
- * Class representing a frame widget.
+ * A frame widget is a container, used to group other widgets together.
  *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.

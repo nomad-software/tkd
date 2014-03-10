@@ -11,8 +11,9 @@ module tkd.widget.common.value;
  *
  * Params:
  *     valueVariable = The name of the variable that holds the widget's value.
+ *     V = The type of the variable to set.
  */
-mixin template Value(alias valueVariable)
+mixin template Value(alias valueVariable, V)
 {
 	import std.conv;
 
@@ -25,7 +26,7 @@ mixin template Value(alias valueVariable)
 	 * Returns:
 	 *     The value of the widget.
 	 */
-	public T getValue(T = string)()
+	public T getValue(T = V)()
 	{
 		return this._tk.getVariable(valueVariable).to!(T);
 	}
@@ -39,7 +40,7 @@ mixin template Value(alias valueVariable)
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setValue(this T)(string value)
+	public auto setValue(this T)(V value)
 	{
 		this._tk.setVariable(valueVariable, value);
 

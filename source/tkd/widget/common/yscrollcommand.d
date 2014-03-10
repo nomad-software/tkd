@@ -22,7 +22,7 @@ interface IYScrollable(T)
 	 * Params:
 	 *     scrollbar = The scrollbar to attach.
 	 */
-	public T attachYScrollbar(YScrollbar scrollbar);
+	public T attachYScrollBar(YScrollBar scrollbar);
 }
 
 /**
@@ -38,7 +38,7 @@ mixin template YScrollCommand(T)
 	 * Params:
 	 *     scrollbar = The scrollbar to attach.
 	 */
-	public T attachYScrollbar(YScrollbar scrollbar)
+	public T attachYScrollBar(YScrollBar scrollbar)
 	{
 		this._tk.eval("%s configure -yscrollcommand [list %s set]", this.id, scrollbar.id);
 

@@ -26,10 +26,10 @@ mixin template XView()
 	 * Returns:
 	 *     An array containing two floating point values.
 	 */
-	public float[] getXView()
+	public double[] getXView()
 	{
 		this._tk.eval("%s xview", this.id);
-		return this._tk.getResult!(string).split().map!(to!(float)).array;
+		return this._tk.getResult!(string).split().map!(to!(double)).array;
 	}
 
 	/**
@@ -43,7 +43,7 @@ mixin template XView()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setXView(this T)(float position)
+	public auto setXView(this T)(double position)
 	{
 		this._tk.eval("%s xview moveto %s", this.id, position);
 

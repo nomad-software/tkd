@@ -19,7 +19,8 @@ import tkd.widget.common.width;
 import tkd.widget.widget;
 
 /**
- * Class representing a label frame widget.
+ * A label frame widget is a container used to group other widgets together. It 
+ * has an optional label, which may be a plain text string or another widget.
  *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.

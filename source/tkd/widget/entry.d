@@ -28,7 +28,8 @@ import tkd.widget.common.xview;
 import tkd.widget.widget;
 
 /**
- * Class representing an entry widget.
+ * An entry widget displays a one-line text string and allows that string to be 
+ * edited by the user. Entry widgets support horizontal scrolling.
  *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.
@@ -146,7 +147,7 @@ class Entry : Widget, IXScrollable!(Entry)
 	mixin Justify;
 	mixin Selection;
 	mixin Show;
-	mixin Value!(this._valueVariable);
+	mixin Value!(this._valueVariable, string);
 	mixin Width;
 	mixin XScrollCommand!(Entry);
 	mixin XView;

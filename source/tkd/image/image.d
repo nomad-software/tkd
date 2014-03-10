@@ -130,7 +130,7 @@ class Image : Element
 	 * Params:
 	 *     gamma = The destination gamma.
 	 */
-	public void setGamma(float gamma)
+	public void setGamma(double gamma)
 	{
 		if (gamma < 0)
 		{

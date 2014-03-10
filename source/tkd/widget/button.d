@@ -19,7 +19,8 @@ import tkd.widget.common.width;
 import tkd.widget.textwidget;
 
 /**
- * Class representing a button widget.
+ * A button widget displays a textual label and/or image, and evaluates a 
+ * command when pressed.
  *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.

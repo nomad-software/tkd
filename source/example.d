@@ -26,6 +26,7 @@ class Application : TkdApplication
 	private LabelFrame _labelFrame;
 	private NoteBook _noteBook;
 	private PanedWindow _panedWindow;
+	private ProgressBar _progress;
 
 	/**
 	 * Event callbacks.
@@ -74,11 +75,11 @@ class Application : TkdApplication
 			.setCommand(&this.manipulateText)
 			.pack();
 
-		XScrollbar scroll = new XScrollbar(this._labelFrame);
+		XScrollBar scroll = new XScrollBar(this._labelFrame);
 
 		this._entry = new Entry(this._labelFrame)
 			.setValue("Lorem")
-			.attachXScrollbar(scroll)
+			.attachXScrollBar(scroll)
 			.pack();
 
 		scroll.attachWidget(this._entry)
@@ -95,6 +96,9 @@ class Application : TkdApplication
 			.pack();
 
 		this._checkbox = new CheckButton(this._rootFrame, "Check button")
+			.pack();
+
+		this._progress = new ProgressBar(this._rootFrame)
 			.pack();
 
 		this._exit = new Button(this._rootFrame, "Exit")

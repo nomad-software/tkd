@@ -16,7 +16,9 @@ import tkd.widget.common.value;
 import tkd.widget.textwidget;
 
 /**
- * Class representing a checkbutton widget.
+ * A checkbutton widget is used to show or change a setting. It has two states, 
+ * selected and deselected. The state of the checkbutton may be linked to a 
+ * value.
  *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.
@@ -187,5 +189,5 @@ class CheckButton : TextWidget
 	 */
 	mixin Invoke;
 	mixin Command;
-	mixin Value!(this._valueVariable);
+	mixin Value!(this._valueVariable, string);
 }

@@ -25,7 +25,7 @@ interface IXScrollable(T)
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public T attachXScrollbar(XScrollbar scrollbar);
+	public T attachXScrollBar(XScrollBar scrollbar);
 }
 
 /**
@@ -41,7 +41,7 @@ mixin template XScrollCommand(T)
 	 * Params:
 	 *     scrollbar = The scrollbar to attach.
 	 */
-	public T attachXScrollbar(XScrollbar scrollbar)
+	public T attachXScrollBar(XScrollBar scrollbar)
 	{
 		this._tk.eval("%s configure -xscrollcommand [list %s set]", this.id, scrollbar.id);
 

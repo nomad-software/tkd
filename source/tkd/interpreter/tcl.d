@@ -174,10 +174,10 @@ class Tcl
 	 *     name = The name of the variable to set.
 	 *     value = The variable's value.
 	 */
-	public void setVariable(string name, string value)
+	public void setVariable(T)(string name, T value)
 	{
 		debug this._log.info("Setting variable %s <- '%s'", name, value);
-		Tcl_SetVar(this._interpreter, name.toStringz, value.toStringz, TCL_GLOBAL_ONLY);
+		Tcl_SetVar(this._interpreter, name.toStringz, value.to!(string).toStringz, TCL_GLOBAL_ONLY);
 	}
 
 	/**

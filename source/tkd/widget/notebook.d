@@ -19,7 +19,9 @@ import tkd.widget.common.width;
 import tkd.widget.widget;
 
 /**
- * Class representing a notebook widget.
+ * A notebook widget manages a collection of panes and displays a single one at 
+ * a time. Each pane is associated with a tab, which the user may select to 
+ * change the currently-displayed pane.
  *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.
@@ -297,7 +299,7 @@ class NoteBook : Widget
 	 *
 	 * See_Also:
 	 *     $(LINK2 ../image/imageposition.html, tkd.image.imageposition) $(BR)
-	 *     $(LINK2 ./notebook.html#NoteBook.enableKeyboardTraversal, enableKeyboardTraversal()) $(BR)
+	 *     $(LINK2 ./notebook.html#NoteBook.enableKeyboardTraversal, enableKeyboardTraversal) $(BR)
 	 */
 	public auto underlineTabChar(this T, I)(I tabIdentifier, int index) if (is(I == int) || is(I == string))
 	{
@@ -323,7 +325,7 @@ class NoteBook : Widget
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./notebook.html#NoteBook.underlineTabChar, underlineTabChar(...)) $(BR)
+	 *     $(LINK2 ./notebook.html#NoteBook.underlineTabChar, underlineTabChar) $(BR)
 	 */
 	public auto enableKeyboardTraversal(this T)()
 	{

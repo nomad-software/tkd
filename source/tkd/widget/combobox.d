@@ -29,7 +29,8 @@ import tkd.widget.common.xview;
 import tkd.widget.widget;
 
 /**
- * Class representing a combo box widget.
+ * A combobox combines a text field with a pop-down list of values; the user 
+ * may select the value of the text field from among the values in the list.
  *
  * This widget has two types of values that can be set. First, a list of values 
  * can be set to populate the drop-down list which can then be selected via a 
@@ -194,7 +195,7 @@ class ComboBox : Widget, IXScrollable!(ComboBox)
 	mixin Justify;
 	mixin PostCommand;
 	mixin Selection;
-	mixin Value!(this._valueVariable);
+	mixin Value!(this._valueVariable, string);
 	mixin Values;
 	mixin Width;
 	mixin XScrollCommand!(ComboBox);

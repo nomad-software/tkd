@@ -16,8 +16,14 @@ import tkd.widget.common.yscrollcommand;
 import tkd.widget.widget;
 
 /**
- * Scrollbar base class.
- * This class is not used directly, instead use the XScrollbar and YScrollbar class below.
+ * Scrollbar widgets are typically linked to an associated window that displays 
+ * a document of some sort, such as a file being edited or a drawing. A 
+ * scrollbar displays a thumb in the middle portion of the scrollbar, whose 
+ * position and size provides information about the portion of the document 
+ * visible in the associated window. The thumb may be dragged by the user to 
+ * control the visible region. Depending on the theme, two or more arrow 
+ * buttons may also be present; these are used to scroll the visible region in 
+ * discrete units.
  *
  * Additional_Events:
  *     Additional events that can also be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) method.
@@ -37,7 +43,7 @@ import tkd.widget.widget;
  * See_Also:
  *     $(LINK2 ./widget.html, tkd.widget.widget)
  */
-abstract class Scrollbar : Widget
+abstract class ScrollBar : Widget
 {
 	/**
 	 * Construct the widget.
@@ -73,10 +79,10 @@ abstract class Scrollbar : Widget
 	 * Returns:
 	 *     The fractional change.
 	 */
-	public float getDelta(int deltaX, int deltaY)
+	public double getDelta(int deltaX, int deltaY)
 	{
 		this._tk.eval("%s delta %s %s", this.id, deltaX, deltaY);
-		return this._tk.getResult!(float);
+		return this._tk.getResult!(double);
 	}
 
 	/**
@@ -94,17 +100,17 @@ abstract class Scrollbar : Widget
 	 * Returns:
 	 *     The fractional position.
 	 */
-	public float getFraction(int x, int y)
+	public double getFraction(int x, int y)
 	{
 		this._tk.eval("%s fraction %s %s", this.id, x, y);
-		return this._tk.getResult!(float);
+		return this._tk.getResult!(double);
 	}
 }
 
 /**
  * Class representing a horizontal scrollbar widget.
  */
-class XScrollbar : Scrollbar
+class XScrollBar : ScrollBar
 {
 	/**
 	 * Construct the widget.
@@ -147,7 +153,7 @@ class XScrollbar : Scrollbar
 /**
  * Class representing a vertical scrollbar widget.
  */
-class YScrollbar : Scrollbar
+class YScrollBar : ScrollBar
 {
 	/**
 	 * Construct the widget.

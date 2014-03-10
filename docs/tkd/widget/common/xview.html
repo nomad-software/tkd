@@ -18,7 +18,7 @@
 <div class="module-members"><h2><a name="XView"></a>template <span class="symbol">XView</span>()</h2>
 <div class="declaration-description"><div class="sections"><p>These are common commands that apply to all widgets that have them injected.</p>
 </div>
-<div class="template-members"><h2><a name="getXView"></a>float[] <span class="symbol">getXView</span>();
+<div class="template-members"><h2><a name="getXView"></a>double[] <span class="symbol">getXView</span>();
 </h2>
 <div class="declaration-description"><div class="sections"><p>Get floating point values which represent the viewable portion of the
  text. Each element is a real fraction between 0 and 1; together they
@@ -30,13 +30,13 @@
 <h3>Return Value</h3><p>An array containing two floating point values.</p>
 </div>
 </div>
-<h2><a name="setXView"></a>auto <span class="symbol">setXView</span>(this T)(float position);
+<h2><a name="setXView"></a>auto <span class="symbol">setXView</span>(this T)(double position);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Adjusts the view in the window so that the position appears at the left
  edge of the window. Position must be a fraction between 0.0 (start of
  the text) and 1.0 (end of the text).
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>float position</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>double position</td>
 <td>The character index to scroll to.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
