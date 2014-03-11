@@ -27,6 +27,7 @@ class Application : TkdApplication
 	private NoteBook _noteBook;
 	private PanedWindow _panedWindow;
 	private ProgressBar _progress;
+	private RadioButton _radioButton;
 
 	/**
 	 * Event callbacks.
@@ -51,6 +52,13 @@ class Application : TkdApplication
 	 */
 	override protected void initInterface()
 	{
+		this._rootFrame = new Frame()
+			.pack();
+
+		this._radioButton = new RadioButton(this._rootFrame, "Radio")
+			.setValue("two")
+			.pack();
+
 		this._panedWindow = new PanedWindow();
 		this._panedWindow
 			.addPane(new Button("Foo"))
@@ -61,9 +69,6 @@ class Application : TkdApplication
 		this._noteBook
 			.addTab("Hello", new Button("Lorem"))
 			.addTab("World", new Label("content"))
-			.pack();
-
-		this._rootFrame = new Frame()
 			.pack();
 
 		this._labelFrame = new LabelFrame(this._rootFrame, "Label frame")

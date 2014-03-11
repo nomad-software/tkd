@@ -40,6 +40,10 @@ import tkd.widget.widget;
  *         &lt;Key-Tab&gt;,
  *     )
  *
+ * States:
+ *     The scrollbar automatically sets the disabled state when the entire 
+ *     range is visible and clears it otherwise.
+ *
  * See_Also:
  *     $(LINK2 ./widget.html, tkd.widget.widget)
  */

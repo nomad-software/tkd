@@ -107,6 +107,14 @@ import tkd.widget.widget;
  *         &lt;Triple-Button-1&gt;,
  *     )
  *
+ * States:
+ *     In the disabled state, the entry cannot be edited and the text cannot be 
+ *     selected. In the readonly state, no insert cursor is displayed and the 
+ *     entry cannot be edited. The disabled state is the same as readonly, and 
+ *     in addition text cannot be selected. Typically, the text is "grayed-out" 
+ *     in the disabled state, and a different background is used in the 
+ *     readonly state.
+ *
  * See_Also:
  *     $(LINK2 ./widget.html, tkd.widget.widget)
  */

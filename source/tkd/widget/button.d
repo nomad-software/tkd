@@ -48,6 +48,10 @@ import tkd.widget.textwidget;
  *         &lt;Leave&gt;,
  *     )
  *
+ * Styles:
+ *     Button widgets support the Toolbutton style in all standard themes, 
+ *     which is useful for creating widgets for toolbars.
+ *
  * See_Also:
  *     $(LINK2 ./textwidget.html, tkd.widget.textwidget)
  */

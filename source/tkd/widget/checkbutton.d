@@ -45,6 +45,17 @@ import tkd.widget.textwidget;
  *         &lt;Leave&gt;,
  *     )
  *
+ * States:
+ *     This widget does not respond to user input if the disabled state is set. 
+ *     The widget sets the selected state whenever the value is set to the 
+ *     widget's on-value, and clears it otherwise. The widget sets the 
+ *     alternate state whenever the value is unset. (The alternate state may be 
+ *     used to indicate a "tri-state" or "indeterminate" selection.)
+ *
+ * Styles:
+ *     Check button widgets support the Toolbutton style in all standard 
+ *     themes, which is useful for creating widgets for toolbars.
+ *
  * See_Also:
  *     $(LINK2 ./textwidget.html, tkd.widget.textwidget)
  */
