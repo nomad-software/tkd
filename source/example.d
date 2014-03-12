@@ -16,7 +16,7 @@ class Application : TkdApplication
 	/**
 	 * Wigets.
 	 */
-	private Scale _scale;
+	private SpinBox _spin;
 
 	/**
 	 * Event callbacks.
@@ -34,11 +34,14 @@ class Application : TkdApplication
 		auto frame = new Frame()
 			.pack();
 
-		this._scale = new Scale(frame)
-			.setCommand(delegate(Widget widget, CommandArgs args){
-				writefln("%s", this._scale.getValue());
-			})
-			.setLength(200)
+		this._spin = new SpinBox(frame)
+			.setFromValue(0.0)
+			.setToValue(10.0)
+			.setValue("0")
+			.setStep(0.15)
+			.setNumericFormat(5, 2)
+			.setWidth(4)
+			.setWrap(true)
 			.pack();
 
 		auto button = new Button(frame, "Exit")

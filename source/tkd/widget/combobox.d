@@ -51,7 +51,7 @@ import tkd.widget.widget;
  *         $(LINK2 ./common/justify.html, Justify) $(BR)
  *         $(LINK2 ./common/postcommand.html, PostCommand) $(BR)
  *         $(LINK2 ./common/selection.html, Selection) $(BR)
- *         $(LINK2 ./common/value.html, Values) $(BR)
+ *         $(LINK2 ./common/value.html, Value) $(BR)
  *         $(LINK2 ./common/values.html, Values) $(BR)
  *         $(LINK2 ./common/width.html, Width) $(BR)
  *         $(LINK2 ./common/xscrollcommand.html, XScrollCommand) $(BR)

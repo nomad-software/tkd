@@ -27,6 +27,7 @@ public import tkd.widget.scale;
 public import tkd.widget.scrollbar;
 public import tkd.widget.separator;
 public import tkd.widget.sizegrip;
+public import tkd.widget.spinbox;
 public import tkd.widget.state;
 public import tkd.widget.style;
 public import tkd.widget.widget;
