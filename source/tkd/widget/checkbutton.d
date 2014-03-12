@@ -88,7 +88,7 @@ class CheckButton : TextWidget
 	 * See_Also:
 	 *     $(LINK2 ../element/uielement.html, tkd.element.uielement)
 	 */
-	this(UiElement parent = null, string text = null)
+	this(UiElement parent, string text = null)
 	{
 		super(parent);
 		this._elementId     = "checkbutton";

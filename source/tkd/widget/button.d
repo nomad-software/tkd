@@ -144,7 +144,7 @@ class Button : TextWidget
 	 */
 	this(Image image, string text = null, string imagePosition = ImagePosition.image)
 	{
-		this(parent, image, text, imagePosition);
+		this(null, image, text, imagePosition);
 	}
 
 	/**

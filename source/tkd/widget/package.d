@@ -23,6 +23,7 @@ public import tkd.widget.progressbar;
 public import tkd.widget.progressbarmode;
 public import tkd.widget.radiobutton;
 public import tkd.widget.reliefstyle;
+public import tkd.widget.scale;
 public import tkd.widget.scrollbar;
 public import tkd.widget.state;
 public import tkd.widget.style;

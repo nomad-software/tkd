@@ -74,9 +74,7 @@ class LabelFrame : Widget
 	 */
 	public this(string text)
 	{
-		super(null);
-
-		this._tk.eval("ttk::labelframe %s -text \"%s\"", this.id, text);
+		this(null, text);
 	}
 
 	/**

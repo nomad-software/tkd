@@ -11,6 +11,7 @@ module tkd.widget.progressbar;
  */
 import std.string;
 import tkd.element.uielement;
+import tkd.widget.common.length;
 import tkd.widget.common.value;
 import tkd.widget.orientation;
 import tkd.widget.widget;
@@ -24,6 +25,8 @@ import tkd.widget.widget;
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.
  *     $(P
+ *         $(LINK2 ./common/length.html, Length) $(BR)
+ *         $(LINK2 ./common/value.html, Value) $(BR)
  *     )
  *
  * Additional_Events:
@@ -77,19 +80,6 @@ class ProgressBar : Widget
 	public this(string orientation = Orientation.horizontal)
 	{
 		this(null, orientation);
-	}
-
-	/**
-	 * Set the length of the progress bar.
-	 *
-	 * Params:
-	 *     length = The length of the progress bar.
-	 */
-	public auto setLength(this T)(int length)
-	{
-		this._tk.eval("%s configure -length %s", this.id, length);
-
-		return cast(T) this;
 	}
 
 	/**
@@ -180,5 +170,6 @@ class ProgressBar : Widget
 	/**
 	 * Mixin common commands.
 	 */
+	mixin Length;
 	mixin Value!(this._valueVariable, double);
 }
