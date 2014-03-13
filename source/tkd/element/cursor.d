@@ -95,7 +95,7 @@ enum Cursor : string
 /**
  * Windows only cursor values.
  */
-version(Windows)
+version (Windows)
 {
 	enum WindowsCursor : string
 	{
@@ -114,7 +114,7 @@ version(Windows)
 /**
  * MacOSX only cursor values.
  */
-version(OSX)
+version (OSX)
 {
 	enum MacOSXCursor : string
 	{

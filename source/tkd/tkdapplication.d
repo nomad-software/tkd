@@ -10,6 +10,7 @@ module tkd.tkdapplication;
  * Private imports.
  */
 import tkd.interpreter;
+import tkd.theme;
 
 /**
  * Public imports.
@@ -69,7 +70,26 @@ abstract class TkdApplication
 	public this()
 	{
 		this._tk = Tk.getInstance();
+
+		version (linux)
+		{
+			// The default linux theme is a bit ropey so use the Clam theme as 
+			// the new default.
+			this.setTheme(Theme.clam);
+		}
+
 		this.initInterface();
+	}
+
+	/**
+	 * Set the overall theme of the user interface.
+	 *
+	 * Params:
+	 *     theme = The theme to use.
+	 */
+	public void setTheme(string theme)
+	{
+		this._tk.eval("ttk::style theme use %s", theme);
 	}
 
 	/**
