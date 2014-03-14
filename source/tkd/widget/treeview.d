@@ -10,6 +10,7 @@ module tkd.widget.treeview;
  * Imports.
  */
 import std.algorithm;
+import std.array;
 import std.string;
 import tcltk.tk;
 import tkd.element.element;
@@ -148,6 +149,18 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	}
 
 	/**
+	 * Get the tree view elements that are currently being shown.
+	 *
+	 * Returns:
+	 *     An array cotaining all shown elements.
+	 */
+	private string[] getShownElements()
+	{
+		this._tk.eval("%s cget -show", this.id);
+		return this._tk.getResult!(string).split();
+	}
+
+	/**
 	 * Build the columns found in the data column array.
 	 */
 	private void buildColumns()
@@ -161,18 +174,7 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	}
 
 	/**
-	 * Get the data columns.
-	 *
-	 * Returns:
-	 *     An array containing all the data columns.
-	 */
-	public @property TreeViewColumn[] dataColumns()
-	{
-		return this._dataColumns;
-	}
-
-	/**
-	 * Set the tree view column heading.
+	 * Set the tree column heading text.
 	 *
 	 * Params:
 	 *    title = The title of the column.
@@ -184,7 +186,7 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 * See_Also:
 	 *     $(LINK2 ./anchorposition.html, tkd.widget.anchorposition) $(BR)
 	 */
-	public auto setHeading(this T)(string title, string anchor = AnchorPosition.west)
+	public auto setTreeHeading(this T)(string title, string anchor = AnchorPosition.west)
 	{
 		this._treeColumn.setHeading(title, anchor);
 
@@ -192,7 +194,7 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	}
 
 	/**
-	 * Set the tree view column image.
+	 * Set the tree column heading image.
 	 *
 	 * Params:
 	 *    image = The image to use.
@@ -200,16 +202,15 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setImage(this T)(Image image)
+	public auto setTreeHeadingImage(this T)(Image image)
 	{
-		this._treeColumn.setImage(image);
+		this._treeColumn.setHeadingImage(image);
 
 		return cast(T) this;
 	}
 
 	/**
-	 * Set the tree view column command to be executed when clicking on the 
-	 * heading.
+	 * Set the tree column command to be executed when clicking on the heading.
 	 *
 	 * Params:
 	 *    callback = The delegate callback to execute when invoking the command.
@@ -220,9 +221,9 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 * See_Also:
 	 *     $(LINK2 ./treeview.html#ColumnCommandCallback, tkd.widget.ColumnCommandCallback)
 	 */
-	public auto setCommand(this T)(ColumnCommandCallback callback)
+	public auto setTreeHeadingCommand(this T)(ColumnCommandCallback callback)
 	{
-		this._treeColumn.setCommand(callback);
+		this._treeColumn.setHeadingCommand(callback);
 
 		return cast(T) this;
 	}
@@ -233,9 +234,58 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto removeCommand(this T)()
+	public auto removeTreeCommand(this T)()
 	{
-		this._treeColumn.removeCommand();
+		this._treeColumn.removeHeadingCommand();
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Set the minium width of the tree column.
+	 *
+	 * Params:
+	 *     minimumWidth = The minimum width in pixels.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto setTreeMinimumWidth(this T)(int minimumWidth)
+	{
+		this._treeColumn.setMinimumWidth(minimumWidth);
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Enable or disable stretching for the tree column. This controls how this 
+	 * column react when other columns or the parent widget is resized.
+	 *
+	 * Params:
+	 *     stretch = true for enabling stretching, false to disable.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto setTreeStretch(this T)(bool stretch)
+	{
+		this._treeColumn.setStretch(stretch);
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Set the width of the tree column.
+	 *
+	 * Params:
+	 *     width = The width in pixels.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto setTreeWidth(this T)(int width)
+	{
+		this._treeColumn.setWidth(width);
 
 		return cast(T) this;
 	}
@@ -255,6 +305,17 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 		this.buildColumns();
 
 		return cast(T) this;
+	}
+
+	/**
+	 * Get the data columns.
+	 *
+	 * Returns:
+	 *     An array containing all the data columns.
+	 */
+	public @property TreeViewColumn[] dataColumns()
+	{
+		return this._dataColumns;
 	}
 
 	/**
@@ -282,6 +343,86 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	public auto displayDataColumns(this T)(int[] indexes)
 	{
 		this._tk.eval("%s configure -displaycolumns { \"%s\" }", this.id, this.getColumnIdentifiers(indexes).join("\" \""));
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Set the selection mode.
+	 *
+	 * Params:
+	 *     mode = The mode of the selection.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto setSelectionMode(this T)(string mode)
+	{
+		this._tk.eval("%s configure -selectmode %s", this.id, mode);
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Hide the headings from all columns.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto hideHeadings(this T)()
+	{
+		this._tk.eval("%s configure -show { %s }", this.id, this.getShownElements()
+			.remove!(x => x == "headings")
+			.join(" ")
+		);
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Show the headings for all columns.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto showHeadings(this T)()
+	{
+		string[] elements = this.getShownElements();
+		elements ~= "headings";
+
+		this._tk.eval("%s configure -show { %s }", this.id, elements.join(" "));
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Hide the tree view column.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto hideTreeColumn(this T)()
+	{
+		this._tk.eval("%s configure -show { %s }", this.id, this.getShownElements()
+			.remove!(x => x == "tree")
+			.join(" ")
+		);
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Show the tree view column.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto showTreeColumn(this T)()
+	{
+		string[] elements = this.getShownElements();
+		elements ~= "tree";
+
+		this._tk.eval("%s configure -show { %s }", this.id, elements.join(" "));
 
 		return cast(T) this;
 	}
@@ -318,12 +459,27 @@ class TreeViewColumn : Element
 	/**
 	 * The anchor position of the heading title.
 	 */
-	private string _anchor;
+	private string _anchor = AnchorPosition.west;
 
 	/**
 	 * The image of the heading.
 	 */
 	private Image _image;
+
+	/**
+	 * The minimum width of the column.
+	 */
+	private int _minimumWidth = 20;
+
+	/**
+	 * Whether to alter the size of the column when the widget is resized.
+	 */
+	private bool _stretch = true;
+
+	/**
+	 * Width of the column.
+	 */
+	private int _width = 200;
 
 	/**
 	 * The command associated with the heading.
@@ -354,8 +510,11 @@ class TreeViewColumn : Element
 		this._parent = parent;
 
 		this.setHeading(this._title, this._anchor);
-		this.setImage(this._image);
-		this.setCommand(this._commandCallback);
+		this.setHeadingImage(this._image);
+		this.setHeadingCommand(this._commandCallback);
+		this.setMinimumWidth(this._minimumWidth);
+		this.setStretch(this._stretch);
+		this.setWidth(this._width);
 	}
 
 	/**
@@ -392,7 +551,7 @@ class TreeViewColumn : Element
 		this._title  = title;
 		this._anchor = anchor;
 
-		if (this._parent !is null)
+		if (this._parent)
 		{
 			this._tk.eval("%s heading \"%s\" -text \"%s\" -anchor %s", this._parent.id, this.id, this._title, this._anchor);
 		}
@@ -409,11 +568,11 @@ class TreeViewColumn : Element
 	 * Returns:
 	 *     This column to aid method chaining.
 	 */
-	public auto setImage(this T)(Image image)
+	public auto setHeadingImage(this T)(Image image)
 	{
 		this._image = image;
 
-		if (this._parent !is null && this._image !is null)
+		if (this._parent && this._image)
 		{
 			this._tk.eval("%s heading \"%s\" -text \"%s\" -anchor %s -image %s", this._parent.id, this.id, this._title, this._anchor, image.id);
 		}
@@ -433,13 +592,13 @@ class TreeViewColumn : Element
 	 * See_Also:
 	 *     $(LINK2 ./treeview.html#ColumnCommandCallback, tkd.widget.ColumnCommandCallback)
 	 */
-	public auto setCommand(this T)(ColumnCommandCallback callback)
+	public auto setHeadingCommand(this T)(ColumnCommandCallback callback)
 	{
 		this._commandCallback = callback;
 
 		if (this._parent !is null && this._commandCallback !is null)
 		{
-			this.removeCommand();
+			this.removeHeadingCommand();
 
 			Tcl_CmdProc commandCallbackHandler = function(ClientData data, Tcl_Interp* tclInterpreter, int argc, const(char)** argv)
 			{
@@ -488,7 +647,7 @@ class TreeViewColumn : Element
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto removeCommand(this T)()
+	public auto removeHeadingCommand(this T)()
 	{
 		if (this._parent !is null && this._commandCallback !is null)
 		{
@@ -497,6 +656,70 @@ class TreeViewColumn : Element
 
 			this._tk.deleteCommand(command);
 			this._tk.eval(tkScript);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Set the minium width of the column.
+	 *
+	 * Params:
+	 *     minimumWidth = The minimum width in pixels.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto setMinimumWidth(this T)(int minimumWidth)
+	{
+		this._minimumWidth = minimumWidth;
+
+		if (this._parent)
+		{
+			this._tk.eval("%s column \"%s\" -minwidth %s", this._parent.id, this.id, this._minimumWidth);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Enable or disable stretching for the column. This controls how this 
+	 * column react when other columns or the parent widget is resized.
+	 *
+	 * Params:
+	 *     stretch = true for enabling stretching, false to disable.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto setStretch(this T)(bool stretch)
+	{
+		this._stretch = stretch;
+
+		if (this._parent)
+		{
+			this._tk.eval("%s column \"%s\" -stretch %s", this._parent.id, this.id, this._stretch);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Set the width of the column.
+	 *
+	 * Params:
+	 *     width = The width in pixels.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto setWidth(this T)(int width)
+	{
+		this._width = width;
+
+		if (this._parent)
+		{
+			this._tk.eval("%s column \"%s\" -width %s", this._parent.id, this.id, this._width);
 		}
 
 		return cast(T) this;

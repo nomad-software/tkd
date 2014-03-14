@@ -31,4 +31,5 @@ public import tkd.widget.spinbox;
 public import tkd.widget.state;
 public import tkd.widget.style;
 public import tkd.widget.treeview;
+public import tkd.widget.treeviewselectionmode;
 public import tkd.widget.widget;

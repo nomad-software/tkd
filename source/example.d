@@ -40,19 +40,15 @@ class Application : TkdApplication
 			.pack();
 
 		this._tree = new TreeView(frame)
-			.setHeading("Treeview")
-			.setImage(new Png!("thumbnail.png"))
-			.setCommand(&columnCommand)
+			.setTreeHeading("Treeview")
+			.setTreeHeadingImage(new Png!("thumbnail.png"))
+			.setTreeMinimumWidth(125)
+			.setTreeStretch(false)
+			.setTreeWidth(300)
+			.setSelectionMode(TreeViewSelectionMode.none)
+
 			.addColumn(new TreeViewColumn("Name"))
 			.addColumn(new TreeViewColumn("Address"))
-			// .setColumnHeading("#0", "Tree")
-			// .setColumnImage("#0", new Png!("thumbnail.png"))
-			// .setColumnCommand("#0", &columnCommand)
-			// .addColumns(["name", "address"])
-			// .setColumnHeading("name", "Name")
-			// .setColumnCommand("name", &columnCommand)
-			// .setColumnHeading("address", "Address")
-			// .setColumnCommand("address", &columnCommand)
 			.pack();
 
 

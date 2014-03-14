@@ -84,16 +84,9 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.uielement</a> <br></p>
 </div>
 </div>
-<h2><a name="TreeView.dataColumns"></a>@property TreeViewColumn[] <span class="symbol">dataColumns</span>();
+<h2><a name="TreeView.setTreeHeading"></a>auto <span class="symbol">setTreeHeading</span>(this T)(string title, string anchor = AnchorPosition.west);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Get the data columns.
-</p>
-<h3>Return Value</h3><p>An array containing all the data columns.</p>
-</div>
-</div>
-<h2><a name="TreeView.setHeading"></a>auto <span class="symbol">setHeading</span>(this T)(string title, string anchor = AnchorPosition.west);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Set the tree view column heading.
+<div class="declaration-description"><div class="sections"><p>Set the tree column heading text.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string title</td>
 <td>The title of the column.</td></tr>
@@ -106,9 +99,9 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>See Also</h3><p><a href="./anchorposition.html">tkd.widget.anchorposition</a> <br></p>
 </div>
 </div>
-<h2><a name="TreeView.setImage"></a>auto <span class="symbol">setImage</span>(this T)(Image image);
+<h2><a name="TreeView.setTreeHeadingImage"></a>auto <span class="symbol">setTreeHeadingImage</span>(this T)(Image image);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Set the tree view column image.
+<div class="declaration-description"><div class="sections"><p>Set the tree column heading image.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>Image image</td>
 <td>The image to use.</td></tr>
@@ -116,10 +109,9 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
-<h2><a name="TreeView.setCommand"></a>auto <span class="symbol">setCommand</span>(this T)(ColumnCommandCallback callback);
+<h2><a name="TreeView.setTreeHeadingCommand"></a>auto <span class="symbol">setTreeHeadingCommand</span>(this T)(ColumnCommandCallback callback);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Set the tree view column command to be executed when clicking on the
- heading.
+<div class="declaration-description"><div class="sections"><p>Set the tree column command to be executed when clicking on the heading.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>ColumnCommandCallback callback</td>
 <td>The delegate callback to execute when invoking the command.</td></tr>
@@ -130,10 +122,41 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>See Also</h3><p><a href="./treeview.html#ColumnCommandCallback">tkd.widget.ColumnCommandCallback</a></p>
 </div>
 </div>
-<h2><a name="TreeView.removeCommand"></a>auto <span class="symbol">removeCommand</span>(this T)();
+<h2><a name="TreeView.removeTreeCommand"></a>auto <span class="symbol">removeTreeCommand</span>(this T)();
 </h2>
 <div class="declaration-description"><div class="sections"><p>Remove the tree view column command.
 </p>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="TreeView.setTreeMinimumWidth"></a>auto <span class="symbol">setTreeMinimumWidth</span>(this T)(int minimumWidth);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the minium width of the tree column.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int minimumWidth</td>
+<td>The minimum width in pixels.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="TreeView.setTreeStretch"></a>auto <span class="symbol">setTreeStretch</span>(this T)(bool stretch);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Enable or disable stretching for the tree column. This controls how this
+ column react when other columns or the parent widget is resized.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>bool stretch</td>
+<td><strong>true</strong> for enabling stretching, <strong>false</strong> to disable.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="TreeView.setTreeWidth"></a>auto <span class="symbol">setTreeWidth</span>(this T)(int width);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the width of the tree column.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int width</td>
+<td>The width in pixels.</td></tr>
+</table>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
@@ -145,6 +168,13 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <td>The new column to add.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="TreeView.dataColumns"></a>@property TreeViewColumn[] <span class="symbol">dataColumns</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the data columns.
+</p>
+<h3>Return Value</h3><p>An array containing all the data columns.</p>
 </div>
 </div>
 <h2><a name="TreeView.displayAllDataColumns"></a>auto <span class="symbol">displayAllDataColumns</span>(this T)();
@@ -161,6 +191,44 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>Parameters</h3><table class="parameter-list"><tr><td>int[] indexes</td>
 <td>The indexes of the data columns to show.</td></tr>
 </table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="TreeView.setSelectionMode"></a>auto <span class="symbol">setSelectionMode</span>(this T)(string mode);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the selection mode.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string mode</td>
+<td>The mode of the selection.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="TreeView.hideHeadings"></a>auto <span class="symbol">hideHeadings</span>(this T)();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Hide the headings from all columns.
+</p>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="TreeView.showHeadings"></a>auto <span class="symbol">showHeadings</span>(this T)();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Show the headings for all columns.
+</p>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="TreeView.hideTreeColumn"></a>auto <span class="symbol">hideTreeColumn</span>(this T)();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Hide the tree view column.
+</p>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="TreeView.showTreeColumn"></a>auto <span class="symbol">showTreeColumn</span>(this T)();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Show the tree view column.
+</p>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
@@ -203,7 +271,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>See Also</h3><p><a href="./anchorposition.html">tkd.widget.anchorposition</a> <br></p>
 </div>
 </div>
-<h2><a name="TreeViewColumn.setImage"></a>auto <span class="symbol">setImage</span>(this T)(Image image);
+<h2><a name="TreeViewColumn.setHeadingImage"></a>auto <span class="symbol">setHeadingImage</span>(this T)(Image image);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Set the heading image.
 </p>
@@ -213,7 +281,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>Return Value</h3><p>This column to aid method chaining.</p>
 </div>
 </div>
-<h2><a name="TreeViewColumn.setCommand"></a>auto <span class="symbol">setCommand</span>(this T)(ColumnCommandCallback callback);
+<h2><a name="TreeViewColumn.setHeadingCommand"></a>auto <span class="symbol">setHeadingCommand</span>(this T)(ColumnCommandCallback callback);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Set the column command to be executed when clicking on the heading.
 </p>
@@ -226,10 +294,41 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>See Also</h3><p><a href="./treeview.html#ColumnCommandCallback">tkd.widget.ColumnCommandCallback</a></p>
 </div>
 </div>
-<h2><a name="TreeViewColumn.removeCommand"></a>auto <span class="symbol">removeCommand</span>(this T)();
+<h2><a name="TreeViewColumn.removeHeadingCommand"></a>auto <span class="symbol">removeHeadingCommand</span>(this T)();
 </h2>
 <div class="declaration-description"><div class="sections"><p>Remove the column command.
 </p>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="TreeViewColumn.setMinimumWidth"></a>auto <span class="symbol">setMinimumWidth</span>(this T)(int minimumWidth);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the minium width of the column.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int minimumWidth</td>
+<td>The minimum width in pixels.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="TreeViewColumn.setStretch"></a>auto <span class="symbol">setStretch</span>(this T)(bool stretch);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Enable or disable stretching for the column. This controls how this
+ column react when other columns or the parent widget is resized.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>bool stretch</td>
+<td><strong>true</strong> for enabling stretching, <strong>false</strong> to disable.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="TreeViewColumn.setWidth"></a>auto <span class="symbol">setWidth</span>(this T)(int width);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the width of the column.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int width</td>
+<td>The width in pixels.</td></tr>
+</table>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
