@@ -46,12 +46,21 @@
 <h3>Return Value</h3><p>The string <span class="symbol">id</span>.</p>
 </div>
 </div>
-<h2><a name="Element.generateHash"></a>protected string <span class="symbol">generateHash</span>(string text = null);
+<h2><a name="Element.generateHash"></a>protected string <span class="symbol">generateHash</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Generate the unique hash for this element.
+</p>
+<h3>Return Value</h3><p>The string hash.</p>
+</div>
+</div>
+<h2><a name="Element.generateHash"></a>string <span class="symbol">generateHash</span>(A...)(string text, A args);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Generate the unique hash for this element.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string text</td>
-<td>The text to generate a hash of.</td></tr>
+<td>The format of the text to generate a hash of.</td></tr>
+<tr><td>A args</td>
+<td>The arguments that the format defines (if any).</td></tr>
 </table>
 <h3>Return Value</h3><p>The string hash.</p>
 </div>

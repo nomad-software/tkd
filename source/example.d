@@ -16,7 +16,7 @@ class Application : TkdApplication
 	/**
 	 * Wigets.
 	 */
-	private SpinBox _spin;
+	private TreeView _tree;
 
 	/**
 	 * Event callbacks.
@@ -24,6 +24,11 @@ class Application : TkdApplication
 	private void exitCommand(Widget widget, CommandArgs args)
 	{
 		this.exit();
+	}
+
+	private void columnCommand(TreeViewColumn column, ColumnArgs args)
+	{
+		writefln("Column: %s", column.id);
 	}
 
 	/**
@@ -34,15 +39,22 @@ class Application : TkdApplication
 		auto frame = new Frame()
 			.pack();
 
-		this._spin = new SpinBox(frame)
-			.setFromValue(0.0)
-			.setToValue(10.0)
-			.setValue("0")
-			.setStep(0.15)
-			.setNumericFormat(5, 2)
-			.setWidth(4)
-			.setWrap(true)
+		this._tree = new TreeView(frame)
+			.setHeading("Treeview")
+			.setImage(new Png!("thumbnail.png"))
+			.setCommand(&columnCommand)
+			.addColumn(new TreeViewColumn("Name"))
+			.addColumn(new TreeViewColumn("Address"))
+			// .setColumnHeading("#0", "Tree")
+			// .setColumnImage("#0", new Png!("thumbnail.png"))
+			// .setColumnCommand("#0", &columnCommand)
+			// .addColumns(["name", "address"])
+			// .setColumnHeading("name", "Name")
+			// .setColumnCommand("name", &columnCommand)
+			// .setColumnHeading("address", "Address")
+			// .setColumnCommand("address", &columnCommand)
 			.pack();
+
 
 		auto button = new Button(frame, "Exit")
 			.setCommand(&this.exitCommand)

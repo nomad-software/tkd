@@ -99,7 +99,7 @@ class RadioButton : TextWidget
 		}
 		else
 		{
-			this._valueVariable = format("variable-%s", this.generateHash(this._elementId ~ parent.id));
+			this._valueVariable = format("variable-%s", this.generateHash("%s%s", this._elementId, parent.id));
 		}
 
 		this._tk.eval("ttk::radiobutton %s -textvariable %s -variable %s", this.id, this._textVariable, this._valueVariable);

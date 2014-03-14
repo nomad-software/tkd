@@ -61,7 +61,7 @@ mixin template PostCommand()
 		(*args).widget   = this;
 		(*args).callback = callback;
 
-		string command  = format("command-%s", this.generateHash("postcommand" ~ this.id));
+		string command  = format("command-%s", this.generateHash("postcommand%s", this.id));
 		string tkScript = format("%s configure -postcommand %s", this.id, command);
 
 		this._tk.createCommand(command, commandCallbackHandler, args, deleteCallbackHandler);
@@ -78,7 +78,7 @@ mixin template PostCommand()
 	 */
 	public auto removePostCommand(this T)()
 	{
-		string command  = format("command-%s", this.generateHash("postcommand" ~ this.id));
+		string command  = format("command-%s", this.generateHash("postcommand%s", this.id));
 		string tkScript = format("%s configure -postcommand { }", this.id);
 
 		this._tk.deleteCommand(command);

@@ -86,6 +86,9 @@ abstract class TkdApplication
 	 *
 	 * Params:
 	 *     theme = The theme to use.
+	 *
+	 * See_also:
+	 *     $(LINK2 ./theme.html, tkd.theme) $(BR)
 	 */
 	public void setTheme(string theme)
 	{

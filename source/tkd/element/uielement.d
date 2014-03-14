@@ -41,7 +41,7 @@ import tkd.element.element;
  *     )
  *
  * See_Also:
- *     $(LINK2 ../element/element.html, tkd.element.element)
+ *     $(LINK2 ./element.html, tkd.element.element)
  */
 abstract class UiElement : Element
 {
@@ -168,7 +168,7 @@ abstract class UiElement : Element
 		(*args).binding  = binding;
 		(*args).callback = callback;
 
-		string command  = format("command-%s", this.generateHash(binding ~ this.id));
+		string command  = format("command-%s", this.generateHash("%s%s", binding, this.id));
 		string tkScript = format("bind %s %s { %s }", this.id, binding, command);
 
 		Tcl_CmdProc bindCallbackHandler = function(ClientData data, Tcl_Interp* tclInterpreter, int argc, const(char)** argv)
@@ -215,7 +215,7 @@ abstract class UiElement : Element
 	 */
 	public auto unbind(this T)(string binding)
 	{
-		string command  = format("command-%s", this.generateHash(binding ~ this.id));
+		string command  = format("command-%s", this.generateHash("%s%s", binding, this.id));
 		string tkScript = format("bind %s %s { }", this.id, binding);
 
 		this._tk.deleteCommand(command);

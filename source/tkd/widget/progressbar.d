@@ -88,6 +88,9 @@ class ProgressBar : Widget
 	 * Params:
 	 *     mode = The mode of the progress bar.
 	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ./progressbarmode.html, tkd.widget.progressbarmode) for modes.
 	 */
@@ -103,6 +106,9 @@ class ProgressBar : Widget
 	 *
 	 * Params:
 	 *     maximum = The maximum value of the progress bar.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
 	public auto setMaximumValue(this T)(double maximum)
 	{
@@ -132,6 +138,9 @@ class ProgressBar : Widget
 	 *
 	 * Params:
 	 *     milliseconds = The interval between steps.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
 	public auto start(this T)(int milliseconds = 50)
 	{
@@ -145,6 +154,9 @@ class ProgressBar : Widget
 	 *
 	 * Params:
 	 *     increment = The amount to increment by.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
 	public auto step(this T)(int increment = 1)
 	{
@@ -156,6 +168,9 @@ class ProgressBar : Widget
 	/**
 	 * Stop autoincrement mode: cancels any recurring timer event initiated by 
 	 * the start method.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
 	 *     $(LINK2 ./progressbar.html#ProgressBar.start, start) $(BR)

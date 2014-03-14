@@ -59,18 +59,27 @@ abstract class Element
 	/**
 	 * Generate the unique hash for this element.
 	 *
+	 * Returns:
+	 *     The string hash.
+	 */
+	protected string generateHash()
+	{
+		string text = Random(unpredictableSeed).front.to!(string);
+		return hexDigest!(CRC32)(text).array.to!(string);
+	}
+
+	/**
+	 * Generate the unique hash for this element.
+	 *
 	 * Params:
-	 *     text = The text to generate a hash of.
+	 *     text = The format of the text to generate a hash of.
+	 *     args = The arguments that the format defines (if any).
 	 *
 	 * Returns:
 	 *     The string hash.
 	 */
-	protected string generateHash(string text = null)
+	protected string generateHash(A...)(string text, A args)
 	{
-		if (text is null)
-		{
-			text = Random(unpredictableSeed).front.to!(string);
-		}
-		return hexDigest!(CRC32)(text).array.to!(string);
+		return hexDigest!(CRC32)(format(text, args)).array.to!(string);
 	}
 }

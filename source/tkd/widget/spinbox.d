@@ -165,6 +165,9 @@ class SpinBox : Widget, IXScrollable!(SpinBox)
 	 *
 	 * Params:
 	 *     stepValue = The step value to increment and decrement by.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
 	public auto setStep(this T)(double stepValue)
 	{
@@ -181,6 +184,9 @@ class SpinBox : Widget, IXScrollable!(SpinBox)
 	 *
 	 * Params:
 	 *     wrapValue = Value specifing whether the value wraps.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
 	public auto setWrap(this T)(bool wrapValue)
 	{
@@ -197,6 +203,9 @@ class SpinBox : Widget, IXScrollable!(SpinBox)
 	 * Params:
 	 *     digitsBefore = The amount of digits to show before a decimal point.
 	 *     digitsAfter = The amount of digits to show after a decimal point.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
 	public auto setNumericFormat(this T)(int digitsBefore, int digitsAfter)
 	{

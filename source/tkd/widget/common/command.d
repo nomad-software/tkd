@@ -62,7 +62,7 @@ mixin template Command()
 		(*args).widget   = this;
 		(*args).callback = callback;
 
-		string command  = format("command-%s", this.generateHash("command" ~ this.id));
+		string command  = format("command-%s", this.generateHash("command%s", this.id));
 		string tkScript = format("%s configure -command %s", this.id, command);
 
 		this._tk.createCommand(command, commandCallbackHandler, args, deleteCallbackHandler);
@@ -79,7 +79,7 @@ mixin template Command()
 	 */
 	public auto removeCommand(this T)()
 	{
-		string command  = format("command-%s", this.generateHash("command" ~ this.id));
+		string command  = format("command-%s", this.generateHash("command%s", this.id));
 		string tkScript = format("%s configure -command { }", this.id);
 
 		this._tk.deleteCommand(command);
