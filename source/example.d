@@ -41,16 +41,19 @@ class Application : TkdApplication
 
 		this._tree = new TreeView(frame)
 			.setTreeHeading("Treeview")
-			.setTreeHeadingImage(new Png!("thumbnail.png"))
-			.setTreeMinimumWidth(125)
-			.setTreeStretch(false)
-			.setTreeWidth(300)
-			.setSelectionMode(TreeViewSelectionMode.none)
-
 			.addColumn(new TreeViewColumn("Name"))
 			.addColumn(new TreeViewColumn("Address"))
+			.setTag("folder", new Png!("folder.png"))
+			.setTag("file", new Png!("page.png"))
 			.pack();
 
+		TreeViewRow[] rows;
+
+		rows ~= new TreeViewRow("row1", ["data1", "data2"]);
+		rows ~= new TreeViewRow("row2", ["data1", "data2"]);
+		rows[1].children ~= new TreeViewRow("row3", ["data1", "data2"]);
+
+		this._tree.addRows(rows);
 
 		auto button = new Button(frame, "Exit")
 			.setCommand(&this.exitCommand)

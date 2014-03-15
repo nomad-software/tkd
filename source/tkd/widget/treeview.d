@@ -17,6 +17,7 @@ import tkd.element.element;
 import tkd.element.uielement;
 import tkd.image.image;
 import tkd.widget.anchorposition;
+import tkd.widget.color;
 import tkd.widget.common.height;
 import tkd.widget.common.padding;
 import tkd.widget.common.xscrollcommand;
@@ -82,7 +83,14 @@ import tkd.widget.widget;
  */
 class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 {
+	/**
+	 * The tree column.
+	 */
 	private TreeViewColumn   _treeColumn;
+
+	/**
+	 * An array containing the data columns.
+	 */
 	private TreeViewColumn[] _dataColumns;
 
 	/**
@@ -99,7 +107,7 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 		super(parent);
 		this._elementId = "treeview";
 
-		this._tk.eval("ttk::treeview %s", this.id);
+		this._tk.eval("ttk::treeview %s -selectmode browse", this.id);
 
 		this._treeColumn = new TreeViewColumn();
 		this._treeColumn._identifier = "#0";
@@ -308,6 +316,83 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	}
 
 	/**
+	 * Add a row to the tree view.
+	 *
+	 * Params:
+	 *     row = The row to add.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto addRow(this T)(TreeViewRow row)
+	{
+		this.addRows([row]);
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Add an array of rowr to the tree view.
+	 *
+	 * Params:
+	 *     rows = The rows to add.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto addRows(this T)(TreeViewRow[] rows)
+	{
+		this.appendRows("{}", rows);
+
+		return cast(T) this;
+	}
+
+	/**
+	 * This method does the actualy work of adding rows to the tree view.
+	 * All children are recursed and add too.
+	 *
+	 * Params:
+	 *     parentRow = The id of the parent row. Use '{}' for the top level.
+	 *     rows = The rows to add to the tree view.
+	 */
+	private void appendRows(string parentRow, TreeViewRow[] rows)
+	{
+		string parent;
+
+		foreach (row; rows)
+		{
+			this._tk.eval("%s insert %s end -text \"%s\" -values { \"%s\" } -open %s -tags { \"%s\" }", this.id, parentRow, row.treeValue, row.dataValues.join("\" \""), row.isOpen, row.tags.join("\" \""));
+			if (row.children.length)
+			{
+				parent = this._tk.getResult!(string);
+				this.appendRows(parent, row.children);
+			}
+		}
+	}
+
+	/**
+	 * Set image for a specific tag.
+	 *
+	 * Params:
+	 *     name = The name of the tag.
+	 *     image = The image to associate to the tag.
+	 *     foreground = The forground color.
+	 *     background = The background color.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./color.html, tkd.widget.color) $(BR)
+	 */
+	public auto setTag(this T)(string name, Image image, string foreground = Color.black, string background = Color.white)
+	{
+		this._tk.eval("%s tag configure %s -image %s -foreground \"%s\" -background \"%s\"", this.id, name, image.id, foreground, background);
+
+		return cast(T) this;
+	}
+
+	/**
 	 * Get the data columns.
 	 *
 	 * Returns:
@@ -434,6 +519,98 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	mixin Padding;
 	mixin XScrollCommand!(TreeView);
 	mixin YScrollCommand!(TreeView);
+}
+
+/**
+ * A class representing a row in the tree view.
+ */
+class TreeViewRow
+{
+	/**
+	 * The tree column value;
+	 */
+	private string _treeValue;
+
+	/**
+	 * An array containing the data column values.
+	 */
+	private string[] _dataValues;
+
+	/**
+	 * Boolean representing if the row was set to be open when created.
+	 */
+	private bool _isOpen;
+
+	/**
+	 * An array containing the tags.
+	 */
+	private string[] _tags;
+
+	/**
+	 * An array containing the child rows.
+	 */
+	public TreeViewRow[] children;
+
+	/**
+	 * Constructor.
+	 *
+	 * Params:
+	 *     treeValue = The value of the tree column.
+	 *     dataValues = The values of the data columns.
+	 *     isOpen = Whether or not to display the row open.
+	 *     tags = The tags to associate to this row.
+	 */
+	this(string treeValue, string[] dataValues, bool isOpen = false, string[] tags = [])
+	{
+		this._treeValue  = treeValue;
+		this._dataValues = dataValues;
+		this._isOpen     = isOpen;
+		this._tags       = tags;
+	}
+
+	/**
+	 * Get the tree column value.
+	 *
+	 * Returns:
+	 *     A string containing the tree value.
+	 */
+	public @property string treeValue()
+	{
+		return this._treeValue;
+	}
+
+	/**
+	 * Get the data column values.
+	 *
+	 * Returns:
+	 *     An array containing the data values.
+	 */
+	public @property string[] dataValues()
+	{
+		return this._dataValues;
+	}
+
+	/**
+	 * Get if the row was open.
+	 *
+	 * Returns:
+	 *     true if the row was set to be open, false if not.
+	 */
+	public @property bool isOpen()
+	{
+		return this._isOpen;
+	}
+
+	/**
+	 * Get the tags.
+	 *
+	 * Returns:
+	 *     An array of tags assocaited to this row.
+	 */
+	public @property string[] tags()
+	{
+		return this._tags;
+	}
 }
 
 /**
