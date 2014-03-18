@@ -11,6 +11,7 @@ module tkd.widget.treeview;
  */
 import std.algorithm;
 import std.array;
+import std.regex;
 import std.string;
 import tcltk.tk;
 import tkd.element.element;
@@ -326,7 +327,7 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 */
 	public auto addRow(this T)(TreeViewRow row)
 	{
-		this.addRows([row]);
+		this.appendRows("{}", [row]);
 
 		return cast(T) this;
 	}
@@ -357,15 +358,26 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 */
 	private void appendRows(string parentRow, TreeViewRow[] rows)
 	{
-		string parent;
+		string dataValues;
+		string tags;
 
 		foreach (row; rows)
 		{
-			this._tk.eval("%s insert %s end -text \"%s\" -values { \"%s\" } -open %s -tags { \"%s\" }", this.id, parentRow, row.treeValue, row.dataValues.join("\" \""), row.isOpen, row.tags.join("\" \""));
+			if (row.dataValues.length)
+			{
+				dataValues = format("\"%s\"", row.dataValues.join("\" \""));
+			}
+
+			if (row.tags.length)
+			{
+				tags = format("\"%s\"", row.tags.join("\" \""));
+			}
+
+			this._tk.eval("%s insert %s end -text \"%s\" -values { %s } -open %s -tags { %s }", this.id, parentRow, row.treeValue, dataValues, row.isOpen, tags);
+
 			if (row.children.length)
 			{
-				parent = this._tk.getResult!(string);
-				this.appendRows(parent, row.children);
+				this.appendRows(this._tk.getResult!(string), row.children);
 			}
 		}
 	}
@@ -513,6 +525,84 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	}
 
 	/**
+	 * Construct a row object from a row id.
+	 *
+	 * Params:
+	 *     rowId = The id of the row to construct.
+	 *
+	 * Returns:
+	 *     A tree view row.
+	 */
+	private TreeViewRow getRowFromId(string rowId)
+	{
+pragma(msg, "improve this to parse all in one go.", __FILE__, __LINE__);
+		auto row = new TreeViewRow();
+
+		this._tk.eval("%s item %s -text", this.id, rowId);
+		row._treeValue = this._tk.getResult!(string);
+
+		this._tk.eval("%s item %s -values", this.id, rowId);
+		auto results = matchAll(this._tk.getResult!(string), "\"(.*?)\"");
+		foreach (result; results)
+		{
+			row._dataValues ~= result.captures[1];
+		}
+
+		this._tk.eval("%s item %s -open", this.id, rowId);
+		row._isOpen = this._tk.getResult!(bool);
+
+		this._tk.eval("%s item %s -tags", this.id, rowId);
+		results = matchAll(this._tk.getResult!(string), "\"(.*?)\"");
+		foreach (result; results)
+		{
+			row._tags ~= result.captures[1];
+		}
+
+		return row;
+	}
+
+	/**
+	 * Populate row objects and return them.
+	 *
+	 * Params:
+	 *     rows = An array to append the rows to.
+	 *
+	 * Returns:
+	 *     AN array of tree view rows.
+	 */
+	private TreeViewRow[] populateRows(string[] rowIds)
+	{
+		TreeViewRow[] rows;
+		TreeViewRow currentRow;
+
+		foreach (rowId; rowIds)
+		{
+			currentRow = this.getRowFromId(rowId);
+
+			this._tk.eval("%s children %s", this.id, rowId);
+			currentRow.children = this.populateRows(this._tk.getResult!(string).split());
+
+			rows ~= currentRow;
+		}
+
+		return rows;
+	}
+
+	/**
+	 * Get the row(s) selected in the tree view.
+	 *
+	 * Returns:
+	 *     An array containing the selected rows.
+	 */
+	public TreeViewRow[] getSelectedRows()
+	{
+		this._tk.eval("%s selection", this.id);
+		string[] rowIds = this._tk.getResult!(string).split();
+
+		return this.populateRows(rowIds);
+	}
+
+	/**
 	 * Mixin common commands.
 	 */
 	mixin Height;
@@ -553,6 +643,14 @@ class TreeViewRow
 
 	/**
 	 * Constructor.
+	 */
+	private this()
+	{
+
+	}
+
+	/**
+	 * Constructor.
 	 *
 	 * Params:
 	 *     treeValue = The value of the tree column.
@@ -560,7 +658,7 @@ class TreeViewRow
 	 *     isOpen = Whether or not to display the row open.
 	 *     tags = The tags to associate to this row.
 	 */
-	this(string treeValue, string[] dataValues, bool isOpen = false, string[] tags = [])
+	public this(string treeValue, string[] dataValues = [], bool isOpen = false, string[] tags = [])
 	{
 		this._treeValue  = treeValue;
 		this._dataValues = dataValues;
@@ -610,6 +708,14 @@ class TreeViewRow
 	public @property string[] tags()
 	{
 		return this._tags;
+	}
+
+	/**
+	 * String representation.
+	 */
+	debug override public string toString()
+	{
+		return format("TreeValue: %s, DataValues: %s, isOpen: %s, Tags: %s, Children: %s", this.treeValue, this.dataValues, this.isOpen, this.tags, this.children);
 	}
 }
 

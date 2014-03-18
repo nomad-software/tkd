@@ -31,6 +31,11 @@ class Application : TkdApplication
 		writefln("Column: %s", column.id);
 	}
 
+	private void getSelection(Widget widget, CommandArgs args)
+	{
+		writefln("%s", this._tree.getSelectedRows());
+	}
+
 	/**
 	 * Initialise the user interface.
 	 */
@@ -49,13 +54,16 @@ class Application : TkdApplication
 
 		TreeViewRow[] rows;
 
-		rows ~= new TreeViewRow("row1", ["data1", "data2"]);
-		rows ~= new TreeViewRow("row2", ["data1", "data2"]);
-		rows[1].children ~= new TreeViewRow("row3", ["data1", "data2"]);
+		rows ~= new TreeViewRow("Row1", ["Lorem ipsum", "dolor sit"], true, ["folder"]);
+		rows[0].children ~= new TreeViewRow("Row2", ["Hello", "World"], true, ["file"]);
 
 		this._tree.addRows(rows);
 
-		auto button = new Button(frame, "Exit")
+		auto button1 = new Button(frame, "Get Selection")
+			.setCommand(&this.getSelection)
+			.pack();
+
+		auto button2 = new Button(frame, "Exit")
 			.setCommand(&this.exitCommand)
 			.pack();
 	}
