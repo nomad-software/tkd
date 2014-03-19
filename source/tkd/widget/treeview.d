@@ -535,7 +535,6 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 */
 	private TreeViewRow getRowFromId(string rowId)
 	{
-pragma(msg, "improve this to parse all in one go.", __FILE__, __LINE__);
 		auto row = new TreeViewRow();
 
 		this._tk.eval("%s item %s -text", this.id, rowId);
@@ -566,11 +565,12 @@ pragma(msg, "improve this to parse all in one go.", __FILE__, __LINE__);
 	 *
 	 * Params:
 	 *     rows = An array to append the rows to.
+	 *     includeChildren = Specifies whether or not to include the children.
 	 *
 	 * Returns:
 	 *     AN array of tree view rows.
 	 */
-	private TreeViewRow[] populateRows(string[] rowIds)
+	private TreeViewRow[] populateRows(string[] rowIds, bool includeChildren)
 	{
 		TreeViewRow[] rows;
 		TreeViewRow currentRow;
@@ -579,8 +579,11 @@ pragma(msg, "improve this to parse all in one go.", __FILE__, __LINE__);
 		{
 			currentRow = this.getRowFromId(rowId);
 
-			this._tk.eval("%s children %s", this.id, rowId);
-			currentRow.children = this.populateRows(this._tk.getResult!(string).split());
+			if (includeChildren)
+			{
+				this._tk.eval("%s children %s", this.id, rowId);
+				currentRow.children = this.populateRows(this._tk.getResult!(string).split(), includeChildren);
+			}
 
 			rows ~= currentRow;
 		}
@@ -591,15 +594,30 @@ pragma(msg, "improve this to parse all in one go.", __FILE__, __LINE__);
 	/**
 	 * Get the row(s) selected in the tree view.
 	 *
+	 * Params:
+	 *     includeChildren = Specifies whether or not to include the children.
+	 *
 	 * Returns:
 	 *     An array containing the selected rows.
 	 */
-	public TreeViewRow[] getSelectedRows()
+	public TreeViewRow[] getSelectedRows(bool includeChildren = false)
 	{
 		this._tk.eval("%s selection", this.id);
 		string[] rowIds = this._tk.getResult!(string).split();
 
-		return this.populateRows(rowIds);
+		return this.populateRows(rowIds, includeChildren);
+	}
+
+	/**
+	 * Delete all rows in the widget.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto deleteRows()
+	{
+		this._tk.eval("%s children {}", this.id);
+		this._tk.eval("%s delete {%s}", this.id, this._tk.getResult!(string));
 	}
 
 	/**
@@ -609,114 +627,6 @@ pragma(msg, "improve this to parse all in one go.", __FILE__, __LINE__);
 	mixin Padding;
 	mixin XScrollCommand!(TreeView);
 	mixin YScrollCommand!(TreeView);
-}
-
-/**
- * A class representing a row in the tree view.
- */
-class TreeViewRow
-{
-	/**
-	 * The tree column value;
-	 */
-	private string _treeValue;
-
-	/**
-	 * An array containing the data column values.
-	 */
-	private string[] _dataValues;
-
-	/**
-	 * Boolean representing if the row was set to be open when created.
-	 */
-	private bool _isOpen;
-
-	/**
-	 * An array containing the tags.
-	 */
-	private string[] _tags;
-
-	/**
-	 * An array containing the child rows.
-	 */
-	public TreeViewRow[] children;
-
-	/**
-	 * Constructor.
-	 */
-	private this()
-	{
-
-	}
-
-	/**
-	 * Constructor.
-	 *
-	 * Params:
-	 *     treeValue = The value of the tree column.
-	 *     dataValues = The values of the data columns.
-	 *     isOpen = Whether or not to display the row open.
-	 *     tags = The tags to associate to this row.
-	 */
-	public this(string treeValue, string[] dataValues = [], bool isOpen = false, string[] tags = [])
-	{
-		this._treeValue  = treeValue;
-		this._dataValues = dataValues;
-		this._isOpen     = isOpen;
-		this._tags       = tags;
-	}
-
-	/**
-	 * Get the tree column value.
-	 *
-	 * Returns:
-	 *     A string containing the tree value.
-	 */
-	public @property string treeValue()
-	{
-		return this._treeValue;
-	}
-
-	/**
-	 * Get the data column values.
-	 *
-	 * Returns:
-	 *     An array containing the data values.
-	 */
-	public @property string[] dataValues()
-	{
-		return this._dataValues;
-	}
-
-	/**
-	 * Get if the row was open.
-	 *
-	 * Returns:
-	 *     true if the row was set to be open, false if not.
-	 */
-	public @property bool isOpen()
-	{
-		return this._isOpen;
-	}
-
-	/**
-	 * Get the tags.
-	 *
-	 * Returns:
-	 *     An array of tags assocaited to this row.
-	 */
-	public @property string[] tags()
-	{
-		return this._tags;
-	}
-
-	/**
-	 * String representation.
-	 */
-	debug override public string toString()
-	{
-		return format("TreeValue: %s, DataValues: %s, isOpen: %s, Tags: %s, Children: %s", this.treeValue, this.dataValues, this.isOpen, this.tags, this.children);
-	}
 }
 
 /**
@@ -1006,6 +916,113 @@ class TreeViewColumn : Element
 		}
 
 		return cast(T) this;
+	}
+}
+
+/**
+ * A class representing a row in the tree view.
+ */
+class TreeViewRow
+{
+	/**
+	 * The tree column value;
+	 */
+	private string _treeValue;
+
+	/**
+	 * An array containing the data column values.
+	 */
+	private string[] _dataValues;
+
+	/**
+	 * Boolean representing if the row was set to be open when created.
+	 */
+	private bool _isOpen;
+
+	/**
+	 * An array containing the tags.
+	 */
+	private string[] _tags;
+
+	/**
+	 * An array containing the child rows.
+	 */
+	public TreeViewRow[] children;
+
+	/**
+	 * Constructor.
+	 */
+	private this()
+	{
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * Params:
+	 *     treeValue = The value of the tree column.
+	 *     dataValues = The values of the data columns.
+	 *     isOpen = Whether or not to display the row open.
+	 *     tags = The tags to associate to this row.
+	 */
+	public this(string treeValue, string[] dataValues = [], bool isOpen = false, string[] tags = [])
+	{
+		this._treeValue  = treeValue;
+		this._dataValues = dataValues;
+		this._isOpen     = isOpen;
+		this._tags       = tags;
+	}
+
+	/**
+	 * Get the tree column value.
+	 *
+	 * Returns:
+	 *     A string containing the tree value.
+	 */
+	public @property string treeValue()
+	{
+		return this._treeValue;
+	}
+
+	/**
+	 * Get the data column values.
+	 *
+	 * Returns:
+	 *     An array containing the data values.
+	 */
+	public @property string[] dataValues()
+	{
+		return this._dataValues;
+	}
+
+	/**
+	 * Get if the row was open.
+	 *
+	 * Returns:
+	 *     true if the row was set to be open, false if not.
+	 */
+	public @property bool isOpen()
+	{
+		return this._isOpen;
+	}
+
+	/**
+	 * Get the tags.
+	 *
+	 * Returns:
+	 *     An array of tags assocaited to this row.
+	 */
+	public @property string[] tags()
+	{
+		return this._tags;
+	}
+
+	/**
+	 * String representation.
+	 */
+	debug override public string toString()
+	{
+		return format("TreeValue: %s, DataValues: %s, isOpen: %s, Tags: %s, Children: %s", this.treeValue, this.dataValues, this.isOpen, this.tags, this.children);
 	}
 }
 

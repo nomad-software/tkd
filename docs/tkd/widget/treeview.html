@@ -271,70 +271,21 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
-<h2><a name="TreeView.getSelectedRows"></a>TreeViewRow[] <span class="symbol">getSelectedRows</span>();
+<h2><a name="TreeView.getSelectedRows"></a>TreeViewRow[] <span class="symbol">getSelectedRows</span>(bool includeChildren = false);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Get the row(s) selected in the tree view.
 </p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>bool includeChildren</td>
+<td>Specifies whether or not to include the children.</td></tr>
+</table>
 <h3>Return Value</h3><p>An array containing the selected rows.</p>
 </div>
 </div>
-</div>
-</div>
-<h2><a name="TreeViewRow"></a>class <span class="symbol">TreeViewRow</span>;
+<h2><a name="TreeView.deleteRows"></a>auto <span class="symbol">deleteRows</span>();
 </h2>
-<div class="declaration-description"><div class="sections"><p>A class representing a row in the tree view.</p>
-</div>
-<div class="class-members"><h2><a name="TreeViewRow.children"></a>TreeViewRow[] <span class="symbol">children</span>;
-</h2>
-<div class="declaration-description"><div class="sections"><p>An array containing the child rows.</p>
-</div>
-</div>
-<h2><a name="TreeViewRow.this"></a> this(string treeValue, string[] dataValues = [], bool isOpen = false, string[] tags = []);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Constructor.
+<div class="declaration-description"><div class="sections"><p>Delete all rows in the widget.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string treeValue</td>
-<td>The value of the tree column.</td></tr>
-<tr><td>string[] dataValues</td>
-<td>The values of the data columns.</td></tr>
-<tr><td>bool isOpen</td>
-<td>Whether or not to display the row open.</td></tr>
-<tr><td>string[] tags</td>
-<td>The tags to associate to this row.</td></tr>
-</table>
-</div>
-</div>
-<h2><a name="TreeViewRow.treeValue"></a>@property string <span class="symbol">treeValue</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the tree column value.
-</p>
-<h3>Return Value</h3><p>A string containing the tree value.</p>
-</div>
-</div>
-<h2><a name="TreeViewRow.dataValues"></a>@property string[] <span class="symbol">dataValues</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the data column values.
-</p>
-<h3>Return Value</h3><p>An array containing the data values.</p>
-</div>
-</div>
-<h2><a name="TreeViewRow.isOpen"></a>@property bool <span class="symbol">isOpen</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get if the row was open.
-</p>
-<h3>Return Value</h3><p><strong>true</strong> if the row was set to be open, <strong>false</strong> if not.</p>
-</div>
-</div>
-<h2><a name="TreeViewRow.tags"></a>@property string[] <span class="symbol">tags</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the <span class="symbol">tags</span>.
-</p>
-<h3>Return Value</h3><p>An array of <span class="symbol">tags</span> assocaited to this row.</p>
-</div>
-</div>
-<h2><a name="TreeViewRow.toString"></a>string <span class="symbol">toString</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>String representation.</p>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
 </div>
@@ -435,6 +386,65 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <td>The width in pixels.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="TreeViewRow"></a>class <span class="symbol">TreeViewRow</span>;
+</h2>
+<div class="declaration-description"><div class="sections"><p>A class representing a row in the tree view.</p>
+</div>
+<div class="class-members"><h2><a name="TreeViewRow.children"></a>TreeViewRow[] <span class="symbol">children</span>;
+</h2>
+<div class="declaration-description"><div class="sections"><p>An array containing the child rows.</p>
+</div>
+</div>
+<h2><a name="TreeViewRow.this"></a> this(string treeValue, string[] dataValues = [], bool isOpen = false, string[] tags = []);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Constructor.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string treeValue</td>
+<td>The value of the tree column.</td></tr>
+<tr><td>string[] dataValues</td>
+<td>The values of the data columns.</td></tr>
+<tr><td>bool isOpen</td>
+<td>Whether or not to display the row open.</td></tr>
+<tr><td>string[] tags</td>
+<td>The tags to associate to this row.</td></tr>
+</table>
+</div>
+</div>
+<h2><a name="TreeViewRow.treeValue"></a>@property string <span class="symbol">treeValue</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the tree column value.
+</p>
+<h3>Return Value</h3><p>A string containing the tree value.</p>
+</div>
+</div>
+<h2><a name="TreeViewRow.dataValues"></a>@property string[] <span class="symbol">dataValues</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the data column values.
+</p>
+<h3>Return Value</h3><p>An array containing the data values.</p>
+</div>
+</div>
+<h2><a name="TreeViewRow.isOpen"></a>@property bool <span class="symbol">isOpen</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get if the row was open.
+</p>
+<h3>Return Value</h3><p><strong>true</strong> if the row was set to be open, <strong>false</strong> if not.</p>
+</div>
+</div>
+<h2><a name="TreeViewRow.tags"></a>@property string[] <span class="symbol">tags</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the <span class="symbol">tags</span>.
+</p>
+<h3>Return Value</h3><p>An array of <span class="symbol">tags</span> assocaited to this row.</p>
+</div>
+</div>
+<h2><a name="TreeViewRow.toString"></a>string <span class="symbol">toString</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>String representation.</p>
 </div>
 </div>
 </div>

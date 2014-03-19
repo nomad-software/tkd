@@ -26,14 +26,14 @@ class Application : TkdApplication
 		this.exit();
 	}
 
-	private void columnCommand(TreeViewColumn column, ColumnArgs args)
+	private void getSelection(UiElement sender, BindArgs args)
 	{
-		writefln("Column: %s", column.id);
+			writefln("%s", this._tree.getSelectedRows());
 	}
 
-	private void getSelection(Widget widget, CommandArgs args)
+	private void deleteRows(Widget widget, CommandArgs args)
 	{
-		writefln("%s", this._tree.getSelectedRows());
+			this._tree.deleteRows();
 	}
 
 	/**
@@ -50,6 +50,7 @@ class Application : TkdApplication
 			.addColumn(new TreeViewColumn("Address"))
 			.setTag("folder", new Png!("folder.png"))
 			.setTag("file", new Png!("page.png"))
+			.bind("<<TreeviewSelect>>", &getSelection)
 			.pack();
 
 		TreeViewRow[] rows;
@@ -59,8 +60,8 @@ class Application : TkdApplication
 
 		this._tree.addRows(rows);
 
-		auto button1 = new Button(frame, "Get Selection")
-			.setCommand(&this.getSelection)
+		auto button1 = new Button(frame, "Delete Rows")
+			.setCommand(&this.deleteRows)
 			.pack();
 
 		auto button2 = new Button(frame, "Exit")
