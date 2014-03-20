@@ -85,14 +85,9 @@ import tkd.widget.widget;
 class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 {
 	/**
-	 * The tree column.
+	 * An array containing all the columns.
 	 */
-	private TreeViewColumn   _treeColumn;
-
-	/**
-	 * An array containing the data columns.
-	 */
-	private TreeViewColumn[] _dataColumns;
+	private TreeViewColumn[] _columns;
 
 	/**
 	 * Construct the widget.
@@ -110,9 +105,9 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 
 		this._tk.eval("ttk::treeview %s -selectmode browse", this.id);
 
-		this._treeColumn = new TreeViewColumn();
-		this._treeColumn._identifier = "#0";
-		this._treeColumn.init(this);
+		this._columns ~= new TreeViewColumn();
+		this._columns[0]._identifier = "#0";
+		this._columns[0].init(this);
 	}
 
 	/**
@@ -124,15 +119,15 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 * Returns:
 	 *     A string array containing the columns relating to the indexes.
 	 */
-	private string[] getColumnIdentifiers(int[] indexes)
+	private string[] getDataColumnIdentifiers(int[] indexes)
 	{
 		string[] columns;
 
-		for (int x = 0; x < this._dataColumns.length; x++)
+		for (int x = 1; x < this._columns.length; x++)
 		{
 			if (indexes.canFind(x))
 			{
-				columns ~= this._dataColumns[x].id;
+				columns ~= this._columns[x].id;
 			}
 		}
 
@@ -145,13 +140,13 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 * Returns:
 	 *     A string array containing all column identifiers.
 	 */
-	private string[] getColumnIdentifiers()
+	private string[] getDataColumnIdentifiers()
 	{
 		string[] columns;
 
-		foreach (column; this._dataColumns)
+		for (int x = 1; x < this._columns.length; x++)
 		{
-			columns ~= column.id;
+			columns ~= this._columns[x].id;
 		}
 
 		return columns;
@@ -170,20 +165,21 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	}
 
 	/**
-	 * Build the columns found in the data column array.
+	 * Build the columns found in the column array. This is needed because the 
+	 * data columns always seem to forget setting if configured piece-meal.
 	 */
 	private void buildColumns()
 	{
-		this._tk.eval("%s configure -columns { \"%s\" }", this.id, this.getColumnIdentifiers().join("\" \""));
+		this._tk.eval("%s configure -columns { \"%s\" }", this.id, this.getDataColumnIdentifiers().join("\" \""));
 
-		foreach (column; this._dataColumns)
+		for (int x = 1; x < this._columns.length; x++)
 		{
-			column.init(this);
+			this.columns[x].init(this);
 		}
 	}
 
 	/**
-	 * Set the tree column heading text.
+	 * Convenience method to set the tree column heading text.
 	 *
 	 * Params:
 	 *    title = The title of the column.
@@ -195,15 +191,15 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 * See_Also:
 	 *     $(LINK2 ./anchorposition.html, tkd.widget.anchorposition) $(BR)
 	 */
-	public auto setTreeHeading(this T)(string title, string anchor = AnchorPosition.west)
+	public auto setHeading(this T)(string title, string anchor = AnchorPosition.west)
 	{
-		this._treeColumn.setHeading(title, anchor);
+		this._columns[0].setHeading(title, anchor);
 
 		return cast(T) this;
 	}
 
 	/**
-	 * Set the tree column heading image.
+	 * Convenience method to set the tree column heading image.
 	 *
 	 * Params:
 	 *    image = The image to use.
@@ -211,15 +207,16 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setTreeHeadingImage(this T)(Image image)
+	public auto setHeadingImage(this T)(Image image)
 	{
-		this._treeColumn.setHeadingImage(image);
+		this._columns[0].setHeadingImage(image);
 
 		return cast(T) this;
 	}
 
 	/**
-	 * Set the tree column command to be executed when clicking on the heading.
+	 * Convenience method to set the tree column command to be executed when 
+	 * clicking on the heading.
 	 *
 	 * Params:
 	 *    callback = The delegate callback to execute when invoking the command.
@@ -230,28 +227,28 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 * See_Also:
 	 *     $(LINK2 ./treeview.html#ColumnCommandCallback, tkd.widget.ColumnCommandCallback)
 	 */
-	public auto setTreeHeadingCommand(this T)(ColumnCommandCallback callback)
+	public auto setHeadingCommand(this T)(ColumnCommandCallback callback)
 	{
-		this._treeColumn.setHeadingCommand(callback);
+		this._columns[0].setHeadingCommand(callback);
 
 		return cast(T) this;
 	}
 
 	/**
-	 * Remove the tree view column command.
+	 * Convenience method to remove the tree view column command.
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto removeTreeCommand(this T)()
+	public auto removeCommand(this T)()
 	{
-		this._treeColumn.removeHeadingCommand();
+		this._columns[0].removeHeadingCommand();
 
 		return cast(T) this;
 	}
 
 	/**
-	 * Set the minium width of the tree column.
+	 * Convenience method to set the minium width of the tree column.
 	 *
 	 * Params:
 	 *     minimumWidth = The minimum width in pixels.
@@ -259,16 +256,17 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setTreeMinimumWidth(this T)(int minimumWidth)
+	public auto setMinimumWidth(this T)(int minimumWidth)
 	{
-		this._treeColumn.setMinimumWidth(minimumWidth);
+		this._columns[0].setMinimumWidth(minimumWidth);
 
 		return cast(T) this;
 	}
 
 	/**
-	 * Enable or disable stretching for the tree column. This controls how this 
-	 * column react when other columns or the parent widget is resized.
+	 * Convenience method to enable or disable stretching for the tree column. 
+	 * This controls how this column react when other columns or the parent 
+	 * widget is resized.
 	 *
 	 * Params:
 	 *     stretch = true for enabling stretching, false to disable.
@@ -276,15 +274,15 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setTreeStretch(this T)(bool stretch)
+	public auto setStretch(this T)(bool stretch)
 	{
-		this._treeColumn.setStretch(stretch);
+		this._columns[0].setStretch(stretch);
 
 		return cast(T) this;
 	}
 
 	/**
-	 * Set the width of the tree column.
+	 * Convenience method to set the width of the tree column.
 	 *
 	 * Params:
 	 *     width = The width in pixels.
@@ -292,9 +290,9 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setTreeWidth(this T)(int width)
+	public auto setWidth(this T)(int width)
 	{
-		this._treeColumn.setWidth(width);
+		this._columns[0].setWidth(width);
 
 		return cast(T) this;
 	}
@@ -310,7 +308,7 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 */
 	public auto addColumn(this T)(TreeViewColumn column)
 	{
-		this._dataColumns ~= column;
+		this._columns ~= column;
 		this.buildColumns();
 
 		return cast(T) this;
@@ -405,14 +403,14 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	}
 
 	/**
-	 * Get the data columns.
+	 * Get the columns.
 	 *
 	 * Returns:
 	 *     An array containing all the data columns.
 	 */
-	public @property TreeViewColumn[] dataColumns()
+	public @property TreeViewColumn[] columns()
 	{
-		return this._dataColumns;
+		return this._columns;
 	}
 
 	/**
@@ -439,7 +437,7 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 */
 	public auto displayDataColumns(this T)(int[] indexes)
 	{
-		this._tk.eval("%s configure -displaycolumns { \"%s\" }", this.id, this.getColumnIdentifiers(indexes).join("\" \""));
+		this._tk.eval("%s configure -displaycolumns { \"%s\" }", this.id, this.getDataColumnIdentifiers(indexes).join("\" \""));
 
 		return cast(T) this;
 	}

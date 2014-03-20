@@ -45,7 +45,7 @@ class Application : TkdApplication
 			.pack();
 
 		this._tree = new TreeView(frame)
-			.setTreeHeading("Treeview")
+			.setHeading("Treeview")
 			.addColumn(new TreeViewColumn("Name"))
 			.addColumn(new TreeViewColumn("Address"))
 			.setTag("folder", new Png!("folder.png"))
