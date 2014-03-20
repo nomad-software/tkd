@@ -26,9 +26,9 @@ abstract class Element
 	protected Tk _tk;
 
 	/**
-	 * The unique hash of this element.
+	 * An optional identifier that overrides the generated id.
 	 */
-	protected string _hash;
+	private string _identifier;
 
 	/**
 	 * Internal element identifier.
@@ -36,13 +36,30 @@ abstract class Element
 	protected string _elementId;
 
 	/**
+	 * The unique hash of this element.
+	 */
+	protected string _hash;
+
+	/**
 	 * Construct the element.
 	 */
 	public this()
 	{
 		this._tk        = Tk.getInstance();
-		this._hash      = this.generateHash();
 		this._elementId = "element";
+		this._hash      = this.generateHash();
+	}
+
+	/*
+	 * Override the unique id of this element. This method is intended for 
+	 * internal use only and if used can have unintended consequences.
+	 *
+	 * Params:
+	 *     identifier = The overriden identifier.
+	 */
+	public void overrideGeneratedId(string identifier) nothrow
+	{
+		this._identifier = identifier;
 	}
 
 	/**
@@ -53,6 +70,11 @@ abstract class Element
 	 */
 	public @property string id() nothrow
 	{
+		if (this._identifier !is null)
+		{
+			return this._identifier;
+		}
+
 		return this._elementId ~ "-" ~ this._hash;
 	}
 

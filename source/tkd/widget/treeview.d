@@ -105,8 +105,11 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 
 		this._tk.eval("ttk::treeview %s -selectmode browse", this.id);
 
+		// Add the treeview column to the column collection. '#0' is the 
+		// built-in Tcl/Tk display id of the tree view column. This allows 
+		// access to this column even if it wasn't created by us.
 		this._columns ~= new TreeViewColumn();
-		this._columns[0]._identifier = "#0";
+		this._columns[0].overrideGeneratedId("#0");
 		this._columns[0].init(this);
 	}
 
@@ -633,11 +636,6 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 class TreeViewColumn : Element
 {
 	/**
-	 * An optional identifier that overrides the generated id.
-	 */
-	private string _identifier;
-
-	/**
 	 * The parent of this column.
 	 */
 	private TreeView _parent;
@@ -706,22 +704,6 @@ class TreeViewColumn : Element
 		this.setMinimumWidth(this._minimumWidth);
 		this.setStretch(this._stretch);
 		this.setWidth(this._width);
-	}
-
-	/**
-	 * The generated unique id of this element.
-	 *
-	 * Returns:
-	 *     The string id.
-	 */
-	override public @property string id() nothrow
-	{
-		if (this._identifier !is null)
-		{
-			return this._identifier;
-		}
-
-		return this._elementId ~ "-" ~ this._hash;
 	}
 
 	/**

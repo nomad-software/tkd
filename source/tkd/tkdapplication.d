@@ -117,3 +117,55 @@ abstract class TkdApplication
 	 */
 	abstract protected void initInterface();
 }
+
+/**
+ * The Window class creates a new toplevel window.
+ *
+ * A window is similar to a frame except that it is created as a top-level 
+ * widget. The primary purpose of a toplevel is to serve as a container for 
+ * dialog boxes and other collections of widgets.
+ *
+ * Additional_Events:
+ *     Additional events that can also be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) method.
+ *     $(P
+ *         &lt;&lt;PrevWindow&gt;&gt;,
+ *         &lt;Alt-Key&gt;,
+ *         &lt;Key-Tab&gt;,
+ *         &lt;Key-F10&gt;,
+ *     )
+ *
+ * See_Also:
+ *     $(LINK2 ./element/uielement.html, tkd.element.uielement)
+ */
+class Window : UiElement
+{
+	/**
+	 * Constructor.
+	 *
+	 * Params:
+	 *     title = The title of the window.
+	 */
+	public this(string title)
+	{
+		this._elementId = "window";
+		this._tk.eval("toplevel %s", this.id);
+
+		this.setTitle(title);
+	}
+
+	/**
+	 * Set the title of the window.
+	 *
+	 * Params:
+	 *     title = The title of the window.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto setTitle(this T)(string title)
+	{
+		this._tk.eval("wm title %s \"%s\"", this.id, title);
+
+		return cast(T) this;
+	}
+}

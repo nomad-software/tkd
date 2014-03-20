@@ -16,7 +16,7 @@ class Application : TkdApplication
 	/**
 	 * Wigets.
 	 */
-	private TreeView _tree;
+	private Window _win;
 
 	/**
 	 * Event callbacks.
@@ -26,14 +26,9 @@ class Application : TkdApplication
 		this.exit();
 	}
 
-	private void getSelection(UiElement sender, BindArgs args)
+	private void createWindow(Widget widget, CommandArgs args)
 	{
-			writefln("%s", this._tree.getSelectedRows());
-	}
-
-	private void deleteRows(Widget widget, CommandArgs args)
-	{
-			this._tree.deleteRows();
+		this._win = new Window("New window");
 	}
 
 	/**
@@ -44,24 +39,8 @@ class Application : TkdApplication
 		auto frame = new Frame()
 			.pack();
 
-		this._tree = new TreeView(frame)
-			.setHeading("Treeview")
-			.addColumn(new TreeViewColumn("Name"))
-			.addColumn(new TreeViewColumn("Address"))
-			.setTag("folder", new Png!("folder.png"))
-			.setTag("file", new Png!("page.png"))
-			.bind("<<TreeviewSelect>>", &getSelection)
-			.pack();
-
-		TreeViewRow[] rows;
-
-		rows ~= new TreeViewRow("Row1", ["Lorem ipsum", "dolor sit"], true, ["folder"]);
-		rows[0].children ~= new TreeViewRow("Row2", ["Hello", "World"], true, ["file"]);
-
-		this._tree.addRows(rows);
-
-		auto button1 = new Button(frame, "Delete Rows")
-			.setCommand(&this.deleteRows)
+		auto button1 = new Button(frame, "Spawn window")
+			.setCommand(&this.createWindow)
 			.pack();
 
 		auto button2 = new Button(frame, "Exit")
