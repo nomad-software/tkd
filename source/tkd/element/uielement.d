@@ -71,6 +71,11 @@ abstract class UiElement : Element
 	 */
 	override public @property string id() nothrow
 	{
+		if (this._manualIdentifier !is null)
+		{
+			return this._manualIdentifier;
+		}
+
 		string parentId;
 
 		if (this._parent !is null)
@@ -222,6 +227,19 @@ abstract class UiElement : Element
 		this._tk.eval(tkScript);
 
 		return cast(T) this;
+	}
+
+	/**
+	 * Destroy this ui element.
+	 *
+	 * Caveats:
+	 *     Once an element is destroyed it can no longer be referenced in your 
+	 *     code or an internal error will occur and potentially crash your 
+	 *     program.
+	 */
+	public void destroy()
+	{
+		this._tk.eval("destroy %s", this.id);
 	}
 }
 

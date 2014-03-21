@@ -79,7 +79,7 @@ mixin template PostCommand()
 	public auto removePostCommand(this T)()
 	{
 		string command  = format("command-%s", this.generateHash("postcommand%s", this.id));
-		string tkScript = format("%s configure -postcommand { }", this.id);
+		string tkScript = format("%s configure -postcommand {}", this.id);
 
 		this._tk.deleteCommand(command);
 		this._tk.eval(tkScript);

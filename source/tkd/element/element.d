@@ -28,7 +28,7 @@ abstract class Element
 	/**
 	 * An optional identifier that overrides the generated id.
 	 */
-	private string _identifier;
+	protected string _manualIdentifier;
 
 	/**
 	 * Internal element identifier.
@@ -51,15 +51,14 @@ abstract class Element
 	}
 
 	/*
-	 * Override the unique id of this element. This method is intended for 
-	 * internal use only and if used can have unintended consequences.
+	 * Override the unique id of this element.
 	 *
 	 * Params:
 	 *     identifier = The overriden identifier.
 	 */
-	public void overrideGeneratedId(string identifier) nothrow
+	protected void overrideGeneratedId(string identifier) nothrow
 	{
-		this._identifier = identifier;
+		this._manualIdentifier = identifier;
 	}
 
 	/**
@@ -70,9 +69,9 @@ abstract class Element
 	 */
 	public @property string id() nothrow
 	{
-		if (this._identifier !is null)
+		if (this._manualIdentifier !is null)
 		{
-			return this._identifier;
+			return this._manualIdentifier;
 		}
 
 		return this._elementId ~ "-" ~ this._hash;

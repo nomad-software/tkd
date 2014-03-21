@@ -80,7 +80,7 @@ mixin template Command()
 	public auto removeCommand(this T)()
 	{
 		string command  = format("command-%s", this.generateHash("command%s", this.id));
-		string tkScript = format("%s configure -command { }", this.id);
+		string tkScript = format("%s configure -command {}", this.id);
 
 		this._tk.deleteCommand(command);
 		this._tk.eval(tkScript);

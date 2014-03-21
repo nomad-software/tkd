@@ -105,11 +105,8 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 
 		this._tk.eval("ttk::treeview %s -selectmode browse", this.id);
 
-		// Add the treeview column to the column collection. '#0' is the 
-		// built-in Tcl/Tk display id of the tree view column. This allows 
-		// access to this column even if it wasn't created by us.
+		// Add the treeview column to the column collection.
 		this._columns ~= new TreeViewColumn();
-		this._columns[0].overrideGeneratedId("#0");
 		this._columns[0].init(this);
 	}
 
@@ -364,9 +361,9 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 
 		foreach (row; rows)
 		{
-			if (row.dataValues.length)
+			if (row.values.length > 1)
 			{
-				dataValues = format("\"%s\"", row.dataValues.join("\" \""));
+				dataValues = format("\"%s\"", row.values[1 .. $].join("\" \""));
 			}
 
 			if (row.tags.length)
@@ -374,7 +371,7 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 				tags = format("\"%s\"", row.tags.join("\" \""));
 			}
 
-			this._tk.eval("%s insert %s end -text \"%s\" -values { %s } -open %s -tags { %s }", this.id, parentRow, row.treeValue, dataValues, row.isOpen, tags);
+			this._tk.eval("%s insert %s end -text \"%s\" -values { %s } -open %s -tags { %s }", this.id, parentRow, row.values[0], dataValues, row.isOpen, tags);
 
 			if (row.children.length)
 			{
@@ -539,13 +536,13 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 		auto row = new TreeViewRow();
 
 		this._tk.eval("%s item %s -text", this.id, rowId);
-		row._treeValue = this._tk.getResult!(string);
+		row._values ~= this._tk.getResult!(string);
 
 		this._tk.eval("%s item %s -values", this.id, rowId);
 		auto results = matchAll(this._tk.getResult!(string), "\"(.*?)\"");
 		foreach (result; results)
 		{
-			row._dataValues ~= result.captures[1];
+			row._values ~= result.captures[1];
 		}
 
 		this._tk.eval("%s item %s -open", this.id, rowId);
@@ -676,13 +673,26 @@ class TreeViewColumn : Element
 	private ColumnCommandCallback _commandCallback;
 
 	/**
+	 * Construct a new column to add the treeview column to the column 
+	 * collection.
+	 *
+	 * '#0' is the built-in Tcl/Tk display id of the tree view column.
+	 * This allows access to this column even if it wasn't created by us.
+	 */
+	private this()
+	{
+		super();
+		this.overrideGeneratedId("#0");
+	}
+
+	/**
 	 * Construct a new column.
 	 *
 	 * Params:
 	 *     title = The optional title of the heading.
 	 *     anchor = The anchor position of the heading title.
 	 */
-	this(string title = null, string anchor = AnchorPosition.west)
+	public this(string title = null, string anchor = AnchorPosition.west)
 	{
 		this._elementId = "column";
 		this.setHeading(title, anchor);
@@ -825,7 +835,7 @@ class TreeViewColumn : Element
 		if (this._parent !is null && this._commandCallback !is null)
 		{
 			string command  = format("command-%s", this.generateHash("command%s%s", this._parent.id, this.id));
-			string tkScript = format("%s heading \"%s\" -command { }", this._parent.id, this.id);
+			string tkScript = format("%s heading \"%s\" -command {}", this._parent.id, this.id);
 
 			this._tk.deleteCommand(command);
 			this._tk.eval(tkScript);
@@ -905,14 +915,9 @@ class TreeViewColumn : Element
 class TreeViewRow
 {
 	/**
-	 * The tree column value;
+	 * An array containing the column values.
 	 */
-	private string _treeValue;
-
-	/**
-	 * An array containing the data column values.
-	 */
-	private string[] _dataValues;
+	private string[] _values;
 
 	/**
 	 * Boolean representing if the row was set to be open when created.
@@ -940,28 +945,17 @@ class TreeViewRow
 	 * Constructor.
 	 *
 	 * Params:
-	 *     treeValue = The value of the tree column.
-	 *     dataValues = The values of the data columns.
+	 *     values = The values of the columns.
 	 *     isOpen = Whether or not to display the row open.
 	 *     tags = The tags to associate to this row.
 	 */
-	public this(string treeValue, string[] dataValues = [], bool isOpen = false, string[] tags = [])
+	public this(string[] values, bool isOpen = false, string[] tags = [])
 	{
-		this._treeValue  = treeValue;
-		this._dataValues = dataValues;
-		this._isOpen     = isOpen;
-		this._tags       = tags;
-	}
+		assert(values.length, "There must be at least 1 value in the row.");
 
-	/**
-	 * Get the tree column value.
-	 *
-	 * Returns:
-	 *     A string containing the tree value.
-	 */
-	public @property string treeValue()
-	{
-		return this._treeValue;
+		this._values = values;
+		this._isOpen = isOpen;
+		this._tags   = tags;
 	}
 
 	/**
@@ -970,9 +964,9 @@ class TreeViewRow
 	 * Returns:
 	 *     An array containing the data values.
 	 */
-	public @property string[] dataValues()
+	public @property string[] values()
 	{
-		return this._dataValues;
+		return this._values;
 	}
 
 	/**
@@ -1002,7 +996,7 @@ class TreeViewRow
 	 */
 	debug override public string toString()
 	{
-		return format("TreeValue: %s, DataValues: %s, isOpen: %s, Tags: %s, Children: %s", this.treeValue, this.dataValues, this.isOpen, this.tags, this.children);
+		return format("Values: %s, isOpen: %s, Tags: %s, Children: %s", this.values, this.isOpen, this.tags, this.children);
 	}
 }
 
