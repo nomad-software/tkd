@@ -36,6 +36,11 @@ class Application : TkdApplication
 	 */
 	override protected void initInterface()
 	{
+		this.mainWindow.addProtocolCommand(WindowProtocol.deleteWindow, delegate(Window window, ProtocolCommandArgs args){
+			writeln("closed");
+			this.mainWindow.destroy();
+		});
+
 		auto frame = new Frame()
 			.pack();
 

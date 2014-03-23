@@ -258,6 +258,78 @@ This is only available after the main window's interface has been
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
+<h2><a name="Window.addProtocolCommand"></a>auto <span class="symbol">addProtocolCommand</span>(this T)(string protocol, ProtocolCommandCallback callback);
+</h2>
+<div class="declaration-description"><div class="sections"><p>This command is used to manage window manager protocols such as
+ WM_DELETE_WINDOW. Name is the name of an atom corresponding to a window
+ manager protocol, such as WM_DELETE_WINDOW or WM_SAVE_YOURSELF or
+ WM_TAKE_FOCUS.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string protocol</td>
+<td>The protocol to add the command to.</td></tr>
+<tr><td>ProtocolCommandCallback callback</td>
+<td>The callback to invoke when the protocol is encountered.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p>
+<h3>See Also</h3><p><a href="./tkdapplication.html#WindowProtocol">tkd.tkdapplication.WindowProtocol</a></p>
+</div>
+</div>
+<h2><a name="Window.removeProtocolCommand"></a>auto <span class="symbol">removeProtocolCommand</span>(this T)(string protocol);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Remove a previously set protocol command.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string protocol</td>
+<td>The protocol which will have the command removed.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p>
+<h3>See Also</h3><p><a href="./tkdapplication.html#WindowProtocol">tkd.tkdapplication.WindowProtocol</a></p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="ProtocolCommandCallback"></a>alias <span class="symbol">ProtocolCommandCallback</span> = void delegate(Window window, ProtocolCommandArgs args);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Alias representing a protocol command callback.</p>
+</div>
+</div>
+<h2><a name="ProtocolCommandArgs"></a>struct <span class="symbol">ProtocolCommandArgs</span>;
+</h2>
+<div class="declaration-description"><div class="sections"><p>The <span class="symbol">ProtocolCommandArgs</span> struct passed to the ProtocolCommandCallback on invocation.</p>
+</div>
+<div class="struct-members"><h2><a name="ProtocolCommandArgs.window"></a>Window <span class="symbol">window</span>;
+</h2>
+<div class="declaration-description"><div class="sections"><p>The <span class="symbol">window</span> that issued the command.</p>
+</div>
+</div>
+<h2><a name="ProtocolCommandArgs.callback"></a>ProtocolCommandCallback <span class="symbol">callback</span>;
+</h2>
+<div class="declaration-description"><div class="sections"><p>The <span class="symbol">callback</span> which was invoked as the command.</p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="WindowProtocol"></a>enum <span class="symbol">WindowProtocol</span>: string;
+</h2>
+<div class="declaration-description"><div class="sections"><p>Window manager protocols.
+</p>
+<h3>Bugs</h3><p>This list is incomplete.</p>
+</div>
+<div class="enum-members"><h2><a name="WindowProtocol.deleteWindow"></a><span class="symbol">deleteWindow</span></h2>
+<div class="declaration-description"><div class="sections"><p>Issued when the window is to be deleted.</p>
+</div>
+</div>
+<h2><a name="WindowProtocol.saveYourself"></a><span class="symbol">saveYourself</span></h2>
+<div class="declaration-description"><div class="sections"><p>Issued when the window is required to save itself.</p>
+</div>
+</div>
+<h2><a name="WindowProtocol.takeFocus"></a><span class="symbol">takeFocus</span></h2>
+<div class="declaration-description"><div class="sections"><p>Issued then the window is focused.</p>
+</div>
+</div>
 </div>
 </div>
 </div>

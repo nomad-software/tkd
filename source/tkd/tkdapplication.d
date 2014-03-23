@@ -10,6 +10,7 @@ module tkd.tkdapplication;
  * Private imports.
  */
 import std.string;
+import tcltk.tk;
 import tkd.interpreter;
 import tkd.theme;
 
@@ -467,4 +468,121 @@ class Window : UiElement
 
 		return cast(T) this;
 	}
+
+	/**
+	 * This command is used to manage window manager protocols such as 
+	 * WM_DELETE_WINDOW. Name is the name of an atom corresponding to a window 
+	 * manager protocol, such as WM_DELETE_WINDOW or WM_SAVE_YOURSELF or 
+	 * WM_TAKE_FOCUS.
+	 *
+	 * Params:
+	 *     protocol = The protocol to add the command to.
+	 *     callback = The callback to invoke when the protocol is encountered.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./tkdapplication.html#WindowProtocol, tkd.tkdapplication.WindowProtocol)
+	 */
+	public auto addProtocolCommand(this T)(string protocol, ProtocolCommandCallback callback)
+	{
+		this.removeProtocolCommand(protocol);
+
+		Tcl_CmdProc commandCallbackHandler = function(ClientData data, Tcl_Interp* tclInterpreter, int argc, const(char)** argv)
+		{
+			ProtocolCommandArgs args = *cast(ProtocolCommandArgs*)data;
+
+			try
+			{
+				args.callback(args.window, args);
+			}
+			catch (Throwable ex)
+			{
+				string error = "Error occurred in protocol command callback. ";
+				error ~= ex.msg ~ "\n";
+				error ~= "Window: " ~ args.window.id ~ "\n";
+
+				Tcl_SetResult(tclInterpreter, error.toStringz, TCL_STATIC);
+				return TCL_ERROR;
+			}
+
+			return TCL_OK;
+		};
+
+		Tcl_CmdDeleteProc deleteCallbackHandler = function(ClientData data)
+		{
+			free(data);
+		};
+
+		ProtocolCommandArgs* args = cast(ProtocolCommandArgs*)malloc(ProtocolCommandArgs.sizeof);
+
+		(*args).window   = this;
+		(*args).callback = callback;
+
+		string command  = format("command-%s", this.generateHash("command%s%s", this.id, protocol));
+		string tkScript = format("wm protocol %s %s %s", this.id, protocol, command);
+
+		this._tk.createCommand(command, commandCallbackHandler, args, deleteCallbackHandler);
+		this._tk.eval(tkScript);
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Remove a previously set protocol command.
+	 *
+	 * Params:
+	 *     protocol = The protocol which will have the command removed.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./tkdapplication.html#WindowProtocol, tkd.tkdapplication.WindowProtocol)
+	 */
+	public auto removeProtocolCommand(this T)(string protocol)
+	{
+		string command  = format("command-%s", this.generateHash("command%s%s", this.id, protocol));
+		string tkScript = format("wm protocol %s %s {}", this.id, protocol);
+
+		this._tk.deleteCommand(command);
+		this._tk.eval(tkScript);
+
+		return cast(T) this;
+	}
+}
+
+/**
+ * Alias representing a protocol command callback.
+ */
+alias void delegate(Window window, ProtocolCommandArgs args) ProtocolCommandCallback;
+
+/**
+ * The ProtocolCommandArgs struct passed to the ProtocolCommandCallback on invocation.
+ */
+struct ProtocolCommandArgs
+{
+	/**
+	 * The window that issued the command.
+	 */
+	Window window;
+
+	/**
+	 * The callback which was invoked as the command.
+	 */
+	ProtocolCommandCallback callback;
+}
+
+/**
+ * Window manager protocols.
+ *
+ * Bugs:
+ *     This list is incomplete.
+ */
+enum WindowProtocol : string
+{
+	deleteWindow = "WM_DELETE_WINDOW", /// Issued when the window is to be deleted.
+	saveYourself = "WM_SAVE_YOURSELF", /// Issued when the window is required to save itself.
+	takeFocus    = "WM_TAKE_FOCUS",    /// Issued then the window is focused.
 }
