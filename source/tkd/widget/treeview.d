@@ -251,14 +251,14 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 * Convenience method to set the minium width of the tree column.
 	 *
 	 * Params:
-	 *     minimumWidth = The minimum width in pixels.
+	 *     minWidth = The minimum width in pixels.
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setMinimumWidth(this T)(int minimumWidth)
+	public auto setMinWidth(this T)(int minWidth)
 	{
-		this._columns[0].setMinimumWidth(minimumWidth);
+		this._columns[0].setMinWidth(minWidth);
 
 		return cast(T) this;
 	}
@@ -655,7 +655,7 @@ class TreeViewColumn : Element
 	/**
 	 * The minimum width of the column.
 	 */
-	private int _minimumWidth = 20;
+	private int _minWidth = 20;
 
 	/**
 	 * Whether to alter the size of the column when the widget is resized.
@@ -711,7 +711,7 @@ class TreeViewColumn : Element
 		this.setHeading(this._title, this._anchor);
 		this.setHeadingImage(this._image);
 		this.setHeadingCommand(this._commandCallback);
-		this.setMinimumWidth(this._minimumWidth);
+		this.setMinWidth(this._minWidth);
 		this.setStretch(this._stretch);
 		this.setWidth(this._width);
 	}
@@ -848,18 +848,18 @@ class TreeViewColumn : Element
 	 * Set the minium width of the column.
 	 *
 	 * Params:
-	 *     minimumWidth = The minimum width in pixels.
+	 *     minWidth = The minimum width in pixels.
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setMinimumWidth(this T)(int minimumWidth)
+	public auto setMinWidth(this T)(int minWidth)
 	{
-		this._minimumWidth = minimumWidth;
+		this._minWidth = minWidth;
 
 		if (this._parent)
 		{
-			this._tk.eval("%s column \"%s\" -minwidth %s", this._parent.id, this.id, this._minimumWidth);
+			this._tk.eval("%s column \"%s\" -minwidth %s", this._parent.id, this.id, this._minWidth);
 		}
 
 		return cast(T) this;

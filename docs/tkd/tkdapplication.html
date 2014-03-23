@@ -58,6 +58,13 @@
 <h3>Exceptions Thrown</h3><p>Exception if Tcl/Tk interpreter cannot be initialised.</p>
 </div>
 </div>
+<h2><a name="TkdApplication.mainWindow"></a>@property Window <span class="symbol">mainWindow</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the main window of the application.
+</p>
+<h3>Return Value</h3><p>The main window.</p>
+</div>
+</div>
 <h2><a name="TkdApplication.setTheme"></a>void <span class="symbol">setTheme</span>(string theme);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Set the overall theme of the user interface.
@@ -121,6 +128,132 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string title</td>
 <td>The title of the window.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="Window.setOpacity"></a>auto <span class="symbol">setOpacity</span>(this T)(double opacity);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the opacity of the window.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>double opacity</td>
+<td>A number between 0.0 and 1.0 specifying the transparency.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="Window.setFullscreen"></a>auto <span class="symbol">setFullscreen</span>(this T)(bool fullscreen);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Handle setting the window to fullscreen.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>bool fullscreen</td>
+<td>A boolean specifying if the window should be fullscreen or not.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="Window.setTopmost"></a>auto <span class="symbol">setTopmost</span>(this T)(bool topmost);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Handle setting the window to be the top-most. This makes the window not
+ able to be lowered behind any others.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>bool topmost</td>
+<td>A boolean specifying if the window should be top-most or not.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="Window.deiconify"></a>auto <span class="symbol">deiconify</span>(this T)();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Restore the window's state to before it was minimised.
+</p>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="Window.iconify"></a>auto <span class="symbol">iconify</span>(this T)();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Minimise the window.
+</p>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="Window.platformId"></a>@property string <span class="symbol">platformId</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the platform specific window id.
+</p>
+<p><h3>Caveats:</h3>
+This is only available after the main window's interface has been
+     initialised and once this window has been fully created by the
+     operating system.
+
+</p>
+<h3>Return Value</h3><p>The platform window id.</p>
+</div>
+</div>
+<h2><a name="Window.setGeometry"></a>auto <span class="symbol">setGeometry</span>(this T)(int width, int height, int xPosition, int yPosition);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the size and postition of the window.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int width</td>
+<td>The width of the window.</td></tr>
+<tr><td>int height</td>
+<td>The height of the window.</td></tr>
+<tr><td>int xPosition</td>
+<td>The horizontal position of the window.</td></tr>
+<tr><td>int yPosition</td>
+<td>The vertical position of the window.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="Window.setDefaultIcon"></a>auto <span class="symbol">setDefaultIcon</span>(this T)(Image[] images...);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the default icon for this window while this is also applied to all
+ future created windows as well.
+</p>
+<p>The data in the images is taken as a snapshot at the time of invocation.
+ If the images are later changed, this is not reflected to the titlebar
+ icons. Multiple images are accepted to allow different images sizes
+ (e.g., 16x16 and 32x32) to be provided. The window manager may scale
+ provided icons to an appropriate size.
+
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>Image[] images</td>
+<td>A variadic list of images.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="Window.setIcon"></a>auto <span class="symbol">setIcon</span>(this T)(Image[] images...);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the icon for this window, this overrides the default icon.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>Image[] images</td>
+<td>A variadic list of images.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="Window.setMaxSize"></a>auto <span class="symbol">setMaxSize</span>(this T)(int width, int height);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the maximum size of the window.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int width</td>
+<td>The maximum width of the window.</td></tr>
+<tr><td>int height</td>
+<td>The maximum height of the window.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="Window.setMinSize"></a>auto <span class="symbol">setMinSize</span>(this T)(int width, int height);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the minimum size of the window.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int width</td>
+<td>The minimum width of the window.</td></tr>
+<tr><td>int height</td>
+<td>The minimum height of the window.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>

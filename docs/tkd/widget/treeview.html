@@ -130,11 +130,11 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
-<h2><a name="TreeView.setMinimumWidth"></a>auto <span class="symbol">setMinimumWidth</span>(this T)(int minimumWidth);
+<h2><a name="TreeView.setMinWidth"></a>auto <span class="symbol">setMinWidth</span>(this T)(int minWidth);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Convenience method to set the minium width of the tree column.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>int minimumWidth</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int minWidth</td>
 <td>The minimum width in pixels.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
@@ -352,11 +352,11 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
-<h2><a name="TreeViewColumn.setMinimumWidth"></a>auto <span class="symbol">setMinimumWidth</span>(this T)(int minimumWidth);
+<h2><a name="TreeViewColumn.setMinWidth"></a>auto <span class="symbol">setMinWidth</span>(this T)(int minWidth);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Set the minium width of the column.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>int minimumWidth</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int minWidth</td>
 <td>The minimum width in pixels.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
@@ -394,14 +394,12 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <div class="declaration-description"><div class="sections"><p>An array containing the child rows.</p>
 </div>
 </div>
-<h2><a name="TreeViewRow.this"></a> this(string treeValue, string[] dataValues = [], bool isOpen = false, string[] tags = []);
+<h2><a name="TreeViewRow.this"></a> this(string[] values, bool isOpen = false, string[] tags = []);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Constructor.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string treeValue</td>
-<td>The value of the tree column.</td></tr>
-<tr><td>string[] dataValues</td>
-<td>The values of the data columns.</td></tr>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string[] values</td>
+<td>The values of the columns.</td></tr>
 <tr><td>bool isOpen</td>
 <td>Whether or not to display the row open.</td></tr>
 <tr><td>string[] tags</td>
@@ -409,18 +407,11 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </table>
 </div>
 </div>
-<h2><a name="TreeViewRow.treeValue"></a>@property string <span class="symbol">treeValue</span>();
+<h2><a name="TreeViewRow.values"></a>@property string[] <span class="symbol">values</span>();
 </h2>
-<div class="declaration-description"><div class="sections"><p>Get the tree column value.
+<div class="declaration-description"><div class="sections"><p>Get the data column <span class="symbol">values</span>.
 </p>
-<h3>Return Value</h3><p>A string containing the tree value.</p>
-</div>
-</div>
-<h2><a name="TreeViewRow.dataValues"></a>@property string[] <span class="symbol">dataValues</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the data column values.
-</p>
-<h3>Return Value</h3><p>An array containing the data values.</p>
+<h3>Return Value</h3><p>An array containing the data <span class="symbol">values</span>.</p>
 </div>
 </div>
 <h2><a name="TreeViewRow.isOpen"></a>@property bool <span class="symbol">isOpen</span>();

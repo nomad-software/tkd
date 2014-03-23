@@ -128,6 +128,16 @@ All UI elements can raise the following events which can be bound to using the b
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
+<h2><a name="UiElement.destroy"></a>void <span class="symbol">destroy</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Destroy this ui element.
+</p>
+<p><h3>Caveats:</h3>
+Once an element is destroyed it can no longer be referenced in your
+     code or an internal error will occur and potentially crash your
+     program.</p>
+</div>
+</div>
 </div>
 </div>
 <h2><a name="UiElementBindCallback"></a>alias <span class="symbol">UiElementBindCallback</span> = void delegate(UiElement sender, BindArgs args);

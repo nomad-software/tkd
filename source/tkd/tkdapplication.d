@@ -9,6 +9,7 @@ module tkd.tkdapplication;
 /**
  * Private imports.
  */
+import std.string;
 import tkd.interpreter;
 import tkd.theme;
 
@@ -361,4 +362,109 @@ class Window : UiElement
 		return this._tk.getResult!(string);
 	}
 
+	/**
+	 * Set the size and postition of the window.
+	 *
+	 * Params:
+	 *     width = The width of the window.
+	 *     height = The height of the window.
+	 *     xPosition = The horizontal position of the window.
+	 *     yPosition = The vertical position of the window.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto setGeometry(this T)(int width, int height, int xPosition, int yPosition)
+	{
+		this._tk.eval("wm geometry %s %sx%s+%s+%s", this.id, width, height, xPosition, yPosition);
+		
+		return cast(T) this;
+	}
+
+	/**
+	 * Set the default icon for this window while this is also applied to all 
+	 * future created windows as well.
+	 *
+	 * The data in the images is taken as a snapshot at the time of invocation. 
+	 * If the images are later changed, this is not reflected to the titlebar 
+	 * icons. Multiple images are accepted to allow different images sizes 
+	 * (e.g., 16x16 and 32x32) to be provided. The window manager may scale 
+	 * provided icons to an appropriate size.
+	 *
+	 * Params:
+	 *     images = A variadic list of images.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto setDefaultIcon(this T)(Image[] images ...)
+	{
+		string defaultImages;
+
+		foreach (image; images)
+		{
+			defaultImages ~= format("%s ", image.id);
+		}
+
+		this._tk.eval("wm iconphoto %s -default %s", this.id, defaultImages);
+		
+		return cast(T) this;
+	}
+
+	/**
+	 * Set the icon for this window, this overrides the default icon.
+	 *
+	 * Params:
+	 *     images = A variadic list of images.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto setIcon(this T)(Image[] images ...)
+	{
+		string defaultImages;
+
+		foreach (image; images)
+		{
+			defaultImages ~= format("%s ", image.id);
+		}
+
+		this._tk.eval("wm iconphoto %s %s", this.id, defaultImages);
+		
+		return cast(T) this;
+	}
+
+	/**
+	 * Set the maximum size of the window.
+	 *
+	 * Params:
+	 *     width = The maximum width of the window.
+	 *     height = The maximum height of the window.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto setMaxSize(this T)(int width, int height)
+	{
+		this._tk.eval("wm maxsize %s %s %s", this.id, width, height);
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Set the minimum size of the window.
+	 *
+	 * Params:
+	 *     width = The minimum width of the window.
+	 *     height = The minimum height of the window.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto setMinSize(this T)(int width, int height)
+	{
+		this._tk.eval("wm minsize %s %s %s", this.id, width, height);
+
+		return cast(T) this;
+	}
 }

@@ -110,7 +110,7 @@ class ProgressBar : Widget
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setMaximumValue(this T)(double maximum)
+	public auto setMaxValue(this T)(double maximum)
 	{
 		this._tk.eval("%s configure -maximum %s", this.id, maximum);
 
