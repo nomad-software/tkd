@@ -113,12 +113,59 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </p>
 <h3>See Also</h3><p><a href="./element/uielement.html">tkd.element.uielement</a></p>
 </div>
-<div class="class-members"><h2><a name="Window.this"></a> this(string title);
+<div class="class-members"><h2><a name="Window.this"></a> this(Window parent, string title, bool waitForWindow = true);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Constructor.
 </p>
+<p>It's important to understand that the window will be drawn immediately
+ by default. This means that the window will display before any other
+ actions take place, including drawing or managing other widgets. This is
+ so other methods (such as platformId) that rely on the window being
+ drawn don't fail if immediately used afterwards.
+<br><br>
+
+ This behaviour can be overridden by passing <strong>false</strong> as the waitForWindow
+ argument which is useful if you want the entire UI belonging to the new
+ window to be drawn before actaully showing it.
+<br><br>
+
+ The parent window is responsible for the life of this window. If the
+ parent window is destroyed, this one will be too.
+
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>Window parent</td>
+<td>The window to act as a parent.</td></tr>
+<tr><td>string title</td>
+<td>The title of the window.</td></tr>
+<tr><td>bool waitForWindow</td>
+<td>Whether to wait for the window to be drawn before continuing.</td></tr>
+</table>
+</div>
+</div>
+<h2><a name="Window.this"></a> this(string title, bool waitForWindow = true);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Constructor.
+</p>
+<p>It's important to understand that the window will be drawn immediately
+ by default. This means that the window will display before any other
+ actions take place, including drawing or managing other widgets. This is
+ so other methods (such as platformId) that rely on the window being
+ drawn don't fail if immediately used afterwards.
+<br><br>
+
+ This behaviour can be overridden by passing <strong>false</strong> as the waitForWindow
+ argument which is useful if you want the entire UI belonging to the new
+ window to be drawn before actaully showing it.
+<br><br>
+
+ If no parent is specified the new window with be a child of the main
+ window.
+
+</p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string title</td>
 <td>The title of the window.</td></tr>
+<tr><td>bool waitForWindow</td>
+<td>Whether to wait for the window to be drawn before continuing.</td></tr>
 </table>
 </div>
 </div>
@@ -165,7 +212,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </div>
 <h2><a name="Window.deiconify"></a>auto <span class="symbol">deiconify</span>(this T)();
 </h2>
-<div class="declaration-description"><div class="sections"><p>Restore the window's state to before it was minimised.
+<div class="declaration-description"><div class="sections"><p>Restore the window's state to before it was minimised or withdrawn.
 </p>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
@@ -177,15 +224,9 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
-<h2><a name="Window.platformId"></a>@property string <span class="symbol">platformId</span>();
+<h2><a name="Window.platformId"></a>@property size_t <span class="symbol">platformId</span>();
 </h2>
 <div class="declaration-description"><div class="sections"><p>Get the platform specific window id.
-</p>
-<p><h3>Caveats:</h3>
-This is only available after the main window's interface has been
-     initialised and once this window has been fully created by the
-     operating system.
-
 </p>
 <h3>Return Value</h3><p>The platform window id.</p>
 </div>
@@ -287,6 +328,45 @@ This is only available after the main window's interface has been
 
 </p>
 <h3>See Also</h3><p><a href="./tkdapplication.html#WindowProtocol">tkd.tkdapplication.WindowProtocol</a></p>
+</div>
+</div>
+<h2><a name="Window.setResizable"></a>auto <span class="symbol">setResizable</span>(this T)(bool resizeWidth, bool resizeHeight);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set if the width and height can be resized.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>bool resizeWidth</td>
+<td>True to allow width resizing, <strong>false</strong> to disable.</td></tr>
+<tr><td>bool resizeHeight</td>
+<td>True to allow height resizing, <strong>false</strong> to disable.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="Window.isAbove"></a>bool <span class="symbol">isAbove</span>(Window other);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Determine if this window is above another.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>Window other</td>
+<td>The other window to check this one is above.</td></tr>
+</table>
+<h3>Return Value</h3><p><strong>true</strong> if this window is above other, <strong>false</strong> if not.</p>
+</div>
+</div>
+<h2><a name="Window.isBelow"></a>bool <span class="symbol">isBelow</span>(Window other);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Determine if this window is below another.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>Window other</td>
+<td>The other window to check this one is below.</td></tr>
+</table>
+<h3>Return Value</h3><p><strong>true</strong> if this window is below other, <strong>false</strong> if not.</p>
+</div>
+</div>
+<h2><a name="Window.withdraw"></a>auto <span class="symbol">withdraw</span>(this T)();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Withdraw a window from being displayed/mapped by the window manager.
+</p>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
 </div>

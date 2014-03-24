@@ -185,7 +185,7 @@ class Window : UiElement
 	 * parent window is destroyed, this one will be too.
 	 *
 	 * Params:
-	 *     window = The window to act as a parent.
+	 *     parent = The window to act as a parent.
 	 *     title = The title of the window.
 	 *     waitForWindow = Whether to wait for the window to be drawn before continuing.
 	 */
@@ -197,6 +197,10 @@ class Window : UiElement
 
 		if (waitForWindow)
 		{
+			// This tip was gathered from the following post, if it proves not 
+			// to be cross-platform there are other tips in this post that 
+			// could be used.
+			// http://stackoverflow.com/questions/8929031/grabbing-a-new-window-in-tcl-tk
 			this._tk.eval("tkwait visibility %s", this.id);
 		}
 
