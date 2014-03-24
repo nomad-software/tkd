@@ -78,7 +78,7 @@ abstract class UiElement : Element
 
 		string parentId;
 
-		if (this._parent !is null)
+		if (this._parent !is null && this._parent.id != ".")
 		{
 			parentId = this._parent.id;
 		}

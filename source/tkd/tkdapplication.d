@@ -9,6 +9,7 @@ module tkd.tkdapplication;
 /**
  * Private imports.
  */
+import std.conv;
 import std.string;
 import tcltk.tk;
 import tkd.interpreter;
@@ -170,15 +171,61 @@ class Window : UiElement
 	/**
 	 * Constructor.
 	 *
+	 * It's important to understand that the window will be drawn immediately 
+	 * by default. This means that the window will display before any other 
+	 * actions take place, including drawing or managing other widgets. This is 
+	 * so other methods (such as platformId) that rely on the window being 
+	 * drawn don't fail if immediately used afterwards.
+	 * 
+	 * This behaviour can be overridden by passing false as the waitForWindow 
+	 * argument which is useful if you want the entire UI belonging to the new 
+	 * window to be drawn before actaully showing it.
+	 *
+	 * The parent window is responsible for the life of this window. If the 
+	 * parent window is destroyed, this one will be too.
+	 *
 	 * Params:
+	 *     window = The window to act as a parent.
 	 *     title = The title of the window.
+	 *     waitForWindow = Whether to wait for the window to be drawn before continuing.
 	 */
-	public this(string title)
+	public this(Window parent, string title, bool waitForWindow = true)
 	{
+		super(parent);
 		this._elementId = "window";
 		this._tk.eval("toplevel %s", this.id);
 
+		if (waitForWindow)
+		{
+			this._tk.eval("tkwait visibility %s", this.id);
+		}
+
 		this.setTitle(title);
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * It's important to understand that the window will be drawn immediately 
+	 * by default. This means that the window will display before any other 
+	 * actions take place, including drawing or managing other widgets. This is 
+	 * so other methods (such as platformId) that rely on the window being 
+	 * drawn don't fail if immediately used afterwards.
+	 * 
+	 * This behaviour can be overridden by passing false as the waitForWindow 
+	 * argument which is useful if you want the entire UI belonging to the new 
+	 * window to be drawn before actaully showing it.
+	 *
+	 * If no parent is specified the new window with be a child of the main 
+	 * window.
+	 *
+	 * Params:
+	 *     title = The title of the window.
+	 *     waitForWindow = Whether to wait for the window to be drawn before continuing.
+	 */
+	public this(string title, bool waitForWindow = true)
+	{
+		this(new Window(), title, waitForWindow);
 	}
 
 	/**
@@ -267,7 +314,7 @@ class Window : UiElement
 		}
 
 		/**
-		 * Handle changing the window to a tool window.
+		 * Handle changing the window to a tool window. Windows only.
 		 *
 		 * Params:
 		 *     toolWindow = A boolean specifying if the window should be a tool window or not.
@@ -286,7 +333,7 @@ class Window : UiElement
 	version (OSX)
 	{
 		/**
-		 * Set the modified state of the window.
+		 * Set the modified state of the window. Mac OSX only.
 		 *
 		 * Params:
 		 *     modified = A boolean specifying if the window should show it's been modified or not.
@@ -303,7 +350,7 @@ class Window : UiElement
 
 		/**
 		 * Set the notify state of the window. On Mac OS it usually bounces the 
-		 * dock icon.
+		 * dock icon. Mac OSX only.
 		 *
 		 * Params:
 		 *     modified = A boolean specifying if the window should show a notification or not.
@@ -320,7 +367,7 @@ class Window : UiElement
 	}
 
 	/**
-	 * Restore the window's state to before it was minimised.
+	 * Restore the window's state to before it was minimised or withdrawn.
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
@@ -348,19 +395,14 @@ class Window : UiElement
 	/**
 	 * Get the platform specific window id.
 	 *
-	 * Caveats:
-	 *     This is only available after the main window's interface has been 
-	 *     initialised and once this window has been fully created by the 
-	 *     operating system.
-	 *
 	 * Returns:
 	 *     The platform window id.
 	 */
-	public @property string platformId()
+	public @property size_t platformId()
 	{
 		this._tk.eval("wm frame %s", this.id);
 
-		return this._tk.getResult!(string);
+		return this._tk.getResult!(string).chompPrefix("0x").to!(size_t)(16);
 	}
 
 	/**
@@ -548,6 +590,68 @@ class Window : UiElement
 
 		this._tk.deleteCommand(command);
 		this._tk.eval(tkScript);
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Set if the width and height can be resized.
+	 *
+	 * Params:
+	 *     resizeWidth = True to allow width resizing, false to disable.
+	 *     resizeHeight = True to allow height resizing, false to disable.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto setResizable(this T)(bool resizeWidth, bool resizeHeight)
+	{
+		this._tk.eval("wm resizable %s %s %s", this.id, resizeWidth, resizeHeight);
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Determine if this window is above another.
+	 *
+	 * Params:
+	 *     other = The other window to check this one is above.
+	 *
+	 * Returns:
+	 *     true if this window is above other, false if not.
+	 */
+	public bool isAbove(Window other)
+	{
+		this._tk.eval("wm stackorder %s isabove %s", this.id, other.id);
+
+		return this._tk.getResult!(int) == 1;
+	}
+
+	/**
+	 * Determine if this window is below another.
+	 *
+	 * Params:
+	 *     other = The other window to check this one is below.
+	 *
+	 * Returns:
+	 *     true if this window is below other, false if not.
+	 */
+	public bool isBelow(Window other)
+	{
+		this._tk.eval("wm stackorder %s isbelow %s", this.id, other.id);
+
+		return this._tk.getResult!(int) == 1;
+	}
+
+	/**
+	 * Withdraw a window from being displayed/mapped by the window manager.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto withdraw(this T)()
+	{
+		this._tk.eval("wm withdraw %s", this.id);
 
 		return cast(T) this;
 	}

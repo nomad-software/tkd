@@ -29,6 +29,17 @@ class Application : TkdApplication
 	private void createWindow(Widget widget, CommandArgs args)
 	{
 		this._win = new Window("New window");
+
+		auto label = new Label(this._win, "Close this window to reveal main window again.")
+			.setWrapLength(150)
+			.pack();
+
+		this._win.addProtocolCommand(WindowProtocol.deleteWindow, delegate(Window window, ProtocolCommandArgs args){
+			this._win.destroy();
+			this.mainWindow.deiconify();
+		});
+
+		this.mainWindow.withdraw();
 	}
 
 	/**
@@ -36,11 +47,6 @@ class Application : TkdApplication
 	 */
 	override protected void initInterface()
 	{
-		this.mainWindow.addProtocolCommand(WindowProtocol.deleteWindow, delegate(Window window, ProtocolCommandArgs args){
-			writeln("closed");
-			this.mainWindow.destroy();
-		});
-
 		auto frame = new Frame()
 			.pack();
 
