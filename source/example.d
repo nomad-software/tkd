@@ -26,20 +26,12 @@ class Application : TkdApplication
 		this.exit();
 	}
 
-	private void createWindow(Widget widget, CommandArgs args)
+	private void execute(Widget widget, CommandArgs args)
 	{
-		this._win = new Window("New window");
-
-		auto label = new Label(this._win, "Close this window to reveal main window again.")
-			.setWrapLength(150)
-			.pack();
-
-		this._win.addProtocolCommand(WindowProtocol.deleteWindow, delegate(Window window, ProtocolCommandArgs args){
-			this._win.destroy();
-			this.mainWindow.deiconify();
-		});
-
-		this.mainWindow.withdraw();
+		writefln("Screen: %sx%spx", (cast(Button)widget).getScreenWidth(), (cast(Button)widget).getScreenHeight());
+		writefln("Widget: %sx%spx", (cast(Button)widget).getXPos(), (cast(Button)widget).getYPos());
+		writefln("Widget: %sx%spx", (cast(Button)widget).getXPos(true), (cast(Button)widget).getYPos(true));
+		writefln("Cursor: %s", (cast(Button)widget).getCursorPos());
 	}
 
 	/**
@@ -50,8 +42,8 @@ class Application : TkdApplication
 		auto frame = new Frame()
 			.pack();
 
-		auto button1 = new Button(frame, "Spawn window")
-			.setCommand(&this.createWindow)
+		auto button1 = new Button(frame, "Execute")
+			.setCommand(&this.execute)
 			.pack();
 
 		auto button2 = new Button(frame, "Exit")

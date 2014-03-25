@@ -138,6 +138,99 @@ Once an element is destroyed it can no longer be referenced in your
      program.</p>
 </div>
 </div>
+<h2><a name="UiElement.getChildIds"></a>string[] <span class="symbol">getChildIds</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the string id's of the immediate children elements.
+</p>
+<h3>Return Value</h3><p>A string array containing the id's.</p>
+</div>
+</div>
+<h2><a name="UiElement.getWidth"></a>int <span class="symbol">getWidth</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the width of the element.
+</p>
+<h3>Return Value</h3><p>The width of the element.</p>
+</div>
+</div>
+<h2><a name="UiElement.getHeight"></a>int <span class="symbol">getHeight</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the height of the element.
+</p>
+<h3>Return Value</h3><p>The height of the element.</p>
+</div>
+</div>
+<h2><a name="UiElement.xId"></a>@property size_t <span class="symbol">xId</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the linux x window id.
+</p>
+<h3>Return Value</h3><p>The x id.</p>
+</div>
+</div>
+<h2><a name="UiElement.getCursorPos"></a>int[] <span class="symbol">getCursorPos</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the position of the cursor over the element. The cursor
+ position returned is relative to the screen. It is only returned if the
+ cursor is over the element.
+</p>
+<h3>Return Value</h3><p>An array holding the screen position of the cursor.</p>
+</div>
+</div>
+<h2><a name="UiElement.getCursorXPos"></a>int <span class="symbol">getCursorXPos</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the horizontal position of the cursor over the element. The cursor
+ position returned is relative to the screen. It is only returned if the
+ cursor is over the element.
+</p>
+<h3>Return Value</h3><p>The horizontal screen position of the cursor.</p>
+</div>
+</div>
+<h2><a name="UiElement.getCursorYPos"></a>int <span class="symbol">getCursorYPos</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the vertical position of the cursor over the element. The cursor
+ position returned is relative to the screen. It is only returned if the
+ cursor is over the element.
+</p>
+<h3>Return Value</h3><p>The vertical screen position of the cursor.</p>
+</div>
+</div>
+<h2><a name="UiElement.getScreenWidth"></a>int <span class="symbol">getScreenWidth</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the width of the screen this element is displayed on.
+</p>
+<h3>Return Value</h3><p>The width of the screen.</p>
+</div>
+</div>
+<h2><a name="UiElement.getScreenHeight"></a>int <span class="symbol">getScreenHeight</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the height of the screen this element is displayed on.
+</p>
+<h3>Return Value</h3><p>The height of the screen.</p>
+</div>
+</div>
+<h2><a name="UiElement.getXPos"></a>int <span class="symbol">getXPos</span>(bool relativeToParent = false);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the horizontal position of the element. The number returned is
+ calculated using the top, left-most pixel of the element including
+ border if one exists.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>bool relativeToParent</td>
+<td>True to get the position relative to its parent, <strong>false</strong> for the position on the screen.</td></tr>
+</table>
+<h3>Return Value</h3><p>The horizontal position of the element.</p>
+</div>
+</div>
+<h2><a name="UiElement.getYPos"></a>int <span class="symbol">getYPos</span>(bool relativeToParent = false);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the vertical position of the element. The number returned is
+ calculated using the top, left-most pixel of the element including
+ border if one exists.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>bool relativeToParent</td>
+<td>True to get the position relative to its parent, <strong>false</strong> for the position on the screen.</td></tr>
+</table>
+<h3>Return Value</h3><p>The vertical position of the element.</p>
+</div>
+</div>
 </div>
 </div>
 <h2><a name="UiElementBindCallback"></a>alias <span class="symbol">UiElementBindCallback</span> = void delegate(UiElement sender, BindArgs args);

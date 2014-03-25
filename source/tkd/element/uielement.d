@@ -10,6 +10,7 @@ module tkd.element.uielement;
  * Imports.
  */
 import core.stdc.stdlib : malloc, free;
+import std.conv;
 import std.range;
 import std.string;
 import tcltk.tk;
@@ -240,6 +241,198 @@ abstract class UiElement : Element
 	public void destroy()
 	{
 		this._tk.eval("destroy %s", this.id);
+	}
+
+	/**
+	 * Get the string id's of the immediate children elements.
+	 *
+	 * Returns:
+	 *     A string array containing the id's.
+	 */
+	public string[] getChildIds()
+	{
+		this._tk.eval("winfo children %s", this.id);
+
+		return this._tk.getResult!(string).split();
+	}
+
+	/**
+	 * Get the width of the element.
+	 *
+	 * Returns:
+	 *     The width of the element.
+	 */
+	public int getWidth()
+	{
+		this._tk.eval("winfo width %s", this.id);
+
+		return this._tk.getResult!(int);
+	}
+
+	/**
+	 * Get the height of the element.
+	 *
+	 * Returns:
+	 *     The height of the element.
+	 */
+	public int getHeight()
+	{
+		this._tk.eval("winfo height %s", this.id);
+
+		return this._tk.getResult!(int);
+	}
+
+	version (Windows)
+	{
+		/**
+		 * Get the window hwnd.
+		 *
+		 * Returns:
+		 *     The windows handle.
+		 */
+		public @property size_t hwnd()
+		{
+			this._tk.eval("winfo id %s", this.id);
+
+			return this._tk.getResult!(string).chompPrefix("0x").to!(size_t)(16);
+		}
+	}
+
+	version (linux)
+	{
+		/**
+		 * Get the linux x window id.
+		 *
+		 * Returns:
+		 *     The x id.
+		 */
+		public @property size_t xId()
+		{
+			this._tk.eval("winfo id %s", this.id);
+
+			return this._tk.getResult!(string).chompPrefix("0x").to!(size_t)(16);
+		}
+	}
+
+	/**
+	 * Get the position of the cursor over the element. The cursor 
+	 * position returned is relative to the screen. It is only returned if the 
+	 * cursor is over the element.
+	 *
+	 * Returns:
+	 *     An array holding the screen position of the cursor.
+	 */
+	public int[] getCursorPos()
+	{
+		this._tk.eval("winfo pointerxy %s", this.id);
+
+		return this._tk.getResult!(string).split().map!(to!(int)).array;
+	}
+
+	/**
+	 * Get the horizontal position of the cursor over the element. The cursor 
+	 * position returned is relative to the screen. It is only returned if the 
+	 * cursor is over the element.
+	 *
+	 * Returns:
+	 *     The horizontal screen position of the cursor.
+	 */
+	public int getCursorXPos()
+	{
+		this._tk.eval("winfo pointerx %s", this.id);
+
+		return this._tk.getResult!(int);
+	}
+
+	/**
+	 * Get the vertical position of the cursor over the element. The cursor 
+	 * position returned is relative to the screen. It is only returned if the 
+	 * cursor is over the element.
+	 *
+	 * Returns:
+	 *     The vertical screen position of the cursor.
+	 */
+	public int getCursorYPos()
+	{
+		this._tk.eval("winfo pointery %s", this.id);
+
+		return this._tk.getResult!(int);
+	}
+
+	/**
+	 * Get the width of the screen this element is displayed on.
+	 *
+	 * Returns:
+	 *     The width of the screen.
+	 */
+	public int getScreenWidth()
+	{
+		this._tk.eval("winfo screenwidth %s", this.id);
+
+		return this._tk.getResult!(int);
+	}
+
+	/**
+	 * Get the height of the screen this element is displayed on.
+	 *
+	 * Returns:
+	 *     The height of the screen.
+	 */
+	public int getScreenHeight()
+	{
+		this._tk.eval("winfo screenheight %s", this.id);
+
+		return this._tk.getResult!(int);
+	}
+
+	/**
+	 * Get the horizontal position of the element. The number returned is 
+	 * calculated using the top, left-most pixel of the element including 
+	 * border if one exists.
+	 *
+	 * Params:
+	 *     relativeToParent = True to get the position relative to its parent, false for the position on the screen.
+	 *
+	 * Returns:
+	 *     The horizontal position of the element.
+	 */
+	public int getXPos(bool relativeToParent = false)
+	{
+		if (relativeToParent)
+		{
+			this._tk.eval("winfo x %s", this.id);
+		}
+		else
+		{
+			this._tk.eval("winfo rootx %s", this.id);
+		}
+
+		return this._tk.getResult!(int);
+	}
+
+	/**
+	 * Get the vertical position of the element. The number returned is 
+	 * calculated using the top, left-most pixel of the element including 
+	 * border if one exists.
+	 *
+	 * Params:
+	 *     relativeToParent = True to get the position relative to its parent, false for the position on the screen.
+	 *
+	 * Returns:
+	 *     The vertical position of the element.
+	 */
+	public int getYPos(bool relativeToParent = false)
+	{
+		if (relativeToParent)
+		{
+			this._tk.eval("winfo y %s", this.id);
+		}
+		else
+		{
+			this._tk.eval("winfo rooty %s", this.id);
+		}
+
+		return this._tk.getResult!(int);
 	}
 }
 

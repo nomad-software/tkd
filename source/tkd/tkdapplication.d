@@ -9,7 +9,6 @@ module tkd.tkdapplication;
 /**
  * Private imports.
  */
-import std.conv;
 import std.string;
 import tcltk.tk;
 import tkd.interpreter;
@@ -394,19 +393,6 @@ class Window : UiElement
 		this._tk.eval("wm iconify %s", this.id);
 
 		return cast(T) this;
-	}
-
-	/**
-	 * Get the platform specific window id.
-	 *
-	 * Returns:
-	 *     The platform window id.
-	 */
-	public @property size_t platformId()
-	{
-		this._tk.eval("wm frame %s", this.id);
-
-		return this._tk.getResult!(string).chompPrefix("0x").to!(size_t)(16);
 	}
 
 	/**
