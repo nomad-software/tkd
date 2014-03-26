@@ -26,6 +26,11 @@ abstract class Element
 	protected Tk _tk;
 
 	/**
+	 * The parent of this element if nested within another.
+	 */
+	protected Element _parent;
+
+	/**
 	 * An optional identifier that overrides the generated id.
 	 */
 	protected string _manualIdentifier;
@@ -42,23 +47,24 @@ abstract class Element
 
 	/**
 	 * Construct the element.
+	 *
+	 * Params:
+	 *     parent = An optional parent of this element.
 	 */
-	public this()
+	public this(Element parent)
 	{
 		this._tk        = Tk.getInstance();
+		this._parent    = parent;
 		this._elementId = "element";
 		this._hash      = this.generateHash();
 	}
 
-	/*
-	 * Override the unique id of this element.
-	 *
-	 * Params:
-	 *     identifier = The overriden identifier.
+	/**
+	 * Construct the element.
 	 */
-	protected void overrideGeneratedId(string identifier) nothrow
+	public this()
 	{
-		this._manualIdentifier = identifier;
+		this(null);
 	}
 
 	/**
@@ -74,7 +80,36 @@ abstract class Element
 			return this._manualIdentifier;
 		}
 
-		return this._elementId ~ "-" ~ this._hash;
+		string parentId;
+
+		if (this._parent !is null && this._parent.id != ".")
+		{
+			parentId = this._parent.id;
+		}
+
+		return parentId ~ "." ~ this._elementId ~ "-" ~ this._hash;
+	}
+
+	/**
+	 * The parent element if any.
+	 *
+	 * Returns:
+	 *     The parent element.
+	 */
+	public @property Element parent()
+	{
+		return this._parent;
+	}
+
+	/*
+	 * Override the unique id of this element.
+	 *
+	 * Params:
+	 *     identifier = The overriden identifier.
+	 */
+	protected void overrideGeneratedId(string identifier) nothrow
+	{
+		this._manualIdentifier = identifier;
 	}
 
 	/**

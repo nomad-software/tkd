@@ -28,10 +28,6 @@ class Application : TkdApplication
 
 	private void execute(Widget widget, CommandArgs args)
 	{
-		writefln("Screen: %sx%spx", (cast(Button)widget).getScreenWidth(), (cast(Button)widget).getScreenHeight());
-		writefln("Widget: %sx%spx", (cast(Button)widget).getXPos(), (cast(Button)widget).getYPos());
-		writefln("Widget: %sx%spx", (cast(Button)widget).getXPos(true), (cast(Button)widget).getYPos(true));
-		writefln("Cursor: %s", (cast(Button)widget).getCursorPos());
 	}
 
 	/**
@@ -39,14 +35,20 @@ class Application : TkdApplication
 	 */
 	override protected void initInterface()
 	{
+		auto menubar = new MenuBar(this.mainWindow);
+
+		auto fileMenu = new Menu(menubar, "File")
+			.addItem("Open...")
+			.addItem("Save...")
+			.addSeparator()
+			.addItem("Quit...");
+
+		auto helpMenu = new Menu(menubar, "Help");
+
 		auto frame = new Frame()
 			.pack();
 
-		auto button1 = new Button(frame, "Execute")
-			.setCommand(&this.execute)
-			.pack();
-
-		auto button2 = new Button(frame, "Exit")
+		auto button = new Button(frame, "Exit")
 			.setCommand(&this.exitCommand)
 			.pack();
 	}

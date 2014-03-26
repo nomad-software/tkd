@@ -24,6 +24,11 @@
 <div class="declaration-description"><div class="sections"><p>The Tk interpreter.</p>
 </div>
 </div>
+<h2><a name="Element._parent"></a>protected Element <span class="symbol">_parent</span>;
+</h2>
+<div class="declaration-description"><div class="sections"><p>The parent of this element if nested within another.</p>
+</div>
+</div>
 <h2><a name="Element._manualIdentifier"></a>protected string <span class="symbol">_manualIdentifier</span>;
 </h2>
 <div class="declaration-description"><div class="sections"><p>An optional identifier that overrides the generated id.</p>
@@ -39,6 +44,15 @@
 <div class="declaration-description"><div class="sections"><p>The unique hash of this element.</p>
 </div>
 </div>
+<h2><a name="Element.this"></a> this(Element parent);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Construct the element.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>Element parent</td>
+<td>An optional parent of this element.</td></tr>
+</table>
+</div>
+</div>
 <h2><a name="Element.this"></a> this();
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the element.</p>
@@ -49,6 +63,13 @@
 <div class="declaration-description"><div class="sections"><p>The unique <span class="symbol">id</span> of this element.
 </p>
 <h3>Return Value</h3><p>The string <span class="symbol">id</span>.</p>
+</div>
+</div>
+<h2><a name="Element.parent"></a>@property Element <span class="symbol">parent</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>The <span class="symbol">parent</span> element if any.
+</p>
+<h3>Return Value</h3><p>The <span class="symbol">parent</span> element.</p>
 </div>
 </div>
 <h2><a name="Element.generateHash"></a>protected string <span class="symbol">generateHash</span>();

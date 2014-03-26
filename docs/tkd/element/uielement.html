@@ -42,32 +42,13 @@ All UI elements can raise the following events which can be bound to using the b
 </p>
 <h3>See Also</h3><p><a href="./element.html">tkd.element.element</a></p>
 </div>
-<div class="class-members"><h2><a name="UiElement._parent"></a>protected UiElement <span class="symbol">_parent</span>;
+<div class="class-members"><h2><a name="UiElement.this"></a> this(UiElement parent = null);
 </h2>
-<div class="declaration-description"><div class="sections"><p>The parent of this element if nested within another.</p>
-</div>
-</div>
-<h2><a name="UiElement.this"></a> this(UiElement parent = null);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Construct the uielement.
+<div class="declaration-description"><div class="sections"><p>Construct the element.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>UiElement parent</td>
 <td>An optional parent of this element.</td></tr>
 </table>
-</div>
-</div>
-<h2><a name="UiElement.id"></a>nothrow @property string <span class="symbol">id</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>The unique <span class="symbol">id</span> of this element.
-</p>
-<h3>Return Value</h3><p>The string <span class="symbol">id</span>.</p>
-</div>
-</div>
-<h2><a name="UiElement.parent"></a>@property UiElement <span class="symbol">parent</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>The <span class="symbol">parent</span> element if any.
-</p>
-<h3>Return Value</h3><p>The <span class="symbol">parent</span> element.</p>
 </div>
 </div>
 <h2><a name="UiElement.getClass"></a>string <span class="symbol">getClass</span>();
@@ -233,7 +214,7 @@ Once an element is destroyed it can no longer be referenced in your
 </div>
 </div>
 </div>
-<h2><a name="UiElementBindCallback"></a>alias <span class="symbol">UiElementBindCallback</span> = void delegate(UiElement sender, BindArgs args);
+<h2><a name="UiElementBindCallback"></a>alias <span class="symbol">UiElementBindCallback</span> = void delegate(UiElement element, BindArgs args);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Alias representing an element callback.</p>
 </div>

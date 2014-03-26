@@ -18,8 +18,8 @@ import tkd.theme;
  * Public imports.
  */
 public import tkd.element;
-public import tkd.widget;
 public import tkd.image;
+public import tkd.widget;
 
 /**
  * Base class of all Tkd gui applications.

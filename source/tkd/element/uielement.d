@@ -47,55 +47,14 @@ import tkd.element.element;
 abstract class UiElement : Element
 {
 	/**
-	 * The parent of this element if nested within another.
-	 */
-	protected UiElement _parent;
-
-	/**
-	 * Construct the uielement.
+	 * Construct the element.
 	 *
 	 * Params:
 	 *     parent = An optional parent of this element.
 	 */
 	public this(UiElement parent = null)
 	{
-		super();
-		this._parent    = parent;
-		this._elementId = "uielement";
-	}
-
-	/**
-	 * The unique id of this element.
-	 *
-	 * Returns:
-	 *     The string id.
-	 */
-	override public @property string id() nothrow
-	{
-		if (this._manualIdentifier !is null)
-		{
-			return this._manualIdentifier;
-		}
-
-		string parentId;
-
-		if (this._parent !is null && this._parent.id != ".")
-		{
-			parentId = this._parent.id;
-		}
-
-		return parentId ~ "." ~ super.id;
-	}
-
-	/**
-	 * The parent element if any.
-	 *
-	 * Returns:
-	 *     The parent element.
-	 */
-	public @property UiElement parent()
-	{
-		return this._parent;
+		super(parent);
 	}
 
 	/**
@@ -439,7 +398,7 @@ abstract class UiElement : Element
 /**
  * Alias representing an element callback.
  */
-alias void delegate(UiElement sender, BindArgs args) UiElementBindCallback;
+alias void delegate(UiElement element, BindArgs args) UiElementBindCallback;
 
 /**
  * The BindArgs struct passed to the UiElementBindCallback on invocation.
