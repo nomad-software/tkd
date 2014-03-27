@@ -10,6 +10,7 @@ module tkd.widget.combobox;
  * Imports.
  */
 import std.conv;
+import tkd.element.element;
 import tkd.element.uielement;
 import tkd.widget.common.boundingbox;
 import tkd.widget.common.cursor;
@@ -148,7 +149,7 @@ class ComboBox : Widget, IXScrollable!(ComboBox)
 
 		this.setState(["readonly"]);
 
-		this.bind("<<ComboboxSelected>>", delegate(UiElement sender, BindArgs args){
+		this.bind("<<ComboboxSelected>>", delegate(CommandArgs args){
 			this.deselectText();
 		});
 	}

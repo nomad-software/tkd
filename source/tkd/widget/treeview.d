@@ -225,9 +225,9 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./treeview.html#ColumnCommandCallback, tkd.widget.ColumnCommandCallback)
+	 *     $(LINK2 ../element/element.html#CommandCallback, tkd.element.element.CommandCallback)
 	 */
-	public auto setHeadingCommand(this T)(ColumnCommandCallback callback)
+	public auto setHeadingCommand(this T)(CommandCallback callback)
 	{
 		this._columns[0].setHeadingCommand(callback);
 
@@ -240,7 +240,7 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto removeCommand(this T)()
+	public auto removeHeadingCommand(this T)()
 	{
 		this._columns[0].removeHeadingCommand();
 
@@ -670,7 +670,7 @@ class TreeViewColumn : Element
 	/**
 	 * The command associated with the heading.
 	 */
-	private ColumnCommandCallback _commandCallback;
+	private CommandCallback _commandCallback;
 
 	/**
 	 * Construct a new column to add the treeview column to the column 
@@ -757,7 +757,7 @@ class TreeViewColumn : Element
 
 		if (this._parent && this._image)
 		{
-			this._tk.eval("%s heading \"%s\" -text \"%s\" -anchor %s -image %s", this._parent.id, this.id, this._title, this._anchor, image.id);
+			this._tk.eval("%s heading %s -text \"%s\" -anchor %s -image %s", this._parent.id, this.id, this._title, this._anchor, image.id);
 		}
 
 		return cast(T) this;
@@ -773,52 +773,16 @@ class TreeViewColumn : Element
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./treeview.html#ColumnCommandCallback, tkd.widget.ColumnCommandCallback)
+	 *     $(LINK2 ../element/element.html#CommandCallback, tkd.element.element.CommandCallback)
 	 */
-	public auto setHeadingCommand(this T)(ColumnCommandCallback callback)
+	public auto setHeadingCommand(this T)(CommandCallback callback)
 	{
 		this._commandCallback = callback;
 
 		if (this._parent !is null && this._commandCallback !is null)
 		{
-			this.removeHeadingCommand();
-
-			Tcl_CmdProc commandCallbackHandler = function(ClientData data, Tcl_Interp* tclInterpreter, int argc, const(char)** argv)
-			{
-				ColumnArgs args = *cast(ColumnArgs*)data;
-
-				try
-				{
-					args.callback(args.column, args);
-				}
-				catch (Throwable ex)
-				{
-					string error = "Error occurred in column command callback. ";
-					error ~= ex.msg ~ "\n";
-					error ~= "Column: " ~ args.column.id ~ "\n";
-
-					Tcl_SetResult(tclInterpreter, error.toStringz, TCL_STATIC);
-					return TCL_ERROR;
-				}
-
-				return TCL_OK;
-			};
-
-			Tcl_CmdDeleteProc deleteCallbackHandler = function(ClientData data)
-			{
-				free(data);
-			};
-
-			ColumnArgs* args = cast(ColumnArgs*)malloc(ColumnArgs.sizeof);
-
-			(*args).column   = this;
-			(*args).callback = callback;
-
-			string command  = format("command-%s", this.generateHash("command%s%s", this._parent.id, this.id));
-			string tkScript = format("%s heading \"%s\" -command %s", this._parent.id, this.id, command);
-
-			this._tk.createCommand(command, commandCallbackHandler, args, deleteCallbackHandler);
-			this._tk.eval(tkScript);
+			string command = this.createCommand(callback, this._parent.id);
+			this._tk.eval("%s heading %s -command %s", this._parent.id, this.id, command);
 		}
 
 		return cast(T) this;
@@ -834,11 +798,8 @@ class TreeViewColumn : Element
 	{
 		if (this._parent !is null && this._commandCallback !is null)
 		{
-			string command  = format("command-%s", this.generateHash("command%s%s", this._parent.id, this.id));
-			string tkScript = format("%s heading \"%s\" -command {}", this._parent.id, this.id);
-
-			this._tk.deleteCommand(command);
-			this._tk.eval(tkScript);
+			this._tk.deleteCommand(this.getCommandName(this._parent.id));
+			this._tk.eval("%s heading %s -command {}", this._parent.id, this.id);
 		}
 
 		return cast(T) this;
@@ -998,25 +959,4 @@ class TreeViewRow
 	{
 		return format("Values: %s, isOpen: %s, Tags: %s, Children: %s", this.values, this.isOpen, this.tags, this.children);
 	}
-}
-
-/**
- * Alias representing a column command callback.
- */
-alias void delegate(TreeViewColumn column, ColumnArgs args) ColumnCommandCallback;
-
-/**
- * The ColumnArgs struct passed to the ColumnCommandCallback on invocation.
- */
-struct ColumnArgs
-{
-	/**
-	 * The widget that issued the command.
-	 */
-	TreeViewColumn column;
-
-	/**
-	 * The callback which was invoked as the command.
-	 */
-	ColumnCommandCallback callback;
 }

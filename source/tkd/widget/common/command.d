@@ -12,8 +12,7 @@ module tkd.widget.common.command;
 mixin template Command()
 {
 	import std.string;
-	import tcltk.tk;
-	import tkd.widget.widget;
+	import tkd.element.element;
 
 	/**
 	 * Add a command to a widget.
@@ -25,48 +24,12 @@ mixin template Command()
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ../widget.html#WidgetCommandCallback, tkd.widget.WidgetCommandCallback)
+	 *     $(LINK2 ../../element/element.html#CommandCallback, tkd.element.element.CommandCallback)
 	 */
-	public auto setCommand(this T)(WidgetCommandCallback callback)
+	public auto setCommand(this T)(CommandCallback callback)
 	{
-		this.removeCommand();
-
-		Tcl_CmdProc commandCallbackHandler = function(ClientData data, Tcl_Interp* tclInterpreter, int argc, const(char)** argv)
-		{
-			CommandArgs args = *cast(CommandArgs*)data;
-
-			try
-			{
-				args.callback(args.widget, args);
-			}
-			catch (Throwable ex)
-			{
-				string error = "Error occurred in command callback. ";
-				error ~= ex.msg ~ "\n";
-				error ~= "Widget: " ~ args.widget.id ~ "\n";
-
-				Tcl_SetResult(tclInterpreter, error.toStringz, TCL_STATIC);
-				return TCL_ERROR;
-			}
-
-			return TCL_OK;
-		};
-
-		Tcl_CmdDeleteProc deleteCallbackHandler = function(ClientData data)
-		{
-			free(data);
-		};
-
-		CommandArgs* args = cast(CommandArgs*)malloc(CommandArgs.sizeof);
-
-		(*args).widget   = this;
-		(*args).callback = callback;
-
-		string command  = format("command-%s", this.generateHash("command%s", this.id));
-		string tkScript = format("%s configure -command %s", this.id, command);
-
-		this._tk.createCommand(command, commandCallbackHandler, args, deleteCallbackHandler);
-		this._tk.eval(tkScript);
+		string command = this.createCommand(callback);
+		this._tk.eval("%s configure -command %s", this.id, command);
 
 		return cast(T) this;
 	}
@@ -79,11 +42,8 @@ mixin template Command()
 	 */
 	public auto removeCommand(this T)()
 	{
-		string command  = format("command-%s", this.generateHash("command%s", this.id));
-		string tkScript = format("%s configure -command {}", this.id);
-
-		this._tk.deleteCommand(command);
-		this._tk.eval(tkScript);
+		this._tk.deleteCommand(this.getCommandName());
+		this._tk.eval("%s configure -command {}", this.id);
 
 		return cast(T) this;
 	}

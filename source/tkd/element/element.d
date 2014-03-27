@@ -9,10 +9,13 @@ module tkd.element.element;
 /**
  * Imports.
  */
+import core.stdc.stdlib : malloc, free;
 import std.array;
 import std.conv;
 import std.digest.crc;
 import std.random;
+import std.string;
+import tcltk.tk;
 import tkd.interpreter;
 
 /**
@@ -138,4 +141,91 @@ abstract class Element
 	{
 		return hexDigest!(CRC32)(format(text, args)).array.to!(string);
 	}
+
+	/**
+	 * Get the internal name for a command.
+	 *
+	 * Params:
+	 *     nameSeed = An extra seed for the internal command name hash.
+	 *
+	 * Returns:
+	 *     The internal name of the command.
+	 */
+	protected string getCommandName(string nameSeed = null)
+	{
+		return format("command-%s", this.generateHash("command%s%s", nameSeed, this.id));
+	}
+
+	/**
+	 * Create a command.
+	 *
+	 * Params:
+	 *     callback = The callback to register as a command.
+	 *     nameSeed = An extra seed for the internal command name hash.
+	 *
+	 * Returns:
+	 *     The internal command name.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./element.html#CommandCallback, tkd.element.element.CommandCallback)
+	 */
+	protected string createCommand(CommandCallback callback, string nameSeed = null)
+	{
+		Tcl_CmdProc commandCallbackHandler = function(ClientData data, Tcl_Interp* tclInterpreter, int argc, const(char)** argv)
+		{
+			CommandArgs args = *cast(CommandArgs*)data;
+
+			try
+			{
+				args.callback(args);
+			}
+			catch (Throwable ex)
+			{
+				string error = "Error occurred in command callback. ";
+				error ~= ex.msg ~ "\n";
+				error ~= "Element: " ~ args.element.id ~ "\n";
+
+				Tcl_SetResult(tclInterpreter, error.toStringz, TCL_STATIC);
+				return TCL_ERROR;
+			}
+
+			return TCL_OK;
+		};
+
+		Tcl_CmdDeleteProc deleteCallbackHandler = function(ClientData data)
+		{
+			free(data);
+		};
+
+		CommandArgs* args = cast(CommandArgs*)malloc(CommandArgs.sizeof);
+
+		(*args).element  = this;
+		(*args).callback = callback;
+
+		string command = this.getCommandName(nameSeed);
+		this._tk.createCommand(command, commandCallbackHandler, args, deleteCallbackHandler);
+
+		return command;
+	}
+}
+
+/**
+ * Alias representing a command callback.
+ */
+alias void delegate(CommandArgs args) CommandCallback;
+
+/**
+ * The CommandArgs struct passed to the CommandCallback on invocation.
+ */
+struct CommandArgs
+{
+	/**
+	 * The element that issued the command.
+	 */
+	Element element;
+
+	/**
+	 * The callback which was invoked as the command.
+	 */
+	CommandCallback callback;
 }

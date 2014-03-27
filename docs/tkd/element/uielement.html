@@ -84,19 +84,19 @@ All UI elements can raise the following events which can be bound to using the b
 <h3>See Also</h3><p><a href="./cursor.html">tkd.element.cursor</a> for returned cursors.</p>
 </div>
 </div>
-<h2><a name="UiElement.bind"></a>auto <span class="symbol">bind</span>(this T)(string binding, UiElementBindCallback callback);
+<h2><a name="UiElement.bind"></a>auto <span class="symbol">bind</span>(this T)(string binding, CommandCallback callback);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Bind a callback to a particular event triggered by this element.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string binding</td>
 <td>The binding that triggers this event.</td></tr>
-<tr><td>UiElementBindCallback callback</td>
+<tr><td>CommandCallback callback</td>
 <td>The delegate callback to execute when the event triggers.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.
 
 </p>
-<h3>See Also</h3><p><a href="./uielement.html#UiElementBindCallback">tkd.element.uielement.UiElementBindCallback</a></p>
+<h3>See Also</h3><p><a href="./element.html#CommandCallback">tkd.element.element.CommandCallback</a></p>
 </div>
 </div>
 <h2><a name="UiElement.unbind"></a>auto <span class="symbol">unbind</span>(this T)(string binding);
@@ -210,32 +210,6 @@ Once an element is destroyed it can no longer be referenced in your
 <td>True to get the position relative to its parent, <strong>false</strong> for the position on the screen.</td></tr>
 </table>
 <h3>Return Value</h3><p>The vertical position of the element.</p>
-</div>
-</div>
-</div>
-</div>
-<h2><a name="UiElementBindCallback"></a>alias <span class="symbol">UiElementBindCallback</span> = void delegate(UiElement element, BindArgs args);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Alias representing an element callback.</p>
-</div>
-</div>
-<h2><a name="BindArgs"></a>struct <span class="symbol">BindArgs</span>;
-</h2>
-<div class="declaration-description"><div class="sections"><p>The <span class="symbol">BindArgs</span> struct passed to the UiElementBindCallback on invocation.</p>
-</div>
-<div class="struct-members"><h2><a name="BindArgs.element"></a>UiElement <span class="symbol">element</span>;
-</h2>
-<div class="declaration-description"><div class="sections"><p>The <span class="symbol">element</span> that raised the event.</p>
-</div>
-</div>
-<h2><a name="BindArgs.binding"></a>string <span class="symbol">binding</span>;
-</h2>
-<div class="declaration-description"><div class="sections"><p>The event that occurred.</p>
-</div>
-</div>
-<h2><a name="BindArgs.callback"></a>UiElementBindCallback <span class="symbol">callback</span>;
-</h2>
-<div class="declaration-description"><div class="sections"><p>The <span class="symbol">callback</span> which was invoked for the event.</p>
 </div>
 </div>
 </div>

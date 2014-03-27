@@ -22,19 +22,17 @@
 <p><h3>Example:</h3>
 <pre><span class="keyword">class</span> Application : <span class="symbol">TkdApplication</span>
 {
-	<span class="keyword">private</span> <span class="keyword">void</span> button_quit_command(Widget widget, CommandArgs args)
+	<span class="keyword">private</span> <span class="keyword">void</span> exitCommand(CommandArgs args)
 	{
 		<span class="keyword">this</span>.exit();
 	}
 
 	<span class="keyword">override</span> <span class="keyword">protected</span> <span class="keyword">void</span> initInterface()
 	{
-		<span class="keyword">this</span>.frame.root   = <span class="keyword">new</span> Frame();
-		<span class="keyword">this</span>.button.exit  = <span class="keyword">new</span> Button(<span class="keyword">this</span>.frame.root, <span class="string">"Exit"</span>);
-		<span class="keyword">this</span>.button.exit.setCommand(&amp;<span class="keyword">this</span>.button_quit_command);
+		<span class="keyword">auto</span> frame      = <span class="keyword">new</span> Frame().pack();
+		<span class="keyword">auto</span> exitButton = <span class="keyword">new</span> Button(frame, <span class="string">"Exit"</span>).pack();
 
-		<span class="keyword">this</span>.frame.root.pack();
-		<span class="keyword">this</span>.button.exit.pack();
+		exitButton.setCommand(&amp;<span class="keyword">this</span>.exitCommand);
 	}
 }
 
@@ -292,7 +290,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
-<h2><a name="Window.addProtocolCommand"></a>auto <span class="symbol">addProtocolCommand</span>(this T)(string protocol, ProtocolCommandCallback callback);
+<h2><a name="Window.addProtocolCommand"></a>auto <span class="symbol">addProtocolCommand</span>(this T)(string protocol, CommandCallback callback);
 </h2>
 <div class="declaration-description"><div class="sections"><p>This command is used to manage window manager protocols such as
  WM_DELETE_WINDOW. Name is the name of an atom corresponding to a window
@@ -301,13 +299,13 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string protocol</td>
 <td>The protocol to add the command to.</td></tr>
-<tr><td>ProtocolCommandCallback callback</td>
+<tr><td>CommandCallback callback</td>
 <td>The callback to invoke when the protocol is encountered.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.
 
 </p>
-<h3>See Also</h3><p><a href="./tkdapplication.html#WindowProtocol">tkd.tkdapplication.WindowProtocol</a></p>
+<h3>See Also</h3><p><a href="./element/element.html#CommandCallback">tkd.element.element.CommandCallback</a></p>
 </div>
 </div>
 <h2><a name="Window.removeProtocolCommand"></a>auto <span class="symbol">removeProtocolCommand</span>(this T)(string protocol);
@@ -360,27 +358,6 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <div class="declaration-description"><div class="sections"><p>Withdraw a window from being displayed/mapped by the window manager.
 </p>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
-</div>
-</div>
-</div>
-</div>
-<h2><a name="ProtocolCommandCallback"></a>alias <span class="symbol">ProtocolCommandCallback</span> = void delegate(Window window, ProtocolCommandArgs args);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Alias representing a protocol command callback.</p>
-</div>
-</div>
-<h2><a name="ProtocolCommandArgs"></a>struct <span class="symbol">ProtocolCommandArgs</span>;
-</h2>
-<div class="declaration-description"><div class="sections"><p>The <span class="symbol">ProtocolCommandArgs</span> struct passed to the ProtocolCommandCallback on invocation.</p>
-</div>
-<div class="struct-members"><h2><a name="ProtocolCommandArgs.window"></a>Window <span class="symbol">window</span>;
-</h2>
-<div class="declaration-description"><div class="sections"><p>The <span class="symbol">window</span> that issued the command.</p>
-</div>
-</div>
-<h2><a name="ProtocolCommandArgs.callback"></a>ProtocolCommandCallback <span class="symbol">callback</span>;
-</h2>
-<div class="declaration-description"><div class="sections"><p>The <span class="symbol">callback</span> which was invoked as the command.</p>
 </div>
 </div>
 </div>

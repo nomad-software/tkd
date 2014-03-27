@@ -57,7 +57,8 @@ class MenuBar : UiElement
 		super(parent);
 
 		this._elementId = "menubar";
-		this._tk.eval("%s configure -menu [menu %s -type menubar -tearoff 0]", parent.id, this.id);
+		this._tk.eval("menu %s -type menubar -tearoff 0", this.id);
+		this._tk.eval("%s configure -menu %s", parent.id, this.id);
 	}
 
 }

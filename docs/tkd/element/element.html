@@ -91,6 +91,52 @@
 <h3>Return Value</h3><p>The string hash.</p>
 </div>
 </div>
+<h2><a name="Element.getCommandName"></a>protected string <span class="symbol">getCommandName</span>(string nameSeed = null);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the internal name for a command.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string nameSeed</td>
+<td>An extra seed for the internal command name hash.</td></tr>
+</table>
+<h3>Return Value</h3><p>The internal name of the command.</p>
+</div>
+</div>
+<h2><a name="Element.createCommand"></a>protected string <span class="symbol">createCommand</span>(CommandCallback callback, string nameSeed = null);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Create a command.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>CommandCallback callback</td>
+<td>The callback to register as a command.</td></tr>
+<tr><td>string nameSeed</td>
+<td>An extra seed for the internal command name hash.</td></tr>
+</table>
+<h3>Return Value</h3><p>The internal command name.
+
+</p>
+<h3>See Also</h3><p><a href="./element.html#CommandCallback">tkd.element.element.CommandCallback</a></p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="CommandCallback"></a>alias <span class="symbol">CommandCallback</span> = void delegate(CommandArgs args);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Alias representing a command callback.</p>
+</div>
+</div>
+<h2><a name="CommandArgs"></a>struct <span class="symbol">CommandArgs</span>;
+</h2>
+<div class="declaration-description"><div class="sections"><p>The <span class="symbol">CommandArgs</span> struct passed to the CommandCallback on invocation.</p>
+</div>
+<div class="struct-members"><h2><a name="CommandArgs.element"></a>Element <span class="symbol">element</span>;
+</h2>
+<div class="declaration-description"><div class="sections"><p>The <span class="symbol">element</span> that issued the command.</p>
+</div>
+</div>
+<h2><a name="CommandArgs.callback"></a>CommandCallback <span class="symbol">callback</span>;
+</h2>
+<div class="declaration-description"><div class="sections"><p>The <span class="symbol">callback</span> which was invoked as the command.</p>
+</div>
+</div>
 </div>
 </div>
 </div>

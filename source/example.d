@@ -21,13 +21,14 @@ class Application : TkdApplication
 	/**
 	 * Event callbacks.
 	 */
-	private void exitCommand(Widget widget, CommandArgs args)
+	private void exitCommand(CommandArgs args)
 	{
 		this.exit();
 	}
 
-	private void execute(Widget widget, CommandArgs args)
+	private void execute(CommandArgs args)
 	{
+		writeln("menu");
 	}
 
 	/**
@@ -38,10 +39,10 @@ class Application : TkdApplication
 		auto menubar = new MenuBar(this.mainWindow);
 
 		auto fileMenu = new Menu(menubar, "File")
-			.addItem("Open...")
-			.addItem("Save...")
-			.addSeparator()
-			.addItem("Quit...");
+			// .addItem("Open...")
+			// .addItem("Save...")
+			// .addSeparator()
+			.addItem("Quit...", &this.execute);
 
 		auto helpMenu = new Menu(menubar, "Help");
 
@@ -50,6 +51,8 @@ class Application : TkdApplication
 
 		auto button = new Button(frame, "Exit")
 			.setCommand(&this.exitCommand)
+			.bind("<Enter>", &this.exitCommand)
+			.unbind("<Enter>")
 			.pack();
 	}
 }

@@ -9,6 +9,9 @@ module tkd.widget.menu.menu;
 /**
  * Imports.
  */
+import std.string;
+import tcltk.tk;
+import tkd.element.element;
 import tkd.element.uielement;
 import tkd.widget.menu.menubar;
 
@@ -51,14 +54,15 @@ class Menu : UiElement
 	 *     label = The label of the menu.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ../../element/uielement.html, tkd.element.uielement)
+	 *     $(LINK2 ./menubar.html, tkd.widget.menu.menubar)
 	 */
-	public this(T)(T parent, string label) if (is(T == MenuBar))
+	public this(MenuBar parent, string label)
 	{
 		super(parent);
 
 		this._elementId = "menu";
-		this._tk.eval("%s add cascade -menu [menu %s -type normal -tearoff 0] -label \"%s\"", parent.id, this.id, label);
+		this._tk.eval("menu %s -type normal -tearoff 0", this.id);
+		this._tk.eval("%s add cascade -menu %s -label \"%s\"", parent.id, this.id, label);
 	}
 
 	/**
@@ -66,13 +70,19 @@ class Menu : UiElement
 	 *
 	 * Params:
 	 *     label = The label of the item.
+	 *     callback = The callback to execute as the action for this menu item.
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./element.html#CommandCallback, tkd.element.element.CommandCallback)
 	 */
-	public auto addItem(this T)(string label)
+	public auto addItem(this T)(string label, CommandCallback callback)
 	{
-		this._tk.eval("%s add command -label \"%s\"", this.id, label);
+		string command = this.createCommand(callback, label);
+
+		this._tk.eval("%s add command -label \"%s\" -command %s", this.id, label, command);
 
 		return cast(T) this;
 	}

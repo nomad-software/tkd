@@ -44,26 +44,31 @@ Additional events that can also be bound to using the <a href="../../element/uie
 </p>
 <h3>See Also</h3><p><a href="../../element/uielement.html">tkd.element.uielement</a></p>
 </div>
-<div class="class-members"><h2><a name="Menu.this"></a> this(T)(T parent, string label) if (is(T == MenuBar));
+<div class="class-members"><h2><a name="Menu.this"></a> this(MenuBar parent, string label);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>T parent</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>MenuBar parent</td>
 <td>The parent of this widget.</td></tr>
 <tr><td>string label</td>
 <td>The label of the menu.</td></tr>
 </table>
-<h3>See Also</h3><p><a href="../../element/uielement.html">tkd.element.uielement</a></p>
+<h3>See Also</h3><p><a href="./menubar.html">tkd.widget.menu.menubar</a></p>
 </div>
 </div>
-<h2><a name="Menu.addItem"></a>auto <span class="symbol">addItem</span>(this T)(string label);
+<h2><a name="Menu.addItem"></a>auto <span class="symbol">addItem</span>(this T)(string label, CommandCallback callback);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Add an item to the menu.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string label</td>
 <td>The label of the item.</td></tr>
+<tr><td>CommandCallback callback</td>
+<td>The callback to execute as the action for this menu item.</td></tr>
 </table>
-<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+<h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p>
+<h3>See Also</h3><p><a href="./element.html#CommandCallback">tkd.element.element.CommandCallback</a></p>
 </div>
 </div>
 <h2><a name="Menu.addSeparator"></a>auto <span class="symbol">addSeparator</span>(this T)();

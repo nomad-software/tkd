@@ -9,7 +9,6 @@ module tkd.element.uielement;
 /**
  * Imports.
  */
-import core.stdc.stdlib : malloc, free;
 import std.conv;
 import std.range;
 import std.string;
@@ -121,50 +120,12 @@ abstract class UiElement : Element
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./uielement.html#UiElementBindCallback, tkd.element.uielement.UiElementBindCallback)
+	 *     $(LINK2 ./element.html#CommandCallback, tkd.element.element.CommandCallback)
 	 */
-	public auto bind(this T)(string binding, UiElementBindCallback callback)
+	public auto bind(this T)(string binding, CommandCallback callback)
 	{
-		this.unbind(binding);
-
-		BindArgs* args  = cast(BindArgs*)malloc(BindArgs.sizeof);
-
-		(*args).element  = this;
-		(*args).binding  = binding;
-		(*args).callback = callback;
-
-		string command  = format("command-%s", this.generateHash("%s%s", binding, this.id));
-		string tkScript = format("bind %s %s { %s }", this.id, binding, command);
-
-		Tcl_CmdProc bindCallbackHandler = function(ClientData data, Tcl_Interp* tclInterpreter, int argc, const(char)** argv)
-		{
-			BindArgs args = *cast(BindArgs*)data;
-
-			try
-			{
-				args.callback(args.element, args);
-			}
-			catch (Throwable ex)
-			{
-				string error = "Error occurred in bound callback. ";
-				error ~= ex.msg ~ "\n";
-				error ~= "UiElement: " ~ args.element.id ~ "\n";
-				error ~= "Binding: " ~ args.binding ~ "\n";
-
-				Tcl_SetResult(tclInterpreter, error.toStringz, TCL_STATIC);
-				return TCL_ERROR;
-			}
-
-			return TCL_OK;
-		};
-
-		Tcl_CmdDeleteProc deleteBindCallbackHandler = function(ClientData data)
-		{
-			free(data);
-		};
-
-		this._tk.createCommand(command, bindCallbackHandler, args, deleteBindCallbackHandler);
-		this._tk.eval(tkScript);
+		string command = this.createCommand(callback, binding);
+		this._tk.eval("bind %s %s %s ", this.id, binding, command);
 
 		return cast(T) this;
 	}
@@ -180,15 +141,11 @@ abstract class UiElement : Element
 	 */
 	public auto unbind(this T)(string binding)
 	{
-		string command  = format("command-%s", this.generateHash("%s%s", binding, this.id));
-		string tkScript = format("bind %s %s { }", this.id, binding);
-
-		this._tk.deleteCommand(command);
-		this._tk.eval(tkScript);
+		this._tk.deleteCommand(this.getCommandName(binding));
+		this._tk.eval("bind %s %s {}", this.id, binding);
 
 		return cast(T) this;
 	}
-
 	/**
 	 * Destroy this ui element.
 	 *
@@ -393,30 +350,4 @@ abstract class UiElement : Element
 
 		return this._tk.getResult!(int);
 	}
-}
-
-/**
- * Alias representing an element callback.
- */
-alias void delegate(UiElement element, BindArgs args) UiElementBindCallback;
-
-/**
- * The BindArgs struct passed to the UiElementBindCallback on invocation.
- */
-struct BindArgs
-{
-	/**
-	 * The element that raised the event.
-	 */
-	UiElement element;
-
-	/**
-	 * The event that occurred.
-	 */
-	string binding;
-
-	/**
-	 * The callback which was invoked for the event.
-	 */
-	UiElementBindCallback callback;
 }

@@ -109,21 +109,21 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
-<h2><a name="TreeView.setHeadingCommand"></a>auto <span class="symbol">setHeadingCommand</span>(this T)(ColumnCommandCallback callback);
+<h2><a name="TreeView.setHeadingCommand"></a>auto <span class="symbol">setHeadingCommand</span>(this T)(CommandCallback callback);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Convenience method to set the tree column command to be executed when
  clicking on the heading.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>ColumnCommandCallback callback</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>CommandCallback callback</td>
 <td>The delegate callback to execute when invoking the command.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.
 
 </p>
-<h3>See Also</h3><p><a href="./treeview.html#ColumnCommandCallback">tkd.widget.ColumnCommandCallback</a></p>
+<h3>See Also</h3><p><a href="../element/element.html#CommandCallback">tkd.element.element.CommandCallback</a></p>
 </div>
 </div>
-<h2><a name="TreeView.removeCommand"></a>auto <span class="symbol">removeCommand</span>(this T)();
+<h2><a name="TreeView.removeHeadingCommand"></a>auto <span class="symbol">removeHeadingCommand</span>(this T)();
 </h2>
 <div class="declaration-description"><div class="sections"><p>Convenience method to remove the tree view column command.
 </p>
@@ -332,17 +332,17 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>Return Value</h3><p>This column to aid method chaining.</p>
 </div>
 </div>
-<h2><a name="TreeViewColumn.setHeadingCommand"></a>auto <span class="symbol">setHeadingCommand</span>(this T)(ColumnCommandCallback callback);
+<h2><a name="TreeViewColumn.setHeadingCommand"></a>auto <span class="symbol">setHeadingCommand</span>(this T)(CommandCallback callback);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Set the column command to be executed when clicking on the heading.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>ColumnCommandCallback callback</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>CommandCallback callback</td>
 <td>The delegate callback to execute when invoking the command.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.
 
 </p>
-<h3>See Also</h3><p><a href="./treeview.html#ColumnCommandCallback">tkd.widget.ColumnCommandCallback</a></p>
+<h3>See Also</h3><p><a href="../element/element.html#CommandCallback">tkd.element.element.CommandCallback</a></p>
 </div>
 </div>
 <h2><a name="TreeViewColumn.removeHeadingCommand"></a>auto <span class="symbol">removeHeadingCommand</span>(this T)();
@@ -431,27 +431,6 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h2><a name="TreeViewRow.toString"></a>string <span class="symbol">toString</span>();
 </h2>
 <div class="declaration-description"><div class="sections"><p>String representation.</p>
-</div>
-</div>
-</div>
-</div>
-<h2><a name="ColumnCommandCallback"></a>alias <span class="symbol">ColumnCommandCallback</span> = void delegate(TreeViewColumn column, ColumnArgs args);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Alias representing a column command callback.</p>
-</div>
-</div>
-<h2><a name="ColumnArgs"></a>struct <span class="symbol">ColumnArgs</span>;
-</h2>
-<div class="declaration-description"><div class="sections"><p>The <span class="symbol">ColumnArgs</span> struct passed to the ColumnCommandCallback on invocation.</p>
-</div>
-<div class="struct-members"><h2><a name="ColumnArgs.column"></a>TreeViewColumn <span class="symbol">column</span>;
-</h2>
-<div class="declaration-description"><div class="sections"><p>The widget that issued the command.</p>
-</div>
-</div>
-<h2><a name="ColumnArgs.callback"></a>ColumnCommandCallback <span class="symbol">callback</span>;
-</h2>
-<div class="declaration-description"><div class="sections"><p>The <span class="symbol">callback</span> which was invoked as the command.</p>
 </div>
 </div>
 </div>

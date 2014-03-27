@@ -12,6 +12,7 @@ module tkd.widget.widget;
 import std.algorithm;
 import std.array;
 import std.string;
+import tkd.element.element;
 import tkd.element.uielement;
 import tkd.widget.state;
 
@@ -213,25 +214,4 @@ abstract class Widget : UiElement
 
 		return cast(T) this;
 	}
-}
-
-/**
- * Alias representing a widget command callback.
- */
-alias void delegate(Widget widget, CommandArgs args) WidgetCommandCallback;
-
-/**
- * The CommandArgs struct passed to the WidgetCommandCallback on invocation.
- */
-struct CommandArgs
-{
-	/**
-	 * The widget that issued the command.
-	 */
-	Widget widget;
-
-	/**
-	 * The callback which was invoked as the command.
-	 */
-	WidgetCommandCallback callback;
 }

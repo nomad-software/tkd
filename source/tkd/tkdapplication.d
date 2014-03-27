@@ -28,19 +28,17 @@ public import tkd.widget;
  * ---
  * class Application : TkdApplication
  * {
- * 	private void button_quit_command(Widget widget, CommandArgs args)
+ * 	private void exitCommand(CommandArgs args)
  * 	{
  * 		this.exit();
  * 	}
  *
  * 	override protected void initInterface()
  * 	{
- * 		this.frame.root   = new Frame();
- * 		this.button.exit  = new Button(this.frame.root, "Exit");
- * 		this.button.exit.setCommand(&this.button_quit_command);
+ * 		auto frame      = new Frame().pack();
+ * 		auto exitButton = new Button(frame, "Exit").pack();
  *
- * 		this.frame.root.pack();
- * 		this.button.exit.pack();
+ * 		exitButton.setCommand(&this.exitCommand);
  * 	}
  * }
  *
@@ -515,48 +513,12 @@ class Window : UiElement
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./tkdapplication.html#WindowProtocol, tkd.tkdapplication.WindowProtocol)
+	 *     $(LINK2 ./element/element.html#CommandCallback, tkd.element.element.CommandCallback)
 	 */
-	public auto addProtocolCommand(this T)(string protocol, ProtocolCommandCallback callback)
+	public auto addProtocolCommand(this T)(string protocol, CommandCallback callback)
 	{
-		this.removeProtocolCommand(protocol);
-
-		Tcl_CmdProc commandCallbackHandler = function(ClientData data, Tcl_Interp* tclInterpreter, int argc, const(char)** argv)
-		{
-			ProtocolCommandArgs args = *cast(ProtocolCommandArgs*)data;
-
-			try
-			{
-				args.callback(args.window, args);
-			}
-			catch (Throwable ex)
-			{
-				string error = "Error occurred in protocol command callback. ";
-				error ~= ex.msg ~ "\n";
-				error ~= "Window: " ~ args.window.id ~ "\n";
-
-				Tcl_SetResult(tclInterpreter, error.toStringz, TCL_STATIC);
-				return TCL_ERROR;
-			}
-
-			return TCL_OK;
-		};
-
-		Tcl_CmdDeleteProc deleteCallbackHandler = function(ClientData data)
-		{
-			free(data);
-		};
-
-		ProtocolCommandArgs* args = cast(ProtocolCommandArgs*)malloc(ProtocolCommandArgs.sizeof);
-
-		(*args).window   = this;
-		(*args).callback = callback;
-
-		string command  = format("command-%s", this.generateHash("command%s%s", this.id, protocol));
-		string tkScript = format("wm protocol %s %s %s", this.id, protocol, command);
-
-		this._tk.createCommand(command, commandCallbackHandler, args, deleteCallbackHandler);
-		this._tk.eval(tkScript);
+		string command = this.createCommand(callback, protocol);
+		this._tk.eval("wm protocol %s %s %s", this.id, protocol, command);
 
 		return cast(T) this;
 	}
@@ -575,11 +537,8 @@ class Window : UiElement
 	 */
 	public auto removeProtocolCommand(this T)(string protocol)
 	{
-		string command  = format("command-%s", this.generateHash("command%s%s", this.id, protocol));
-		string tkScript = format("wm protocol %s %s {}", this.id, protocol);
-
-		this._tk.deleteCommand(command);
-		this._tk.eval(tkScript);
+		this._tk.deleteCommand(this.getCommandName(protocol));
+		this._tk.eval("wm protocol %s %s {}", this.id, protocol);
 
 		return cast(T) this;
 	}
@@ -645,27 +604,6 @@ class Window : UiElement
 
 		return cast(T) this;
 	}
-}
-
-/**
- * Alias representing a protocol command callback.
- */
-alias void delegate(Window window, ProtocolCommandArgs args) ProtocolCommandCallback;
-
-/**
- * The ProtocolCommandArgs struct passed to the ProtocolCommandCallback on invocation.
- */
-struct ProtocolCommandArgs
-{
-	/**
-	 * The window that issued the command.
-	 */
-	Window window;
-
-	/**
-	 * The callback which was invoked as the command.
-	 */
-	ProtocolCommandCallback callback;
 }
 
 /**

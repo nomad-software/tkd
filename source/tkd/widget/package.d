@@ -6,6 +6,7 @@
  */
 module tkd.widget;
 
+public import tkd.element.element : CommandCallback, CommandArgs;
 public import tkd.widget.alignment;
 public import tkd.widget.anchorposition;
 public import tkd.widget.button;
@@ -34,4 +35,3 @@ public import tkd.widget.state;
 public import tkd.widget.style;
 public import tkd.widget.treeview;
 public import tkd.widget.treeviewselectionmode;
-public import tkd.widget.widget;
