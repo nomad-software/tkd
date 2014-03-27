@@ -28,7 +28,7 @@ class Application : TkdApplication
 
 	private void execute(CommandArgs args)
 	{
-		writeln("menu");
+		writeln("Menu item selected.");
 	}
 
 	/**
@@ -36,15 +36,16 @@ class Application : TkdApplication
 	 */
 	override protected void initInterface()
 	{
+		this.mainWindow.bind("<Control-o>", &this.execute);
+		this.mainWindow.bind("<Control-q>", &this.exitCommand);
+
 		auto menubar = new MenuBar(this.mainWindow);
 
 		auto fileMenu = new Menu(menubar, "File")
-			// .addItem("Open...")
-			// .addItem("Save...")
-			// .addSeparator()
-			.addItem("Quit...", &this.execute);
-
-		auto helpMenu = new Menu(menubar, "Help");
+			.addItem("Open...", &this.execute, "Ctrl+O")
+			.addItem("Save...", &this.execute)
+			.addSeparator()
+			.addItem("Quit...", &this.exitCommand, "Ctrl-Q");
 
 		auto frame = new Frame()
 			.pack();

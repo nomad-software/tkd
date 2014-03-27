@@ -240,7 +240,7 @@ class Window : UiElement
 	 */
 	public auto setTitle(this T)(string title)
 	{
-		this._tk.eval("wm title %s \"%s\"", this.id, title);
+		this._tk.eval("wm title %s {%s}", this.id, title);
 
 		return cast(T) this;
 	}

@@ -113,7 +113,7 @@ class NoteBook : Widget
 	 */
 	public auto insertTab(this T, I)(I tabIdentifier, string text, Widget widget) if (is(I == int) || is(I == string))
 	{
-		this._tk.eval("%s insert %s %s -text \"%s\"", this.id, tabIdentifier, widget.id, text);
+		this._tk.eval("%s insert %s %s -text {%s}", this.id, tabIdentifier, widget.id, text);
 
 		return cast(T) this;
 	}
@@ -236,7 +236,7 @@ class NoteBook : Widget
 	 */
 	public auto setTabText(this T, I)(I tabIdentifier, string text) if (is(I == int) || is(I == string))
 	{
-		this._tk.eval("%s tab %s -text \"%s\"", this.id, tabIdentifier, text);
+		this._tk.eval("%s tab %s -text {%s}", this.id, tabIdentifier, text);
 
 		return cast(T) this;
 	}

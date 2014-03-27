@@ -56,7 +56,7 @@ Additional events that can also be bound to using the <a href="../../element/uie
 <h3>See Also</h3><p><a href="./menubar.html">tkd.widget.menu.menubar</a></p>
 </div>
 </div>
-<h2><a name="Menu.addItem"></a>auto <span class="symbol">addItem</span>(this T)(string label, CommandCallback callback);
+<h2><a name="Menu.addItem"></a>auto <span class="symbol">addItem</span>(this T)(string label, CommandCallback callback, string accelerator = null);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Add an item to the menu.
 </p>
@@ -64,6 +64,8 @@ Additional events that can also be bound to using the <a href="../../element/uie
 <td>The label of the item.</td></tr>
 <tr><td>CommandCallback callback</td>
 <td>The callback to execute as the action for this menu item.</td></tr>
+<tr><td>string accelerator</td>
+<td>The keyboard shortcut. This is for decoration only, you must also bind this keypress to an event.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.
 

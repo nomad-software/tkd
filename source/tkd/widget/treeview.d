@@ -371,7 +371,7 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 				tags = format("\"%s\"", row.tags.join("\" \""));
 			}
 
-			this._tk.eval("%s insert %s end -text \"%s\" -values { %s } -open %s -tags { %s }", this.id, parentRow, row.values[0], dataValues, row.isOpen, tags);
+			this._tk.eval("%s insert %s end -text {%s} -values {%s} -open %s -tags {%s}", this.id, parentRow, row.values[0], dataValues, row.isOpen, tags);
 
 			if (row.children.length)
 			{
@@ -397,7 +397,7 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 */
 	public auto setTag(this T)(string name, Image image, string foreground = Color.black, string background = Color.white)
 	{
-		this._tk.eval("%s tag configure %s -image %s -foreground \"%s\" -background \"%s\"", this.id, name, image.id, foreground, background);
+		this._tk.eval("%s tag configure %s -image %s -foreground {%s} -background {%s}", this.id, name, image.id, foreground, background);
 
 		return cast(T) this;
 	}
@@ -437,7 +437,7 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 */
 	public auto displayDataColumns(this T)(int[] indexes)
 	{
-		this._tk.eval("%s configure -displaycolumns { \"%s\" }", this.id, this.getDataColumnIdentifiers(indexes).join("\" \""));
+		this._tk.eval("%s configure -displaycolumns {\"%s\"}", this.id, this.getDataColumnIdentifiers(indexes).join("\" \""));
 
 		return cast(T) this;
 	}
@@ -736,7 +736,7 @@ class TreeViewColumn : Element
 
 		if (this._parent)
 		{
-			this._tk.eval("%s heading \"%s\" -text \"%s\" -anchor %s", this._parent.id, this.id, this._title, this._anchor);
+			this._tk.eval("%s heading %s -text {%s} -anchor %s", this._parent.id, this.id, this._title, this._anchor);
 		}
 
 		return cast(T) this;
@@ -757,7 +757,7 @@ class TreeViewColumn : Element
 
 		if (this._parent && this._image)
 		{
-			this._tk.eval("%s heading %s -text \"%s\" -anchor %s -image %s", this._parent.id, this.id, this._title, this._anchor, image.id);
+			this._tk.eval("%s heading %s -text {%s} -anchor %s -image %s", this._parent.id, this.id, this._title, this._anchor, image.id);
 		}
 
 		return cast(T) this;
@@ -820,7 +820,7 @@ class TreeViewColumn : Element
 
 		if (this._parent)
 		{
-			this._tk.eval("%s column \"%s\" -minwidth %s", this._parent.id, this.id, this._minWidth);
+			this._tk.eval("%s column %s -minwidth %s", this._parent.id, this.id, this._minWidth);
 		}
 
 		return cast(T) this;
@@ -842,7 +842,7 @@ class TreeViewColumn : Element
 
 		if (this._parent)
 		{
-			this._tk.eval("%s column \"%s\" -stretch %s", this._parent.id, this.id, this._stretch);
+			this._tk.eval("%s column %s -stretch %s", this._parent.id, this.id, this._stretch);
 		}
 
 		return cast(T) this;
@@ -863,7 +863,7 @@ class TreeViewColumn : Element
 
 		if (this._parent)
 		{
-			this._tk.eval("%s column \"%s\" -width %s", this._parent.id, this.id, this._width);
+			this._tk.eval("%s column %s -width %s", this._parent.id, this.id, this._width);
 		}
 
 		return cast(T) this;

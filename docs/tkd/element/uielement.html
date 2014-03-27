@@ -89,11 +89,84 @@ All UI elements can raise the following events which can be bound to using the b
 <div class="declaration-description"><div class="sections"><p>Bind a callback to a particular event triggered by this element.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string binding</td>
-<td>The binding that triggers this event.</td></tr>
+<td>The binding that triggers this event. See below.</td></tr>
 <tr><td>CommandCallback callback</td>
 <td>The delegate callback to execute when the event triggers.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p>
+<p><h3>Bindings:</h3>
+Bindings can be any of the preset events listed above or you can
+     create custom bindings from lists of modifiers. All bindings must be
+     inside angled brackets.
+<br><br>
+
+     Modifiers consist of any of the following values:
+     <p>        <table class="parameter-list">            <tr><td>Alt</td><td>The Alt key.</td></tr>
+             <tr><td>Button1 <br> B1</td><td>Mouse button one.</td></tr>
+             <tr><td>Button2 <br> B2</td><td>Mouse button two.</td></tr>
+             <tr><td>Button3 <br> B3</td><td>Mouse button three.</td></tr>
+             <tr><td>Button3 <br> B5</td><td>Mouse button five.</td></tr>
+             <tr><td>Button4 <br> B4</td><td>Mouse button four.</td></tr>
+             <tr><td>Control</td><td>The Ctrl key.</td></tr>
+             <tr><td>Double</td><td>Modifier for doing something twice.</td></tr>
+             <tr><td>Extended</td><td>Extended keyboard support.</td></tr>
+             <tr><td>Lock</td><td>Unknown.</td></tr>
+             <tr><td>Meta <br> M</td><td>The meta key.</td></tr>
+             <tr><td>Mod1 <br> M1 <br> Command</td><td>First modifier key.</td></tr>
+             <tr><td>Mod2 <br> M2 <br> Option</td><td>Second modifier key.</td></tr>
+             <tr><td>Mod3 <br> M3</td><td>Third modifier key.</td></tr>
+             <tr><td>Mod4 <br> M4</td><td>Fourth modifier key.</td></tr>
+             <tr><td>Mod5 <br> M5</td><td>Fifth modifier key.</td></tr>
+             <tr><td>Quadruple</td><td>Modifier for doing something four times.</td></tr>
+             <tr><td>Shift</td><td>The Shift key.</td></tr>
+             <tr><td>Triple</td><td>Modifier for doing something three times.</td></tr>
+         </table>
+     </p>
+     Where more than one value is listed, the values are equivalent. Most
+     of the modifiers have the obvious meanings. For example, Button1
+     requires that button 1 be depressed when the event occurs. For a
+     binding to match a given event, the modifiers in the event must
+     include all of those specified in the event pattern. An event may
+     also contain additional modifiers not specified in the binding. For
+     example, if button 1 is pressed while the shift and control keys are
+     down, the pattern <b>&lt;Control-Button-1&gt;</b> will match the
+     event, but <b>&lt;Mod1-Button-1&gt;</b> will not. If no modifiers are
+     specified, then any combination of modifiers may be present in the
+     event.
+<br><br>
+
+     Meta and M refer to whichever of the M1 through M5 modifiers is
+     associated with the Meta key(s) on the keyboard. If there are no
+     Meta keys, or if they are not associated with any modifiers, then
+     Meta and M will not match any events. Similarly, the Alt modifier
+     refers to whichever modifier is associated with the alt key(s) on
+     the keyboard.
+<br><br>
+
+     The Double, Triple and Quadruple modifiers are a convenience for
+     specifying double mouse clicks and other repeated events. They cause
+     a particular event pattern to be repeated 2, 3 or 4 times, and also
+     place a time and space requirement on the sequence: for a sequence
+     of events to match a Double, Triple or Quadruple pattern, all of the
+     events must occur close together in time and without substantial
+     mouse motion in between. For example, <b>&lt;Double-Button-1&gt;</b>
+     is equivalent to <b>&lt;Button-1&gt;&lt;Button-1&gt;</b> with the
+     extra time and space requirement.
+<br><br>
+
+     The Command and Option modifiers correspond to Macintosh-specific
+     modifier keys.
+<br><br>
+
+     The Extended modifier is, at present, specific to Windows. It
+     appears on events that are associated with the keys on the 'extended
+     keyboard'. On a US keyboard, the extended keys include the Alt and
+     Control keys at the right of the keyboard, the cursor keys in the
+     cluster to the left of the numeric pad, the NumLock key, the
+     Break key, the PrintScreen key, and the / and Enter keys in the
+     numeric keypad.
 
 </p>
 <h3>See Also</h3><p><a href="./element.html#CommandCallback">tkd.element.element.CommandCallback</a></p>

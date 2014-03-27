@@ -113,11 +113,80 @@ abstract class UiElement : Element
 	 * Bind a callback to a particular event triggered by this element.
 	 *
 	 * Params:
-	 *     binding = The binding that triggers this event.
+	 *     binding = The binding that triggers this event. See below.
 	 *     callback = The delegate callback to execute when the event triggers.
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
+	 *
+	 * Bindings:
+	 *     Bindings can be any of the preset events listed above or you can 
+	 *     create custom bindings from lists of modifiers. All bindings must be 
+	 *     inside angled brackets.
+	 *
+	 *     Modifiers consist of any of the following values:
+	 *     $(P
+	 *         $(PARAM_TABLE
+	 *             $(PARAM_ROW Alt, The Alt key.)
+	 *             $(PARAM_ROW Button1 $(BR) B1, Mouse button one.)
+	 *             $(PARAM_ROW Button2 $(BR) B2, Mouse button two.)
+	 *             $(PARAM_ROW Button3 $(BR) B3, Mouse button three.)
+	 *             $(PARAM_ROW Button3 $(BR) B5, Mouse button five.)
+	 *             $(PARAM_ROW Button4 $(BR) B4, Mouse button four.)
+	 *             $(PARAM_ROW Control, The Ctrl key.)
+	 *             $(PARAM_ROW Double, Modifier for doing something twice.)
+	 *             $(PARAM_ROW Extended, Extended keyboard support.)
+	 *             $(PARAM_ROW Lock, Unknown.)
+	 *             $(PARAM_ROW Meta $(BR) M, The meta key.)
+	 *             $(PARAM_ROW Mod1 $(BR) M1 $(BR) Command, First modifier key.)
+	 *             $(PARAM_ROW Mod2 $(BR) M2 $(BR) Option, Second modifier key.)
+	 *             $(PARAM_ROW Mod3 $(BR) M3, Third modifier key.)
+	 *             $(PARAM_ROW Mod4 $(BR) M4, Fourth modifier key.)
+	 *             $(PARAM_ROW Mod5 $(BR) M5, Fifth modifier key.)
+	 *             $(PARAM_ROW Quadruple, Modifier for doing something four times.)
+	 *             $(PARAM_ROW Shift, The Shift key.)
+	 *             $(PARAM_ROW Triple, Modifier for doing something three times.)
+	 *         )
+	 *     )
+	 *     Where more than one value is listed, the values are equivalent. Most 
+	 *     of the modifiers have the obvious meanings. For example, Button1 
+	 *     requires that button 1 be depressed when the event occurs. For a 
+	 *     binding to match a given event, the modifiers in the event must 
+	 *     include all of those specified in the event pattern. An event may 
+	 *     also contain additional modifiers not specified in the binding. For 
+	 *     example, if button 1 is pressed while the shift and control keys are 
+	 *     down, the pattern $(B &lt;Control-Button-1&gt;) will match the 
+	 *     event, but $(B &lt;Mod1-Button-1&gt;) will not. If no modifiers are 
+	 *     specified, then any combination of modifiers may be present in the 
+	 *     event.
+	 *
+	 *     Meta and M refer to whichever of the M1 through M5 modifiers is 
+	 *     associated with the Meta key(s) on the keyboard. If there are no 
+	 *     Meta keys, or if they are not associated with any modifiers, then 
+	 *     Meta and M will not match any events. Similarly, the Alt modifier 
+	 *     refers to whichever modifier is associated with the alt key(s) on 
+	 *     the keyboard.
+	 *
+	 *     The Double, Triple and Quadruple modifiers are a convenience for 
+	 *     specifying double mouse clicks and other repeated events. They cause 
+	 *     a particular event pattern to be repeated 2, 3 or 4 times, and also 
+	 *     place a time and space requirement on the sequence: for a sequence 
+	 *     of events to match a Double, Triple or Quadruple pattern, all of the 
+	 *     events must occur close together in time and without substantial 
+	 *     mouse motion in between. For example, $(B &lt;Double-Button-1&gt;) 
+	 *     is equivalent to $(B &lt;Button-1&gt;&lt;Button-1&gt;) with the 
+	 *     extra time and space requirement.
+	 *
+	 *     The Command and Option modifiers correspond to Macintosh-specific 
+	 *     modifier keys.
+	 *
+	 *     The Extended modifier is, at present, specific to Windows. It 
+	 *     appears on events that are associated with the keys on the 'extended 
+	 *     keyboard'. On a US keyboard, the extended keys include the Alt and 
+	 *     Control keys at the right of the keyboard, the cursor keys in the 
+	 *     cluster to the left of the numeric pad, the NumLock key, the 
+	 *     Break key, the PrintScreen key, and the / and Enter keys in the 
+	 *     numeric keypad.
 	 *
 	 * See_Also:
 	 *     $(LINK2 ./element.html#CommandCallback, tkd.element.element.CommandCallback)
@@ -125,7 +194,7 @@ abstract class UiElement : Element
 	public auto bind(this T)(string binding, CommandCallback callback)
 	{
 		string command = this.createCommand(callback, binding);
-		this._tk.eval("bind %s %s %s ", this.id, binding, command);
+		this._tk.eval("bind %s {%s} %s ", this.id, binding, command);
 
 		return cast(T) this;
 	}

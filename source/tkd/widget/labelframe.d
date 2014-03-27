@@ -63,7 +63,7 @@ class LabelFrame : Widget
 		super(parent);
 		this._elementId = "labelframe";
 
-		this._tk.eval("ttk::labelframe %s -text \"%s\"", this.id, text);
+		this._tk.eval("ttk::labelframe %s -text {%s}", this.id, text);
 	}
 
 	/**

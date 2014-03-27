@@ -146,14 +146,14 @@ abstract class Element
 	 * Get the internal name for a command.
 	 *
 	 * Params:
-	 *     nameSeed = An extra seed for the internal command name hash.
+	 *     uniqueData = An extra seed for the internal command name hash.
 	 *
 	 * Returns:
 	 *     The internal name of the command.
 	 */
-	protected string getCommandName(string nameSeed = null)
+	protected string getCommandName(string uniqueData = null)
 	{
-		return format("command-%s", this.generateHash("command%s%s", nameSeed, this.id));
+		return format("command-%s", this.generateHash("command%s%s", uniqueData, this.id));
 	}
 
 	/**
@@ -161,7 +161,7 @@ abstract class Element
 	 *
 	 * Params:
 	 *     callback = The callback to register as a command.
-	 *     nameSeed = An extra seed for the internal command name hash.
+	 *     uniqueData = An extra seed for the internal command name hash.
 	 *
 	 * Returns:
 	 *     The internal command name.
@@ -169,7 +169,7 @@ abstract class Element
 	 * See_Also:
 	 *     $(LINK2 ./element.html#CommandCallback, tkd.element.element.CommandCallback)
 	 */
-	protected string createCommand(CommandCallback callback, string nameSeed = null)
+	protected string createCommand(CommandCallback callback, string uniqueData = null)
 	{
 		Tcl_CmdProc commandCallbackHandler = function(ClientData data, Tcl_Interp* tclInterpreter, int argc, const(char)** argv)
 		{
@@ -199,10 +199,11 @@ abstract class Element
 
 		CommandArgs* args = cast(CommandArgs*)malloc(CommandArgs.sizeof);
 
-		(*args).element  = this;
-		(*args).callback = callback;
+		(*args).element    = this;
+		(*args).uniqueData = uniqueData;
+		(*args).callback   = callback;
 
-		string command = this.getCommandName(nameSeed);
+		string command = this.getCommandName(uniqueData);
 		this._tk.createCommand(command, commandCallbackHandler, args, deleteCallbackHandler);
 
 		return command;
@@ -223,6 +224,11 @@ struct CommandArgs
 	 * The element that issued the command.
 	 */
 	Element element;
+
+	/**
+	 * Any unique extra data.
+	 */
+	string uniqueData;
 
 	/**
 	 * The callback which was invoked as the command.

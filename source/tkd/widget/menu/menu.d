@@ -62,7 +62,7 @@ class Menu : UiElement
 
 		this._elementId = "menu";
 		this._tk.eval("menu %s -type normal -tearoff 0", this.id);
-		this._tk.eval("%s add cascade -menu %s -label \"%s\"", parent.id, this.id, label);
+		this._tk.eval("%s add cascade -menu %s -label {%s}", parent.id, this.id, label);
 	}
 
 	/**
@@ -71,6 +71,7 @@ class Menu : UiElement
 	 * Params:
 	 *     label = The label of the item.
 	 *     callback = The callback to execute as the action for this menu item.
+	 *     accelerator = The keyboard shortcut. This is for decoration only, you must also bind this keypress to an event.
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
@@ -78,11 +79,11 @@ class Menu : UiElement
 	 * See_Also:
 	 *     $(LINK2 ./element.html#CommandCallback, tkd.element.element.CommandCallback)
 	 */
-	public auto addItem(this T)(string label, CommandCallback callback)
+	public auto addItem(this T)(string label, CommandCallback callback, string accelerator = null)
 	{
 		string command = this.createCommand(callback, label);
 
-		this._tk.eval("%s add command -label \"%s\" -command %s", this.id, label, command);
+		this._tk.eval("%s add command -label {%s} -command %s -accelerator {%s}", this.id, label, command, accelerator);
 
 		return cast(T) this;
 	}
