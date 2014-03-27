@@ -13,7 +13,6 @@ import std.algorithm;
 import std.array;
 import std.regex;
 import std.string;
-import tcltk.tk;
 import tkd.element.element;
 import tkd.element.uielement;
 import tkd.image.image;

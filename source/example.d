@@ -42,10 +42,10 @@ class Application : TkdApplication
 		auto menubar = new MenuBar(this.mainWindow);
 
 		auto fileMenu = new Menu(menubar, "File")
-			.addItem("Open...", &this.execute, "Ctrl+O")
-			.addItem("Save...", &this.execute)
+			.addEntry("Open...", &this.execute, "Ctrl+O")
+			.addEntry("Save...", &this.execute)
 			.addSeparator()
-			.addItem("Quit...", &this.exitCommand, "Ctrl-Q");
+			.addEntry("Quit...", &this.exitCommand, "Ctrl-Q");
 
 		auto frame = new Frame()
 			.pack();

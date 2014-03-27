@@ -56,7 +56,7 @@ Additional events that can also be bound to using the <a href="../../element/uie
 <h3>See Also</h3><p><a href="./menubar.html">tkd.widget.menu.menubar</a></p>
 </div>
 </div>
-<h2><a name="Menu.addItem"></a>auto <span class="symbol">addItem</span>(this T)(string label, CommandCallback callback, string accelerator = null);
+<h2><a name="Menu.addEntry"></a>auto <span class="symbol">addEntry</span>(this T)(string label, CommandCallback callback, string accelerator = null);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Add an item to the menu.
 </p>
@@ -70,7 +70,32 @@ Additional events that can also be bound to using the <a href="../../element/uie
 <h3>Return Value</h3><p>This widget to aid method chaining.
 
 </p>
-<h3>See Also</h3><p><a href="./element.html#CommandCallback">tkd.element.element.CommandCallback</a></p>
+<h3>See Also</h3><p><a href="../../element/element.html#CommandCallback">tkd.element.element.CommandCallback</a></p>
+</div>
+</div>
+<h2><a name="Menu.addEntry"></a>auto <span class="symbol">addEntry</span>(this T)(Image image, string label, CommandCallback callback, string imagePosition = ImagePosition.left, string accelerator = null);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Add an item to the menu with an image.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>Image image</td>
+<td>The image of the entry.</td></tr>
+<tr><td>string label</td>
+<td>The label of the item.</td></tr>
+<tr><td>CommandCallback callback</td>
+<td>The callback to execute as the action for this menu item.</td></tr>
+<tr><td>string accelerator</td>
+<td>The keyboard shortcut. This is for decoration only, you must also bind this keypress to an event.</td></tr>
+<tr><td>string imagePosition</td>
+<td>The position of the image in relation to the text.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p>
+<h3>See Also</h3><p><a href="../../element/element.html#CommandCallback">tkd.element.element.CommandCallback</a>
+     <a href="../../image/image.html">tkd.image.image</a> <br>
+     <a href="../../image/png.html">tkd.image.png</a> <br>
+     <a href="../../image/gif.html">tkd.image.gif</a> <br>
+     <a href="../../image/imageposition.html">tkd.image.imageposition</a> <br></p>
 </div>
 </div>
 <h2><a name="Menu.addSeparator"></a>auto <span class="symbol">addSeparator</span>(this T)();

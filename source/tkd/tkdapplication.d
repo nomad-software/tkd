@@ -10,7 +10,6 @@ module tkd.tkdapplication;
  * Private imports.
  */
 import std.string;
-import tcltk.tk;
 import tkd.interpreter;
 import tkd.theme;
 

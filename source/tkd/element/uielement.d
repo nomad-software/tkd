@@ -12,7 +12,6 @@ module tkd.element.uielement;
 import std.conv;
 import std.range;
 import std.string;
-import tcltk.tk;
 import tkd.element.element;
 
 /**
