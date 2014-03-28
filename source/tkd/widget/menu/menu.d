@@ -10,6 +10,7 @@ module tkd.widget.menu.menu;
  * Imports.
  */
 import std.string;
+import std.typecons;
 import tkd.element.element;
 import tkd.element.uielement;
 import tkd.image.image;
@@ -53,17 +54,18 @@ class Menu : UiElement
 	 * Params:
 	 *     parent = The parent of this widget.
 	 *     label = The label of the menu.
+	 *     underlineChar = The index of the character to underline.
 	 *
 	 * See_Also:
 	 *     $(LINK2 ./menubar.html, tkd.widget.menu.menubar)
 	 */
-	public this(MenuBar parent, string label)
+	public this(MenuBar parent, string label, ubyte underlineChar = ubyte.max)
 	{
 		super(parent);
 
 		this._elementId = "menu";
 		this._tk.eval("menu %s -type normal -tearoff 0", this.id);
-		this._tk.eval("%s add cascade -menu %s -label {%s}", parent.id, this.id, label);
+		this._tk.eval("%s add cascade -menu %s -label {%s} -underline %s", parent.id, this.id, label, underlineChar);
 	}
 
 	/**
@@ -72,7 +74,7 @@ class Menu : UiElement
 	 * Params:
 	 *     label = The label of the item.
 	 *     callback = The callback to execute as the action for this menu item.
-	 *     accelerator = The keyboard shortcut. This is for decoration only, you must also bind this keypress to an event.
+	 *     shortCutText = The keyboard shortcut text. This is for decoration only, you must also bind this keypress to an event.
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
@@ -80,11 +82,11 @@ class Menu : UiElement
 	 * See_Also:
 	 *     $(LINK2 ../../element/element.html#CommandCallback, tkd.element.element.CommandCallback)
 	 */
-	public auto addEntry(this T)(string label, CommandCallback callback, string accelerator = null)
+	public auto addEntry(this T)(string label, CommandCallback callback, string shortCutText = null)
 	{
 		string command = this.createCommand(callback, label);
 
-		this._tk.eval("%s add command -label {%s} -command %s -accelerator {%s}", this.id, label, command, accelerator);
+		this._tk.eval("%s add command -label {%s} -command %s -accelerator {%s}", this.id, label, command, shortCutText);
 
 		return cast(T) this;
 	}
@@ -96,7 +98,7 @@ class Menu : UiElement
 	 *     image = The image of the entry.
 	 *     label = The label of the item.
 	 *     callback = The callback to execute as the action for this menu item.
-	 *     accelerator = The keyboard shortcut. This is for decoration only, you must also bind this keypress to an event.
+	 *     shortCutText = The keyboard shortcut text. This is for decoration only, you must also bind this keypress to an event.
 	 *     imagePosition = The position of the image in relation to the text.
 	 *
 	 * Returns:
@@ -109,11 +111,11 @@ class Menu : UiElement
 	 *     $(LINK2 ../../image/gif.html, tkd.image.gif) $(BR)
 	 *     $(LINK2 ../../image/imageposition.html, tkd.image.imageposition) $(BR)
 	 */
-	public auto addEntry(this T)(Image image, string label, CommandCallback callback, string imagePosition = ImagePosition.left, string accelerator = null)
+	public auto addEntry(this T)(Image image, string label, CommandCallback callback, string imagePosition = ImagePosition.left, string shortCutText = null)
 	{
 		string command = this.createCommand(callback, label);
 
-		this._tk.eval("%s add command -image %s -label {%s} -command %s -compound %s -accelerator {%s}", this.id, image.id, label, command, imagePosition, accelerator);
+		this._tk.eval("%s add command -image %s -label {%s} -command %s -compound %s -accelerator {%s}", this.id, image.id, label, command, imagePosition, shortCutText);
 
 		return cast(T) this;
 	}

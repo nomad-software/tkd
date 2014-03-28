@@ -210,7 +210,7 @@ abstract class UiElement : Element
 	public auto unbind(this T)(string binding)
 	{
 		this._tk.deleteCommand(this.getCommandName(binding));
-		this._tk.eval("bind %s %s {}", this.id, binding);
+		this._tk.eval("bind %s {%s} {}", this.id, binding);
 
 		return cast(T) this;
 	}

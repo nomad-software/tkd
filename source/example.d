@@ -41,7 +41,7 @@ class Application : TkdApplication
 
 		auto menubar = new MenuBar(this.mainWindow);
 
-		auto fileMenu = new Menu(menubar, "File")
+		auto fileMenu = new Menu(menubar, "File", 0)
 			.addEntry("Open...", &this.execute, "Ctrl+O")
 			.addEntry("Save...", &this.execute)
 			.addSeparator()

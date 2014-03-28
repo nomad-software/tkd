@@ -44,7 +44,7 @@ Additional events that can also be bound to using the <a href="../../element/uie
 </p>
 <h3>See Also</h3><p><a href="../../element/uielement.html">tkd.element.uielement</a></p>
 </div>
-<div class="class-members"><h2><a name="Menu.this"></a> this(MenuBar parent, string label);
+<div class="class-members"><h2><a name="Menu.this"></a> this(MenuBar parent, string label, ubyte underlineChar = (ubyte).max);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
@@ -52,11 +52,13 @@ Additional events that can also be bound to using the <a href="../../element/uie
 <td>The parent of this widget.</td></tr>
 <tr><td>string label</td>
 <td>The label of the menu.</td></tr>
+<tr><td>ubyte underlineChar</td>
+<td>The index of the character to underline.</td></tr>
 </table>
 <h3>See Also</h3><p><a href="./menubar.html">tkd.widget.menu.menubar</a></p>
 </div>
 </div>
-<h2><a name="Menu.addEntry"></a>auto <span class="symbol">addEntry</span>(this T)(string label, CommandCallback callback, string accelerator = null);
+<h2><a name="Menu.addEntry"></a>auto <span class="symbol">addEntry</span>(this T)(string label, CommandCallback callback, string shortCutText = null);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Add an item to the menu.
 </p>
@@ -64,8 +66,8 @@ Additional events that can also be bound to using the <a href="../../element/uie
 <td>The label of the item.</td></tr>
 <tr><td>CommandCallback callback</td>
 <td>The callback to execute as the action for this menu item.</td></tr>
-<tr><td>string accelerator</td>
-<td>The keyboard shortcut. This is for decoration only, you must also bind this keypress to an event.</td></tr>
+<tr><td>string shortCutText</td>
+<td>The keyboard shortcut text. This is for decoration only, you must also bind this keypress to an event.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.
 
@@ -73,7 +75,7 @@ Additional events that can also be bound to using the <a href="../../element/uie
 <h3>See Also</h3><p><a href="../../element/element.html#CommandCallback">tkd.element.element.CommandCallback</a></p>
 </div>
 </div>
-<h2><a name="Menu.addEntry"></a>auto <span class="symbol">addEntry</span>(this T)(Image image, string label, CommandCallback callback, string imagePosition = ImagePosition.left, string accelerator = null);
+<h2><a name="Menu.addEntry"></a>auto <span class="symbol">addEntry</span>(this T)(Image image, string label, CommandCallback callback, string imagePosition = ImagePosition.left, string shortCutText = null);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Add an item to the menu with an image.
 </p>
@@ -83,8 +85,8 @@ Additional events that can also be bound to using the <a href="../../element/uie
 <td>The label of the item.</td></tr>
 <tr><td>CommandCallback callback</td>
 <td>The callback to execute as the action for this menu item.</td></tr>
-<tr><td>string accelerator</td>
-<td>The keyboard shortcut. This is for decoration only, you must also bind this keypress to an event.</td></tr>
+<tr><td>string shortCutText</td>
+<td>The keyboard shortcut text. This is for decoration only, you must also bind this keypress to an event.</td></tr>
 <tr><td>string imagePosition</td>
 <td>The position of the image in relation to the text.</td></tr>
 </table>
