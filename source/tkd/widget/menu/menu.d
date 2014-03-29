@@ -132,4 +132,38 @@ class Menu : UiElement
 
 		return cast(T) this;
 	}
+
+	/**
+	 * Disable a menu item. The item indexes start at zero for the top-most 
+	 * entry and increase as you go down.
+	 *
+	 * Params:
+	 *     index = The index of the item to disable.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto disableEntry(this T)(int index)
+	{
+		this._tk.eval("%s entryconfigure %s -state disable", this.id, index);
+		
+		return cast(T) this;
+	}
+
+	/**
+	 * Enable a menu item. The item indexes start at zero for the top-most 
+	 * entry and increase as you go down.
+	 *
+	 * Params:
+	 *     index = The index of the item to enable.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto enableEntry(this T)(int index)
+	{
+		this._tk.eval("%s entryconfigure %s -state normal", this.id, index);
+		
+		return cast(T) this;
+	}
 }

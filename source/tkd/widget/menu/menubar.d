@@ -61,4 +61,37 @@ class MenuBar : UiElement
 		this._tk.eval("%s configure -menu %s", parent.id, this.id);
 	}
 
+	/**
+	 * Disable a child menu. The indexes start at zero for the left-most menu 
+	 * and increase as you go right.
+	 *
+	 * Params:
+	 *     index = The index of the menu to disable.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto disableMenu(this T)(int index)
+	{
+		this._tk.eval("%s entryconfigure %s -state disable", this.id, index);
+		
+		return cast(T) this;
+	}
+
+	/**
+	 * Enable a disabled child menu. The indexes start at zero for the 
+	 * left-most menu and increase as you go right.
+	 *
+	 * Params:
+	 *     index = The index of the menu to enable.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto enableMenu(this T)(int index)
+	{
+		this._tk.eval("%s entryconfigure %s -state normal", this.id, index);
+		
+		return cast(T) this;
+	}
 }
