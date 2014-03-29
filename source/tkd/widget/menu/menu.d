@@ -121,6 +121,58 @@ class Menu : UiElement
 	}
 
 	/**
+	 * Add an item to the menu that when selected adds a checked icon.
+	 *
+	 * Params:
+	 *     label = The label of the item.
+	 *     callback = The callback to execute as the action for this menu item.
+	 *     shortCutText = The keyboard shortcut text. This is for decoration only, you must also bind this keypress to an event.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../../element/element.html#CommandCallback, tkd.element.element.CommandCallback)
+	 */
+	public auto addCheckButtonEntry(this T)(string label, CommandCallback callback, string shortCutText = null)
+	{
+		string command = this.createCommand(callback, label);
+
+		this._tk.eval("%s add checkbutton -label {%s} -command %s -accelerator {%s}", this.id, label, command, shortCutText);
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Add an item to the menu with an image that when selected adds a checked icon.
+	 *
+	 * Params:
+	 *     image = The image of the entry.
+	 *     label = The label of the item.
+	 *     callback = The callback to execute as the action for this menu item.
+	 *     shortCutText = The keyboard shortcut text. This is for decoration only, you must also bind this keypress to an event.
+	 *     imagePosition = The position of the image in relation to the text.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../../element/element.html#CommandCallback, tkd.element.element.CommandCallback)
+	 *     $(LINK2 ../../image/image.html, tkd.image.image) $(BR)
+	 *     $(LINK2 ../../image/png.html, tkd.image.png) $(BR)
+	 *     $(LINK2 ../../image/gif.html, tkd.image.gif) $(BR)
+	 *     $(LINK2 ../../image/imageposition.html, tkd.image.imageposition) $(BR)
+	 */
+	public auto addCheckButtonEntry(this T)(Image image, string label, CommandCallback callback, string imagePosition = ImagePosition.left, string shortCutText = null)
+	{
+		string command = this.createCommand(callback, label);
+
+		this._tk.eval("%s add checkbutton -image %s -label {%s} -command %s -compound %s -accelerator {%s}", this.id, image.id, label, command, imagePosition, shortCutText);
+
+		return cast(T) this;
+	}
+
+	/**
 	 * Add a separator to the menu.
 	 *
 	 * Returns:
