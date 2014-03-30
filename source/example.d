@@ -45,6 +45,12 @@ class Application : TkdApplication
 			.addEntry("Open...", &this.execute, "Ctrl+O")
 			.addEntry("Save...", &this.execute)
 			.addSeparator()
+			.addCheckButtonEntry("Check", &this.execute)
+			.addSeparator()
+			.addRadioButtonEntry("Option 1", &this.execute)
+			.addRadioButtonEntry("Option 2", &this.execute)
+			.addRadioButtonEntry("Option 3", &this.execute)
+			.addSeparator()
 			.addEntry("Quit...", &this.exitCommand, "Ctrl-Q");
 
 		auto frame = new Frame()
