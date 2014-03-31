@@ -51,7 +51,7 @@ import tkd.widget.menu.menubar;
 class Menu : UiElement
 {
 	/**
-	 * Array containing variabled used by check button entries in the menu.
+	 * Array containing variables used by check button entries in the menu.
 	 */
 	private string[] _checkButtonVariables;
 
@@ -59,6 +59,18 @@ class Menu : UiElement
 	 * The variable used by any radio button entries in the menu.
 	 */
 	private string _radioButtonVariable;
+
+	/**
+	 * Construct the widget.
+	 */
+	public this()
+	{
+		super();
+		this._elementId = "menu";
+		this._radioButtonVariable = format("variable-%s", this.generateHash());
+
+		this._tk.eval("menu %s -type normal -tearoff 0", this.id);
+	}
 
 	/**
 	 * Construct the widget.
@@ -74,11 +86,33 @@ class Menu : UiElement
 	public this(MenuBar parent, string label, ubyte underlineChar = ubyte.max)
 	{
 		super(parent);
+		this._elementId = "menu";
 		this._radioButtonVariable = format("variable-%s", this.generateHash());
 
-		this._elementId = "menu";
 		this._tk.eval("menu %s -type normal -tearoff 0", this.id);
 		this._tk.eval("%s add cascade -menu %s -label {%s} -underline %s", parent.id, this.id, label, underlineChar);
+	}
+
+	/**
+	 * Add a cascade menu to this menu.
+	 *
+	 * Params:
+	 *     label = The label of the menu.
+	 *     menu = The menu to add as a cascade menu.
+	 *     underlineChar = The index of the character to underline.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto addMenuEntry(this T)(string label, Menu menu, ubyte underlineChar = ubyte.max)
+	{
+		string originalId = menu.id;
+		menu.setParent(this);
+
+		this._tk.eval("%s clone %s", originalId, menu.id);
+		this._tk.eval("%s add cascade -menu %s -label {%s} -underline %s", this.id, menu.id, label, underlineChar);
+
+		return cast(T) this;
 	}
 
 	/**
@@ -86,7 +120,7 @@ class Menu : UiElement
 	 *
 	 * Params:
 	 *     label = The label of the item.
-	 *     callback = The callback to execute as the action for this menu item.
+	 *     callback = The callback to execute when this item is selected in the menu.
 	 *     shortCutText = The keyboard shortcut text. This is for decoration only, you must also bind this keypress to an event.
 	 *
 	 * Returns:
@@ -110,7 +144,7 @@ class Menu : UiElement
 	 * Params:
 	 *     image = The image of the entry.
 	 *     label = The label of the item.
-	 *     callback = The callback to execute as the action for this menu item.
+	 *     callback = The callback to execute when this item is selected in the menu.
 	 *     shortCutText = The keyboard shortcut text. This is for decoration only, you must also bind this keypress to an event.
 	 *     imagePosition = The position of the image in relation to the text.
 	 *
@@ -138,7 +172,7 @@ class Menu : UiElement
 	 *
 	 * Params:
 	 *     label = The label of the item.
-	 *     callback = The callback to execute as the action for this menu item.
+	 *     callback = The callback to execute when this item is selected in the menu.
 	 *     shortCutText = The keyboard shortcut text. This is for decoration only, you must also bind this keypress to an event.
 	 *
 	 * Returns:
@@ -163,7 +197,7 @@ class Menu : UiElement
 	 * Params:
 	 *     image = The image of the entry.
 	 *     label = The label of the item.
-	 *     callback = The callback to execute as the action for this menu item.
+	 *     callback = The callback to execute when this item is selected in the menu.
 	 *     shortCutText = The keyboard shortcut text. This is for decoration only, you must also bind this keypress to an event.
 	 *     imagePosition = The position of the image in relation to the text.
 	 *
@@ -216,7 +250,7 @@ class Menu : UiElement
 	 *
 	 * Params:
 	 *     label = The label of the item.
-	 *     callback = The callback to execute as the action for this menu item.
+	 *     callback = The callback to execute when this item is selected in the menu.
 	 *     shortCutText = The keyboard shortcut text. This is for decoration only, you must also bind this keypress to an event.
 	 *
 	 * Returns:
@@ -243,7 +277,7 @@ class Menu : UiElement
 	 * Params:
 	 *     image = The image of the entry.
 	 *     label = The label of the item.
-	 *     callback = The callback to execute as the action for this menu item.
+	 *     callback = The callback to execute when this item is selected in the menu.
 	 *     shortCutText = The keyboard shortcut text. This is for decoration only, you must also bind this keypress to an event.
 	 *     imagePosition = The position of the image in relation to the text.
 	 *
@@ -342,6 +376,23 @@ class Menu : UiElement
 	public auto invoke(this T)(int index)
 	{
 		this._tk.eval("%s invoke %s", this.id, index);
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Show the menu.
+	 *
+	 * Params:
+	 *     xPos = The horizontal position of the menu on the screen.
+	 *     yPos = The vertical position of the menu on the screen.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto popup(this T)(int xPos, int yPos)
+	{
+		this._tk.eval("tk_popup %s %s %s", this.id, xPos, yPos);
 
 		return cast(T) this;
 	}

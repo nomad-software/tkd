@@ -57,7 +57,7 @@ class Frame : Widget
 	 *     $(LINK2 ../element/uielement.html, tkd.element.UiElement) $(BR)
 	 *     $(LINK2 ./reliefstyle.html, tkd.widget.reliefstyle) $(BR)
 	 */
-	public this(UiElement parent, int width = 2, string relief = ReliefStyle.groove)
+	public this(UiElement parent, int width = 0, string relief = ReliefStyle.flat)
 	{
 		super(parent);
 		this._elementId = "frame";
@@ -78,7 +78,7 @@ class Frame : Widget
 	 * See_Also:
 	 *     $(LINK2 ./reliefstyle.html, tkd.widget.reliefstyle) $(BR)
 	 */
-	public this(int width = 2, string relief = ReliefStyle.groove)
+	public this(int width = 0, string relief = ReliefStyle.flat)
 	{
 		this(null, width, relief);
 	}

@@ -44,7 +44,12 @@ Additional events that can also be bound to using the <a href="../../element/uie
 </p>
 <h3>See Also</h3><p><a href="../../element/uielement.html">tkd.element.uielement</a></p>
 </div>
-<div class="class-members"><h2><a name="Menu.this"></a> this(MenuBar parent, string label, ubyte underlineChar = (ubyte).max);
+<div class="class-members"><h2><a name="Menu.this"></a> this();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Construct the widget.</p>
+</div>
+</div>
+<h2><a name="Menu.this"></a> this(MenuBar parent, string label, ubyte underlineChar = (ubyte).max);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
@@ -58,6 +63,20 @@ Additional events that can also be bound to using the <a href="../../element/uie
 <h3>See Also</h3><p><a href="./menubar.html">tkd.widget.menu.menubar</a></p>
 </div>
 </div>
+<h2><a name="Menu.addMenuEntry"></a>auto <span class="symbol">addMenuEntry</span>(this T)(string label, Menu menu, ubyte underlineChar = (ubyte).max);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Add a cascade menu to this menu.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string label</td>
+<td>The label of the menu.</td></tr>
+<tr><td>Menu menu</td>
+<td>The menu to add as a cascade menu.</td></tr>
+<tr><td>ubyte underlineChar</td>
+<td>The index of the character to underline.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
 <h2><a name="Menu.addEntry"></a>auto <span class="symbol">addEntry</span>(this T)(string label, CommandCallback callback, string shortCutText = null);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Add an item to the menu.
@@ -65,7 +84,7 @@ Additional events that can also be bound to using the <a href="../../element/uie
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string label</td>
 <td>The label of the item.</td></tr>
 <tr><td>CommandCallback callback</td>
-<td>The callback to execute as the action for this menu item.</td></tr>
+<td>The callback to execute when this item is selected in the menu.</td></tr>
 <tr><td>string shortCutText</td>
 <td>The keyboard shortcut text. This is for decoration only, you must also bind this keypress to an event.</td></tr>
 </table>
@@ -84,7 +103,7 @@ Additional events that can also be bound to using the <a href="../../element/uie
 <tr><td>string label</td>
 <td>The label of the item.</td></tr>
 <tr><td>CommandCallback callback</td>
-<td>The callback to execute as the action for this menu item.</td></tr>
+<td>The callback to execute when this item is selected in the menu.</td></tr>
 <tr><td>string shortCutText</td>
 <td>The keyboard shortcut text. This is for decoration only, you must also bind this keypress to an event.</td></tr>
 <tr><td>string imagePosition</td>
@@ -107,7 +126,7 @@ Additional events that can also be bound to using the <a href="../../element/uie
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string label</td>
 <td>The label of the item.</td></tr>
 <tr><td>CommandCallback callback</td>
-<td>The callback to execute as the action for this menu item.</td></tr>
+<td>The callback to execute when this item is selected in the menu.</td></tr>
 <tr><td>string shortCutText</td>
 <td>The keyboard shortcut text. This is for decoration only, you must also bind this keypress to an event.</td></tr>
 </table>
@@ -126,7 +145,7 @@ Additional events that can also be bound to using the <a href="../../element/uie
 <tr><td>string label</td>
 <td>The label of the item.</td></tr>
 <tr><td>CommandCallback callback</td>
-<td>The callback to execute as the action for this menu item.</td></tr>
+<td>The callback to execute when this item is selected in the menu.</td></tr>
 <tr><td>string shortCutText</td>
 <td>The keyboard shortcut text. This is for decoration only, you must also bind this keypress to an event.</td></tr>
 <tr><td>string imagePosition</td>
@@ -166,7 +185,7 @@ Additional events that can also be bound to using the <a href="../../element/uie
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string label</td>
 <td>The label of the item.</td></tr>
 <tr><td>CommandCallback callback</td>
-<td>The callback to execute as the action for this menu item.</td></tr>
+<td>The callback to execute when this item is selected in the menu.</td></tr>
 <tr><td>string shortCutText</td>
 <td>The keyboard shortcut text. This is for decoration only, you must also bind this keypress to an event.</td></tr>
 </table>
@@ -189,7 +208,7 @@ Additional events that can also be bound to using the <a href="../../element/uie
 <tr><td>string label</td>
 <td>The label of the item.</td></tr>
 <tr><td>CommandCallback callback</td>
-<td>The callback to execute as the action for this menu item.</td></tr>
+<td>The callback to execute when this item is selected in the menu.</td></tr>
 <tr><td>string shortCutText</td>
 <td>The keyboard shortcut text. This is for decoration only, you must also bind this keypress to an event.</td></tr>
 <tr><td>string imagePosition</td>
@@ -253,6 +272,18 @@ Additional events that can also be bound to using the <a href="../../element/uie
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>int index</td>
 <td>The index of the check box entry.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="Menu.popup"></a>auto <span class="symbol">popup</span>(this T)(int xPos, int yPos);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Show the menu.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int xPos</td>
+<td>The horizontal position of the menu on the screen.</td></tr>
+<tr><td>int yPos</td>
+<td>The vertical position of the menu on the screen.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>

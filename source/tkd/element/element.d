@@ -104,6 +104,17 @@ abstract class Element
 		return this._parent;
 	}
 
+	/**
+	 * Set the parent of this element.
+	 *
+	 * Params:
+	 *     parent = The parent to set for this element.
+	 */
+	protected void setParent(Element parent)
+	{
+		this._parent = parent;
+	}
+
 	/*
 	 * Override the unique id of this element.
 	 *
