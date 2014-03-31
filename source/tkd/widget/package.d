@@ -35,5 +35,7 @@ public import tkd.widget.sizegrip;
 public import tkd.widget.spinbox;
 public import tkd.widget.state;
 public import tkd.widget.style;
+public import tkd.widget.text;
+public import tkd.widget.textwrapmode;
 public import tkd.widget.treeview;
 public import tkd.widget.treeviewselectionmode;
