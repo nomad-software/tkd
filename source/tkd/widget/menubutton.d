@@ -15,7 +15,8 @@ import tkd.widget.menubuttondirection;
 import tkd.widget.textwidget;
 
 /**
- * A label widget displays a textual label and/or image.
+ * A menu button widget displays a textual label and/or image, and displays a 
+ * menu when pressed.
  *
  * Additional_Events:
  *     Additional events that can also be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) method.

@@ -42,7 +42,3 @@ This widget is not yet implemented but is intended to be.
 Extended functionality of this widget has not been implement because there are 
 better, more modern editor widgets available separately. This control is not 
 indended to be used as a fully featured text editor.
-
-#### TreeView
-
-This widget only has bare minimum functionality and may be improved in the future.

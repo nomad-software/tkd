@@ -23,7 +23,8 @@ import tkd.widget.textwrapmode;
 import tkd.widget.widget;
 
 /**
- * A frame widget is a container, used to group other widgets together.
+ * A text widget displays one or more lines of text and allows that text to be 
+ * edited. Text widgets support embedded widgets or embedded images.
  *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.
@@ -33,8 +34,8 @@ import tkd.widget.widget;
  *         $(LINK2 ./common/relief.html, Relief) $(BR)
  *         $(LINK2 ./common/width.html, Width) $(BR)
  *         $(LINK2 ./common/xscrollcommand.html, XScrollCommand) $(BR)
- *         $(LINK2 ./common/yscrollcommand.html, YScrollCommand) $(BR)
  *         $(LINK2 ./common/xview.html, XView) $(BR)
+ *         $(LINK2 ./common/yscrollcommand.html, YScrollCommand) $(BR)
  *         $(LINK2 ./common/yview.html, YView) $(BR)
  *     )
  *
@@ -456,7 +457,7 @@ class Text : Widget, IXScrollable!(Text), IYScrollable!(Text)
 	mixin Relief;
 	mixin Width;
 	mixin XScrollCommand!(Text);
-	mixin YScrollCommand!(Text);
 	mixin XView;
+	mixin YScrollCommand!(Text);
 	mixin YView;
 }

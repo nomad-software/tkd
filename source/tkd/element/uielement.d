@@ -215,16 +215,17 @@ abstract class UiElement : Element
 		return cast(T) this;
 	}
 	/**
-	 * Destroy this ui element.
+	 * Destroy this element and remove it from the GUI.
 	 *
 	 * Caveats:
 	 *     Once an element is destroyed it can no longer be referenced in your 
-	 *     code or an internal error will occur and potentially crash your 
+	 *     code or a segmentation fault will occur and potentially crash your 
 	 *     program.
 	 */
 	public void destroy()
 	{
 		this._tk.eval("destroy %s", this.id);
+		super.destroy();
 	}
 
 	/**

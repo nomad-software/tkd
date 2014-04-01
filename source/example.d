@@ -16,7 +16,7 @@ class Application : TkdApplication
 	/**
 	 * Wigets.
 	 */
-	private Text _text;
+	private Canvas _canvas;
 
 	/**
 	 * Event callbacks.
@@ -28,7 +28,7 @@ class Application : TkdApplication
 
 	private void execute(CommandArgs args)
 	{
-		writeln("Menu item selected.");
+		writeln("Item selected.");
 	}
 
 	/**
@@ -39,25 +39,18 @@ class Application : TkdApplication
 		auto frame = new Frame(2, ReliefStyle.groove)
 			.pack();
 
-		this._text = new Text(frame)
+		this._canvas = new Canvas(frame)
 			.pack();
 
 		auto xscroll = new XScrollBar(frame)
-			.attachWidget(this._text)
+			.attachWidget(this._canvas)
 			.pack();
 
 		auto yscroll = new YScrollBar(frame)
-			.attachWidget(this._text)
+			.attachWidget(this._canvas)
 			.pack();
 
-		this._text
-			.embedImage(1, 0, new Png!("thumbnail.png"))
-			.embedWidget(1, 1, new Button("Embedded"), 10)
-			.appendText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a gravida nibh, a tempor turpis.\n")
-			.appendText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a gravida nibh, a tempor turpis.\n")
-			.setPadding(5)
-			.setWidth(50)
-			.setHeight(10)
+		this._canvas
 			.attachXScrollBar(xscroll)
 			.attachYScrollBar(yscroll);
 

@@ -380,7 +380,7 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	}
 
 	/**
-	 * Set image for a specific tag.
+	 * Set image and colors for a specific tag.
 	 *
 	 * Params:
 	 *     name = The name of the tag.

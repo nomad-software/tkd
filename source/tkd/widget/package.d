@@ -10,6 +10,7 @@ public import tkd.element.element : CommandCallback, CommandArgs;
 public import tkd.widget.alignment;
 public import tkd.widget.anchorposition;
 public import tkd.widget.button;
+public import tkd.widget.canvas;
 public import tkd.widget.checkbutton;
 public import tkd.widget.color;
 public import tkd.widget.combobox;

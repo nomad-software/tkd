@@ -107,7 +107,7 @@ class Menu : UiElement
 	public auto addMenuEntry(this T)(string label, Menu menu, ubyte underlineChar = ubyte.max)
 	{
 		string originalId = menu.id;
-		menu.setParent(this);
+		menu._parent = this;
 
 		this._tk.eval("%s clone %s", originalId, menu.id);
 		this._tk.eval("%s add cascade -menu %s -label {%s} -underline %s", this.id, menu.id, label, underlineChar);
