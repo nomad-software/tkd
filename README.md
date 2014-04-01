@@ -20,7 +20,7 @@ feel on every platform.
 
 Tkd development was initiated based on the performance and uptake of the 
 [Tkinter](https://wiki.python.org/moin/TkInter) toolkit distributed as a 
-standard part of the [Python](https://www.python.org/) programming language.  
+standard part of the [Python](https://www.python.org/) programming language. 
 Tkinter allows developers easy access to GUI programming with very little 
 learning.  Being the _de facto_ GUI toolkit of Python has introduced more 
 developers to GUI application programming and increased the popularity of the 
