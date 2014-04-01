@@ -51,6 +51,11 @@ class Application : TkdApplication
 			.pack();
 
 		this._text
+			.embedImage(1, 0, new Png!("thumbnail.png"))
+			.embedWidget(1, 1, new Button("Embedded"), 10)
+			.appendText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a gravida nibh, a tempor turpis.\n")
+			.appendText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a gravida nibh, a tempor turpis.\n")
+			.setPadding(5)
 			.setWidth(50)
 			.setHeight(10)
 			.attachXScrollBar(xscroll)
