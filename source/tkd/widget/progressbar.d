@@ -92,7 +92,7 @@ class ProgressBar : Widget
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./progressbarmode.html, tkd.widget.progressbarmode) for modes.
+	 *     $(LINK2 ./progressbar.html#ProgressBarMode, tkd.widget.progressbar.ProgressBarMode) $(BR)
 	 */
 	public auto setMode(this T)(string mode)
 	{
@@ -141,6 +141,9 @@ class ProgressBar : Widget
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./progressbar.html#ProgressBar.stop, tkd.widget.progressbar.stop) $(BR)
 	 */
 	public auto start(this T)(int milliseconds = 50)
 	{
@@ -173,7 +176,7 @@ class ProgressBar : Widget
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./progressbar.html#ProgressBar.start, start) $(BR)
+	 *     $(LINK2 ./progressbar.html#ProgressBar.start, tkd.widget.progressbar.start) $(BR)
 	 */
 	public auto stop(this T)()
 	{
@@ -187,4 +190,13 @@ class ProgressBar : Widget
 	 */
 	mixin Length;
 	mixin Value!(this._valueVariable, double);
+}
+
+/**
+ * The mode of a progress bar.
+ */
+enum ProgressBarMode : string
+{
+	determinate   = "determinate",   /// Shows the amount completed relative to the total amount of work to be done.
+	indeterminate = "indeterminate", /// Provides an animated display to let the user know that something is happening.
 }

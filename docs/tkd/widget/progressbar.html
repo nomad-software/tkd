@@ -73,7 +73,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>Return Value</h3><p>This widget to aid method chaining.
 
 </p>
-<h3>See Also</h3><p><a href="./progressbarmode.html">tkd.widget.progressbarmode</a> for modes.</p>
+<h3>See Also</h3><p><a href="./progressbar.html#ProgressBarMode">tkd.widget.progressbar.ProgressBarMode</a> <br></p>
 </div>
 </div>
 <h2><a name="ProgressBar.setMaxValue"></a>auto <span class="symbol">setMaxValue</span>(this T)(double maximum);
@@ -104,7 +104,10 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>Parameters</h3><table class="parameter-list"><tr><td>int milliseconds</td>
 <td>The interval between steps.</td></tr>
 </table>
-<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+<h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p>
+<h3>See Also</h3><p><a href="./progressbar.html#ProgressBar.stop">tkd.widget.progressbar.stop</a> <br></p>
 </div>
 </div>
 <h2><a name="ProgressBar.step"></a>auto <span class="symbol">step</span>(this T)(int increment = 1);
@@ -125,7 +128,21 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>Return Value</h3><p>This widget to aid method chaining.
 
 </p>
-<h3>See Also</h3><p><a href="./progressbar.html#ProgressBar.start">start</a> <br></p>
+<h3>See Also</h3><p><a href="./progressbar.html#ProgressBar.start">tkd.widget.progressbar.start</a> <br></p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="ProgressBarMode"></a>enum <span class="symbol">ProgressBarMode</span>: string;
+</h2>
+<div class="declaration-description"><div class="sections"><p>The mode of a progress bar.</p>
+</div>
+<div class="enum-members"><h2><a name="ProgressBarMode.determinate"></a><span class="symbol">determinate</span></h2>
+<div class="declaration-description"><div class="sections"><p>Shows the amount completed relative to the total amount of work to be done.</p>
+</div>
+</div>
+<h2><a name="ProgressBarMode.indeterminate"></a><span class="symbol">indeterminate</span></h2>
+<div class="declaration-description"><div class="sections"><p>Provides an animated display to let the user know that something is happening.</p>
 </div>
 </div>
 </div>

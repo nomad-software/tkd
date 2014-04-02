@@ -394,7 +394,7 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 * See_Also:
 	 *     $(LINK2 ./color.html, tkd.widget.color) $(BR)
 	 */
-	public auto setTag(this T)(string name, Image image, string foreground = Color.black, string background = Color.white)
+	public auto setTag(this T)(string name, Image image, string foreground = Color.default_, string background = Color.default_)
 	{
 		this._tk.eval("%s tag configure %s -image %s -foreground {%s} -background {%s}", this.id, name, image.id, foreground, background);
 
@@ -449,6 +449,9 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./treeview.html#TreeViewSelectionMode, tkd.widget.treeview.TreeViewSelectionMode) $(BR)
 	 */
 	public auto setSelectionMode(this T)(string mode)
 	{
@@ -778,7 +781,7 @@ class TreeViewColumn : Element
 	{
 		this._commandCallback = callback;
 
-		if (this._parent !is null && this._commandCallback !is null)
+		if (this._parent && this._commandCallback)
 		{
 			string command = this.createCommand(callback, this._parent.id);
 			this._tk.eval("%s heading %s -command %s", this._parent.id, this.id, command);
@@ -795,7 +798,7 @@ class TreeViewColumn : Element
 	 */
 	public auto removeHeadingCommand(this T)()
 	{
-		if (this._parent !is null && this._commandCallback !is null)
+		if (this._parent && this._commandCallback)
 		{
 			this._tk.deleteCommand(this.getCommandName(this._parent.id));
 			this._tk.eval("%s heading %s -command {}", this._parent.id, this.id);
@@ -958,4 +961,14 @@ class TreeViewRow
 	{
 		return format("Values: %s, isOpen: %s, Tags: %s, Children: %s", this.values, this.isOpen, this.tags, this.children);
 	}
+}
+
+/**
+ * Tree view selection modes.
+ */
+enum TreeViewSelectionMode : string
+{
+	browse   = "browse",   /// The default mode, allows one selection only.
+	extended = "extended", /// Allows multiple selections to be made.
+	none     = "none",     /// Disabled all selection.
 }

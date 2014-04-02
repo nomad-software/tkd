@@ -28,7 +28,8 @@ class Application : TkdApplication
 
 	private void execute(CommandArgs args)
 	{
-		writeln("Item selected.");
+		// writefln("%s", (cast(UiElement)args.element).getCursorPos());
+		writefln("%s, %s", this._canvas.getXPosFromScreen((cast(UiElement)args.element).getCursorXPos()), this._canvas.getYPosFromScreen((cast(UiElement)args.element).getCursorYPos()));
 	}
 
 	/**
@@ -40,6 +41,9 @@ class Application : TkdApplication
 			.pack();
 
 		this._canvas = new Canvas(frame)
+			.bind("<Button-1>", &this.execute)
+			.setScrollRegion(0, 0, 1000, 1000)
+			.addItem(new Rectangle([10, 10, 200, 100]))
 			.pack();
 
 		auto xscroll = new XScrollBar(frame)

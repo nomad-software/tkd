@@ -22,4 +22,5 @@ enum State : string
 	alternate  = "alternate",  /// Alternate state.
 	invalid    = "invalid",    /// Invalid state.
 	hover      = "hover",      /// Hover state.
+	hidden     = "hidden",     /// Hidden state. Only applies to canvas widgets.
 }

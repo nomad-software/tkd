@@ -11,6 +11,7 @@ module tkd.widget.color;
  */
 enum Color : string
 {
+	default_             = "",                       /// Use the default color.
 	aliceBlue            = "alice blue",             /// 240, 248, 255
 	AliceBlue            = "AliceBlue",              /// 240, 248, 255
 	antiqueWhite         = "antique white",          /// 250, 235, 215

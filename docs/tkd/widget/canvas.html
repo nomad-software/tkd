@@ -57,6 +57,106 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.UiElement</a> <br></p>
 </div>
 </div>
+<h2><a name="Canvas.setSelectionTolerance"></a>auto <span class="symbol">setSelectionTolerance</span>(this T)(double tolerance);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Specifies a floating-point value indicating how close the mouse cursor
+ must be to an item before it is considered to be 'inside' the item and
+ able to select it.  Defaults to 1.0.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>double tolerance</td>
+<td>The tolerance of the selection.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="Canvas.setScrollRegion"></a>auto <span class="symbol">setScrollRegion</span>(this T)(double left, double top, double right, double bottom);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the scroll region of the canvas. This region can be scrolled using
+ scrollbars if it's bigger than the canvas widget itself.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>double left</td>
+<td>The left hand side of the widget.</td></tr>
+<tr><td>double top</td>
+<td>The top side of the widget.</td></tr>
+<tr><td>double right</td>
+<td>The right hand side of the widget.</td></tr>
+<tr><td>double bottom</td>
+<td>The bottom side of the widget.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="Canvas.setScrollIncrement"></a>auto <span class="symbol">setScrollIncrement</span>(this T)(int increment);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the scroll increment i.e. how many pixels are scrolled per each
+ click on a scrollbar.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int increment</td>
+<td>The increment to scroll by.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="Canvas.getXPosFromScreen"></a>int <span class="symbol">getXPosFromScreen</span>(int screenXPos, int gridSpacing = 1);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the horizontal position on the canvas that relates to a particular
+ horizontal position on screen.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int screenXPos</td>
+<td>The horizontal screen position to transpose.</td></tr>
+<tr><td>int gridSpacing</td>
+<td>The grid spacing to round it to.</td></tr>
+</table>
+<h3>Return Value</h3><p>The horizontal canvas position.</p>
+</div>
+</div>
+<h2><a name="Canvas.getYPosFromScreen"></a>int <span class="symbol">getYPosFromScreen</span>(int screenYPos, int gridSpacing = 1);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the vertical position on the canvas that relates to a particular
+ vertical position on screen.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int screenYPos</td>
+<td>The vertical screen position to transpose.</td></tr>
+<tr><td>int gridSpacing</td>
+<td>The grid spacing to round it to.</td></tr>
+</table>
+<h3>Return Value</h3><p>The vertical canvas position.</p>
+</div>
+</div>
+<h2><a name="Canvas.addItem"></a>auto <span class="symbol">addItem</span>(this T)(Item item);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Add an item to the canvas.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>Item item</td>
+<td>The item to add.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="Rectangle"></a>class <span class="symbol">Rectangle</span>: tkd.widget.canvas.Item;
+</h2>
+<div class="declaration-description"><div class="sections"><p>A rectangle canvas item.</p>
+</div>
+<div class="class-members"><h2><a name="Rectangle.this"></a> this(int[] coords);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Create a rectangle from four coordinates.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int[] coords</td>
+<td>The coordinated where to draw the rectangle.</td></tr>
+</table>
+</div>
+</div>
+<h2><a name="Rectangle.init"></a>protected void <span class="symbol">init</span>(Canvas parent);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Initialise the widget.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>Canvas parent</td>
+<td>The parent canvas to initialise against.</td></tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 </div>

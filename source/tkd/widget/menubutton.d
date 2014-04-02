@@ -11,7 +11,6 @@ module tkd.widget.menubutton;
  */
 import tkd.element.uielement;
 import tkd.widget.menu.menu;
-import tkd.widget.menubuttondirection;
 import tkd.widget.textwidget;
 
 /**
@@ -54,7 +53,7 @@ class MenuButton : TextWidget
 	 *
 	 * See_Also:
 	 *     $(LINK2 ../element/uielement.html, tkd.element.uielement) $(BR)
-	 *     $(LINK2 ./menubuttondirection.html, tkd.widget.menubuttondirection) $(BR)
+	 *     $(LINK2 ./menubutton.html#MenuButtonDirection, tkd.widget.menubutton.MenuButtonDirection) $(BR)
 	 */
 	this(UiElement parent, string text, Menu menu, string direction = MenuButtonDirection.below)
 	{
@@ -75,10 +74,22 @@ class MenuButton : TextWidget
 	 *     direction = Determines where the menu appears in relation to the button.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./menubuttondirection.html, tkd.widget.menubuttondirection) $(BR)
+	 *     $(LINK2 ./menubutton.html#MenuButtonDirection, tkd.widget.menubutton.MenuButtonDirection) $(BR)
 	 */
 	this(string text, Menu menu, string direction = MenuButtonDirection.below)
 	{
 		this(null, text, menu, direction);
 	}
+}
+
+/**
+ * Placement of a menu relative to a menu button.
+ */
+enum MenuButtonDirection : string
+{
+	above = "above", /// Above the menu button.
+	below = "below", /// Below the menu button.
+	flush = "flush", /// Directly over the menu button.
+	left  = "left",  /// Left of the menu button.
+	right = "right", /// Right of the menu button.
 }

@@ -192,7 +192,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
-<h2><a name="TreeView.setTag"></a>auto <span class="symbol">setTag</span>(this T)(string name, Image image, string foreground = Color.black, string background = Color.white);
+<h2><a name="TreeView.setTag"></a>auto <span class="symbol">setTag</span>(this T)(string name, Image image, string foreground = Color.default_, string background = Color.default_);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Set image and colors for a specific tag.
 </p>
@@ -242,7 +242,10 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string mode</td>
 <td>The mode of the selection.</td></tr>
 </table>
-<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+<h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p>
+<h3>See Also</h3><p><a href="./treeview.html#TreeViewSelectionMode">tkd.widget.treeview.TreeViewSelectionMode</a> <br></p>
 </div>
 </div>
 <h2><a name="TreeView.hideHeadings"></a>auto <span class="symbol">hideHeadings</span>(this T)();
@@ -431,6 +434,24 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h2><a name="TreeViewRow.toString"></a>string <span class="symbol">toString</span>();
 </h2>
 <div class="declaration-description"><div class="sections"><p>String representation.</p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="TreeViewSelectionMode"></a>enum <span class="symbol">TreeViewSelectionMode</span>: string;
+</h2>
+<div class="declaration-description"><div class="sections"><p>Tree view selection modes.</p>
+</div>
+<div class="enum-members"><h2><a name="TreeViewSelectionMode.browse"></a><span class="symbol">browse</span></h2>
+<div class="declaration-description"><div class="sections"><p>The default mode, allows one selection only.</p>
+</div>
+</div>
+<h2><a name="TreeViewSelectionMode.extended"></a><span class="symbol">extended</span></h2>
+<div class="declaration-description"><div class="sections"><p>Allows multiple selections to be made.</p>
+</div>
+</div>
+<h2><a name="TreeViewSelectionMode.none"></a><span class="symbol">none</span></h2>
+<div class="declaration-description"><div class="sections"><p>Disabled all selection.</p>
 </div>
 </div>
 </div>
