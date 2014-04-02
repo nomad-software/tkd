@@ -18,6 +18,11 @@ import tkd.element.uielement;
 import tkd.image.image;
 import tkd.widget.anchorposition;
 import tkd.widget.common.border;
+import tkd.widget.common.canvas.anchor;
+import tkd.widget.common.canvas.fillcolor;
+import tkd.widget.common.canvas.outlinecolor;
+import tkd.widget.common.canvas.outlinewidth;
+import tkd.widget.common.canvas.outlinedash;
 import tkd.widget.common.height;
 import tkd.widget.common.relief;
 import tkd.widget.common.width;
@@ -207,6 +212,9 @@ class Canvas : Widget, IXScrollable!(Canvas), IYScrollable!(Canvas)
 
 /**
  * Abstract base class of all canvas items.
+ *
+ * See_Also:
+ *     $(LINK2 ../element/element.html, tkd.element.element)
  */
 private abstract class Item : Element
 {
@@ -332,7 +340,7 @@ private abstract class Item : Element
 		return cast(T) this;
 	}
 
-	/**
+	/*
 	 * Initialise the widget.
 	 *
 	 * Params:
@@ -349,6 +357,18 @@ private abstract class Item : Element
 
 /**
  * A rectangle canvas item.
+ *
+ * Common_Commands:
+ *     These are injected common commands that can also be used with this canvas item.
+ *     $(P
+ *         $(LINK2 ./common/canvas/fillcolor.html, FillColor) $(BR)
+ *         $(LINK2 ./common/canvas/outlinecolor.html, OutlineColor) $(BR)
+ *         $(LINK2 ./common/canvas/outlinedash.html, OutlineDash) $(BR)
+ *         $(LINK2 ./common/canvas/outlinewidth.html, OutlineWidth) $(BR)
+ *     )
+ *
+ * See_Also:
+ *     $(LINK2 ./canvas.html, tkd.widget.canvas.Item)
  */
 class Rectangle : Item
 {
@@ -366,7 +386,7 @@ class Rectangle : Item
 		this._coords = coords;
 	}
 
-	/**
+	/*
 	 * Initialise the widget.
 	 *
 	 * Params:
@@ -375,53 +395,27 @@ class Rectangle : Item
 	override protected void init(Canvas parent)
 	{
 		super.init(parent);
+
+		this.setFillColor(this._fillColor);
+		this.setActiveFillColor(this._activeFillColor);
+		this.setDisabledFillColor(this._disabledFillColor);
+		this.setOutlineColor(this._outlineColor);
+		this.setActiveOutlineColor(this._activeOutlineColor);
+		this.setDisabledOutlineColor(this._disabledOutlineColor);
+		this.setOutlineDash(this._outlineDash);
+		this.setActiveOutlineDash(this._activeOutlineDash);
+		this.setDisabledOutlineDash(this._disabledOutlineDash);
+		this.setOutlineDashOffset(this._outlineDashOffset);
+		this.setOutlineWidth(this._outlineWidth);
+		this.setActiveOutlineWidth(this._activeOutlineWidth);
+		this.setDisabledOutlineWidth(this._disabledOutlineWidth);
 	}
-}
-
-// Common options to implement.
-// -dash
-// -activedash
-// -disableddash
-// -dashoffset
-// -fill
-// -activefill
-// -disabledfill
-// -outline
-// -activeoutline
-// -disabledoutline
-// -outlineoffset
-// -width
-// -activewidth
-// -disabledwidth
-
-/**
- * These are common commands that apply to all items that have them injected.
- */
-private mixin template Anchor()
-{
-	/**
-	 * The anchor position.
-	 */
-	protected string _anchor;
 
 	/**
-	 * Set the anchor position.
-	 *
-	 * Params:
-	 *    anchor = The anchor position of the text.
-	 *
-	 * See_Also:
-	 *     $(LINK2 ./anchorposition.html, tkd.widget.anchorposition) $(BR)
+	 * Mixin common commands.
 	 */
-	public auto setAnchor(this T)(string anchor)
-	{
-		this._anchor = anchor;
-
-		if (this._parent && this._anchor.length)
-		{
-			this._tk.eval("%s itemconfigure %s -anchor %s", this._parent.id, this.id, this._anchor);
-		}
-
-		return cast(T) this;
-	}
+	mixin FillColor;
+	mixin OutlineColor;
+	mixin OutlineDash;
+	mixin OutlineWidth;
 }

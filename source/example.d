@@ -43,7 +43,7 @@ class Application : TkdApplication
 		this._canvas = new Canvas(frame)
 			.bind("<Button-1>", &this.execute)
 			.setScrollRegion(0, 0, 1000, 1000)
-			.addItem(new Rectangle([10, 10, 200, 100]))
+			.addItem(new Rectangle([10, 10, 200, 100]).setFillColor("red"))
 			.pack();
 
 		auto xscroll = new XScrollBar(frame)

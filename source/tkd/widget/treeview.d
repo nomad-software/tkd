@@ -380,7 +380,8 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	}
 
 	/**
-	 * Set image and colors for a specific tag.
+	 * Set image and colors for a specific tag. Colors can be from the preset 
+	 * list or a web style hex color.
 	 *
 	 * Params:
 	 *     name = The name of the tag.
