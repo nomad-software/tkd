@@ -71,6 +71,7 @@ mixin template OutlineDash()
 
 	/**
 	 * Get the active dash pattern.
+	 * An item's active state is triggered when the mouse rolls over the item.
 	 *
 	 * Returns:
 	 *     The active dash pattern of the item.
@@ -83,8 +84,8 @@ mixin template OutlineDash()
 	/**
 	 * Set the active dash pattern of the outline. Each element represents the 
 	 * number of pixels of a line segment. Only the odd segments are drawn 
-	 * using the outline color. The other segments are drawn transparent. The 
-	 * active state is when the mouse rolls over the item.
+	 * using the outline color. The other segments are drawn transparent. An 
+	 * item's active state is triggered when the mouse rolls over the item.
 	 *
 	 * Params:
 	 *    dash = The active dash pattern.

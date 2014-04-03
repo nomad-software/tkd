@@ -9,7 +9,7 @@ module tkd.widget.common.canvas.anchor;
 /**
  * These are common commands that apply to all widgets that have them injected.
  */
-private mixin template Anchor()
+mixin template Anchor()
 {
 	/**
 	 * The anchor position.

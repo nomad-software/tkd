@@ -64,6 +64,7 @@ mixin template FillColor()
 
 	/**
 	 * Get the active fill color.
+	 * An item's active state is triggered when the mouse rolls over the item.
 	 *
 	 * Returns:
 	 *     The active fill color;
@@ -75,6 +76,7 @@ mixin template FillColor()
 
 	/**
 	 * Set the active fill color.
+	 * An item's active state is triggered when the mouse rolls over the item.
 	 * Use colors from the preset color $(LINK2 ../../color.html, list) or a web style hex color.
 	 *
 	 * Params:

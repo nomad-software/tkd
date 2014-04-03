@@ -60,6 +60,7 @@ mixin template OutlineWidth()
 
 	/**
 	 * Get the width of the active outline.
+	 * An item's active state is triggered when the mouse rolls over the item.
 	 *
 	 * Returns:
 	 *     The width of the active outline;
@@ -71,6 +72,7 @@ mixin template OutlineWidth()
 
 	/**
 	 * Set the width of the active outline.
+	 * An item's active state is triggered when the mouse rolls over the item.
 	 *
 	 * Params:
 	 *    width = The width of the active outline.
@@ -109,6 +111,10 @@ mixin template OutlineWidth()
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
+	 *
+	 * Bugs:
+	 *     This doesn't seem to have any effect in Tcl/Tk v8.6.1. It ignores 
+	 *     this setting and applies a 1 pixel width.
 	 */
 	public auto setDisabledOutlineWidth(this T)(int width)
 	{

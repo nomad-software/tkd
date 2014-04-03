@@ -64,6 +64,7 @@ mixin template OutlineColor()
 
 	/**
 	 * Get the active outline color.
+	 * An item's active state is triggered when the mouse rolls over the item.
 	 *
 	 * Returns:
 	 *     The active outline color;
@@ -75,6 +76,7 @@ mixin template OutlineColor()
 
 	/**
 	 * Set the active outline color.
+	 * An item's active state is triggered when the mouse rolls over the item.
 	 * Use colors from the preset color $(LINK2 ../../color.html, list) or a web style hex color.
 	 *
 	 * Params:

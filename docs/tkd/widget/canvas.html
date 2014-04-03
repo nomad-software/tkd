@@ -47,14 +47,30 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </p>
 <h3>See Also</h3><p><a href="./widget.html">tkd.widget.widget</a></p>
 </div>
-<div class="class-members"><h2><a name="Canvas.this"></a> this(UiElement parent = null);
+<div class="class-members"><h2><a name="Canvas.this"></a> this(UiElement parent = null, string backgroundColor = Color.default_);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>UiElement parent</td>
 <td>The parent of this widget.</td></tr>
+<tr><td>string backgroundColor</td>
+<td>The background color.</td></tr>
 </table>
 <h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.UiElement</a> <br></p>
+</div>
+</div>
+<h2><a name="Canvas.setBackgroundColor"></a>auto <span class="symbol">setBackgroundColor</span>(this T)(string color);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the background color.
+ Use colors from the preset color <a href="../../color.html">list</a> or a web style hex color.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string color</td>
+<td>The background color.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p>
+<h3>See Also</h3><p><a href="./color.html">tkd.widget.color</a> <br></p>
 </div>
 </div>
 <h2><a name="Canvas.setSelectionTolerance"></a>auto <span class="symbol">setSelectionTolerance</span>(this T)(double tolerance);
@@ -123,11 +139,11 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>Return Value</h3><p>The vertical canvas position.</p>
 </div>
 </div>
-<h2><a name="Canvas.addItem"></a>auto <span class="symbol">addItem</span>(this T)(Item item);
+<h2><a name="Canvas.addItem"></a>auto <span class="symbol">addItem</span>(this T)(CanvasItem item);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Add an item to the canvas.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>Item item</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>CanvasItem item</td>
 <td>The item to add.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
@@ -135,9 +151,9 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </div>
 </div>
 </div>
-<h2><a name="Rectangle"></a>class <span class="symbol">Rectangle</span>: tkd.widget.canvas.Item;
+<h2><a name="CanvasArc"></a>class <span class="symbol">CanvasArc</span>: tkd.widget.canvas.CanvasItem;
 </h2>
-<div class="declaration-description"><div class="sections"><p>A rectangle canvas item.
+<div class="declaration-description"><div class="sections"><p>A canvas arc item.
 </p>
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this canvas item.
@@ -148,15 +164,480 @@ These are injected common commands that can also be used with this canvas item.
      </p>
 
 </p>
-<h3>See Also</h3><p><a href="./canvas.html">tkd.widget.canvas.Item</a></p>
+<h3>See Also</h3><p><a href="./canvas.html#CanvasItem">tkd.widget.canvas.CanvasItem</a></p>
 </div>
-<div class="class-members"><h2><a name="Rectangle.this"></a> this(int[] coords);
+<div class="class-members"><h2><a name="CanvasArc.this"></a> this(int[] coords, string style = CanvasArcStyle.pie, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Create a rectangle from four coordinates.
+<div class="declaration-description"><div class="sections"><p>Create an arc.
+ Use colors from the preset color <a href="../../color.html">list</a> or a web style hex color.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>int[] coords</td>
-<td>The coordinated where to draw the rectangle.</td></tr>
+<td>The coordinates of the outer elipse.</td></tr>
+<tr><td>string style</td>
+<td>The style of arc.</td></tr>
+<tr><td>string fillColor</td>
+<td>The fill color.</td></tr>
+<tr><td>string outlineColor</td>
+<td>The outline color.</td></tr>
+<tr><td>int outlineWidth</td>
+<td>The outline width.</td></tr>
 </table>
+<h3>See Also</h3><p><a href="./color.html">tkd.widget.color</a> <br>
+     <a href="./canvas.html#CanvasArcStyle">tkd.widget.canvas.CanvasArcStyle</a></p>
+</div>
+</div>
+<h2><a name="CanvasArc.getStyle"></a>string <span class="symbol">getStyle</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the style of the arc.
+</p>
+<h3>Return Value</h3><p>The style of the arc;</p>
+</div>
+</div>
+<h2><a name="CanvasArc.setStyle"></a>auto <span class="symbol">setStyle</span>(this T)(string style);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Specifies how to draw the arc. If type is pie (the default) then the
+ arc's region is defined by a section of the oval's perimeter plus two
+ line segments, one between the center of the oval and each end of the
+ perimeter section. If type is chord then the arc's region is defined by
+ a section of the oval's perimeter plus a single line segment connecting
+ the two end points of the perimeter section. If type is arc then the
+ arc's region consists of a section of the perimeter alone. In this last
+ case the fill color is ignored.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string style</td>
+<td>The style of the arc.</td></tr>
+</table>
+<h3>Return Value</h3><p>This item to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="CanvasArc.getExtent"></a>int <span class="symbol">getExtent</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the extent of the arc.
+</p>
+<h3>Return Value</h3><p>The extent of the arc;</p>
+</div>
+</div>
+<h2><a name="CanvasArc.setExtent"></a>auto <span class="symbol">setExtent</span>(this T)(int extent);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Specifies the size of the angular range occupied by the arc. The arc's
+ range extends for degrees counter-clockwise from the starting angle.
+ Degrees may be negative. If it is greater than 360 or less than -360,
+ then degrees modulo 360 is used as the extent.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int extent</td>
+<td>The extent of the arc.</td></tr>
+</table>
+<h3>Return Value</h3><p>This item to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="CanvasArc.getStartAngle"></a>int <span class="symbol">getStartAngle</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the start angle of the arc.
+</p>
+<h3>Return Value</h3><p>The start angle of the arc;</p>
+</div>
+</div>
+<h2><a name="CanvasArc.setStartAngle"></a>auto <span class="symbol">setStartAngle</span>(this T)(int startAngle);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Specifies the beginning of the angular range occupied by the arc.
+ Degrees is given in units of degrees measured counter-clockwise from the
+ 3-o'clock position; it may be either positive or negative.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int startAngle</td>
+<td>The start angle of the arc.</td></tr>
+</table>
+<h3>Return Value</h3><p>This item to aid method chaining.</p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="CanvasArcStyle"></a>enum <span class="symbol">CanvasArcStyle</span>: string;
+</h2>
+<div class="declaration-description"><div class="sections"><p>Styles of arcs</p>
+</div>
+<div class="enum-members"><h2><a name="CanvasArcStyle.arc"></a><span class="symbol">arc</span></h2>
+<div class="declaration-description"><div class="sections"><p>Arc is drawn as an <span class="symbol">arc</span> only.</p>
+</div>
+</div>
+<h2><a name="CanvasArcStyle.chord"></a><span class="symbol">chord</span></h2>
+<div class="declaration-description"><div class="sections"><p>Arc is drawn as a <span class="symbol">chord</span>.</p>
+</div>
+</div>
+<h2><a name="CanvasArcStyle.pie"></a><span class="symbol">pie</span></h2>
+<div class="declaration-description"><div class="sections"><p>Arc is drawn as a <span class="symbol">pie</span> chart.</p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="CanvasImage"></a>class <span class="symbol">CanvasImage</span>: tkd.widget.canvas.CanvasItem;
+</h2>
+<div class="declaration-description"><div class="sections"><p>An canvas image item.
+</p>
+<p><h3>Common Commands:</h3>
+These are injected common commands that can also be used with this canvas item.
+     <p>        <a href="./common/canvas/anchor.html">Anchor</a> <br>
+     </p>
+
+</p>
+<h3>See Also</h3><p><a href="./canvas.html#CanvasItem">tkd.widget.canvas.CanvasItem</a></p>
+</div>
+<div class="class-members"><h2><a name="CanvasImage.this"></a> this(int[] coords, Image image, string anchor = AnchorPosition.northWest);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Create an image.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int[] coords</td>
+<td>The coordinates where to position the image.</td></tr>
+<tr><td>Image image</td>
+<td>The image to draw.</td></tr>
+<tr><td>string anchor</td>
+<td>The anchor position of the image.</td></tr>
+</table>
+<h3>See Also</h3><p><a href="../image/gif.html">tkd.image.gif</a> <br>
+     <a href="../image/image.html">tkd.image.image</a> <br>
+     <a href="../image/png.html">tkd.image.png</a> <br>
+     <a href="./anchorposition.html">tkd.widget.anchorposition</a> <br></p>
+</div>
+</div>
+<h2><a name="CanvasImage.getImage"></a>Image <span class="symbol">getImage</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the image.
+</p>
+<h3>Return Value</h3><p>The image;</p>
+</div>
+</div>
+<h2><a name="CanvasImage.setImage"></a>auto <span class="symbol">setImage</span>(this T)(Image image);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the image.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>Image image</td>
+<td>The image.</td></tr>
+</table>
+<h3>Return Value</h3><p>This item to aid method chaining.
+
+</p>
+<h3>See Also</h3><p><a href="../image/gif.html">tkd.image.gif</a> <br>
+     <a href="../image/image.html">tkd.image.image</a> <br>
+     <a href="../image/png.html">tkd.image.png</a> <br></p>
+</div>
+</div>
+<h2><a name="CanvasImage.getActiveImage"></a>Image <span class="symbol">getActiveImage</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the active image.
+</p>
+<h3>Return Value</h3><p>The active image;</p>
+</div>
+</div>
+<h2><a name="CanvasImage.setActiveImage"></a>auto <span class="symbol">setActiveImage</span>(this T)(Image image);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the active image.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>Image image</td>
+<td>The active image.</td></tr>
+</table>
+<h3>Return Value</h3><p>This item to aid method chaining.
+
+</p>
+<h3>See Also</h3><p><a href="../image/gif.html">tkd.image.gif</a> <br>
+     <a href="../image/image.html">tkd.image.image</a> <br>
+     <a href="../image/png.html">tkd.image.png</a> <br></p>
+</div>
+</div>
+<h2><a name="CanvasImage.getDisabledImage"></a>Image <span class="symbol">getDisabledImage</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the disabled image.
+</p>
+<h3>Return Value</h3><p>The disabled image;</p>
+</div>
+</div>
+<h2><a name="CanvasImage.setDisabledImage"></a>auto <span class="symbol">setDisabledImage</span>(this T)(Image image);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the disabled image.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>Image image</td>
+<td>The disabled image.</td></tr>
+</table>
+<h3>Return Value</h3><p>This item to aid method chaining.
+
+</p>
+<h3>See Also</h3><p><a href="../image/gif.html">tkd.image.gif</a> <br>
+     <a href="../image/image.html">tkd.image.image</a> <br>
+     <a href="../image/png.html">tkd.image.png</a> <br></p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="CanvasLine"></a>class <span class="symbol">CanvasLine</span>: tkd.widget.canvas.CanvasItem;
+</h2>
+<div class="declaration-description"><div class="sections"><p>A canvas line item.
+</p>
+<p><h3>Common Commands:</h3>
+These are injected common commands that can also be used with this canvas item.
+     <p>        <a href="./common/canvas/fillcolor.html">FillColor</a> <br>
+         <a href="./common/canvas/outlinedash.html">OutlineDash</a> <br>
+         <a href="./common/canvas/outlinewidth.html">OutlineWidth</a> <br>
+         <a href="./common/canvas/vertex.html">Vertex</a> <br>
+     </p>
+
+</p>
+<h3>See Also</h3><p><a href="./canvas.html#CanvasItem">tkd.widget.canvas.CanvasItem</a></p>
+</div>
+<div class="class-members"><h2><a name="CanvasLine.this"></a> this(int[] coords, string fillColor = Color.black, int outlineWidth = 1);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Create a line from coordinates.
+ Use colors from the preset color <a href="../../color.html">list</a> or a web style hex color.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int[] coords</td>
+<td>The coordinates where to draw the line.</td></tr>
+<tr><td>string fillColor</td>
+<td>The color of the line.</td></tr>
+<tr><td>int outlineWidth</td>
+<td>The outline width.</td></tr>
+</table>
+<h3>See Also</h3><p><a href="./color.html">tkd.widget.color</a> <br></p>
+</div>
+</div>
+<h2><a name="CanvasLine.getArrowPosition"></a>string <span class="symbol">getArrowPosition</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the arrow position.
+</p>
+<h3>Return Value</h3><p>The arrow position.</p>
+</div>
+</div>
+<h2><a name="CanvasLine.setArrowPosition"></a>auto <span class="symbol">setArrowPosition</span>(this T)(string arrowPosition);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Indicates whether or not arrowheads are to be drawn at one or both ends
+ of the line.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string arrowPosition</td>
+<td>The position of arrows on the line.</td></tr>
+</table>
+<h3>Return Value</h3><p>This item to aid method chaining.
+
+</p>
+<h3>See Also</h3><p><a href="./canvas.html#CanvasLineArrow">tkd.widget.canvas.CanvasLineArrow</a></p>
+</div>
+</div>
+<h2><a name="CanvasLine.getArrowShape"></a>int[3] <span class="symbol">getArrowShape</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the arrow shape.
+</p>
+<h3>Return Value</h3><p>The arrow shape.</p>
+</div>
+</div>
+<h2><a name="CanvasLine.setArrowShape"></a>auto <span class="symbol">setArrowShape</span>(this T)(int[3] arrowshape);
+</h2>
+<div class="declaration-description"><div class="sections"><p>This option indicates how to draw arrowheads. The shape argument must be
+ a list with three elements, each specifying a distance. The first
+ element of the list gives the distance along the line from the neck of
+ the arrowhead to its tip. The second element gives the distance along
+ the line from the trailing points of the arrowhead to the tip, and the
+ third element gives the distance from the outside edge of the line to
+ the trailing points.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int[3] arrowshape</td>
+<td>The arrow shape.</td></tr>
+</table>
+<h3>Return Value</h3><p>This item to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="CanvasLine.getCapStyle"></a>string <span class="symbol">getCapStyle</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the cap style.
+</p>
+<h3>Return Value</h3><p>The cap style.</p>
+</div>
+</div>
+<h2><a name="CanvasLine.setCapStyle"></a>auto <span class="symbol">setCapStyle</span>(this T)(string capStyle);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Specifies the ways in which caps are to be drawn at the endpoints of the
+ line. When arrowheads are drawn the cap style is ignored.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string capStyle</td>
+<td>The cap style.</td></tr>
+</table>
+<h3>Return Value</h3><p>This item to aid method chaining.
+
+</p>
+<h3>See Also</h3><p><a href="./canvas.html#CanvasLineCapStyle">tkd.widget.canvas.CanvasLineCapStyle</a></p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="CanvasLineArrow"></a>enum <span class="symbol">CanvasLineArrow</span>: string;
+</h2>
+<div class="declaration-description"><div class="sections"><p>Arrow positions on a canvas line.</p>
+</div>
+<div class="enum-members"><h2><a name="CanvasLineArrow.none"></a><span class="symbol">none</span></h2>
+<div class="declaration-description"><div class="sections"><p>No arrows.</p>
+</div>
+</div>
+<h2><a name="CanvasLineArrow.first"></a><span class="symbol">first</span></h2>
+<div class="declaration-description"><div class="sections"><p>Arrows on the <span class="symbol">first</span> coordinate.</p>
+</div>
+</div>
+<h2><a name="CanvasLineArrow.last"></a><span class="symbol">last</span></h2>
+<div class="declaration-description"><div class="sections"><p>Arrow on the <span class="symbol">last</span> coordinate.</p>
+</div>
+</div>
+<h2><a name="CanvasLineArrow.both"></a><span class="symbol">both</span></h2>
+<div class="declaration-description"><div class="sections"><p>Arrows on <span class="symbol">both</span> ends.</p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="CanvasLineCapStyle"></a>enum <span class="symbol">CanvasLineCapStyle</span>: string;
+</h2>
+<div class="declaration-description"><div class="sections"><p>The cap styles of a canvas line.</p>
+</div>
+<div class="enum-members"><h2><a name="CanvasLineCapStyle.butt"></a><span class="symbol">butt</span></h2>
+<div class="declaration-description"><div class="sections"><p>The cap is just a <span class="symbol">butt</span>.</p>
+</div>
+</div>
+<h2><a name="CanvasLineCapStyle.projecting"></a><span class="symbol">projecting</span></h2>
+<div class="declaration-description"><div class="sections"><p>The cap projects beyond the line.</p>
+</div>
+</div>
+<h2><a name="CanvasLineCapStyle.round"></a><span class="symbol">round</span></h2>
+<div class="declaration-description"><div class="sections"><p>The cap is rounded.</p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="CanvasLineJoinStyle"></a>enum <span class="symbol">CanvasLineJoinStyle</span>: string;
+</h2>
+<div class="declaration-description"><div class="sections"><p>The join styles of a canvas line.</p>
+</div>
+<div class="enum-members"><h2><a name="CanvasLineJoinStyle.bevel"></a><span class="symbol">bevel</span></h2>
+<div class="declaration-description"><div class="sections"><p>The join is bevelled.</p>
+</div>
+</div>
+<h2><a name="CanvasLineJoinStyle.mitre"></a><span class="symbol">mitre</span></h2>
+<div class="declaration-description"><div class="sections"><p>The join is mitred.</p>
+</div>
+</div>
+<h2><a name="CanvasLineJoinStyle.round"></a><span class="symbol">round</span></h2>
+<div class="declaration-description"><div class="sections"><p>The join is <span class="symbol">round</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="CanvasLineSmoothMethod"></a>enum <span class="symbol">CanvasLineSmoothMethod</span>: string;
+</h2>
+<div class="declaration-description"><div class="sections"><p>The join styles of a canvas line.</p>
+</div>
+<div class="enum-members"><h2><a name="CanvasLineSmoothMethod.none"></a><span class="symbol">none</span></h2>
+<div class="declaration-description"><div class="sections"><p>No smoothing.</p>
+</div>
+</div>
+<h2><a name="CanvasLineSmoothMethod.bezier"></a><span class="symbol">bezier</span></h2>
+<div class="declaration-description"><div class="sections"><p>Draw the line using the <span class="symbol">bezier</span> smooth method.</p>
+</div>
+</div>
+<h2><a name="CanvasLineSmoothMethod.raw"></a><span class="symbol">raw</span></h2>
+<div class="declaration-description"><div class="sections"><p>Draw the line using the <span class="symbol">raw</span> smooth method.</p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="CanvasRectangle"></a>class <span class="symbol">CanvasRectangle</span>: tkd.widget.canvas.CanvasItem;
+</h2>
+<div class="declaration-description"><div class="sections"><p>A canvas rectangle item.
+</p>
+<p><h3>Common Commands:</h3>
+These are injected common commands that can also be used with this canvas item.
+     <p>        <a href="./common/canvas/fillcolor.html">FillColor</a> <br>
+         <a href="./common/canvas/outlinecolor.html">OutlineColor</a> <br>
+         <a href="./common/canvas/outlinedash.html">OutlineDash</a> <br>
+         <a href="./common/canvas/outlinewidth.html">OutlineWidth</a> <br>
+     </p>
+
+</p>
+<h3>See Also</h3><p><a href="./canvas.html#CanvasItem">tkd.widget.canvas.CanvasItem</a></p>
+</div>
+<div class="class-members"><h2><a name="CanvasRectangle.this"></a> this(int[] coords, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Create a rectangle from four coordinates.
+ Use colors from the preset color <a href="../../color.html">list</a> or a web style hex color.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int[] coords</td>
+<td>The coordinates where to draw the rectangle.</td></tr>
+<tr><td>string fillColor</td>
+<td>The fill color.</td></tr>
+<tr><td>string outlineColor</td>
+<td>The outline color.</td></tr>
+<tr><td>int outlineWidth</td>
+<td>The outline width.</td></tr>
+</table>
+<h3>See Also</h3><p><a href="./color.html">tkd.widget.color</a> <br></p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="CanvasOval"></a>class <span class="symbol">CanvasOval</span>: tkd.widget.canvas.CanvasItem;
+</h2>
+<div class="declaration-description"><div class="sections"><p>A canvas oval item.
+</p>
+<p><h3>Common Commands:</h3>
+These are injected common commands that can also be used with this canvas item.
+     <p>        <a href="./common/canvas/fillcolor.html">FillColor</a> <br>
+         <a href="./common/canvas/outlinecolor.html">OutlineColor</a> <br>
+         <a href="./common/canvas/outlinedash.html">OutlineDash</a> <br>
+         <a href="./common/canvas/outlinewidth.html">OutlineWidth</a> <br>
+     </p>
+
+</p>
+<h3>See Also</h3><p><a href="./canvas.html#CanvasItem">tkd.widget.canvas.CanvasItem</a></p>
+</div>
+<div class="class-members"><h2><a name="CanvasOval.this"></a> this(int[] coords, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Create an oval from four coordinates.
+ Use colors from the preset color <a href="../../color.html">list</a> or a web style hex color.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int[] coords</td>
+<td>The coordinates where to draw the oval.</td></tr>
+<tr><td>string fillColor</td>
+<td>The fill color.</td></tr>
+<tr><td>string outlineColor</td>
+<td>The outline color.</td></tr>
+<tr><td>int outlineWidth</td>
+<td>The outline width.</td></tr>
+</table>
+<h3>See Also</h3><p><a href="./color.html">tkd.widget.color</a> <br></p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="CanvasPolygon"></a>class <span class="symbol">CanvasPolygon</span>: tkd.widget.canvas.CanvasItem;
+</h2>
+<div class="declaration-description"><div class="sections"><p>A canvas polygon item.
+</p>
+<p><h3>Common Commands:</h3>
+These are injected common commands that can also be used with this canvas item.
+     <p>        <a href="./common/canvas/fillcolor.html">FillColor</a> <br>
+         <a href="./common/canvas/outlinecolor.html">OutlineColor</a> <br>
+         <a href="./common/canvas/outlinedash.html">OutlineDash</a> <br>
+         <a href="./common/canvas/outlinewidth.html">OutlineWidth</a> <br>
+         <a href="./common/canvas/vertex.html">Vertex</a> <br>
+     </p>
+
+</p>
+<h3>See Also</h3><p><a href="./canvas.html#CanvasItem">tkd.widget.canvas.CanvasItem</a></p>
+</div>
+<div class="class-members"><h2><a name="CanvasPolygon.this"></a> this(int[] coords, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Create a polygon from coordinates.
+ Use colors from the preset color <a href="../../color.html">list</a> or a web style hex color.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int[] coords</td>
+<td>The coordinates where to draw the polygon.</td></tr>
+<tr><td>string fillColor</td>
+<td>The fill color.</td></tr>
+<tr><td>string outlineColor</td>
+<td>The outline color.</td></tr>
+<tr><td>int outlineWidth</td>
+<td>The outline width.</td></tr>
+</table>
+<h3>See Also</h3><p><a href="./color.html">tkd.widget.color</a> <br></p>
 </div>
 </div>
 </div>
