@@ -193,7 +193,7 @@ abstract class UiElement : Element
 	public auto bind(this T)(string binding, CommandCallback callback)
 	{
 		string command = this.createCommand(callback, binding);
-		this._tk.eval("bind %s {%s} %s ", this.id, binding, command);
+		this._tk.eval("bind %s {%s} %s", this.id, binding, command);
 
 		return cast(T) this;
 	}
@@ -214,6 +214,7 @@ abstract class UiElement : Element
 
 		return cast(T) this;
 	}
+
 	/**
 	 * Destroy this element and remove it from the GUI.
 	 *

@@ -398,15 +398,15 @@ class Window : UiElement
 	 * Params:
 	 *     width = The width of the window.
 	 *     height = The height of the window.
-	 *     xPosition = The horizontal position of the window.
-	 *     yPosition = The vertical position of the window.
+	 *     xPos = The horizontal position of the window.
+	 *     yPos = The vertical position of the window.
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setGeometry(this T)(int width, int height, int xPosition, int yPosition)
+	public auto setGeometry(this T)(int width, int height, int xPos, int yPos)
 	{
-		this._tk.eval("wm geometry %s %sx%s+%s+%s", this.id, width, height, xPosition, yPosition);
+		this._tk.eval("wm geometry %s %sx%s+%s+%s", this.id, width, height, xPos, yPos);
 		
 		return cast(T) this;
 	}

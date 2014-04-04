@@ -13,6 +13,7 @@ import std.algorithm;
 import std.array;
 import std.conv;
 import std.string;
+import std.uni;
 import tkd.element.element;
 import tkd.element.uielement;
 import tkd.image.image;
@@ -20,6 +21,7 @@ import tkd.widget.anchorposition;
 import tkd.widget.color;
 import tkd.widget.common.border;
 import tkd.widget.common.canvas.anchor;
+import tkd.widget.common.canvas.bind;
 import tkd.widget.common.canvas.fillcolor;
 import tkd.widget.common.canvas.outlinecolor;
 import tkd.widget.common.canvas.outlinedash;
@@ -108,7 +110,7 @@ class Canvas : Widget, IXScrollable!(Canvas), IYScrollable!(Canvas)
 	{
 		if (color.length)
 		{
-			this._tk.eval("%s configure -background %s", this.id, color);
+			this._tk.eval("%s configure -background {%s}", this.id, color);
 		}
 
 		return cast(T) this;
@@ -225,6 +227,87 @@ class Canvas : Widget, IXScrollable!(Canvas), IYScrollable!(Canvas)
 	}
 
 	/**
+	 * Tag an item at coordinates. If more than one item is at the same closest 
+	 * distance (e.g. two items overlap the point), then the top-most of these 
+	 * items (the last one in the display list) is used. If radius is 
+	 * specified, then it must be a non-negative value. Any item closer than 
+	 * halo to the point is considered to overlap it.
+	 *
+	 * Params:
+	 *    tag = The tag to add.
+	 *    xPos = The horizontal position.
+	 *    yPos = The vertical position.
+	 *    radius = The radius around the point.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto tagItemAt(this T)(string tag, int xPos, int yPos, uint radius = 0)
+	{
+		if (tag.length)
+		{
+			this._tk.eval("%s addtag %s closest %s %s %s", this.id, tag, xPos, yPos, radius);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Tag items within a selection region.
+	 *
+	 * Params:
+	 *    tag = The tag to add.
+	 *    x1 = The left edge of the selection region.
+	 *    y1 = The top edge of the selection region.
+	 *    x2 = The right edge of the selection region.
+	 *    y2 = The bottom edge of the selection region.
+	 *    enclosedFully = Specifies if the item have to be enclosed fully or not.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto tagItemIn(this T)(string tag, int x1, int y1, int x2, int y2, bool enclosedFully = false)
+	{
+		assert(x1 <= x2, "x1 must not be greater than x2.");
+		assert(y1 <= y2, "y1 must not be greater than y2.");
+
+		if (tag.length)
+		{
+			if (enclosedFully)
+			{
+				this._tk.eval("%s addtag %s enclosed %s %s %s %s", this.id, tag, x1, y1, x2, y2);
+			}
+			else
+			{
+				this._tk.eval("%s addtag %s overlapping %s %s %s %s", this.id, tag, x1, y1, x2, y2);
+			}
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Tag items that are already tagged with another tag.
+	 *
+	 * Params:
+	 *    tag = The tag to add.
+	 *    searchTag = The tag to select items to tag.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto tagItemWithTag(this T)(string tag, string searchTag)
+	{
+		if (tag.length && searchTag.length)
+		{
+			this._tk.eval("%s addtag %s withtag %s", this.id, tag, searchTag);
+		}
+
+		return cast(T) this;
+	}
+
+
+	/**
 	 * Mixin common commands.
 	 */
 	mixin Border;
@@ -240,30 +323,55 @@ class Canvas : Widget, IXScrollable!(Canvas), IYScrollable!(Canvas)
 /**
  * Abstract base class of all canvas items.
  *
+ * Common_Commands:
+ *     These are injected common commands that can also be used with this widget.
+ *     $(P
+ *         $(LINK2 ./common/canvas/bind.html, Bind) $(BR)
+ *     )
+ *
  * See_Also:
  *     $(LINK2 ../element/element.html, tkd.element.element)
  */
-private abstract class CanvasItem : Element
+protected abstract class CanvasItem : Element
 {
 	/**
 	 * The type of the item.
 	 */
-	protected string _type;
+	private string _type;
 
 	/**
 	 * The coordinates where to draw the item.
 	 */
-	protected int[] _coords;
+	private int[] _coords;
 
 	/**
 	 * The state of the item.
 	 */
-	protected string _state;
+	private string _state;
 
 	/**
 	 * The tags associated with this item.
 	 */
-	protected string[] _tags;
+	private string[] _tags;
+
+	/*
+	 * Initialise the item.
+	 *
+	 * Params:
+	 *     parent = The parent canvas to initialise against.
+	 */
+	protected void init(Canvas parent)
+	{
+		this._parent = parent;
+
+		foreach (binding, callback; this._bindings)
+		{
+			this.bind(binding, callback);
+		}
+
+		this.setState(this._state);
+		this.setTags(this._tags);
+	}
 
 	/**
 	 * Get the coords of this item.
@@ -287,13 +395,13 @@ private abstract class CanvasItem : Element
 	 */
 	public auto setCoords(this T)(int[] coords)
 	{
-		assert(coords.length > 0, "No coordinates specified.");
+		assert(coords.length >= 2, "Not enough coordinates specified.");
 
 		this._coords = coords;
 
 		if (this._parent && this._coords.length)
 		{
-			this._tk.eval("%s create %s [list %s]", this.parent.id, this.id, this._coords.map!(to!(string)).join(" "));
+			this._tk.eval("%s coords %s [list %s]", this.parent.id, this.id, this._coords.map!(to!(string)).join(" "));
 		}
 
 		return cast(T) this;
@@ -329,7 +437,7 @@ private abstract class CanvasItem : Element
 
 		if (this._parent && this._state.length)
 		{
-			this._tk.eval("%s itemconfigure %s -state %s", this._parent.id, this.id, this._state);
+			this._tk.eval("%s itemconfigure %s -state {%s}", this._parent.id, this.id, this._state);
 		}
 
 		return cast(T) this;
@@ -343,6 +451,12 @@ private abstract class CanvasItem : Element
 	 */
 	public string[] getTags()
 	{
+		if (this._parent)
+		{
+			this._tk.eval("%s gettags %s", this._parent.id, this.id);
+			this._tags = this._tk.getResult!(string).split();
+		}
+
 		return this._tags;
 	}
 
@@ -357,9 +471,14 @@ private abstract class CanvasItem : Element
 	 */
 	public auto setTags(this T)(string[] tags)
 	{
+		foreach (tag; tags)
+		{
+			assert(!tag.all!(isNumber), "Tags must not be entirely composed of numbers.");
+		}
+
 		this._tags = tags;
 
-		if (this._parent && this._tags.length)
+		if (this._parent)
 		{
 			this._tk.eval("%s itemconfigure %s -tags {%s}", this._parent.id, this.id, this._tags.join(" "));
 		}
@@ -367,19 +486,77 @@ private abstract class CanvasItem : Element
 		return cast(T) this;
 	}
 
-	/*
-	 * Initialise the item.
+	/**
+	 * Add a specific tag to this item.
 	 *
 	 * Params:
-	 *     parent = The parent canvas to initialise against.
+	 *    tag = The tags to add.
+	 *
+	 * Returns:
+	 *     This item to aid method chaining.
 	 */
-	protected void init(Canvas parent)
+	public auto addTag(this T)(string tag)
 	{
-		this._parent = parent;
+		assert(!tag.all!(isNumber), "Tags must not be entirely composed of numbers.");
 
-		this.setState(this._state);
-		this.setTags(this._tags);
+		this._tags = (this._tags ~= tag).uniq().array();
+
+		if (this._parent && tag.length)
+		{
+			this._tk.eval("%s addtag %s withtag %s", this._parent.id, tag, this.id);
+			this._tags = this.getTags();
+		}
+
+		return cast(T) this;
 	}
+
+	/**
+	 * Delete a specific tag associated to this item.
+	 *
+	 * Params:
+	 *    tag = The tags to delete.
+	 *
+	 * Returns:
+	 *     This item to aid method chaining.
+	 */
+	public auto deleteTag(this T)(string tag)
+	{
+		if (this._tags.canFind(tag))
+		{
+			this._tags = std.algorithm.remove(this._tags, this._tags.countUntil(tag));
+		}
+
+		if (this._parent && tag.length)
+		{
+			this._tk.eval("%s dtag %s %s", this._parent.id, this.id, tag);
+			this._tags = this.getTags();
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Destroy this item and remove it from the canvas.
+	 *
+	 * Caveats:
+	 *     Once an item is destroyed it can no longer be referenced in your 
+	 *     code or a segmentation fault will occur and potentially crash your 
+	 *     program.
+	 */
+	public void destroy()
+	{
+		if (this._parent)
+		{
+			this._tk.eval("%s delete %s", this.parent.id, this.id);
+		}
+
+		super.destroy();
+	}
+
+	/**
+	 * Mixin common commands.
+	 */
+	mixin Bind;
 }
 
 /**
@@ -412,7 +589,7 @@ class CanvasArc : CanvasItem
 	/**
 	 * The start angle of the arc.
 	 */
-	private int _startAngle;
+	private double _startAngle = 0.0;
 
 	/**
 	 * Create an arc.
@@ -550,7 +727,7 @@ class CanvasArc : CanvasItem
 	 * Returns:
 	 *     The start angle of the arc;
 	 */
-	public int getStartAngle()
+	public double getStartAngle()
 	{
 		return this._startAngle;
 	}
@@ -566,7 +743,7 @@ class CanvasArc : CanvasItem
 	 * Returns:
 	 *     This item to aid method chaining.
 	 */
-	public auto setStartAngle(this T)(int startAngle)
+	public auto setStartAngle(this T)(double startAngle)
 	{
 		this._startAngle = startAngle;
 
@@ -809,7 +986,7 @@ class CanvasLine : CanvasItem
 	/**
 	 * The shape of any arrows used.
 	 */
-	private int[3] _arrowShape;
+	private uint[3] _arrowShape;
 
 	/**
 	 * The style of the end caps.
@@ -909,7 +1086,7 @@ class CanvasLine : CanvasItem
 	 * Returns:
 	 *     The arrow shape.
 	 */
-	public int[3] getArrowShape()
+	public uint[3] getArrowShape()
 	{
 		return this._arrowShape;
 	}
@@ -929,7 +1106,7 @@ class CanvasLine : CanvasItem
 	 * Returns:
 	 *     This item to aid method chaining.
 	 */
-	public auto setArrowShape(this T)(int[3] arrowshape)
+	public auto setArrowShape(this T)(uint[3] arrowshape)
 	{
 		this._arrowShape = arrowshape;
 
@@ -1257,3 +1434,441 @@ class CanvasPolygon : CanvasItem
 	mixin Vertex;
 }
 
+/**
+ * A canvas text item.
+ *
+ * Common_Commands:
+ *     These are injected common commands that can also be used with this canvas item.
+ *     $(P
+ *         $(LINK2 ./common/canvas/anchor.html, Anchor) $(BR)
+ *         $(LINK2 ./common/canvas/fillcolor.html, FillColor) $(BR)
+ *     )
+ *
+ * See_Also:
+ *     $(LINK2 ./canvas.html#CanvasItem, tkd.widget.canvas.CanvasItem)
+ */
+class CanvasText : CanvasItem
+{
+	/**
+	 * The angle of the text.
+	 */
+	private double _angle = 0.0;
+
+	/**
+	 * The font.
+	 */
+	private string _font;
+
+	/**
+	 * The alignment.
+	 */
+	private string _alignment;
+
+	/**
+	 * The text.
+	 */
+	private string _text;
+
+	/**
+	 * The maximum line length.
+	 */
+	private int _maxLineLength;
+
+	/**
+	 * Create a text item.
+	 * Use colors from the preset color $(LINK2 ../../color.html, list) or a web style hex color.
+	 *
+	 * Params:
+	 *     coords = The coordinates where to draw the polygon.
+	 *     text = The text.
+	 *     fillColor = The fill color.
+	 *     anchor = The anchor position of the image.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./color.html, tkd.widget.color) $(BR)
+	 */
+	public this(int[] coords, string text, string fillColor = Color.default_, string anchor = AnchorPosition.northWest)
+	{
+		assert(coords.length == 2, "Two coordinates are needed to position text.");
+
+		this._type      = "text";
+		this._coords    = coords;
+		this._text      = text;
+		this._fillColor = fillColor;
+		this._anchor    = anchor;
+	}
+
+	/*
+	 * Initialise the item.
+	 *
+	 * Params:
+	 *     parent = The parent canvas to initialise against.
+	 */
+	override protected void init(Canvas parent)
+	{
+		super.init(parent);
+
+		this.setFillColor(this._fillColor);
+		this.setActiveFillColor(this._activeFillColor);
+		this.setDisabledFillColor(this._disabledFillColor);
+		this.setAnchor(this._anchor);
+
+		this.setAngle(this._angle);
+		this.setFont(this._font);
+		this.setAlignment(this._alignment);
+		this.setText(this._text);
+		this.setMaxLineLength(this._maxLineLength);
+	}
+
+	/**
+	 * Get the text angle.
+	 *
+	 * Returns:
+	 *     The text angle.
+	 */
+	public double getAngle()
+	{
+		return this._angle;
+	}
+
+	/**
+	 * Specifies how many degrees to rotate the text anticlockwise about the 
+	 * positioning point for the text; it may have any floating-point value 
+	 * from 0.0 to 360.0. For example, if rotationDegrees is 90, then the text 
+	 * will be drawn vertically from bottom to top. This option defaults to 
+	 * 0.0. Degrees is given in units of degrees measured counter-clockwise 
+	 * from the 3-o'clock position; it may be either positive or negative.
+	 *
+	 * Params:
+	 *    angle = The text angle.
+	 *
+	 * Returns:
+	 *     This item to aid method chaining.
+	 */
+	public auto setAngle(this T)(double angle)
+	{
+		this._angle = angle;
+
+		if (this._parent)
+		{
+			this._tk.eval("%s itemconfigure %s -angle %s", this._parent.id, this.id, this._angle);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Get the font.
+	 *
+	 * Returns:
+	 *     The font.
+	 */
+	public string getFont()
+	{
+		return this._font;
+	}
+
+	/**
+	 * Specifies the font to use for the text item.
+	 *
+	 * Params:
+	 *    font = The font.
+	 *
+	 * Returns:
+	 *     This item to aid method chaining.
+	 */
+	public auto setFont(this T)(string font)
+	{
+		this._font = font;
+
+		if (this._parent && this._font.length)
+		{
+			this._tk.eval("%s itemconfigure %s -font {%s}", this._parent.id, this.id, this._font);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Get the alignment
+	 *
+	 * Returns:
+	 *     The alignment.
+	 */
+	public string getAlignment()
+	{
+		return this._alignment;
+	}
+
+	/**
+	 * Specifies how to justify the text within its bounding region.
+	 *
+	 * Params:
+	 *    alignment = The alignment.
+	 *
+	 * Returns:
+	 *     This item to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./alignment.html, tkd.widget.alignment)
+	 */
+	public auto setAlignment(this T)(string alignment)
+	{
+		this._alignment = alignment;
+
+		if (this._parent && this._alignment.length)
+		{
+			this._tk.eval("%s itemconfigure %s -justify {%s}", this._parent.id, this.id, this._alignment);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Get the text.
+	 *
+	 * Returns:
+	 *     The text.
+	 */
+	public string getText()
+	{
+		return this._text;
+	}
+
+	/**
+	 * Specifies the characters to be displayed in the text item.  Newline 
+	 * characters cause line breaks.
+	 *
+	 * Params:
+	 *    text = The text.
+	 *
+	 * Returns:
+	 *     This item to aid method chaining.
+	 */
+	public auto setText(this T)(string text)
+	{
+		this._text = text;
+
+		if (this._parent)
+		{
+			this._tk.eval("%s itemconfigure %s -text {%s}", this._parent.id, this.id, this._text);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Get max line length.
+	 *
+	 * Returns:
+	 *     The max line length.
+	 */
+	public int getMaxLineLength()
+	{
+		return this._maxLineLength;
+	}
+
+	/**
+	 * Specifies a maximum line length for the text. If this option is zero 
+	 * (the default) the text is broken into lines only at newline characters.  
+	 * However, if this option is non-zero then any line that would be longer 
+	 * than line length is broken just before a space character to make the 
+	 * line shorter than lineLength; the space character is treated as if it 
+	 * were a newline character.
+	 *
+	 * Params:
+	 *    maxLineLength = The max line length.
+	 *
+	 * Returns:
+	 *     This item to aid method chaining.
+	 */
+	public auto setMaxLineLength(this T)(int maxLineLength)
+	{
+		this._maxLineLength = maxLineLength;
+
+		if (this._parent)
+		{
+			this._tk.eval("%s itemconfigure %s -width %s", this._parent.id, this.id, this._maxLineLength);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Mixin common commands.
+	 */
+	mixin Anchor;
+	mixin FillColor;
+}
+
+/**
+ * A canvas widget item.
+ *
+ * Common_Commands:
+ *     These are injected common commands that can also be used with this canvas item.
+ *     $(P
+ *         $(LINK2 ./common/canvas/anchor.html, Anchor) $(BR)
+ *     )
+ *
+ * See_Also:
+ *     $(LINK2 ./canvas.html#CanvasItem, tkd.widget.canvas.CanvasItem)
+ */
+class CanvasWidget : CanvasItem
+{
+	/**
+	 * The widget to use.
+	 */
+	private Widget _widget;
+
+	/**
+	 * The widget width.
+	 */
+	private int _width;
+
+	/**
+	 * The widget height.
+	 */
+	private int _height;
+
+	/**
+	 * Create a widget item.
+	 *
+	 * Params:
+	 *     coords = The coordinates where to draw the polygon.
+	 *     widget = The widget to use.
+	 *     anchor = The anchor position of the image.
+	 */
+	public this(int[] coords, Widget widget, string anchor = AnchorPosition.northWest)
+	{
+		assert(coords.length == 2, "Two coordinates are needed to position a widget.");
+
+		this._type   = "window";
+		this._coords = coords;
+		this._widget = widget;
+		this._anchor = anchor;
+	}
+
+	/*
+	 * Initialise the item.
+	 *
+	 * Params:
+	 *     parent = The parent canvas to initialise against.
+	 */
+	override protected void init(Canvas parent)
+	{
+		super.init(parent);
+
+		this.setAnchor(this._anchor);
+
+		this.setWidget(this._widget);
+		this.setWidth(this._width);
+		this.setHeight(this._height);
+	}
+
+	/**
+	 * Get the widget.
+	 *
+	 * Returns:
+	 *     The widget.
+	 */
+	public Widget getWidget()
+	{
+		return this._widget;
+	}
+
+	/**
+	 * Specifies the widget to associate with this item. The widget specified 
+	 * must either be a child of the canvas widget or a child of some ancestor 
+	 * of the canvas widget.
+	 *
+	 * Params:
+	 *    widget = The widget.
+	 *
+	 * Returns:
+	 *     This item to aid method chaining.
+	 */
+	public auto setWidget(this T)(Widget widget)
+	{
+		this._widget = widget;
+
+		if (this._parent && this._widget)
+		{
+			this._tk.eval("%s itemconfigure %s -window %s", this._parent.id, this.id, this._widget.id);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Get the widget width.
+	 *
+	 * Returns:
+	 *     The widget width.
+	 */
+	public int getWidth()
+	{
+		return this._width;
+	}
+
+	/**
+	 * Specifies the width to assign to the item's widget. If this option is 
+	 * not specified, or if it is specified as zero, then the widget is given 
+	 * whatever width it requests internally.
+	 *
+	 * Params:
+	 *    width = The widget width.
+	 *
+	 * Returns:
+	 *     This item to aid method chaining.
+	 */
+	public auto setWidth(this T)(int width)
+	{
+		this._width = width;
+
+		if (this._parent)
+		{
+			this._tk.eval("%s itemconfigure %s -width %s", this._parent.id, this.id, this._width);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Get the widget height.
+	 *
+	 * Returns:
+	 *     The widget height.
+	 */
+	public int getHeight()
+	{
+		return this._height;
+	}
+
+	/**
+	 * Specifies the height to assign to the item's widget. If this option is 
+	 * not specified, or if it is specified as zero, then the widget is given 
+	 * whatever height it requests internally.
+	 *
+	 * Params:
+	 *    height = The widget height.
+	 *
+	 * Returns:
+	 *     This item to aid method chaining.
+	 */
+	public auto setHeight(this T)(int height)
+	{
+		this._height = height;
+
+		if (this._parent)
+		{
+			this._tk.eval("%s itemconfigure %s -height %s", this._parent.id, this.id, this._height);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Mixin common commands.
+	 */
+	mixin Anchor;
+}

@@ -37,7 +37,7 @@ mixin template Anchor()
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./anchorposition.html, tkd.widget.anchorposition) $(BR)
+	 *     $(LINK2 ../../anchorposition.html, tkd.widget.anchorposition) $(BR)
 	 */
 	public auto setAnchor(this T)(string anchor)
 	{

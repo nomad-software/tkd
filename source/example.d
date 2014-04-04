@@ -45,10 +45,20 @@ class Application : TkdApplication
 			.addItem(new CanvasRectangle([10, 10, 200, 100], Color.white))
 			.addItem(new CanvasArc([10, 110, 110, 210], CanvasArcStyle.pie, Color.white))
 			.addItem(new CanvasImage([210, 10], new Png!("thumbnail.png")))
-			.addItem(new CanvasLine([120, 110, 200, 110, 200, 160]))
+			.addItem(new CanvasLine([120, 110, 200, 110, 200, 160]).setArrowPosition(CanvasLineArrow.last))
 			.addItem(new CanvasOval([10, 170, 200, 250], Color.white))
 			.addItem(new CanvasPolygon([220, 80, 320, 80, 300, 120, 240, 120], Color.white))
+			.addItem(new CanvasText([20, 20], "Lorem ipsum dolor sit amet."))
+			.addItem(new CanvasWidget([220, 140], new Button("Embedded\nButton")).setWidth(100).setHeight(100))
 			.pack();
+
+		auto x = new CanvasRectangle([0, 0, 20, 20]).setFillColor("red").setTags(["one", "two"]).addTag("three");
+		this._canvas.addItem(x);
+
+		x.deleteTag("two");
+		x.addTag("four");
+		x.bind("<Motion>", delegate(CommandArgs args){writeln("hello");});
+		writefln("%s", x.getTags());
 
 		auto xscroll = new XScrollBar(frame)
 			.attachWidget(this._canvas)
