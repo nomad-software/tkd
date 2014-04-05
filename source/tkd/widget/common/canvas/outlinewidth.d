@@ -34,6 +34,12 @@ mixin template OutlineWidth()
 	 */
 	public int getOutlineWidth()
 	{
+		if (this._parent)
+		{
+			this._tk.eval("%s itemcget %s -width", this._parent.id, this.id);
+			this._outlineWidth = this._tk.getResult!(int);
+		}
+
 		return this._outlineWidth;
 	}
 
@@ -67,6 +73,12 @@ mixin template OutlineWidth()
 	 */
 	public int getActiveOutlineWidth()
 	{
+		if (this._parent)
+		{
+			this._tk.eval("%s itemcget %s -activewidth", this._parent.id, this.id);
+			this._activeOutlineWidth = this._tk.getResult!(int);
+		}
+
 		return this._activeOutlineWidth;
 	}
 
@@ -100,6 +112,12 @@ mixin template OutlineWidth()
 	 */
 	public int getDisabledOutlineWidth()
 	{
+		if (this._parent)
+		{
+			this._tk.eval("%s itemcget %s -disabledwidth", this._parent.id, this.id);
+			this._disabledOutlineWidth = this._tk.getResult!(int);
+		}
+
 		return this._disabledOutlineWidth;
 	}
 

@@ -34,6 +34,12 @@ mixin template FillColor()
 	 */
 	public string getFillColor()
 	{
+		if (this._parent)
+		{
+			this._tk.eval("%s itemcget %s -fill", this._parent.id, this.id);
+			this._fillColor = this._tk.getResult!(string);
+		}
+
 		return this._fillColor;
 	}
 
@@ -71,6 +77,12 @@ mixin template FillColor()
 	 */
 	public string getActiveFillColor()
 	{
+		if (this._parent)
+		{
+			this._tk.eval("%s itemcget %s -activefill", this._parent.id, this.id);
+			this._activeFillColor = this._tk.getResult!(string);
+		}
+
 		return this._activeFillColor;
 	}
 
@@ -108,6 +120,12 @@ mixin template FillColor()
 	 */
 	public string getDisabledFillColor()
 	{
+		if (this._parent)
+		{
+			this._tk.eval("%s itemcget %s -disabledfill", this._parent.id, this.id);
+			this._disabledFillColor = this._tk.getResult!(string);
+		}
+
 		return this._disabledFillColor;
 	}
 

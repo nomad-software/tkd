@@ -210,6 +210,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this widget.
      <p>        <a href="./common/canvas/bind.html">Bind</a> <br>
+         <a href="./common/canvas/state.html">State</a> <br>
      </p>
 
 </p>
@@ -230,27 +231,6 @@ These are injected common commands that can also be used with this widget.
 <td>The coords used for this item.</td></tr>
 </table>
 <h3>Return Value</h3><p>This item to aid method chaining.</p>
-</div>
-</div>
-<h2><a name="CanvasItem.getState"></a>string <span class="symbol">getState</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the state of this item.
-</p>
-<h3>Return Value</h3><p>The state of this item.</p>
-</div>
-</div>
-<h2><a name="CanvasItem.setState"></a>auto <span class="symbol">setState</span>(this T)(string state);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Set the item state. The only valid states are normal, disabled or
- hidden.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string state</td>
-<td>The state to set.</td></tr>
-</table>
-<h3>Return Value</h3><p>This item to aid method chaining.
-
-</p>
-<h3>See Also</h3><p><a href="./state.html">tkd.widget.state</a> <br></p>
 </div>
 </div>
 <h2><a name="CanvasItem.getTags"></a>string[] <span class="symbol">getTags</span>();
@@ -308,7 +288,8 @@ Once an item is destroyed it can no longer be referenced in your
 </p>
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this canvas item.
-     <p>        <a href="./common/canvas/fillcolor.html">FillColor</a> <br>
+     <p>        <a href="./common/canvas/arcspecific.html">ArcSpecific</a> <br>
+         <a href="./common/canvas/fillcolor.html">FillColor</a> <br>
          <a href="./common/canvas/outlinecolor.html">OutlineColor</a> <br>
          <a href="./common/canvas/outlinedash.html">OutlineDash</a> <br>
          <a href="./common/canvas/outlinewidth.html">OutlineWidth</a> <br>
@@ -335,69 +316,6 @@ These are injected common commands that can also be used with this canvas item.
 </table>
 <h3>See Also</h3><p><a href="./color.html">tkd.widget.color</a> <br>
      <a href="./canvas.html#CanvasArcStyle">tkd.widget.canvas.CanvasArcStyle</a></p>
-</div>
-</div>
-<h2><a name="CanvasArc.getStyle"></a>string <span class="symbol">getStyle</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the style of the arc.
-</p>
-<h3>Return Value</h3><p>The style of the arc;</p>
-</div>
-</div>
-<h2><a name="CanvasArc.setStyle"></a>auto <span class="symbol">setStyle</span>(this T)(string style);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Specifies how to draw the arc. If type is pie (the default) then the
- arc's region is defined by a section of the oval's perimeter plus two
- line segments, one between the center of the oval and each end of the
- perimeter section. If type is chord then the arc's region is defined by
- a section of the oval's perimeter plus a single line segment connecting
- the two end points of the perimeter section. If type is arc then the
- arc's region consists of a section of the perimeter alone. In this last
- case the fill color is ignored.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string style</td>
-<td>The style of the arc.</td></tr>
-</table>
-<h3>Return Value</h3><p>This item to aid method chaining.</p>
-</div>
-</div>
-<h2><a name="CanvasArc.getExtent"></a>int <span class="symbol">getExtent</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the extent of the arc.
-</p>
-<h3>Return Value</h3><p>The extent of the arc;</p>
-</div>
-</div>
-<h2><a name="CanvasArc.setExtent"></a>auto <span class="symbol">setExtent</span>(this T)(int extent);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Specifies the size of the angular range occupied by the arc. The arc's
- range extends for degrees counter-clockwise from the starting angle.
- Degrees may be negative. If it is greater than 360 or less than -360,
- then degrees modulo 360 is used as the extent.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>int extent</td>
-<td>The extent of the arc.</td></tr>
-</table>
-<h3>Return Value</h3><p>This item to aid method chaining.</p>
-</div>
-</div>
-<h2><a name="CanvasArc.getStartAngle"></a>double <span class="symbol">getStartAngle</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the start angle of the arc.
-</p>
-<h3>Return Value</h3><p>The start angle of the arc;</p>
-</div>
-</div>
-<h2><a name="CanvasArc.setStartAngle"></a>auto <span class="symbol">setStartAngle</span>(this T)(double startAngle);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Specifies the beginning of the angular range occupied by the arc.
- Degrees is given in units of degrees measured counter-clockwise from the
- 3-o'clock position; it may be either positive or negative.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>double startAngle</td>
-<td>The start angle of the arc.</td></tr>
-</table>
-<h3>Return Value</h3><p>This item to aid method chaining.</p>
 </div>
 </div>
 </div>
@@ -427,6 +345,7 @@ These are injected common commands that can also be used with this canvas item.
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this canvas item.
      <p>        <a href="./common/canvas/anchor.html">Anchor</a> <br>
+         <a href="./common/canvas/imagespecific.html">ImageSpecific</a> <br>
      </p>
 
 </p>
@@ -449,72 +368,6 @@ These are injected common commands that can also be used with this canvas item.
      <a href="./anchorposition.html">tkd.widget.anchorposition</a> <br></p>
 </div>
 </div>
-<h2><a name="CanvasImage.getImage"></a>Image <span class="symbol">getImage</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the image.
-</p>
-<h3>Return Value</h3><p>The image;</p>
-</div>
-</div>
-<h2><a name="CanvasImage.setImage"></a>auto <span class="symbol">setImage</span>(this T)(Image image);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Set the image.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>Image image</td>
-<td>The image.</td></tr>
-</table>
-<h3>Return Value</h3><p>This item to aid method chaining.
-
-</p>
-<h3>See Also</h3><p><a href="../image/gif.html">tkd.image.gif</a> <br>
-     <a href="../image/image.html">tkd.image.image</a> <br>
-     <a href="../image/png.html">tkd.image.png</a> <br></p>
-</div>
-</div>
-<h2><a name="CanvasImage.getActiveImage"></a>Image <span class="symbol">getActiveImage</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the active image.
-</p>
-<h3>Return Value</h3><p>The active image;</p>
-</div>
-</div>
-<h2><a name="CanvasImage.setActiveImage"></a>auto <span class="symbol">setActiveImage</span>(this T)(Image image);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Set the active image.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>Image image</td>
-<td>The active image.</td></tr>
-</table>
-<h3>Return Value</h3><p>This item to aid method chaining.
-
-</p>
-<h3>See Also</h3><p><a href="../image/gif.html">tkd.image.gif</a> <br>
-     <a href="../image/image.html">tkd.image.image</a> <br>
-     <a href="../image/png.html">tkd.image.png</a> <br></p>
-</div>
-</div>
-<h2><a name="CanvasImage.getDisabledImage"></a>Image <span class="symbol">getDisabledImage</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the disabled image.
-</p>
-<h3>Return Value</h3><p>The disabled image;</p>
-</div>
-</div>
-<h2><a name="CanvasImage.setDisabledImage"></a>auto <span class="symbol">setDisabledImage</span>(this T)(Image image);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Set the disabled image.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>Image image</td>
-<td>The disabled image.</td></tr>
-</table>
-<h3>Return Value</h3><p>This item to aid method chaining.
-
-</p>
-<h3>See Also</h3><p><a href="../image/gif.html">tkd.image.gif</a> <br>
-     <a href="../image/image.html">tkd.image.image</a> <br>
-     <a href="../image/png.html">tkd.image.png</a> <br></p>
-</div>
-</div>
 </div>
 </div>
 <h2><a name="CanvasLine"></a>class <span class="symbol">CanvasLine</span>: tkd.widget.canvas.CanvasItem;
@@ -524,6 +377,7 @@ These are injected common commands that can also be used with this canvas item.
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this canvas item.
      <p>        <a href="./common/canvas/fillcolor.html">FillColor</a> <br>
+         <a href="./common/canvas/linespecific.html">LineSpecific</a> <br>
          <a href="./common/canvas/outlinedash.html">OutlineDash</a> <br>
          <a href="./common/canvas/outlinewidth.html">OutlineWidth</a> <br>
          <a href="./common/canvas/vertex.html">Vertex</a> <br>
@@ -545,71 +399,6 @@ These are injected common commands that can also be used with this canvas item.
 <td>The outline width.</td></tr>
 </table>
 <h3>See Also</h3><p><a href="./color.html">tkd.widget.color</a> <br></p>
-</div>
-</div>
-<h2><a name="CanvasLine.getArrowPosition"></a>string <span class="symbol">getArrowPosition</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the arrow position.
-</p>
-<h3>Return Value</h3><p>The arrow position.</p>
-</div>
-</div>
-<h2><a name="CanvasLine.setArrowPosition"></a>auto <span class="symbol">setArrowPosition</span>(this T)(string arrowPosition);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Indicates whether or not arrowheads are to be drawn at one or both ends
- of the line.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string arrowPosition</td>
-<td>The position of arrows on the line.</td></tr>
-</table>
-<h3>Return Value</h3><p>This item to aid method chaining.
-
-</p>
-<h3>See Also</h3><p><a href="./canvas.html#CanvasLineArrow">tkd.widget.canvas.CanvasLineArrow</a></p>
-</div>
-</div>
-<h2><a name="CanvasLine.getArrowShape"></a>uint[3] <span class="symbol">getArrowShape</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the arrow shape.
-</p>
-<h3>Return Value</h3><p>The arrow shape.</p>
-</div>
-</div>
-<h2><a name="CanvasLine.setArrowShape"></a>auto <span class="symbol">setArrowShape</span>(this T)(uint[3] arrowshape);
-</h2>
-<div class="declaration-description"><div class="sections"><p>This option indicates how to draw arrowheads. The shape argument must be
- a list with three elements, each specifying a distance. The first
- element of the list gives the distance along the line from the neck of
- the arrowhead to its tip. The second element gives the distance along
- the line from the trailing points of the arrowhead to the tip, and the
- third element gives the distance from the outside edge of the line to
- the trailing points.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>uint[3] arrowshape</td>
-<td>The arrow shape.</td></tr>
-</table>
-<h3>Return Value</h3><p>This item to aid method chaining.</p>
-</div>
-</div>
-<h2><a name="CanvasLine.getCapStyle"></a>string <span class="symbol">getCapStyle</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the cap style.
-</p>
-<h3>Return Value</h3><p>The cap style.</p>
-</div>
-</div>
-<h2><a name="CanvasLine.setCapStyle"></a>auto <span class="symbol">setCapStyle</span>(this T)(string capStyle);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Specifies the ways in which caps are to be drawn at the endpoints of the
- line. When arrowheads are drawn the cap style is ignored.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string capStyle</td>
-<td>The cap style.</td></tr>
-</table>
-<h3>Return Value</h3><p>This item to aid method chaining.
-
-</p>
-<h3>See Also</h3><p><a href="./canvas.html#CanvasLineCapStyle">tkd.widget.canvas.CanvasLineCapStyle</a></p>
 </div>
 </div>
 </div>
@@ -801,6 +590,7 @@ These are injected common commands that can also be used with this canvas item.
 These are injected common commands that can also be used with this canvas item.
      <p>        <a href="./common/canvas/anchor.html">Anchor</a> <br>
          <a href="./common/canvas/fillcolor.html">FillColor</a> <br>
+         <a href="./common/canvas/textspecific.html">TextSpecific</a> <br>
      </p>
 
 </p>
@@ -823,105 +613,6 @@ These are injected common commands that can also be used with this canvas item.
 <h3>See Also</h3><p><a href="./color.html">tkd.widget.color</a> <br></p>
 </div>
 </div>
-<h2><a name="CanvasText.getAngle"></a>double <span class="symbol">getAngle</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the text angle.
-</p>
-<h3>Return Value</h3><p>The text angle.</p>
-</div>
-</div>
-<h2><a name="CanvasText.setAngle"></a>auto <span class="symbol">setAngle</span>(this T)(double angle);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Specifies how many degrees to rotate the text anticlockwise about the
- positioning point for the text; it may have any floating-point value
- from 0.0 to 360.0. For example, if rotationDegrees is 90, then the text
- will be drawn vertically from bottom to top. This option defaults to
- 0.0. Degrees is given in units of degrees measured counter-clockwise
- from the 3-o'clock position; it may be either positive or negative.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>double angle</td>
-<td>The text angle.</td></tr>
-</table>
-<h3>Return Value</h3><p>This item to aid method chaining.</p>
-</div>
-</div>
-<h2><a name="CanvasText.getFont"></a>string <span class="symbol">getFont</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the font.
-</p>
-<h3>Return Value</h3><p>The font.</p>
-</div>
-</div>
-<h2><a name="CanvasText.setFont"></a>auto <span class="symbol">setFont</span>(this T)(string font);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Specifies the font to use for the text item.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string font</td>
-<td>The font.</td></tr>
-</table>
-<h3>Return Value</h3><p>This item to aid method chaining.</p>
-</div>
-</div>
-<h2><a name="CanvasText.getAlignment"></a>string <span class="symbol">getAlignment</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the alignment
-</p>
-<h3>Return Value</h3><p>The alignment.</p>
-</div>
-</div>
-<h2><a name="CanvasText.setAlignment"></a>auto <span class="symbol">setAlignment</span>(this T)(string alignment);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Specifies how to justify the text within its bounding region.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string alignment</td>
-<td>The alignment.</td></tr>
-</table>
-<h3>Return Value</h3><p>This item to aid method chaining.
-
-</p>
-<h3>See Also</h3><p><a href="./alignment.html">tkd.widget.alignment</a></p>
-</div>
-</div>
-<h2><a name="CanvasText.getText"></a>string <span class="symbol">getText</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the text.
-</p>
-<h3>Return Value</h3><p>The text.</p>
-</div>
-</div>
-<h2><a name="CanvasText.setText"></a>auto <span class="symbol">setText</span>(this T)(string text);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Specifies the characters to be displayed in the text item.  Newline
- characters cause line breaks.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string text</td>
-<td>The text.</td></tr>
-</table>
-<h3>Return Value</h3><p>This item to aid method chaining.</p>
-</div>
-</div>
-<h2><a name="CanvasText.getMaxLineLength"></a>int <span class="symbol">getMaxLineLength</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get max line length.
-</p>
-<h3>Return Value</h3><p>The max line length.</p>
-</div>
-</div>
-<h2><a name="CanvasText.setMaxLineLength"></a>auto <span class="symbol">setMaxLineLength</span>(this T)(int maxLineLength);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Specifies a maximum line length for the text. If this option is zero
- (the default) the text is broken into lines only at newline characters.
- However, if this option is non-zero then any line that would be longer
- than line length is broken just before a space character to make the
- line shorter than lineLength; the space character is treated as if it
- were a newline character.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>int maxLineLength</td>
-<td>The max line length.</td></tr>
-</table>
-<h3>Return Value</h3><p>This item to aid method chaining.</p>
-</div>
-</div>
 </div>
 </div>
 <h2><a name="CanvasWidget"></a>class <span class="symbol">CanvasWidget</span>: tkd.widget.canvas.CanvasItem;
@@ -931,6 +622,7 @@ These are injected common commands that can also be used with this canvas item.
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this canvas item.
      <p>        <a href="./common/canvas/anchor.html">Anchor</a> <br>
+         <a href="./common/canvas/widgetspecific.html">WidgetSpecific</a> <br>
      </p>
 
 </p>
@@ -947,63 +639,6 @@ These are injected common commands that can also be used with this canvas item.
 <tr><td>string anchor</td>
 <td>The anchor position of the image.</td></tr>
 </table>
-</div>
-</div>
-<h2><a name="CanvasWidget.getWidget"></a>Widget <span class="symbol">getWidget</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the widget.
-</p>
-<h3>Return Value</h3><p>The widget.</p>
-</div>
-</div>
-<h2><a name="CanvasWidget.setWidget"></a>auto <span class="symbol">setWidget</span>(this T)(Widget widget);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Specifies the widget to associate with this item. The widget specified
- must either be a child of the canvas widget or a child of some ancestor
- of the canvas widget.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>Widget widget</td>
-<td>The widget.</td></tr>
-</table>
-<h3>Return Value</h3><p>This item to aid method chaining.</p>
-</div>
-</div>
-<h2><a name="CanvasWidget.getWidth"></a>int <span class="symbol">getWidth</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the widget width.
-</p>
-<h3>Return Value</h3><p>The widget width.</p>
-</div>
-</div>
-<h2><a name="CanvasWidget.setWidth"></a>auto <span class="symbol">setWidth</span>(this T)(int width);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Specifies the width to assign to the item's widget. If this option is
- not specified, or if it is specified as zero, then the widget is given
- whatever width it requests internally.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>int width</td>
-<td>The widget width.</td></tr>
-</table>
-<h3>Return Value</h3><p>This item to aid method chaining.</p>
-</div>
-</div>
-<h2><a name="CanvasWidget.getHeight"></a>int <span class="symbol">getHeight</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the widget height.
-</p>
-<h3>Return Value</h3><p>The widget height.</p>
-</div>
-</div>
-<h2><a name="CanvasWidget.setHeight"></a>auto <span class="symbol">setHeight</span>(this T)(int height);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Specifies the height to assign to the item's widget. If this option is
- not specified, or if it is specified as zero, then the widget is given
- whatever height it requests internally.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>int height</td>
-<td>The widget height.</td></tr>
-</table>
-<h3>Return Value</h3><p>This item to aid method chaining.</p>
 </div>
 </div>
 </div>

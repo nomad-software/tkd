@@ -21,12 +21,18 @@ import tkd.widget.anchorposition;
 import tkd.widget.color;
 import tkd.widget.common.border;
 import tkd.widget.common.canvas.anchor;
+import tkd.widget.common.canvas.arcspecific;
 import tkd.widget.common.canvas.bind;
 import tkd.widget.common.canvas.fillcolor;
+import tkd.widget.common.canvas.imagespecific;
+import tkd.widget.common.canvas.linespecific;
 import tkd.widget.common.canvas.outlinecolor;
 import tkd.widget.common.canvas.outlinedash;
 import tkd.widget.common.canvas.outlinewidth;
+import tkd.widget.common.canvas.state;
+import tkd.widget.common.canvas.textspecific;
 import tkd.widget.common.canvas.vertex;
+import tkd.widget.common.canvas.widgetspecific;
 import tkd.widget.common.height;
 import tkd.widget.common.relief;
 import tkd.widget.common.width;
@@ -327,6 +333,7 @@ class Canvas : Widget, IXScrollable!(Canvas), IYScrollable!(Canvas)
  *     These are injected common commands that can also be used with this widget.
  *     $(P
  *         $(LINK2 ./common/canvas/bind.html, Bind) $(BR)
+ *         $(LINK2 ./common/canvas/state.html, State) $(BR)
  *     )
  *
  * See_Also:
@@ -343,11 +350,6 @@ protected abstract class CanvasItem : Element
 	 * The coordinates where to draw the item.
 	 */
 	private int[] _coords;
-
-	/**
-	 * The state of the item.
-	 */
-	private string _state;
 
 	/**
 	 * The tags associated with this item.
@@ -370,6 +372,7 @@ protected abstract class CanvasItem : Element
 		}
 
 		this.setState(this._state);
+
 		this.setTags(this._tags);
 	}
 
@@ -399,45 +402,9 @@ protected abstract class CanvasItem : Element
 
 		this._coords = coords;
 
-		if (this._parent && this._coords.length)
+		if (this._parent)
 		{
 			this._tk.eval("%s coords %s [list %s]", this.parent.id, this.id, this._coords.map!(to!(string)).join(" "));
-		}
-
-		return cast(T) this;
-	}
-
-	/**
-	 * Get the state of this item.
-	 *
-	 * Returns:
-	 *     The state of this item.
-	 */
-	public string getState()
-	{
-		return this._state;
-	}
-
-	/**
-	 * Set the item state. The only valid states are normal, disabled or 
-	 * hidden.
-	 *
-	 * Params:
-	 *    state = The state to set.
-	 *
-	 * Returns:
-	 *     This item to aid method chaining.
-	 *
-	 * See_Also:
-	 *     $(LINK2 ./state.html, tkd.widget.state) $(BR)
-	 */
-	public auto setState(this T)(string state)
-	{
-		this._state = state;
-
-		if (this._parent && this._state.length)
-		{
-			this._tk.eval("%s itemconfigure %s -state {%s}", this._parent.id, this.id, this._state);
 		}
 
 		return cast(T) this;
@@ -557,6 +524,7 @@ protected abstract class CanvasItem : Element
 	 * Mixin common commands.
 	 */
 	mixin Bind;
+	mixin State;
 }
 
 /**
@@ -565,6 +533,7 @@ protected abstract class CanvasItem : Element
  * Common_Commands:
  *     These are injected common commands that can also be used with this canvas item.
  *     $(P
+ *         $(LINK2 ./common/canvas/arcspecific.html, ArcSpecific) $(BR)
  *         $(LINK2 ./common/canvas/fillcolor.html, FillColor) $(BR)
  *         $(LINK2 ./common/canvas/outlinecolor.html, OutlineColor) $(BR)
  *         $(LINK2 ./common/canvas/outlinedash.html, OutlineDash) $(BR)
@@ -576,21 +545,6 @@ protected abstract class CanvasItem : Element
  */
 class CanvasArc : CanvasItem
 {
-	/**
-	 * The style of the arc.
-	 */
-	private string _style;
-
-	/**
-	 * The extent of the arc.
-	 */
-	private int _extent;
-
-	/**
-	 * The start angle of the arc.
-	 */
-	private double _startAngle = 0.0;
-
 	/**
 	 * Create an arc.
 	 * Use colors from the preset color $(LINK2 ../../color.html, list) or a web style hex color.
@@ -641,123 +595,15 @@ class CanvasArc : CanvasItem
 		this.setOutlineWidth(this._outlineWidth);
 		this.setActiveOutlineWidth(this._activeOutlineWidth);
 		this.setDisabledOutlineWidth(this._disabledOutlineWidth);
-
 		this.setStyle(this._style);
 		this.setExtent(this._extent);
 		this.setStartAngle(this._startAngle);
 	}
 
 	/**
-	 * Get the style of the arc.
-	 *
-	 * Returns:
-	 *     The style of the arc;
-	 */
-	public string getStyle()
-	{
-		return this._style;
-	}
-
-	/**
-	 * Specifies how to draw the arc. If type is pie (the default) then the 
-	 * arc's region is defined by a section of the oval's perimeter plus two 
-	 * line segments, one between the center of the oval and each end of the 
-	 * perimeter section. If type is chord then the arc's region is defined by 
-	 * a section of the oval's perimeter plus a single line segment connecting 
-	 * the two end points of the perimeter section. If type is arc then the 
-	 * arc's region consists of a section of the perimeter alone. In this last 
-	 * case the fill color is ignored.
-	 *
-	 * Params:
-	 *    style = The style of the arc.
-	 *
-	 * Returns:
-	 *     This item to aid method chaining.
-	 */
-	public auto setStyle(this T)(string style)
-	{
-		this._style = style;
-
-		if (this._parent && this._style.length)
-		{
-			this._tk.eval("%s itemconfigure %s -style {%s}", this._parent.id, this.id, this._style);
-		}
-
-		return cast(T) this;
-	}
-
-	/**
-	 * Get the extent of the arc.
-	 *
-	 * Returns:
-	 *     The extent of the arc;
-	 */
-	public int getExtent()
-	{
-		return this._extent;
-	}
-
-	/**
-	 * Specifies the size of the angular range occupied by the arc. The arc's 
-	 * range extends for degrees counter-clockwise from the starting angle. 
-	 * Degrees may be negative. If it is greater than 360 or less than -360, 
-	 * then degrees modulo 360 is used as the extent.
-	 *
-	 * Params:
-	 *    extent = The extent of the arc.
-	 *
-	 * Returns:
-	 *     This item to aid method chaining.
-	 */
-	public auto setExtent(this T)(int extent)
-	{
-		this._extent = extent;
-
-		if (this._parent && this._extent > 0)
-		{
-			this._tk.eval("%s itemconfigure %s -extent %s", this._parent.id, this.id, this._extent);
-		}
-
-		return cast(T) this;
-	}
-
-	/**
-	 * Get the start angle of the arc.
-	 *
-	 * Returns:
-	 *     The start angle of the arc;
-	 */
-	public double getStartAngle()
-	{
-		return this._startAngle;
-	}
-
-	/**
-	 * Specifies the beginning of the angular range occupied by the arc. 
-	 * Degrees is given in units of degrees measured counter-clockwise from the 
-	 * 3-o'clock position; it may be either positive or negative.
-	 *
-	 * Params:
-	 *    startAngle = The start angle of the arc.
-	 *
-	 * Returns:
-	 *     This item to aid method chaining.
-	 */
-	public auto setStartAngle(this T)(double startAngle)
-	{
-		this._startAngle = startAngle;
-
-		if (this._parent)
-		{
-			this._tk.eval("%s itemconfigure %s -start %s", this._parent.id, this.id, this._startAngle);
-		}
-
-		return cast(T) this;
-	}
-
-	/**
 	 * Mixin common commands.
 	 */
+	mixin ArcSpecific;
 	mixin FillColor;
 	mixin OutlineColor;
 	mixin OutlineDash;
@@ -781,6 +627,7 @@ enum CanvasArcStyle : string
  *     These are injected common commands that can also be used with this canvas item.
  *     $(P
  *         $(LINK2 ./common/canvas/anchor.html, Anchor) $(BR)
+ *         $(LINK2 ./common/canvas/imagespecific.html, ImageSpecific) $(BR)
  *     )
  *
  * See_Also:
@@ -788,21 +635,6 @@ enum CanvasArcStyle : string
  */
 class CanvasImage : CanvasItem
 {
-	/**
-	 * The image.
-	 */
-	private Image _image;
-
-	/**
-	 * The active image.
-	 */
-	private Image _activeImage;
-
-	/**
-	 * The disabled image.
-	 */
-	private Image _disabledImage;
-
 	/**
 	 * Create an image.
 	 *
@@ -838,127 +670,16 @@ class CanvasImage : CanvasItem
 		super.init(parent);
 
 		this.setAnchor(this._anchor);
-
 		this.setImage(this._image);
 		this.setActiveImage(this._activeImage);
 		this.setDisabledImage(this._disabledImage);
 	}
 
 	/**
-	 * Get the image.
-	 *
-	 * Returns:
-	 *     The image;
-	 */
-	public Image getImage()
-	{
-		return this._image;
-	}
-
-	/**
-	 * Set the image.
-	 *
-	 * Params:
-	 *    image = The image.
-	 *
-	 * Returns:
-	 *     This item to aid method chaining.
-	 *
-	 * See_Also:
-	 *     $(LINK2 ../image/gif.html, tkd.image.gif) $(BR)
-	 *     $(LINK2 ../image/image.html, tkd.image.image) $(BR)
-	 *     $(LINK2 ../image/png.html, tkd.image.png) $(BR)
-	 */
-	public auto setImage(this T)(Image image)
-	{
-		this._image = image;
-
-		if (this._parent && this._image)
-		{
-			this._tk.eval("%s itemconfigure %s -image %s", this._parent.id, this.id, this._image.id);
-		}
-
-		return cast(T) this;
-	}
-
-	/**
-	 * Get the active image.
-	 *
-	 * Returns:
-	 *     The active image;
-	 */
-	public Image getActiveImage()
-	{
-		return this._activeImage;
-	}
-
-	/**
-	 * Set the active image.
-	 *
-	 * Params:
-	 *    image = The active image.
-	 *
-	 * Returns:
-	 *     This item to aid method chaining.
-	 *
-	 * See_Also:
-	 *     $(LINK2 ../image/gif.html, tkd.image.gif) $(BR)
-	 *     $(LINK2 ../image/image.html, tkd.image.image) $(BR)
-	 *     $(LINK2 ../image/png.html, tkd.image.png) $(BR)
-	 */
-	public auto setActiveImage(this T)(Image image)
-	{
-		this._activeImage = image;
-
-		if (this._parent && this._activeImage)
-		{
-			this._tk.eval("%s itemconfigure %s -activeimage %s", this._parent.id, this.id, this._activeImage.id);
-		}
-
-		return cast(T) this;
-	}
-
-	/**
-	 * Get the disabled image.
-	 *
-	 * Returns:
-	 *     The disabled image;
-	 */
-	public Image getDisabledImage()
-	{
-		return this._disabledImage;
-	}
-
-	/**
-	 * Set the disabled image.
-	 *
-	 * Params:
-	 *    image = The disabled image.
-	 *
-	 * Returns:
-	 *     This item to aid method chaining.
-	 *
-	 * See_Also:
-	 *     $(LINK2 ../image/gif.html, tkd.image.gif) $(BR)
-	 *     $(LINK2 ../image/image.html, tkd.image.image) $(BR)
-	 *     $(LINK2 ../image/png.html, tkd.image.png) $(BR)
-	 */
-	public auto setDisabledImage(this T)(Image image)
-	{
-		this._disabledImage = image;
-
-		if (this._parent && this._disabledImage)
-		{
-			this._tk.eval("%s itemconfigure %s -disabledimage %s", this._parent.id, this.id, this._disabledImage.id);
-		}
-
-		return cast(T) this;
-	}
-
-	/**
 	 * Mixin common commands.
 	 */
 	mixin Anchor;
+	mixin ImageSpecific;
 }
 
 /**
@@ -968,6 +689,7 @@ class CanvasImage : CanvasItem
  *     These are injected common commands that can also be used with this canvas item.
  *     $(P
  *         $(LINK2 ./common/canvas/fillcolor.html, FillColor) $(BR)
+ *         $(LINK2 ./common/canvas/linespecific.html, LineSpecific) $(BR)
  *         $(LINK2 ./common/canvas/outlinedash.html, OutlineDash) $(BR)
  *         $(LINK2 ./common/canvas/outlinewidth.html, OutlineWidth) $(BR)
  *         $(LINK2 ./common/canvas/vertex.html, Vertex) $(BR)
@@ -978,21 +700,6 @@ class CanvasImage : CanvasItem
  */
 class CanvasLine : CanvasItem
 {
-	/**
-	 * The arrow position on the line.
-	 */
-	private string _arrowPosition;
-
-	/**
-	 * The shape of any arrows used.
-	 */
-	private uint[3] _arrowShape;
-
-	/**
-	 * The style of the end caps.
-	 */
-	private string _capStyle;
-
 	/**
 	 * Create a line from coordinates.
 	 * Use colors from the preset color $(LINK2 ../../color.html, list) or a web style hex color.
@@ -1038,126 +745,16 @@ class CanvasLine : CanvasItem
 		this.setJoinStyle(this._joinStyle);
 		this.setSmoothMethod(this._smoothMethod);
 		this.setSmoothSplineSteps(this._splineSteps);
-
 		this.setArrowPosition(this._arrowPosition);
 		this.setArrowShape(this._arrowShape);
 		this.setCapStyle(this._capStyle);
 	}
 
 	/**
-	 * Get the arrow position.
-	 *
-	 * Returns:
-	 *     The arrow position.
-	 */
-	public string getArrowPosition()
-	{
-		return this._arrowPosition;
-	}
-
-	/**
-	 * Indicates whether or not arrowheads are to be drawn at one or both ends 
-	 * of the line.
-	 *
-	 * Params:
-	 *    arrowPosition = The position of arrows on the line.
-	 *
-	 * Returns:
-	 *     This item to aid method chaining.
-	 *
-	 * See_Also:
-	 *     $(LINK2 ./canvas.html#CanvasLineArrow, tkd.widget.canvas.CanvasLineArrow)
-	 */
-	public auto setArrowPosition(this T)(string arrowPosition)
-	{
-		this._arrowPosition = arrowPosition;
-
-		if (this._parent && this._arrowPosition.length)
-		{
-			this._tk.eval("%s itemconfigure %s -arrow {%s}", this._parent.id, this.id, this._arrowPosition);
-		}
-
-		return cast(T) this;
-	}
-
-	/**
-	 * Get the arrow shape.
-	 *
-	 * Returns:
-	 *     The arrow shape.
-	 */
-	public uint[3] getArrowShape()
-	{
-		return this._arrowShape;
-	}
-
-	/**
-	 * This option indicates how to draw arrowheads. The shape argument must be 
-	 * a list with three elements, each specifying a distance. The first 
-	 * element of the list gives the distance along the line from the neck of 
-	 * the arrowhead to its tip. The second element gives the distance along 
-	 * the line from the trailing points of the arrowhead to the tip, and the 
-	 * third element gives the distance from the outside edge of the line to 
-	 * the trailing points.
-	 *
-	 * Params:
-	 *    arrowshape = The arrow shape.
-	 *
-	 * Returns:
-	 *     This item to aid method chaining.
-	 */
-	public auto setArrowShape(this T)(uint[3] arrowshape)
-	{
-		this._arrowShape = arrowshape;
-
-		if (this._parent && this._arrowShape[].all!("a > 0"))
-		{
-			this._tk.eval("%s itemconfigure %s -arrowshape [list %s]", this._parent.id, this.id, this._arrowShape[].map!(to!(string)).join(" "));
-		}
-
-		return cast(T) this;
-	}
-
-	/**
-	 * Get the cap style.
-	 *
-	 * Returns:
-	 *     The cap style.
-	 */
-	public string getCapStyle()
-	{
-		return this._capStyle;
-	}
-
-	/**
-	 * Specifies the ways in which caps are to be drawn at the endpoints of the 
-	 * line. When arrowheads are drawn the cap style is ignored.
-	 *
-	 * Params:
-	 *    capStyle = The cap style.
-	 *
-	 * Returns:
-	 *     This item to aid method chaining.
-	 *
-	 * See_Also:
-	 *     $(LINK2 ./canvas.html#CanvasLineCapStyle, tkd.widget.canvas.CanvasLineCapStyle)
-	 */
-	public auto setCapStyle(this T)(string capStyle)
-	{
-		this._capStyle = capStyle;
-
-		if (this._parent && this._capStyle.length)
-		{
-			this._tk.eval("%s itemconfigure %s -capstyle {%s}", this._parent.id, this.id, this._capStyle);
-		}
-
-		return cast(T) this;
-	}
-
-	/**
 	 * Mixin common commands.
 	 */
 	mixin FillColor;
+	mixin LineSpecific;
 	mixin OutlineDash;
 	mixin OutlineWidth;
 	mixin Vertex;
@@ -1442,6 +1039,7 @@ class CanvasPolygon : CanvasItem
  *     $(P
  *         $(LINK2 ./common/canvas/anchor.html, Anchor) $(BR)
  *         $(LINK2 ./common/canvas/fillcolor.html, FillColor) $(BR)
+ *         $(LINK2 ./common/canvas/textspecific.html, TextSpecific) $(BR)
  *     )
  *
  * See_Also:
@@ -1449,31 +1047,6 @@ class CanvasPolygon : CanvasItem
  */
 class CanvasText : CanvasItem
 {
-	/**
-	 * The angle of the text.
-	 */
-	private double _angle = 0.0;
-
-	/**
-	 * The font.
-	 */
-	private string _font;
-
-	/**
-	 * The alignment.
-	 */
-	private string _alignment;
-
-	/**
-	 * The text.
-	 */
-	private string _text;
-
-	/**
-	 * The maximum line length.
-	 */
-	private int _maxLineLength;
-
 	/**
 	 * Create a text item.
 	 * Use colors from the preset color $(LINK2 ../../color.html, list) or a web style hex color.
@@ -1512,7 +1085,6 @@ class CanvasText : CanvasItem
 		this.setActiveFillColor(this._activeFillColor);
 		this.setDisabledFillColor(this._disabledFillColor);
 		this.setAnchor(this._anchor);
-
 		this.setAngle(this._angle);
 		this.setFont(this._font);
 		this.setAlignment(this._alignment);
@@ -1521,184 +1093,11 @@ class CanvasText : CanvasItem
 	}
 
 	/**
-	 * Get the text angle.
-	 *
-	 * Returns:
-	 *     The text angle.
-	 */
-	public double getAngle()
-	{
-		return this._angle;
-	}
-
-	/**
-	 * Specifies how many degrees to rotate the text anticlockwise about the 
-	 * positioning point for the text; it may have any floating-point value 
-	 * from 0.0 to 360.0. For example, if rotationDegrees is 90, then the text 
-	 * will be drawn vertically from bottom to top. This option defaults to 
-	 * 0.0. Degrees is given in units of degrees measured counter-clockwise 
-	 * from the 3-o'clock position; it may be either positive or negative.
-	 *
-	 * Params:
-	 *    angle = The text angle.
-	 *
-	 * Returns:
-	 *     This item to aid method chaining.
-	 */
-	public auto setAngle(this T)(double angle)
-	{
-		this._angle = angle;
-
-		if (this._parent)
-		{
-			this._tk.eval("%s itemconfigure %s -angle %s", this._parent.id, this.id, this._angle);
-		}
-
-		return cast(T) this;
-	}
-
-	/**
-	 * Get the font.
-	 *
-	 * Returns:
-	 *     The font.
-	 */
-	public string getFont()
-	{
-		return this._font;
-	}
-
-	/**
-	 * Specifies the font to use for the text item.
-	 *
-	 * Params:
-	 *    font = The font.
-	 *
-	 * Returns:
-	 *     This item to aid method chaining.
-	 */
-	public auto setFont(this T)(string font)
-	{
-		this._font = font;
-
-		if (this._parent && this._font.length)
-		{
-			this._tk.eval("%s itemconfigure %s -font {%s}", this._parent.id, this.id, this._font);
-		}
-
-		return cast(T) this;
-	}
-
-	/**
-	 * Get the alignment
-	 *
-	 * Returns:
-	 *     The alignment.
-	 */
-	public string getAlignment()
-	{
-		return this._alignment;
-	}
-
-	/**
-	 * Specifies how to justify the text within its bounding region.
-	 *
-	 * Params:
-	 *    alignment = The alignment.
-	 *
-	 * Returns:
-	 *     This item to aid method chaining.
-	 *
-	 * See_Also:
-	 *     $(LINK2 ./alignment.html, tkd.widget.alignment)
-	 */
-	public auto setAlignment(this T)(string alignment)
-	{
-		this._alignment = alignment;
-
-		if (this._parent && this._alignment.length)
-		{
-			this._tk.eval("%s itemconfigure %s -justify {%s}", this._parent.id, this.id, this._alignment);
-		}
-
-		return cast(T) this;
-	}
-
-	/**
-	 * Get the text.
-	 *
-	 * Returns:
-	 *     The text.
-	 */
-	public string getText()
-	{
-		return this._text;
-	}
-
-	/**
-	 * Specifies the characters to be displayed in the text item.  Newline 
-	 * characters cause line breaks.
-	 *
-	 * Params:
-	 *    text = The text.
-	 *
-	 * Returns:
-	 *     This item to aid method chaining.
-	 */
-	public auto setText(this T)(string text)
-	{
-		this._text = text;
-
-		if (this._parent)
-		{
-			this._tk.eval("%s itemconfigure %s -text {%s}", this._parent.id, this.id, this._text);
-		}
-
-		return cast(T) this;
-	}
-
-	/**
-	 * Get max line length.
-	 *
-	 * Returns:
-	 *     The max line length.
-	 */
-	public int getMaxLineLength()
-	{
-		return this._maxLineLength;
-	}
-
-	/**
-	 * Specifies a maximum line length for the text. If this option is zero 
-	 * (the default) the text is broken into lines only at newline characters.  
-	 * However, if this option is non-zero then any line that would be longer 
-	 * than line length is broken just before a space character to make the 
-	 * line shorter than lineLength; the space character is treated as if it 
-	 * were a newline character.
-	 *
-	 * Params:
-	 *    maxLineLength = The max line length.
-	 *
-	 * Returns:
-	 *     This item to aid method chaining.
-	 */
-	public auto setMaxLineLength(this T)(int maxLineLength)
-	{
-		this._maxLineLength = maxLineLength;
-
-		if (this._parent)
-		{
-			this._tk.eval("%s itemconfigure %s -width %s", this._parent.id, this.id, this._maxLineLength);
-		}
-
-		return cast(T) this;
-	}
-
-	/**
 	 * Mixin common commands.
 	 */
 	mixin Anchor;
 	mixin FillColor;
+	mixin TextSpecific;
 }
 
 /**
@@ -1708,6 +1107,7 @@ class CanvasText : CanvasItem
  *     These are injected common commands that can also be used with this canvas item.
  *     $(P
  *         $(LINK2 ./common/canvas/anchor.html, Anchor) $(BR)
+ *         $(LINK2 ./common/canvas/widgetspecific.html, WidgetSpecific) $(BR)
  *     )
  *
  * See_Also:
@@ -1715,21 +1115,6 @@ class CanvasText : CanvasItem
  */
 class CanvasWidget : CanvasItem
 {
-	/**
-	 * The widget to use.
-	 */
-	private Widget _widget;
-
-	/**
-	 * The widget width.
-	 */
-	private int _width;
-
-	/**
-	 * The widget height.
-	 */
-	private int _height;
-
 	/**
 	 * Create a widget item.
 	 *
@@ -1759,116 +1144,14 @@ class CanvasWidget : CanvasItem
 		super.init(parent);
 
 		this.setAnchor(this._anchor);
-
 		this.setWidget(this._widget);
 		this.setWidth(this._width);
 		this.setHeight(this._height);
 	}
 
 	/**
-	 * Get the widget.
-	 *
-	 * Returns:
-	 *     The widget.
-	 */
-	public Widget getWidget()
-	{
-		return this._widget;
-	}
-
-	/**
-	 * Specifies the widget to associate with this item. The widget specified 
-	 * must either be a child of the canvas widget or a child of some ancestor 
-	 * of the canvas widget.
-	 *
-	 * Params:
-	 *    widget = The widget.
-	 *
-	 * Returns:
-	 *     This item to aid method chaining.
-	 */
-	public auto setWidget(this T)(Widget widget)
-	{
-		this._widget = widget;
-
-		if (this._parent && this._widget)
-		{
-			this._tk.eval("%s itemconfigure %s -window %s", this._parent.id, this.id, this._widget.id);
-		}
-
-		return cast(T) this;
-	}
-
-	/**
-	 * Get the widget width.
-	 *
-	 * Returns:
-	 *     The widget width.
-	 */
-	public int getWidth()
-	{
-		return this._width;
-	}
-
-	/**
-	 * Specifies the width to assign to the item's widget. If this option is 
-	 * not specified, or if it is specified as zero, then the widget is given 
-	 * whatever width it requests internally.
-	 *
-	 * Params:
-	 *    width = The widget width.
-	 *
-	 * Returns:
-	 *     This item to aid method chaining.
-	 */
-	public auto setWidth(this T)(int width)
-	{
-		this._width = width;
-
-		if (this._parent)
-		{
-			this._tk.eval("%s itemconfigure %s -width %s", this._parent.id, this.id, this._width);
-		}
-
-		return cast(T) this;
-	}
-
-	/**
-	 * Get the widget height.
-	 *
-	 * Returns:
-	 *     The widget height.
-	 */
-	public int getHeight()
-	{
-		return this._height;
-	}
-
-	/**
-	 * Specifies the height to assign to the item's widget. If this option is 
-	 * not specified, or if it is specified as zero, then the widget is given 
-	 * whatever height it requests internally.
-	 *
-	 * Params:
-	 *    height = The widget height.
-	 *
-	 * Returns:
-	 *     This item to aid method chaining.
-	 */
-	public auto setHeight(this T)(int height)
-	{
-		this._height = height;
-
-		if (this._parent)
-		{
-			this._tk.eval("%s itemconfigure %s -height %s", this._parent.id, this.id, this._height);
-		}
-
-		return cast(T) this;
-	}
-
-	/**
 	 * Mixin common commands.
 	 */
 	mixin Anchor;
+	mixin WidgetSpecific;
 }

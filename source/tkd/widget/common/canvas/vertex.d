@@ -34,6 +34,12 @@ mixin template Vertex()
 	 */
 	public string getJoinStyle()
 	{
+		if (this._parent)
+		{
+			this._tk.eval("%s itemcget %s -joinstyle", this._parent.id, this.id);
+			this._joinStyle = this._tk.getResult!(string);
+		}
+
 		return this._joinStyle;
 	}
 
@@ -71,6 +77,12 @@ mixin template Vertex()
 	 */
 	public string getSmoothMethod()
 	{
+		if (this._parent)
+		{
+			this._tk.eval("%s itemcget %s -smooth", this._parent.id, this.id);
+			this._smoothMethod = this._tk.getResult!(string);
+		}
+
 		return this._smoothMethod;
 	}
 
@@ -119,6 +131,12 @@ mixin template Vertex()
 	 */
 	public int getSmoothSplineSteps()
 	{
+		if (this._parent)
+		{
+			this._tk.eval("%s itemcget %s -splinesteps", this._parent.id, this.id);
+			this._splineSteps = this._tk.getResult!(int);
+		}
+
 		return this._splineSteps;
 	}
 

@@ -43,6 +43,12 @@ mixin template OutlineDash()
 	 */
 	public int[] getOutlineDash()
 	{
+		if (this._parent)
+		{
+			this._tk.eval("%s itemcget %s -dash", this._parent.id, this.id);
+			this._outlineDash = this._tk.getResult!(string).split().map!(to!(int)).array;
+		}
+
 		return this._outlineDash;
 	}
 
@@ -78,6 +84,12 @@ mixin template OutlineDash()
 	 */
 	public int[] getActiveOutlineDash()
 	{
+		if (this._parent)
+		{
+			this._tk.eval("%s itemcget %s -activedash", this._parent.id, this.id);
+			this._activeOutlineDash = this._tk.getResult!(string).split().map!(to!(int)).array;
+		}
+
 		return this._activeOutlineDash;
 	}
 
@@ -113,6 +125,12 @@ mixin template OutlineDash()
 	 */
 	public int[] getDisabledOutlineDash()
 	{
+		if (this._parent)
+		{
+			this._tk.eval("%s itemcget %s -disableddash", this._parent.id, this.id);
+			this._disabledOutlineDash = this._tk.getResult!(string).split().map!(to!(int)).array;
+		}
+
 		return this._disabledOutlineDash;
 	}
 
@@ -147,6 +165,12 @@ mixin template OutlineDash()
 	 */
 	public int getOutlineDashOffset()
 	{
+		if (this._parent)
+		{
+			this._tk.eval("%s itemcget %s -dashoffset", this._parent.id, this.id);
+			this._outlineDashOffset = this._tk.getResult!(int);
+		}
+
 		return this._outlineDashOffset;
 	}
 

@@ -34,6 +34,12 @@ mixin template OutlineColor()
 	 */
 	public string getOutlineColor()
 	{
+		if (this._parent)
+		{
+			this._tk.eval("%s itemcget %s -outline", this._parent.id, this.id);
+			this._outlineColor = this._tk.getResult!(string);
+		}
+
 		return this._outlineColor;
 	}
 
@@ -71,6 +77,12 @@ mixin template OutlineColor()
 	 */
 	public string getActiveOutlineColor()
 	{
+		if (this._parent)
+		{
+			this._tk.eval("%s itemcget %s -activeoutline", this._parent.id, this.id);
+			this._activeOutlineColor = this._tk.getResult!(string);
+		}
+
 		return this._activeOutlineColor;
 	}
 
@@ -108,6 +120,12 @@ mixin template OutlineColor()
 	 */
 	public string getDisabledOutlineColor()
 	{
+		if (this._parent)
+		{
+			this._tk.eval("%s itemcget %s -disabledoutline", this._parent.id, this.id);
+			this._disabledOutlineColor = this._tk.getResult!(string);
+		}
+
 		return this._disabledOutlineColor;
 	}
 

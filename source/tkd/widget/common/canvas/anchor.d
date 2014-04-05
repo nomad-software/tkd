@@ -24,6 +24,12 @@ mixin template Anchor()
 	 */
 	public string getAnchor()
 	{
+		if (this._parent)
+		{
+			this._tk.eval("%s itemcget %s -anchor", this._parent.id, this.id);
+			this._anchor = this._tk.getResult!(string);
+		}
+
 		return this._anchor;
 	}
 
