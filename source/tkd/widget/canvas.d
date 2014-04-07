@@ -214,9 +214,9 @@ class Canvas : Widget, IXScrollable!(Canvas), IYScrollable!(Canvas)
 	}
 
 	/**
-	 * Tag an item at coordinates. If more than one item is at the same closest 
-	 * distance (e.g. two items overlap the point), then the top-most of these 
-	 * items (the last one in the display list) is used. If radius is 
+	 * Tag an item nearest to coordinates. If more than one item is at the same 
+	 * closest distance (e.g. two items overlap the point), then the top-most 
+	 * of these items (the last one in the display list) is used. If radius is 
 	 * specified, then it must be a non-negative value. Any item closer than 
 	 * halo to the point is considered to overlap it.
 	 *
@@ -229,7 +229,7 @@ class Canvas : Widget, IXScrollable!(Canvas), IYScrollable!(Canvas)
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto tagItemAt(this T)(string tag, int xPos, int yPos, uint radius = 0)
+	public auto tagItemNear(this T)(string tag, int xPos, int yPos, uint radius = 0)
 	{
 		if (tag.length)
 		{
@@ -248,7 +248,7 @@ class Canvas : Widget, IXScrollable!(Canvas), IYScrollable!(Canvas)
 	 *    y1 = The top edge of the selection region.
 	 *    x2 = The right edge of the selection region.
 	 *    y2 = The bottom edge of the selection region.
-	 *    enclosedFully = Specifies if the item have to be enclosed fully or not.
+	 *    enclosedFully = Specifies if the items have to be enclosed fully or not.
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
@@ -294,6 +294,58 @@ class Canvas : Widget, IXScrollable!(Canvas), IYScrollable!(Canvas)
 	}
 
 	/**
+	 * Get an item id nearest to coordinates. If more than one item is at the 
+	 * same closest distance (e.g. two items overlap the point), then the 
+	 * top-most of these items (the last one in the display list) is used. If 
+	 * radius is specified, then it must be a non-negative value. Any item 
+	 * closer than halo to the point is considered to overlap it.
+	 *
+	 * Params:
+	 *    xPos = The horizontal position.
+	 *    yPos = The vertical position.
+	 *    radius = The radius around the point.
+	 *
+	 * Returns:
+	 *     The item found.
+	 */
+	public int getItemIdNear(int xPos, int yPos, uint radius = 0)
+	{
+		this._tk.eval("%s find closest %s %s %s", this.id, xPos, yPos, radius);
+
+		return this._tk.getResult!(int);
+	}
+
+	/**
+	 * Get items within a selection region.
+	 *
+	 * Params:
+	 *    x1 = The left edge of the selection region.
+	 *    y1 = The top edge of the selection region.
+	 *    x2 = The right edge of the selection region.
+	 *    y2 = The bottom edge of the selection region.
+	 *    enclosedFully = Specifies if the items have to be enclosed fully or not.
+	 *
+	 * Returns:
+	 *     An array of found items.
+	 */
+	public int[] getItemIdsIn(int x1, int y1, int x2, int y2, bool enclosedFully = false)
+	{
+		assert(x1 <= x2, "x1 must not be greater than x2.");
+		assert(y1 <= y2, "y1 must not be greater than y2.");
+
+		if (enclosedFully)
+		{
+			this._tk.eval("%s find enclosed %s %s %s %s", this.id, x1, y1, x2, y2);
+		}
+		else
+		{
+			this._tk.eval("%s find overlapping %s %s %s %s", this.id, x1, y1, x2, y2);
+		}
+
+		return this._tk.getResult!(string).split().map!(to!(int)).array;
+	}
+
+	/**
 	 * Add an item to the canvas.
 	 *
 	 * Params:
@@ -325,6 +377,62 @@ class Canvas : Widget, IXScrollable!(Canvas), IYScrollable!(Canvas)
 	public auto addTagConfig(this T)(CanvasTagConfig tagConfig)
 	{
 		tagConfig.init(this);
+
+		return cast(T) this;
+	}
+
+	/**
+	 * This command is used to implement scanning on canvases. Records x and y 
+	 * positions and the canvas's current view. This is used in conjunction 
+	 * with later scanDragTo commands.
+	 *
+	 * Params:
+	 *     xPos = The marked horizontal starting point of a scan.
+	 *     yPos = The marked vertical starting point of a scan.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./canvas.html#Canvas.scanDragTo, tkd.widget.canvas.Canvas.scanDragTo)
+	 */
+	public auto setScanMark(this T)(double xPos, double yPos)
+	{
+		if (this._parent)
+		{
+			this._tk.eval("%s scan mark %s %s", this.id, xPos, yPos);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * This command is used to implement scanning on canvases. This command 
+	 * computes the difference between its xPos and yPos arguments (which are 
+	 * typically mouse coordinates) and the xPos and yPos arguments to the last 
+	 * setScanMark command for the widget. It then adjusts the view by gain 
+	 * times the difference in coordinates, where gain defaults to 1. This 
+	 * command is typically associated with mouse motion events in the widget, 
+	 * to produce the effect of dragging the canvas at high speed through its 
+	 * window.
+	 *
+	 * Params:
+	 *     xPos = The marked horizontal starting point of a scan.
+	 *     yPos = The marked vertical starting point of a scan.
+	 *     gain = The adjustment in the drag amount.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./canvas.html#Canvas.setScanMark, tkd.widget.canvas.Canvas.setScanMark)
+	 */
+	public auto scanDragTo(this T)(double xPos, double yPos, int gain = 1)
+	{
+		if (this._parent)
+		{
+			this._tk.eval("%s scan dragto %s %s %s", this.id, xPos, yPos, gain);
+		}
 
 		return cast(T) this;
 	}
@@ -476,12 +584,23 @@ protected abstract class CanvasItem : Element
 	/**
 	 * The coordinates where to draw the item.
 	 */
-	private int[] _coords;
+	private double[] _coords;
 
 	/**
 	 * The tags associated with this item.
 	 */
 	private string[] _tags;
+
+	/**
+	 * Get the type of canvas item.
+	 *
+	 * Returns:
+	 *     The type of canvas item.
+	 */
+	public @property string type()
+	{
+		return this._type;
+	}
 
 	/*
 	 * Initialise the item.
@@ -509,8 +628,14 @@ protected abstract class CanvasItem : Element
 	 * Returns:
 	 *     An array of coords of this item.
 	 */
-	public int[] getCoords()
+	public double[] getCoords()
 	{
+		if (this._parent)
+		{
+			this._tk.eval("%s coords %s", this._parent.id, this.id);
+			this._coords = this._tk.getResult!(string).split().map!(to!(double)).array;
+		}
+
 		return this._coords;
 	}
 
@@ -664,6 +789,118 @@ protected abstract class CanvasItem : Element
 	}
 
 	/**
+	 * Set the keyboard focus to this item in the canvas.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto focus(this T)()
+	{
+		if (this._parent)
+		{
+			this._tk.eval("%s focus %s", this._parent.id, this.id);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Lower an item in the drawing order.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto lower(this T)()
+	{
+		if (this._parent)
+		{
+			this._tk.eval("%s lower %s", this._parent.id, this.id);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Raise an item in the drawing order.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto raise(this T)()
+	{
+		if (this._parent)
+		{
+			this._tk.eval("%s raise %s", this._parent.id, this.id);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Move an item on the canvas by an amount.
+	 *
+	 * Params:
+	 *     xAmount = The amount to move the item horizontally.
+	 *     yAmount = The amount to move the item vertically.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto moveBy(this T)(int xAmount, int yAmount)
+	{
+		if (this._parent)
+		{
+			this._tk.eval("%s move %s %s %s", this._parent.id, this.id, xAmount, yAmount);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Move an item on the canvas to a position.
+	 *
+	 * Params:
+	 *     xPos = The new horizontal position.
+	 *     yPos = The new vertical position.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto moveTo(this T)(int xPos, int yPos)
+	{
+		if (this._parent)
+		{
+			this._tk.eval("%s moveto %s %s %s", this._parent.id, this.id, xPos, yPos);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Scale an item on the canvas. Note that some items have only a single 
+	 * pair of coordinates (e.g., text, images and widgets) and so scaling of 
+	 * them by this command can only move them around.
+	 *
+	 * Params:
+	 *     xOrigin = The horizontal origin from which to perform the scale.
+	 *     yOrigin = The vertical origin from which to perform the scale.
+	 *     xPercent = The amount to scale horizontally.
+	 *     yPercent = The amount to scale vertically.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto scale(this T)(double xOrigin, double yOrigin, double xPercent, double yPercent)
+	{
+		if (this._parent)
+		{
+			this._tk.eval("%s scale %s %s %s %s %s", this._parent.id, this.id, xOrigin, yOrigin, xPercent / 100, yPercent / 100);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
 	 * Mixin common commands.
 	 */
 	mixin Bind;
@@ -703,7 +940,7 @@ class CanvasArc : CanvasItem
 	 *     $(LINK2 ./color.html, tkd.widget.color) $(BR)
 	 *     $(LINK2 ./canvas.html#CanvasArcStyle, tkd.widget.canvas.CanvasArcStyle)
 	 */
-	public this(int[] coords, string style = CanvasArcStyle.pie, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1)
+	public this(double[] coords, string style = CanvasArcStyle.pie, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1)
 	{
 		assert(coords.length == 4, "Four coordinates are needed to draw an arc.");
 
@@ -792,7 +1029,7 @@ class CanvasImage : CanvasItem
 	 *     $(LINK2 ../image/png.html, tkd.image.png) $(BR)
 	 *     $(LINK2 ./anchorposition.html, tkd.widget.anchorposition) $(BR)
 	 */
-	public this(int[] coords, Image image, string anchor = AnchorPosition.northWest)
+	public this(double[] coords, Image image, string anchor = AnchorPosition.northWest)
 	{
 		assert(coords.length == 2, "Two coordinates are needed to position an image.");
 
@@ -855,7 +1092,7 @@ class CanvasLine : CanvasItem
 	 * See_Also:
 	 *     $(LINK2 ./color.html, tkd.widget.color) $(BR)
 	 */
-	public this(int[] coords, string fillColor = Color.black, int outlineWidth = 1)
+	public this(double[] coords, string fillColor = Color.black, int outlineWidth = 1)
 	{
 		assert(coords.length >= 4, "Four or more coordinates are needed to draw a line.");
 
@@ -974,7 +1211,7 @@ class CanvasRectangle : CanvasItem
 	 * See_Also:
 	 *     $(LINK2 ./color.html, tkd.widget.color) $(BR)
 	 */
-	public this(int[] coords, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1)
+	public this(double[] coords, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1)
 	{
 		assert(coords.length == 4, "Four coordinates are needed to draw a rectangle.");
 
@@ -1049,7 +1286,7 @@ class CanvasOval : CanvasItem
 	 * See_Also:
 	 *     $(LINK2 ./color.html, tkd.widget.color) $(BR)
 	 */
-	public this(int[] coords, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1)
+	public this(double[] coords, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1)
 	{
 		assert(coords.length == 4, "Four coordinates are needed to draw an oval.");
 
@@ -1125,7 +1362,7 @@ class CanvasPolygon : CanvasItem
 	 * See_Also:
 	 *     $(LINK2 ./color.html, tkd.widget.color) $(BR)
 	 */
-	public this(int[] coords, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1)
+	public this(double[] coords, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1)
 	{
 		assert(coords.length >= 3, "Three or more coordinates are needed to draw a polygon.");
 
@@ -1203,7 +1440,7 @@ class CanvasText : CanvasItem
 	 * See_Also:
 	 *     $(LINK2 ./color.html, tkd.widget.color) $(BR)
 	 */
-	public this(int[] coords, string text, string fillColor = Color.default_, string anchor = AnchorPosition.northWest)
+	public this(double[] coords, string text, string fillColor = Color.default_, string anchor = AnchorPosition.northWest)
 	{
 		assert(coords.length == 2, "Two coordinates are needed to position text.");
 
@@ -1266,7 +1503,7 @@ class CanvasWidget : CanvasItem
 	 *     widget = The widget to use.
 	 *     anchor = The anchor position of the image.
 	 */
-	public this(int[] coords, Widget widget, string anchor = AnchorPosition.northWest)
+	public this(double[] coords, Widget widget, string anchor = AnchorPosition.northWest)
 	{
 		assert(coords.length == 2, "Two coordinates are needed to position a widget.");
 

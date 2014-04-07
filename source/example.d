@@ -17,7 +17,6 @@ class Application : TkdApplication
 	 * Wigets.
 	 */
 	private Canvas _canvas;
-	private CanvasRectangle _rect;
 
 	/**
 	 * Event callbacks.
@@ -27,12 +26,14 @@ class Application : TkdApplication
 		this.exit();
 	}
 
-	private void execute(CommandArgs args)
+	private void mark(CommandArgs args)
 	{
-		int x = this._canvas.getXPosFromScreen((cast(UiElement)args.element).getCursorXPos());
-		int y = this._canvas.getYPosFromScreen((cast(UiElement)args.element).getCursorYPos());
+		this._canvas.setScanMark(args.event.x, args.event.y);
+	}
 
-		writefln("%s, %s", x, y);
+	private void drag(CommandArgs args)
+	{
+		this._canvas.scanDragTo(args.event.x, args.event.y);
 	}
 
 	/**
@@ -44,8 +45,10 @@ class Application : TkdApplication
 			.pack();
 
 		this._canvas = new Canvas(frame)
-			.bind("<Button-1>", &this.execute)
-			.setScrollRegion(0, 0, 1000, 1000)
+			.bind("<ButtonPress-1>", &this.mark)
+			.bind("<B1-Motion>", &this.drag)
+			.setCursor(Cursor.hand1)
+			.setScrollRegion(-500, -500, 800, 800)
 			.addItem(new CanvasRectangle([10, 10, 200, 100]).addTag("tagged"))
 			.addItem(new CanvasArc([10, 110, 110, 210], CanvasArcStyle.pie, Color.white))
 			.addItem(new CanvasImage([210, 10], new Png!("thumbnail.png")))
@@ -54,13 +57,8 @@ class Application : TkdApplication
 			.addItem(new CanvasPolygon([220, 80, 320, 80, 300, 120, 240, 120], Color.white))
 			.addItem(new CanvasText([20, 202], "Lorem ipsum dolor sit amet.").addTag("tagged"))
 			.addItem(new CanvasWidget([220, 140], new Button("Embedded\nButton")).setWidth(100).setHeight(100))
-			.addTagConfig(new CanvasTagConfig("tagged").setFillColor("red"))
+			.addTagConfig(new CanvasTagConfig("tagged").setFillColor(Color.red))
 			.pack();
-
-		// this._rect = new CanvasRectangle([10, 10, 200, 100]);
-		// this._canvas.addItem(this._rect);
-
-		// writefln("%s", this._rect.getTags());
 
 		auto xscroll = new XScrollBar(frame)
 			.attachWidget(this._canvas)

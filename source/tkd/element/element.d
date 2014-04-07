@@ -177,6 +177,30 @@ abstract class Element
 
 			try
 			{
+				T getCommandParameter(T)(const(char)** argv, int index)
+				{
+					string raw = argv[index].to!(string);
+
+					if (raw != "??")
+					{
+						return raw.to!(T);
+					}
+
+					return T.init;
+				}
+
+				if (argc > 1)
+				{
+					args.event.button  = getCommandParameter!(int)(argv, 1);
+					args.event.keyCode = getCommandParameter!(int)(argv, 2);
+					args.event.x       = getCommandParameter!(int)(argv, 3);
+					args.event.y       = getCommandParameter!(int)(argv, 4);
+					args.event.wheel   = getCommandParameter!(int)(argv, 5);
+					args.event.key     = getCommandParameter!(string)(argv, 6);
+					args.event.screenX = getCommandParameter!(int)(argv, 7);
+					args.event.screenY = getCommandParameter!(int)(argv, 8);
+				}
+
 				args.callback(args);
 			}
 			catch (Throwable ex)
@@ -234,4 +258,53 @@ struct CommandArgs
 	 * The callback which was invoked as the command.
 	 */
 	CommandCallback callback;
+
+	/**
+	 * Data populated from a event binding created using the bind method.
+	 */
+	static struct Event
+	{
+		/**
+		 * The number of any button that was pressed.
+		 */
+		int button;
+
+		/**
+		 * The key code of any key pressed.
+		 */
+		int keyCode;
+
+		/**
+		 * The horizontal position of the mouse relative to the widget.
+		 */
+		int x;
+
+		/**
+		 * The vertical position of the mouse relative to the widget.
+		 */
+		int y;
+
+		/**
+		 * Mouse wheel delta.
+		 */
+		int wheel;
+
+		/**
+		 * Key symbol of any key pressed.
+		 */
+		string key;
+
+		/**
+		 * The horizontal position of the mouse relative to the screen.
+		 */
+		int screenX;
+
+		/**
+		 * The vertical position of the mouse relative to the screen.
+		 */
+		int screenY;
+
+	}
+
+	Event event;
 }

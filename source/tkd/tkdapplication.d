@@ -512,7 +512,8 @@ class Window : UiElement
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./element/element.html#CommandCallback, tkd.element.element.CommandCallback)
+	 *     $(LINK2 ./element/element.html#CommandCallback, tkd.element.element.CommandCallback) $(BR)
+	 *     $(LINK2 ./tkdapplication.html#WindowProtocol, tkd.tkdapplication.WindowProtocol) $(BR)
 	 */
 	public auto addProtocolCommand(this T)(string protocol, CommandCallback callback)
 	{

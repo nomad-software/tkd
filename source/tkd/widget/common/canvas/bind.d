@@ -47,7 +47,7 @@ mixin template Bind()
 		if (this._parent)
 		{
 			string command = this.createCommand(callback, binding);
-			this._tk.eval("%s bind %s {%s} %s", this._parent.id, this.id, binding, command);
+			this._tk.eval("%s bind %s {%s} {%s %%b %%k %%x %%y %%D %%K %%X %%Y}", this._parent.id, this.id, binding, command);
 		}
 
 		return cast(T) this;

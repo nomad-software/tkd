@@ -139,11 +139,11 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>Return Value</h3><p>The vertical canvas position.</p>
 </div>
 </div>
-<h2><a name="Canvas.tagItemAt"></a>auto <span class="symbol">tagItemAt</span>(this T)(string tag, int xPos, int yPos, uint radius = 0);
+<h2><a name="Canvas.tagItemNear"></a>auto <span class="symbol">tagItemNear</span>(this T)(string tag, int xPos, int yPos, uint radius = 0);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Tag an item at coordinates. If more than one item is at the same closest
- distance (e.g. two items overlap the point), then the top-most of these
- items (the last one in the display list) is used. If radius is
+<div class="declaration-description"><div class="sections"><p>Tag an item nearest to coordinates. If more than one item is at the same
+ closest distance (e.g. two items overlap the point), then the top-most
+ of these items (the last one in the display list) is used. If radius is
  specified, then it must be a non-negative value. Any item closer than
  halo to the point is considered to overlap it.
 </p>
@@ -174,7 +174,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <tr><td>int y2</td>
 <td>The bottom edge of the selection region.</td></tr>
 <tr><td>bool enclosedFully</td>
-<td>Specifies if the item have to be enclosed fully or not.</td></tr>
+<td>Specifies if the items have to be enclosed fully or not.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
@@ -189,6 +189,42 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <td>The tag to select items to tag.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="Canvas.getItemIdNear"></a>int <span class="symbol">getItemIdNear</span>(int xPos, int yPos, uint radius = 0);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get an item id nearest to coordinates. If more than one item is at the
+ same closest distance (e.g. two items overlap the point), then the
+ top-most of these items (the last one in the display list) is used. If
+ radius is specified, then it must be a non-negative value. Any item
+ closer than halo to the point is considered to overlap it.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int xPos</td>
+<td>The horizontal position.</td></tr>
+<tr><td>int yPos</td>
+<td>The vertical position.</td></tr>
+<tr><td>uint radius</td>
+<td>The radius around the point.</td></tr>
+</table>
+<h3>Return Value</h3><p>The item found.</p>
+</div>
+</div>
+<h2><a name="Canvas.getItemIdsIn"></a>int[] <span class="symbol">getItemIdsIn</span>(int x1, int y1, int x2, int y2, bool enclosedFully = false);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get items within a selection region.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int x1</td>
+<td>The left edge of the selection region.</td></tr>
+<tr><td>int y1</td>
+<td>The top edge of the selection region.</td></tr>
+<tr><td>int x2</td>
+<td>The right edge of the selection region.</td></tr>
+<tr><td>int y2</td>
+<td>The bottom edge of the selection region.</td></tr>
+<tr><td>bool enclosedFully</td>
+<td>Specifies if the items have to be enclosed fully or not.</td></tr>
+</table>
+<h3>Return Value</h3><p>An array of found items.</p>
 </div>
 </div>
 <h2><a name="Canvas.addItem"></a>auto <span class="symbol">addItem</span>(this T)(CanvasItem item);
@@ -210,6 +246,47 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <td>The configuration to add.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="Canvas.setScanMark"></a>auto <span class="symbol">setScanMark</span>(this T)(double xPos, double yPos);
+</h2>
+<div class="declaration-description"><div class="sections"><p>This command is used to implement scanning on canvases. Records x and y
+ positions and the canvas's current view. This is used in conjunction
+ with later scanDragTo commands.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>double xPos</td>
+<td>The marked horizontal starting point of a scan.</td></tr>
+<tr><td>double yPos</td>
+<td>The marked vertical starting point of a scan.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p>
+<h3>See Also</h3><p><a href="./canvas.html#Canvas.scanDragTo">tkd.widget.canvas.Canvas.scanDragTo</a></p>
+</div>
+</div>
+<h2><a name="Canvas.scanDragTo"></a>auto <span class="symbol">scanDragTo</span>(this T)(double xPos, double yPos, int gain = 1);
+</h2>
+<div class="declaration-description"><div class="sections"><p>This command is used to implement scanning on canvases. This command
+ computes the difference between its xPos and yPos arguments (which are
+ typically mouse coordinates) and the xPos and yPos arguments to the last
+ setScanMark command for the widget. It then adjusts the view by gain
+ times the difference in coordinates, where gain defaults to 1. This
+ command is typically associated with mouse motion events in the widget,
+ to produce the effect of dragging the canvas at high speed through its
+ window.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>double xPos</td>
+<td>The marked horizontal starting point of a scan.</td></tr>
+<tr><td>double yPos</td>
+<td>The marked vertical starting point of a scan.</td></tr>
+<tr><td>int gain</td>
+<td>The adjustment in the drag amount.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p>
+<h3>See Also</h3><p><a href="./canvas.html#Canvas.setScanMark">tkd.widget.canvas.Canvas.setScanMark</a></p>
 </div>
 </div>
 </div>
@@ -266,7 +343,14 @@ These are injected common commands that can also be used with this widget.
 </p>
 <h3>See Also</h3><p><a href="../element/element.html">tkd.element.element</a></p>
 </div>
-<div class="class-members"><h2><a name="CanvasItem.getCoords"></a>int[] <span class="symbol">getCoords</span>();
+<div class="class-members"><h2><a name="CanvasItem.type"></a>@property string <span class="symbol">type</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the <span class="symbol">type</span> of canvas item.
+</p>
+<h3>Return Value</h3><p>The <span class="symbol">type</span> of canvas item.</p>
+</div>
+</div>
+<h2><a name="CanvasItem.getCoords"></a>double[] <span class="symbol">getCoords</span>();
 </h2>
 <div class="declaration-description"><div class="sections"><p>Get the coords of this item.
 </p>
@@ -337,6 +421,69 @@ Once an item is destroyed it can no longer be referenced in your
      program.</p>
 </div>
 </div>
+<h2><a name="CanvasItem.focus"></a>auto <span class="symbol">focus</span>(this T)();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the keyboard <span class="symbol">focus</span> to this item in the canvas.
+</p>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="CanvasItem.lower"></a>auto <span class="symbol">lower</span>(this T)();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Lower an item in the drawing order.
+</p>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="CanvasItem.raise"></a>auto <span class="symbol">raise</span>(this T)();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Raise an item in the drawing order.
+</p>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="CanvasItem.moveBy"></a>auto <span class="symbol">moveBy</span>(this T)(int xAmount, int yAmount);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Move an item on the canvas by an amount.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int xAmount</td>
+<td>The amount to move the item horizontally.</td></tr>
+<tr><td>int yAmount</td>
+<td>The amount to move the item vertically.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="CanvasItem.moveTo"></a>auto <span class="symbol">moveTo</span>(this T)(int xPos, int yPos);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Move an item on the canvas to a position.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int xPos</td>
+<td>The new horizontal position.</td></tr>
+<tr><td>int yPos</td>
+<td>The new vertical position.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="CanvasItem.scale"></a>auto <span class="symbol">scale</span>(this T)(double xOrigin, double yOrigin, double xPercent, double yPercent);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Scale an item on the canvas. Note that some items have only a single
+ pair of coordinates (e.g., text, images and widgets) and so scaling of
+ them by this command can only move them around.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>double xOrigin</td>
+<td>The horizontal origin from which to perform the <span class="symbol">scale</span>.</td></tr>
+<tr><td>double yOrigin</td>
+<td>The vertical origin from which to perform the <span class="symbol">scale</span>.</td></tr>
+<tr><td>double xPercent</td>
+<td>The amount to <span class="symbol">scale</span> horizontally.</td></tr>
+<tr><td>double yPercent</td>
+<td>The amount to <span class="symbol">scale</span> vertically.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
 </div>
 </div>
 <h2><a name="CanvasArc"></a>class <span class="symbol">CanvasArc</span>: tkd.widget.canvas.CanvasItem;
@@ -355,12 +502,12 @@ These are injected common commands that can also be used with this canvas item.
 </p>
 <h3>See Also</h3><p><a href="./canvas.html#CanvasItem">tkd.widget.canvas.CanvasItem</a></p>
 </div>
-<div class="class-members"><h2><a name="CanvasArc.this"></a> this(int[] coords, string style = CanvasArcStyle.pie, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1);
+<div class="class-members"><h2><a name="CanvasArc.this"></a> this(double[] coords, string style = CanvasArcStyle.pie, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Create an arc.
  Use colors from the preset color <a href="../../color.html">list</a> or a web style hex color.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>int[] coords</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>double[] coords</td>
 <td>The coordinates of the outer elipse.</td></tr>
 <tr><td>string style</td>
 <td>The style of arc.</td></tr>
@@ -408,11 +555,11 @@ These are injected common commands that can also be used with this canvas item.
 </p>
 <h3>See Also</h3><p><a href="./canvas.html#CanvasItem">tkd.widget.canvas.CanvasItem</a></p>
 </div>
-<div class="class-members"><h2><a name="CanvasImage.this"></a> this(int[] coords, Image image, string anchor = AnchorPosition.northWest);
+<div class="class-members"><h2><a name="CanvasImage.this"></a> this(double[] coords, Image image, string anchor = AnchorPosition.northWest);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Create an image.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>int[] coords</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>double[] coords</td>
 <td>The coordinates where to position the image.</td></tr>
 <tr><td>Image image</td>
 <td>The image to draw.</td></tr>
@@ -443,12 +590,12 @@ These are injected common commands that can also be used with this canvas item.
 </p>
 <h3>See Also</h3><p><a href="./canvas.html#CanvasItem">tkd.widget.canvas.CanvasItem</a></p>
 </div>
-<div class="class-members"><h2><a name="CanvasLine.this"></a> this(int[] coords, string fillColor = Color.black, int outlineWidth = 1);
+<div class="class-members"><h2><a name="CanvasLine.this"></a> this(double[] coords, string fillColor = Color.black, int outlineWidth = 1);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Create a line from coordinates.
  Use colors from the preset color <a href="../../color.html">list</a> or a web style hex color.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>int[] coords</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>double[] coords</td>
 <td>The coordinates where to draw the line.</td></tr>
 <tr><td>string fillColor</td>
 <td>The color of the line.</td></tr>
@@ -551,12 +698,12 @@ These are injected common commands that can also be used with this canvas item.
 </p>
 <h3>See Also</h3><p><a href="./canvas.html#CanvasItem">tkd.widget.canvas.CanvasItem</a></p>
 </div>
-<div class="class-members"><h2><a name="CanvasRectangle.this"></a> this(int[] coords, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1);
+<div class="class-members"><h2><a name="CanvasRectangle.this"></a> this(double[] coords, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Create a rectangle from four coordinates.
  Use colors from the preset color <a href="../../color.html">list</a> or a web style hex color.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>int[] coords</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>double[] coords</td>
 <td>The coordinates where to draw the rectangle.</td></tr>
 <tr><td>string fillColor</td>
 <td>The fill color.</td></tr>
@@ -585,12 +732,12 @@ These are injected common commands that can also be used with this canvas item.
 </p>
 <h3>See Also</h3><p><a href="./canvas.html#CanvasItem">tkd.widget.canvas.CanvasItem</a></p>
 </div>
-<div class="class-members"><h2><a name="CanvasOval.this"></a> this(int[] coords, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1);
+<div class="class-members"><h2><a name="CanvasOval.this"></a> this(double[] coords, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Create an oval from four coordinates.
  Use colors from the preset color <a href="../../color.html">list</a> or a web style hex color.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>int[] coords</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>double[] coords</td>
 <td>The coordinates where to draw the oval.</td></tr>
 <tr><td>string fillColor</td>
 <td>The fill color.</td></tr>
@@ -620,12 +767,12 @@ These are injected common commands that can also be used with this canvas item.
 </p>
 <h3>See Also</h3><p><a href="./canvas.html#CanvasItem">tkd.widget.canvas.CanvasItem</a></p>
 </div>
-<div class="class-members"><h2><a name="CanvasPolygon.this"></a> this(int[] coords, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1);
+<div class="class-members"><h2><a name="CanvasPolygon.this"></a> this(double[] coords, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Create a polygon from coordinates.
  Use colors from the preset color <a href="../../color.html">list</a> or a web style hex color.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>int[] coords</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>double[] coords</td>
 <td>The coordinates where to draw the polygon.</td></tr>
 <tr><td>string fillColor</td>
 <td>The fill color.</td></tr>
@@ -653,12 +800,12 @@ These are injected common commands that can also be used with this canvas item.
 </p>
 <h3>See Also</h3><p><a href="./canvas.html#CanvasItem">tkd.widget.canvas.CanvasItem</a></p>
 </div>
-<div class="class-members"><h2><a name="CanvasText.this"></a> this(int[] coords, string text, string fillColor = Color.default_, string anchor = AnchorPosition.northWest);
+<div class="class-members"><h2><a name="CanvasText.this"></a> this(double[] coords, string text, string fillColor = Color.default_, string anchor = AnchorPosition.northWest);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Create a text item.
  Use colors from the preset color <a href="../../color.html">list</a> or a web style hex color.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>int[] coords</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>double[] coords</td>
 <td>The coordinates where to draw the polygon.</td></tr>
 <tr><td>string text</td>
 <td>The text.</td></tr>
@@ -685,11 +832,11 @@ These are injected common commands that can also be used with this canvas item.
 </p>
 <h3>See Also</h3><p><a href="./canvas.html#CanvasItem">tkd.widget.canvas.CanvasItem</a></p>
 </div>
-<div class="class-members"><h2><a name="CanvasWidget.this"></a> this(int[] coords, Widget widget, string anchor = AnchorPosition.northWest);
+<div class="class-members"><h2><a name="CanvasWidget.this"></a> this(double[] coords, Widget widget, string anchor = AnchorPosition.northWest);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Create a widget item.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>int[] coords</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>double[] coords</td>
 <td>The coordinates where to draw the polygon.</td></tr>
 <tr><td>Widget widget</td>
 <td>The widget to use.</td></tr>

@@ -126,25 +126,25 @@ abstract class UiElement : Element
 	 *     Modifiers consist of any of the following values:
 	 *     $(P
 	 *         $(PARAM_TABLE
-	 *             $(PARAM_ROW Alt, The Alt key.)
-	 *             $(PARAM_ROW Button1 $(BR) B1, Mouse button one.)
-	 *             $(PARAM_ROW Button2 $(BR) B2, Mouse button two.)
-	 *             $(PARAM_ROW Button3 $(BR) B3, Mouse button three.)
-	 *             $(PARAM_ROW Button3 $(BR) B5, Mouse button five.)
-	 *             $(PARAM_ROW Button4 $(BR) B4, Mouse button four.)
-	 *             $(PARAM_ROW Control, The Ctrl key.)
-	 *             $(PARAM_ROW Double, Modifier for doing something twice.)
-	 *             $(PARAM_ROW Extended, Extended keyboard support.)
-	 *             $(PARAM_ROW Lock, Unknown.)
-	 *             $(PARAM_ROW Meta $(BR) M, The meta key.)
-	 *             $(PARAM_ROW Mod1 $(BR) M1 $(BR) Command, First modifier key.)
-	 *             $(PARAM_ROW Mod2 $(BR) M2 $(BR) Option, Second modifier key.)
-	 *             $(PARAM_ROW Mod3 $(BR) M3, Third modifier key.)
-	 *             $(PARAM_ROW Mod4 $(BR) M4, Fourth modifier key.)
-	 *             $(PARAM_ROW Mod5 $(BR) M5, Fifth modifier key.)
-	 *             $(PARAM_ROW Quadruple, Modifier for doing something four times.)
-	 *             $(PARAM_ROW Shift, The Shift key.)
-	 *             $(PARAM_ROW Triple, Modifier for doing something three times.)
+	 *             $(PARAM_ROW &lt;Alt&gt;, The Alt key.)
+	 *             $(PARAM_ROW &lt;Button1&gt; $(BR) &lt;B1&gt;, Mouse button one.)
+	 *             $(PARAM_ROW &lt;Button2&gt; $(BR) &lt;B2&gt;, Mouse button two.)
+	 *             $(PARAM_ROW &lt;Button3&gt; $(BR) &lt;B3&gt;, Mouse button three.)
+	 *             $(PARAM_ROW &lt;Button3&gt; $(BR) &lt;B5&gt;, Mouse button five.)
+	 *             $(PARAM_ROW &lt;Button4&gt; $(BR) &lt;B4&gt;, Mouse button four.)
+	 *             $(PARAM_ROW &lt;Control&gt;, The Ctrl key.)
+	 *             $(PARAM_ROW &lt;Double&gt;, Modifier for doing something twice.)
+	 *             $(PARAM_ROW &lt;Extended&gt;, Extended keyboard support.)
+	 *             $(PARAM_ROW &lt;Lock&gt;, Unknown.)
+	 *             $(PARAM_ROW &lt;Meta&gt; $(BR) &lt;M&gt;, The meta key.)
+	 *             $(PARAM_ROW &lt;Mod1&gt; $(BR) &lt;M1&gt; $(BR) &lt;Command&gt;, First modifier key.)
+	 *             $(PARAM_ROW &lt;Mod2&gt; $(BR) &lt;M2&gt; $(BR) &lt;Option&gt;, Second modifier key.)
+	 *             $(PARAM_ROW &lt;Mod3&gt; $(BR) &lt;M3&gt;, Third modifier key.)
+	 *             $(PARAM_ROW &lt;Mod4&gt; $(BR) &lt;M4&gt;, Fourth modifier key.)
+	 *             $(PARAM_ROW &lt;Mod5&gt; $(BR) &lt;M5&gt;, Fifth modifier key.)
+	 *             $(PARAM_ROW &lt;Quadruple&gt;, Modifier for doing something four times.)
+	 *             $(PARAM_ROW &lt;Shift&gt;, The Shift key.)
+	 *             $(PARAM_ROW &lt;Triple&gt;, Modifier for doing something three times.)
 	 *         )
 	 *     )
 	 *     Where more than one value is listed, the values are equivalent. Most 
@@ -193,7 +193,7 @@ abstract class UiElement : Element
 	public auto bind(this T)(string binding, CommandCallback callback)
 	{
 		string command = this.createCommand(callback, binding);
-		this._tk.eval("bind %s {%s} %s", this.id, binding, command);
+		this._tk.eval("bind %s {%s} {%s %%b %%k %%x %%y %%D %%K %%X %%Y}", this.id, binding, command);
 
 		return cast(T) this;
 	}
