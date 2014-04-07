@@ -572,7 +572,7 @@ protected abstract class CanvasItem : Element
 
 		this._tags = tags;
 
-		if (this._parent)
+		if (this._parent && this._tags.length)
 		{
 			this._tk.eval("%s itemconfigure %s -tags {%s}", this._parent.id, this.id, this._tags.join(" "));
 		}
@@ -598,7 +598,6 @@ protected abstract class CanvasItem : Element
 		if (this._parent && tag.length)
 		{
 			this._tk.eval("%s addtag {%s} withtag %s", this._parent.id, tag, this.id);
-			this._tags = this.getTags();
 		}
 
 		return cast(T) this;
@@ -623,7 +622,24 @@ protected abstract class CanvasItem : Element
 		if (this._parent && tag.length)
 		{
 			this._tk.eval("%s dtag %s {%s}", this._parent.id, this.id, tag);
-			this._tags = this.getTags();
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Delete all tags associated to this item.
+	 *
+	 * Returns:
+	 *     This item to aid method chaining.
+	 */
+	public auto clearTags(this T)()
+	{
+		this._tags = [];
+
+		if (this._parent)
+		{
+			this._tk.eval("%s itemconfigure %s -tags {}", this._parent.id, this.id);
 		}
 
 		return cast(T) this;
