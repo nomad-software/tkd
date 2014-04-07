@@ -34,7 +34,7 @@ class Tk : Tcl
 	{
 		super();
 
-		debug this._log.info("Inititalising Tk");
+		debug (log) this._log.info("Inititalising Tk");
 
 		if (Tk_Init(this._interpreter) != TCL_OK)
 		{
@@ -64,7 +64,7 @@ class Tk : Tcl
 	 */
 	public void run()
 	{
-		debug this._log.info("Running Tk main loop");
+		debug (log) this._log.info("Running Tk main loop");
 		Tk_MainLoop();
 	}
 }

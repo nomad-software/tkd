@@ -17,6 +17,7 @@ class Application : TkdApplication
 	 * Wigets.
 	 */
 	private Canvas _canvas;
+	private CanvasRectangle _rect;
 
 	/**
 	 * Event callbacks.
@@ -28,7 +29,10 @@ class Application : TkdApplication
 
 	private void execute(CommandArgs args)
 	{
-		writefln("%s, %s", this._canvas.getXPosFromScreen((cast(UiElement)args.element).getCursorXPos()), this._canvas.getYPosFromScreen((cast(UiElement)args.element).getCursorYPos()));
+		int x = this._canvas.getXPosFromScreen((cast(UiElement)args.element).getCursorXPos());
+		int y = this._canvas.getYPosFromScreen((cast(UiElement)args.element).getCursorYPos());
+
+		writefln("%s, %s", x, y);
 	}
 
 	/**
@@ -42,23 +46,21 @@ class Application : TkdApplication
 		this._canvas = new Canvas(frame)
 			.bind("<Button-1>", &this.execute)
 			.setScrollRegion(0, 0, 1000, 1000)
-			.addItem(new CanvasRectangle([10, 10, 200, 100], Color.white))
+			.addItem(new CanvasRectangle([10, 10, 200, 100]).addTag("tagged"))
 			.addItem(new CanvasArc([10, 110, 110, 210], CanvasArcStyle.pie, Color.white))
 			.addItem(new CanvasImage([210, 10], new Png!("thumbnail.png")))
 			.addItem(new CanvasLine([120, 110, 200, 110, 200, 160]).setArrowPosition(CanvasLineArrow.last))
 			.addItem(new CanvasOval([10, 170, 200, 250], Color.white))
 			.addItem(new CanvasPolygon([220, 80, 320, 80, 300, 120, 240, 120], Color.white))
-			.addItem(new CanvasText([20, 20], "Lorem ipsum dolor sit amet."))
+			.addItem(new CanvasText([20, 202], "Lorem ipsum dolor sit amet.").addTag("tagged"))
 			.addItem(new CanvasWidget([220, 140], new Button("Embedded\nButton")).setWidth(100).setHeight(100))
+			.addTagConfig(new CanvasTagConfig("tagged").setFillColor("red"))
 			.pack();
 
-		auto x = new CanvasRectangle([0, 0, 20, 20]).setFillColor("red").setTags(["one", "two"]).addTag("three");
-		this._canvas.addItem(x);
+		// this._rect = new CanvasRectangle([10, 10, 200, 100]);
+		// this._canvas.addItem(this._rect);
 
-		x.deleteTag("two");
-		x.addTag("four");
-		x.bind("<Motion>", delegate(CommandArgs args){writeln("hello");});
-		writefln("%s", x.getTags());
+		// writefln("%s", this._rect.getTags());
 
 		auto xscroll = new XScrollBar(frame)
 			.attachWidget(this._canvas)

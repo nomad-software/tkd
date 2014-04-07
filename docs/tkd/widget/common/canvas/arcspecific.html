@@ -72,13 +72,13 @@
 <h3>Return Value</h3><p>The start angle of the arc;</p>
 </div>
 </div>
-<h2><a name="setStartAngle"></a>auto <span class="symbol">setStartAngle</span>(this T)(double startAngle);
+<h2><a name="setStartAngle"></a>auto <span class="symbol">setStartAngle</span>(this T, A)(A startAngle) if (is(A == double) || is(A == Nullable!double));
 </h2>
 <div class="declaration-description"><div class="sections"><p>Specifies the beginning of the angular range occupied by the arc.
  Degrees is given in units of degrees measured counter-clockwise from the
  3-o'clock position; it may be either positive or negative.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>double startAngle</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>A startAngle</td>
 <td>The start angle of the arc.</td></tr>
 </table>
 <h3>Return Value</h3><p>This item to aid method chaining.</p>

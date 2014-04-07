@@ -25,11 +25,11 @@
 <h3>Return Value</h3><p>The width of the outline;</p>
 </div>
 </div>
-<h2><a name="setOutlineWidth"></a>auto <span class="symbol">setOutlineWidth</span>(this T)(int width);
+<h2><a name="setOutlineWidth"></a>auto <span class="symbol">setOutlineWidth</span>(this T, W)(W width) if (is(W == int) || is(W == Nullable!int));
 </h2>
 <div class="declaration-description"><div class="sections"><p>Set the width of the outline.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>int width</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>W width</td>
 <td>The width of the outline.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
@@ -43,12 +43,12 @@
 <h3>Return Value</h3><p>The width of the active outline;</p>
 </div>
 </div>
-<h2><a name="setActiveOutlineWidth"></a>auto <span class="symbol">setActiveOutlineWidth</span>(this T)(int width);
+<h2><a name="setActiveOutlineWidth"></a>auto <span class="symbol">setActiveOutlineWidth</span>(this T, W)(W width) if (is(W == int) || is(W == Nullable!int));
 </h2>
 <div class="declaration-description"><div class="sections"><p>Set the width of the active outline.
  An item's active state is triggered when the mouse rolls over the item.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>int width</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>W width</td>
 <td>The width of the active outline.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
@@ -61,11 +61,11 @@
 <h3>Return Value</h3><p>The width of the disabled outline;</p>
 </div>
 </div>
-<h2><a name="setDisabledOutlineWidth"></a>auto <span class="symbol">setDisabledOutlineWidth</span>(this T)(int width);
+<h2><a name="setDisabledOutlineWidth"></a>auto <span class="symbol">setDisabledOutlineWidth</span>(this T, W)(W width) if (is(W == int) || is(W == Nullable!int));
 </h2>
 <div class="declaration-description"><div class="sections"><p>Set the width of the disabled outline.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>int width</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>W width</td>
 <td>The width of the disabled outline.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.

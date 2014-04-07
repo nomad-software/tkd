@@ -214,25 +214,6 @@ class Canvas : Widget, IXScrollable!(Canvas), IYScrollable!(Canvas)
 	}
 
 	/**
-	 * Add an item to the canvas.
-	 *
-	 * Params:
-	 *     item = The item to add.
-	 *
-	 * Returns:
-	 *     This widget to aid method chaining.
-	 */
-	public auto addItem(this T)(CanvasItem item)
-	{
-		this._tk.eval("%s create %s [list %s]", this.id, item._type, item._coords.map!(to!(string)).join(" "));
-
-		item.overrideGeneratedId(this._tk.getResult!(string));
-		item.init(this);
-
-		return cast(T) this;
-	}
-
-	/**
 	 * Tag an item at coordinates. If more than one item is at the same closest 
 	 * distance (e.g. two items overlap the point), then the top-most of these 
 	 * items (the last one in the display list) is used. If radius is 
@@ -312,6 +293,41 @@ class Canvas : Widget, IXScrollable!(Canvas), IYScrollable!(Canvas)
 		return cast(T) this;
 	}
 
+	/**
+	 * Add an item to the canvas.
+	 *
+	 * Params:
+	 *     item = The item to add.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto addItem(this T)(CanvasItem item)
+	{
+		this._tk.eval("%s create %s [list %s]", this.id, item._type, item._coords.map!(to!(string)).join(" "));
+
+		item.overrideGeneratedId(this._tk.getResult!(string));
+		item.init(this);
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Add a tag configuration to the canvas. These can apply options to a tag 
+	 * which can then be applied to any item.
+	 *
+	 * Params:
+	 *     tagConfig = The configuration to add.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto addTagConfig(this T)(CanvasTagConfig tagConfig)
+	{
+		tagConfig.init(this);
+
+		return cast(T) this;
+	}
 
 	/**
 	 * Mixin common commands.
@@ -324,6 +340,117 @@ class Canvas : Widget, IXScrollable!(Canvas), IYScrollable!(Canvas)
 	mixin XView;
 	mixin YScrollCommand!(Canvas);
 	mixin YView;
+}
+
+/**
+ * Class representing a tag configuration. Tags can be applied to numerous 
+ * items on the canvas but keep in mind the tag options set in the 
+ * configuration must be compatible for all items the tag is assigned to or an 
+ * error will occur. Tags must be applied to items before they can be 
+ * configured.
+ *
+ * Common_Commands:
+ *     These are injected common commands that can also be used with this widget.
+ *     $(P
+ *         $(LINK2 ./common/canvas/anchor.html, Anchor) $(BR)
+ *         $(LINK2 ./common/canvas/arcspecific.html, ArcSpecific) $(BR)
+ *         $(LINK2 ./common/canvas/bind.html, Bind) $(BR)
+ *         $(LINK2 ./common/canvas/fillcolor.html, FillColor) $(BR)
+ *         $(LINK2 ./common/canvas/imagespecific.html, ImageSpecific) $(BR)
+ *         $(LINK2 ./common/canvas/linespecific.html, LineSpecific) $(BR)
+ *         $(LINK2 ./common/canvas/outlinecolor.html, OutlineColor) $(BR)
+ *         $(LINK2 ./common/canvas/outlinedash.html, OutlineDash) $(BR)
+ *         $(LINK2 ./common/canvas/outlinewidth.html, OutlineWidth) $(BR)
+ *         $(LINK2 ./common/canvas/state.html, State) $(BR)
+ *         $(LINK2 ./common/canvas/textspecific.html, TextSpecific) $(BR)
+ *         $(LINK2 ./common/canvas/vertex.html, Vertex) $(BR)
+ *         $(LINK2 ./common/canvas/widgetspecific.html, WidgetSpecific) $(BR)
+ *     )
+ *
+ * See_Also:
+ *     $(LINK2 ../element/element.html, tkd.element.element)
+ */
+class CanvasTagConfig : Element
+{
+	/**
+	 * Constructor.
+	 *
+	 * Params:
+	 *     tagName = The name of the tag to configure.
+	 */
+	this(string tagName)
+	{
+		this.overrideGeneratedId(tagName);
+	}
+
+	/*
+	 * Initialise the item.
+	 *
+	 * Params:
+	 *     parent = The parent canvas to initialise against.
+	 */
+	protected void init(Canvas parent)
+	{
+		this._parent = parent;
+
+		foreach (binding, callback; this._bindings)
+		{
+			this.bind(binding, callback);
+		}
+
+		this.setActiveFillColor(this._activeFillColor);
+		this.setActiveImage(this._activeImage);
+		this.setActiveOutlineColor(this._activeOutlineColor);
+		this.setActiveOutlineDash(this._activeOutlineDash);
+		this.setActiveOutlineWidth(this._activeOutlineWidth);
+		this.setAlignment(this._alignment);
+		this.setAnchor(this._anchor);
+		this.setAngle(this._angle);
+		this.setArrowPosition(this._arrowPosition);
+		this.setArrowShape(this._arrowShape);
+		this.setCapStyle(this._capStyle);
+		this.setDisabledFillColor(this._disabledFillColor);
+		this.setDisabledImage(this._disabledImage);
+		this.setDisabledOutlineColor(this._disabledOutlineColor);
+		this.setDisabledOutlineDash(this._disabledOutlineDash);
+		this.setDisabledOutlineWidth(this._disabledOutlineWidth);
+		this.setExtent(this._extent);
+		this.setFillColor(this._fillColor);
+		this.setFont(this._font);
+		this.setHeight(this._height);
+		this.setImage(this._image);
+		this.setJoinStyle(this._joinStyle);
+		this.setMaxLineLength(this._maxLineLength);
+		this.setOutlineColor(this._outlineColor);
+		this.setOutlineDash(this._outlineDash);
+		this.setOutlineDashOffset(this._outlineDashOffset);
+		this.setOutlineWidth(this._outlineWidth);
+		this.setSmoothMethod(this._smoothMethod);
+		this.setSmoothSplineSteps(this._splineSteps);
+		this.setStartAngle(this._startAngle);
+		this.setState(this._state);
+		this.setStyle(this._style);
+		this.setText(this._text);
+		this.setWidget(this._widget);
+		this.setWidth(this._width);
+	}
+
+	/**
+	 * Mixin common commands.
+	 */
+	mixin Anchor;
+	mixin ArcSpecific;
+	mixin Bind;
+	mixin FillColor;
+	mixin ImageSpecific;
+	mixin LineSpecific;
+	mixin OutlineColor;
+	mixin OutlineDash;
+	mixin OutlineWidth;
+	mixin State;
+	mixin TextSpecific;
+	mixin Vertex;
+	mixin WidgetSpecific;
 }
 
 /**
@@ -470,7 +597,7 @@ protected abstract class CanvasItem : Element
 
 		if (this._parent && tag.length)
 		{
-			this._tk.eval("%s addtag %s withtag %s", this._parent.id, tag, this.id);
+			this._tk.eval("%s addtag {%s} withtag %s", this._parent.id, tag, this.id);
 			this._tags = this.getTags();
 		}
 
@@ -495,7 +622,7 @@ protected abstract class CanvasItem : Element
 
 		if (this._parent && tag.length)
 		{
-			this._tk.eval("%s dtag %s %s", this._parent.id, this.id, tag);
+			this._tk.eval("%s dtag %s {%s}", this._parent.id, this.id, tag);
 			this._tags = this.getTags();
 		}
 
@@ -582,22 +709,22 @@ class CanvasArc : CanvasItem
 	{
 		super.init(parent);
 
-		this.setFillColor(this._fillColor);
 		this.setActiveFillColor(this._activeFillColor);
-		this.setDisabledFillColor(this._disabledFillColor);
-		this.setOutlineColor(this._outlineColor);
 		this.setActiveOutlineColor(this._activeOutlineColor);
-		this.setDisabledOutlineColor(this._disabledOutlineColor);
-		this.setOutlineDash(this._outlineDash);
 		this.setActiveOutlineDash(this._activeOutlineDash);
+		this.setActiveOutlineWidth(this._activeOutlineWidth);
+		this.setDisabledFillColor(this._disabledFillColor);
+		this.setDisabledOutlineColor(this._disabledOutlineColor);
 		this.setDisabledOutlineDash(this._disabledOutlineDash);
+		this.setDisabledOutlineWidth(this._disabledOutlineWidth);
+		this.setExtent(this._extent);
+		this.setFillColor(this._fillColor);
+		this.setOutlineColor(this._outlineColor);
+		this.setOutlineDash(this._outlineDash);
 		this.setOutlineDashOffset(this._outlineDashOffset);
 		this.setOutlineWidth(this._outlineWidth);
-		this.setActiveOutlineWidth(this._activeOutlineWidth);
-		this.setDisabledOutlineWidth(this._disabledOutlineWidth);
-		this.setStyle(this._style);
-		this.setExtent(this._extent);
 		this.setStartAngle(this._startAngle);
+		this.setStyle(this._style);
 	}
 
 	/**
@@ -732,22 +859,22 @@ class CanvasLine : CanvasItem
 	{
 		super.init(parent);
 
-		this.setFillColor(this._fillColor);
 		this.setActiveFillColor(this._activeFillColor);
-		this.setDisabledFillColor(this._disabledFillColor);
-		this.setOutlineDash(this._outlineDash);
 		this.setActiveOutlineDash(this._activeOutlineDash);
-		this.setDisabledOutlineDash(this._disabledOutlineDash);
-		this.setOutlineDashOffset(this._outlineDashOffset);
-		this.setOutlineWidth(this._outlineWidth);
 		this.setActiveOutlineWidth(this._activeOutlineWidth);
-		this.setDisabledOutlineWidth(this._disabledOutlineWidth);
-		this.setJoinStyle(this._joinStyle);
-		this.setSmoothMethod(this._smoothMethod);
-		this.setSmoothSplineSteps(this._splineSteps);
 		this.setArrowPosition(this._arrowPosition);
 		this.setArrowShape(this._arrowShape);
 		this.setCapStyle(this._capStyle);
+		this.setDisabledFillColor(this._disabledFillColor);
+		this.setDisabledOutlineDash(this._disabledOutlineDash);
+		this.setDisabledOutlineWidth(this._disabledOutlineWidth);
+		this.setFillColor(this._fillColor);
+		this.setJoinStyle(this._joinStyle);
+		this.setOutlineDash(this._outlineDash);
+		this.setOutlineDashOffset(this._outlineDashOffset);
+		this.setOutlineWidth(this._outlineWidth);
+		this.setSmoothMethod(this._smoothMethod);
+		this.setSmoothSplineSteps(this._splineSteps);
 	}
 
 	/**
@@ -852,19 +979,19 @@ class CanvasRectangle : CanvasItem
 	{
 		super.init(parent);
 
-		this.setFillColor(this._fillColor);
 		this.setActiveFillColor(this._activeFillColor);
-		this.setDisabledFillColor(this._disabledFillColor);
-		this.setOutlineColor(this._outlineColor);
 		this.setActiveOutlineColor(this._activeOutlineColor);
-		this.setDisabledOutlineColor(this._disabledOutlineColor);
-		this.setOutlineDash(this._outlineDash);
 		this.setActiveOutlineDash(this._activeOutlineDash);
+		this.setActiveOutlineWidth(this._activeOutlineWidth);
+		this.setDisabledFillColor(this._disabledFillColor);
+		this.setDisabledOutlineColor(this._disabledOutlineColor);
 		this.setDisabledOutlineDash(this._disabledOutlineDash);
+		this.setDisabledOutlineWidth(this._disabledOutlineWidth);
+		this.setFillColor(this._fillColor);
+		this.setOutlineColor(this._outlineColor);
+		this.setOutlineDash(this._outlineDash);
 		this.setOutlineDashOffset(this._outlineDashOffset);
 		this.setOutlineWidth(this._outlineWidth);
-		this.setActiveOutlineWidth(this._activeOutlineWidth);
-		this.setDisabledOutlineWidth(this._disabledOutlineWidth);
 	}
 
 	/**
@@ -927,19 +1054,19 @@ class CanvasOval : CanvasItem
 	{
 		super.init(parent);
 
-		this.setFillColor(this._fillColor);
 		this.setActiveFillColor(this._activeFillColor);
-		this.setDisabledFillColor(this._disabledFillColor);
-		this.setOutlineColor(this._outlineColor);
 		this.setActiveOutlineColor(this._activeOutlineColor);
-		this.setDisabledOutlineColor(this._disabledOutlineColor);
-		this.setOutlineDash(this._outlineDash);
 		this.setActiveOutlineDash(this._activeOutlineDash);
+		this.setActiveOutlineWidth(this._activeOutlineWidth);
+		this.setDisabledFillColor(this._disabledFillColor);
+		this.setDisabledOutlineColor(this._disabledOutlineColor);
 		this.setDisabledOutlineDash(this._disabledOutlineDash);
+		this.setDisabledOutlineWidth(this._disabledOutlineWidth);
+		this.setFillColor(this._fillColor);
+		this.setOutlineColor(this._outlineColor);
+		this.setOutlineDash(this._outlineDash);
 		this.setOutlineDashOffset(this._outlineDashOffset);
 		this.setOutlineWidth(this._outlineWidth);
-		this.setActiveOutlineWidth(this._activeOutlineWidth);
-		this.setDisabledOutlineWidth(this._disabledOutlineWidth);
 	}
 
 	/**
@@ -1003,20 +1130,20 @@ class CanvasPolygon : CanvasItem
 	{
 		super.init(parent);
 
-		this.setFillColor(this._fillColor);
 		this.setActiveFillColor(this._activeFillColor);
-		this.setDisabledFillColor(this._disabledFillColor);
-		this.setOutlineColor(this._outlineColor);
 		this.setActiveOutlineColor(this._activeOutlineColor);
-		this.setDisabledOutlineColor(this._disabledOutlineColor);
-		this.setOutlineDash(this._outlineDash);
 		this.setActiveOutlineDash(this._activeOutlineDash);
+		this.setActiveOutlineWidth(this._activeOutlineWidth);
+		this.setDisabledFillColor(this._disabledFillColor);
+		this.setDisabledOutlineColor(this._disabledOutlineColor);
 		this.setDisabledOutlineDash(this._disabledOutlineDash);
+		this.setDisabledOutlineWidth(this._disabledOutlineWidth);
+		this.setFillColor(this._fillColor);
+		this.setJoinStyle(this._joinStyle);
+		this.setOutlineColor(this._outlineColor);
+		this.setOutlineDash(this._outlineDash);
 		this.setOutlineDashOffset(this._outlineDashOffset);
 		this.setOutlineWidth(this._outlineWidth);
-		this.setActiveOutlineWidth(this._activeOutlineWidth);
-		this.setDisabledOutlineWidth(this._disabledOutlineWidth);
-		this.setJoinStyle(this._joinStyle);
 		this.setSmoothMethod(this._smoothMethod);
 		this.setSmoothSplineSteps(this._splineSteps);
 	}
@@ -1081,15 +1208,15 @@ class CanvasText : CanvasItem
 	{
 		super.init(parent);
 
-		this.setFillColor(this._fillColor);
 		this.setActiveFillColor(this._activeFillColor);
-		this.setDisabledFillColor(this._disabledFillColor);
+		this.setAlignment(this._alignment);
 		this.setAnchor(this._anchor);
 		this.setAngle(this._angle);
+		this.setDisabledFillColor(this._disabledFillColor);
+		this.setFillColor(this._fillColor);
 		this.setFont(this._font);
-		this.setAlignment(this._alignment);
-		this.setText(this._text);
 		this.setMaxLineLength(this._maxLineLength);
+		this.setText(this._text);
 	}
 
 	/**
@@ -1144,9 +1271,9 @@ class CanvasWidget : CanvasItem
 		super.init(parent);
 
 		this.setAnchor(this._anchor);
+		this.setHeight(this._height);
 		this.setWidget(this._widget);
 		this.setWidth(this._width);
-		this.setHeight(this._height);
 	}
 
 	/**

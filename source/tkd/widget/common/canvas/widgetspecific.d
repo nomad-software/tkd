@@ -11,6 +11,8 @@ module tkd.widget.common.canvas.widgetspecific;
  */
 mixin template WidgetSpecific()
 {
+	import std.typecons : Nullable;
+
 	/**
 	 * The widget to use.
 	 */
@@ -19,12 +21,12 @@ mixin template WidgetSpecific()
 	/**
 	 * The widget width.
 	 */
-	private int _width;
+	private Nullable!(int) _width;
 
 	/**
 	 * The widget height.
 	 */
-	private int _height;
+	private Nullable!(int) _height;
 
 	/**
 	 * Get the widget.
@@ -74,7 +76,7 @@ mixin template WidgetSpecific()
 			this._width = this._tk.getResult!(int);
 		}
 
-		return this._width;
+		return this._width.isNull ? 0 : this._width;
 	}
 
 	/**
@@ -88,8 +90,16 @@ mixin template WidgetSpecific()
 	 * Returns:
 	 *     This item to aid method chaining.
 	 */
-	public auto setWidth(this T)(int width)
+	public auto setWidth(this T, W)(W width) if (is(W == int) || is(W == Nullable!(int)))
 	{
+		static if (is(W == Nullable!(int)))
+		{
+			if (width.isNull)
+			{
+				return cast(T) this;
+			}
+		}
+
 		this._width = width;
 
 		if (this._parent)
@@ -114,7 +124,7 @@ mixin template WidgetSpecific()
 			this._height = this._tk.getResult!(int);
 		}
 
-		return this._height;
+		return this._height.isNull ? 0 : this._height;
 	}
 
 	/**
@@ -128,8 +138,16 @@ mixin template WidgetSpecific()
 	 * Returns:
 	 *     This item to aid method chaining.
 	 */
-	public auto setHeight(this T)(int height)
+	public auto setHeight(this T, H)(H height) if (is(H == int) || is(H == Nullable!(int)))
 	{
+		static if (is(H == Nullable!(int)))
+		{
+			if (height.isNull)
+			{
+				return cast(T) this;
+			}
+		}
+
 		this._height = height;
 
 		if (this._parent)

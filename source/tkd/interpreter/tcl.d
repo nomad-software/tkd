@@ -10,6 +10,7 @@ module tkd.interpreter.tcl;
  * Imports.
  */
 import std.conv;
+import std.stdio;
 import std.string;
 import tcltk.tcl;
 import tkd.interpreter.logger;
@@ -42,8 +43,8 @@ class Tcl
 	 */
 	protected this()
 	{
-		debug this._log = new Logger("debug.log");
-		debug this._log.info("Inititalising Tcl");
+		debug (log) this._log = new Logger("debug.log");
+		debug (log) this._log.info("Inititalising Tcl");
 
 		this._interpreter = Tcl_CreateInterp();
 
@@ -84,19 +85,23 @@ class Tcl
 	 * Params:
 	 *     script = The script to evaluate, including any format placeholders.
 	 *     args = variadic list of arguments to provide data for any format placeholders.
-	 *
-	 * Throws:
-	 *     Exception if the script evaluation failed.
 	 */
 	public void eval(A...)(string script, A args)
 	{
-		debug this._log.eval(script, args);
+		debug (log) this._log.eval(script, args);
 
 		int result = Tcl_EvalEx(this._interpreter, format(script, args).toStringz, -1, 0);
 
 		if (result == TCL_ERROR)
 		{
-			throw new Exception(this.getResult!(string));
+			string error = Tcl_GetStringResult(this._interpreter).to!(string);
+
+			debug (showTclErrors)
+			{
+				writeln(error);
+			}
+
+			debug (log) this._log.warning(error);
 		}
 	}
 
@@ -110,7 +115,7 @@ class Tcl
 	 */
 	public void setResult(A...)(string result, A args)
 	{
-		debug this._log.info("Setting interpreter result '%s'", format(result, args));
+		debug (log) this._log.info("Setting interpreter result '%s'", format(result, args));
 		Tcl_SetResult(this._interpreter, format(result, args).toStringz, TCL_STATIC);
 	}
 
@@ -123,7 +128,7 @@ class Tcl
 	public T getResult(T)()
 	{
 		string result = Tcl_GetStringResult(this._interpreter).to!(string);
-		debug this._log.info("Getting interpreter result '%s'", result);
+		debug (log) this._log.info("Getting interpreter result '%s'", result);
 		return result.to!(T);
 	}
 
@@ -141,7 +146,7 @@ class Tcl
 	 */
 	public Tcl_Command createCommand(string name, Tcl_CmdProc commandProcedure, ClientData data = null, Tcl_CmdDeleteProc deleteProcedure = null)
 	{
-		debug this._log.info("Creating command %s", name);
+		debug (log) this._log.info("Creating command %s", name);
 		return Tcl_CreateCommand(this._interpreter, name.toStringz, commandProcedure, data, deleteProcedure);
 	}
 
@@ -150,19 +155,23 @@ class Tcl
 	 *
 	 * Params:
 	 *     name = The name of the command to delete.
-	 *
-	 * Throws:
-	 *     Exception if the command cannot be deleted.
 	 */
 	public void deleteCommand(string name)
 	{
-		debug this._log.info("Deleting command %s", name);
+		debug (log) this._log.info("Deleting command %s", name);
 
 		int result = Tcl_DeleteCommand(this._interpreter, name.toStringz);
 
 		if (result == TCL_ERROR)
 		{
-			throw new Exception(this.getResult!(string));
+			string error = Tcl_GetStringResult(this._interpreter).to!(string);
+
+			debug (showTclErrors)
+			{
+				writeln(error);
+			}
+
+			debug (log) this._log.warning(error);
 		}
 	}
 
@@ -176,7 +185,7 @@ class Tcl
 	 */
 	public void setVariable(T)(string name, T value)
 	{
-		debug this._log.info("Setting variable %s <- '%s'", name, value);
+		debug (log) this._log.info("Setting variable %s <- '%s'", name, value);
 		Tcl_SetVar(this._interpreter, name.toStringz, value.to!(string).toStringz, TCL_GLOBAL_ONLY);
 	}
 
@@ -192,7 +201,7 @@ class Tcl
 	public string getVariable(string name)
 	{
 		string result = Tcl_GetVar(this._interpreter, name.toStringz, TCL_GLOBAL_ONLY).to!(string);
-		debug this._log.info("Getting variable %s -> '%s'", name, result);
+		debug (log) this._log.info("Getting variable %s -> '%s'", name, result);
 		return result;
 	}
 
@@ -201,19 +210,23 @@ class Tcl
 	 *
 	 * Params:
 	 *     name = The name of the variable to delete.
-	 *
-	 * Throws:
-	 *     Exception if the command cannot be deleted.
 	 */
 	public void deleteVariable(string name)
 	{
-		debug this._log.info("Deleting variable %s", name);
+		debug (log) this._log.info("Deleting variable %s", name);
 
 		int result = Tcl_UnsetVar(this._interpreter, name.toStringz, TCL_GLOBAL_ONLY);
 
 		if (result == TCL_ERROR)
 		{
-			throw new Exception(this.getResult!(string));
+			string error = Tcl_GetStringResult(this._interpreter).to!(string);
+
+			debug (showTclErrors)
+			{
+				writeln(error);
+			}
+
+			debug (log) this._log.warning(error);
 		}
 	}
 

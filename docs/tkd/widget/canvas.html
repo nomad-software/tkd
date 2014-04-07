@@ -139,16 +139,6 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>Return Value</h3><p>The vertical canvas position.</p>
 </div>
 </div>
-<h2><a name="Canvas.addItem"></a>auto <span class="symbol">addItem</span>(this T)(CanvasItem item);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Add an item to the canvas.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>CanvasItem item</td>
-<td>The item to add.</td></tr>
-</table>
-<h3>Return Value</h3><p>This widget to aid method chaining.</p>
-</div>
-</div>
 <h2><a name="Canvas.tagItemAt"></a>auto <span class="symbol">tagItemAt</span>(this T)(string tag, int xPos, int yPos, uint radius = 0);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Tag an item at coordinates. If more than one item is at the same closest
@@ -199,6 +189,66 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <td>The tag to select items to tag.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="Canvas.addItem"></a>auto <span class="symbol">addItem</span>(this T)(CanvasItem item);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Add an item to the canvas.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>CanvasItem item</td>
+<td>The item to add.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="Canvas.addTagConfig"></a>auto <span class="symbol">addTagConfig</span>(this T)(CanvasTagConfig tagConfig);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Add a tag configuration to the canvas. These can apply options to a tag
+ which can then be applied to any item.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>CanvasTagConfig tagConfig</td>
+<td>The configuration to add.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="CanvasTagConfig"></a>class <span class="symbol">CanvasTagConfig</span>: tkd.element.element.Element;
+</h2>
+<div class="declaration-description"><div class="sections"><p>Class representing a tag configuration. Tags can be applied to numerous
+ items on the canvas but keep in mind the tag options set in the
+ configuration must be compatible for all items the tag is assigned to or an
+ error will occur. Tags must be applied to items before they can be
+ configured.
+</p>
+<p><h3>Common Commands:</h3>
+These are injected common commands that can also be used with this widget.
+     <p>        <a href="./common/canvas/anchor.html">Anchor</a> <br>
+         <a href="./common/canvas/arcspecific.html">ArcSpecific</a> <br>
+         <a href="./common/canvas/bind.html">Bind</a> <br>
+         <a href="./common/canvas/fillcolor.html">FillColor</a> <br>
+         <a href="./common/canvas/imagespecific.html">ImageSpecific</a> <br>
+         <a href="./common/canvas/linespecific.html">LineSpecific</a> <br>
+         <a href="./common/canvas/outlinecolor.html">OutlineColor</a> <br>
+         <a href="./common/canvas/outlinedash.html">OutlineDash</a> <br>
+         <a href="./common/canvas/outlinewidth.html">OutlineWidth</a> <br>
+         <a href="./common/canvas/state.html">State</a> <br>
+         <a href="./common/canvas/textspecific.html">TextSpecific</a> <br>
+         <a href="./common/canvas/vertex.html">Vertex</a> <br>
+         <a href="./common/canvas/widgetspecific.html">WidgetSpecific</a> <br>
+     </p>
+
+</p>
+<h3>See Also</h3><p><a href="../element/element.html">tkd.element.element</a></p>
+</div>
+<div class="class-members"><h2><a name="CanvasTagConfig.this"></a> this(string tagName);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Constructor.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string tagName</td>
+<td>The name of the tag to configure.</td></tr>
+</table>
 </div>
 </div>
 </div>

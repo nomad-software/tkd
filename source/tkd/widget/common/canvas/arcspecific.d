@@ -11,6 +11,8 @@ module tkd.widget.common.canvas.arcspecific;
  */
 mixin template ArcSpecific()
 {
+	import std.typecons : Nullable;
+
 	/**
 	 * The style of the arc.
 	 */
@@ -24,7 +26,7 @@ mixin template ArcSpecific()
 	/**
 	 * The start angle of the arc.
 	 */
-	private double _startAngle = 0.0;
+	private Nullable!(double) _startAngle;
 
 	/**
 	 * Get the style of the arc.
@@ -129,7 +131,7 @@ mixin template ArcSpecific()
 			this._startAngle = this._tk.getResult!(double);
 		}
 
-		return this._startAngle;
+		return this._startAngle.isNull ? 0.0 : this._startAngle;
 	}
 
 	/**
@@ -143,8 +145,16 @@ mixin template ArcSpecific()
 	 * Returns:
 	 *     This item to aid method chaining.
 	 */
-	public auto setStartAngle(this T)(double startAngle)
+	public auto setStartAngle(this T, A)(A startAngle) if (is(A == double) || is(A == Nullable!(double)))
 	{
+		static if (is(A == Nullable!(double)))
+		{
+			if (startAngle.isNull)
+			{
+				return cast(T) this;
+			}
+		}
+
 		this._startAngle = startAngle;
 
 		if (this._parent)

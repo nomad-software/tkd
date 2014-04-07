@@ -11,20 +11,22 @@ module tkd.widget.common.canvas.outlinewidth;
  */
 mixin template OutlineWidth()
 {
+	import std.typecons : Nullable;
+
 	/**
 	 * The width of the outline.
 	 */
-	private int _outlineWidth;
+	private Nullable!(int) _outlineWidth;
 
 	/**
 	 * The active width of the outline.
 	 */
-	private int _activeOutlineWidth;
+	private Nullable!(int) _activeOutlineWidth;
 
 	/**
 	 * The disabled width of the outline.
 	 */
-	private int _disabledOutlineWidth;
+	private Nullable!(int) _disabledOutlineWidth;
 
 	/**
 	 * Get the width of the outline.
@@ -40,7 +42,7 @@ mixin template OutlineWidth()
 			this._outlineWidth = this._tk.getResult!(int);
 		}
 
-		return this._outlineWidth;
+		return this._outlineWidth.isNull ? 0 : this._outlineWidth;
 	}
 
 	/**
@@ -52,8 +54,16 @@ mixin template OutlineWidth()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setOutlineWidth(this T)(int width)
+	public auto setOutlineWidth(this T, W)(W width) if (is(W == int) || is(W == Nullable!(int)))
 	{
+		static if (is(W == Nullable!(int)))
+		{
+			if (width.isNull)
+			{
+				return cast(T) this;
+			}
+		}
+
 		this._outlineWidth = width;
 
 		if (this._parent)
@@ -79,7 +89,7 @@ mixin template OutlineWidth()
 			this._activeOutlineWidth = this._tk.getResult!(int);
 		}
 
-		return this._activeOutlineWidth;
+		return this._activeOutlineWidth.isNull ? 0 : this._activeOutlineWidth;
 	}
 
 	/**
@@ -92,8 +102,16 @@ mixin template OutlineWidth()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 */
-	public auto setActiveOutlineWidth(this T)(int width)
+	public auto setActiveOutlineWidth(this T, W)(W width) if (is(W == int) || is(W == Nullable!(int)))
 	{
+		static if (is(W == Nullable!(int)))
+		{
+			if (width.isNull)
+			{
+				return cast(T) this;
+			}
+		}
+
 		this._activeOutlineWidth = width;
 
 		if (this._parent)
@@ -118,7 +136,7 @@ mixin template OutlineWidth()
 			this._disabledOutlineWidth = this._tk.getResult!(int);
 		}
 
-		return this._disabledOutlineWidth;
+		return this._disabledOutlineWidth.isNull ? 0 : this._disabledOutlineWidth;
 	}
 
 	/**
@@ -134,8 +152,16 @@ mixin template OutlineWidth()
 	 *     This doesn't seem to have any effect in Tcl/Tk v8.6.1. It ignores 
 	 *     this setting and applies a 1 pixel width.
 	 */
-	public auto setDisabledOutlineWidth(this T)(int width)
+	public auto setDisabledOutlineWidth(this T, W)(W width) if (is(W == int) || is(W == Nullable!(int)))
 	{
+		static if (is(W == Nullable!(int)))
+		{
+			if (width.isNull)
+			{
+				return cast(T) this;
+			}
+		}
+
 		this._disabledOutlineWidth = width;
 
 		if (this._parent)

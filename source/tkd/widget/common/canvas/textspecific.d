@@ -11,10 +11,12 @@ module tkd.widget.common.canvas.textspecific;
  */
 mixin template TextSpecific()
 {
+	import std.typecons : Nullable;
+
 	/**
 	 * The angle of the text.
 	 */
-	private double _angle = 0.0;
+	private Nullable!(double) _angle;
 
 	/**
 	 * The font.
@@ -34,7 +36,7 @@ mixin template TextSpecific()
 	/**
 	 * The maximum line length.
 	 */
-	private int _maxLineLength;
+	private Nullable!(int) _maxLineLength;
 
 	/**
 	 * Get the text angle.
@@ -50,7 +52,7 @@ mixin template TextSpecific()
 			this._angle = this._tk.getResult!(double);
 		}
 
-		return this._angle;
+		return this._angle.isNull ? 0.0 : this._angle;
 	}
 
 	/**
@@ -67,8 +69,16 @@ mixin template TextSpecific()
 	 * Returns:
 	 *     This item to aid method chaining.
 	 */
-	public auto setAngle(this T)(double angle)
+	public auto setAngle(this T, A)(A angle) if (is(A == double) || is(A == Nullable!(double)))
 	{
+		static if (is(A == Nullable!(double)))
+		{
+			if (angle.isNull)
+			{
+				return cast(T) this;
+			}
+		}
+
 		this._angle = angle;
 
 		if (this._parent)
@@ -189,7 +199,7 @@ mixin template TextSpecific()
 	{
 		this._text = text;
 
-		if (this._parent)
+		if (this._parent && this._text.length)
 		{
 			this._tk.eval("%s itemconfigure %s -text {%s}", this._parent.id, this.id, this._text);
 		}
@@ -211,7 +221,7 @@ mixin template TextSpecific()
 			this._maxLineLength = this._tk.getResult!(int);
 		}
 
-		return this._maxLineLength;
+		return this._maxLineLength.isNull ? 0 : this._maxLineLength;
 	}
 
 	/**
@@ -228,8 +238,16 @@ mixin template TextSpecific()
 	 * Returns:
 	 *     This item to aid method chaining.
 	 */
-	public auto setMaxLineLength(this T)(int maxLineLength)
+	public auto setMaxLineLength(this T, L)(L maxLineLength) if (is(L == int) || is(L == Nullable!(int)))
 	{
+		static if (is(L == Nullable!(int)))
+		{
+			if (maxLineLength.isNull)
+			{
+				return cast(T) this;
+			}
+		}
+
 		this._maxLineLength = maxLineLength;
 
 		if (this._parent)

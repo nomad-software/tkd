@@ -44,13 +44,13 @@
 <h3>Return Value</h3><p>The widget width.</p>
 </div>
 </div>
-<h2><a name="setWidth"></a>auto <span class="symbol">setWidth</span>(this T)(int width);
+<h2><a name="setWidth"></a>auto <span class="symbol">setWidth</span>(this T, W)(W width) if (is(W == int) || is(W == Nullable!int));
 </h2>
 <div class="declaration-description"><div class="sections"><p>Specifies the width to assign to the item's widget. If this option is
  not specified, or if it is specified as zero, then the widget is given
  whatever width it requests internally.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>int width</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>W width</td>
 <td>The widget width.</td></tr>
 </table>
 <h3>Return Value</h3><p>This item to aid method chaining.</p>
@@ -63,13 +63,13 @@
 <h3>Return Value</h3><p>The widget height.</p>
 </div>
 </div>
-<h2><a name="setHeight"></a>auto <span class="symbol">setHeight</span>(this T)(int height);
+<h2><a name="setHeight"></a>auto <span class="symbol">setHeight</span>(this T, H)(H height) if (is(H == int) || is(H == Nullable!int));
 </h2>
 <div class="declaration-description"><div class="sections"><p>Specifies the height to assign to the item's widget. If this option is
  not specified, or if it is specified as zero, then the widget is given
  whatever height it requests internally.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>int height</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>H height</td>
 <td>The widget height.</td></tr>
 </table>
 <h3>Return Value</h3><p>This item to aid method chaining.</p>
