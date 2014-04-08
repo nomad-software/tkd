@@ -157,6 +157,10 @@ class SpinBox : Widget, IXScrollable!(SpinBox)
 		this._valueVariable = format("variable-%s", this.generateHash(this.id));
 
 		this._tk.eval("ttk::spinbox %s -textvariable %s", this.id, this._valueVariable);
+
+		this.setFromValue(int.min);
+		this.setToValue(int.max);
+		this.setValue("0");
 	}
 
 	/**

@@ -226,6 +226,20 @@ class Image : Element
 		this._tk.eval("%s cget -width", this.id);
 		return this._tk.getResult!(string);
 	}
+
+	/**
+	 * Destroy this image.
+	 *
+	 * Caveats:
+	 *     Once an image is destroyed it can no longer be referenced in your 
+	 *     code or a segmentation fault will occur and potentially crash your 
+	 *     program.
+	 */
+	public void destroy()
+	{
+		this._tk.eval("image delete %s", this.id);
+		super.destroy();
+	}
 }
 
 /**

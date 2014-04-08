@@ -46,4 +46,18 @@ mixin template Value(alias valueVariable, V)
 
 		return cast(T) this;
 	}
+
+	/**
+	 * Destroy this widget.
+	 *
+	 * Caveats:
+	 *     Once a widget is destroyed it can no longer be referenced in your 
+	 *     code or a segmentation fault will occur and potentially crash your 
+	 *     program.
+	 */
+	override public void destroy()
+	{
+		this._tk.deleteVariable(valueVariable);
+		super.destroy();
+	}
 }

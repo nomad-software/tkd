@@ -146,6 +146,20 @@ abstract class TextWidget : Widget
 	}
 
 	/**
+	 * Destroy this widget.
+	 *
+	 * Caveats:
+	 *     Once a widget is destroyed it can no longer be referenced in your 
+	 *     code or a segmentation fault will occur and potentially crash your 
+	 *     program.
+	 */
+	override public void destroy()
+	{
+		this._tk.deleteVariable(this._textVariable);
+		super.destroy();
+	}
+
+	/**
 	 * Mixin common commands.
 	 */
 	mixin Underline;
