@@ -268,36 +268,21 @@ abstract class UiElement : Element
 		return this._tk.getResult!(int);
 	}
 
-	version (Windows)
+	/**
+	 * Get the platform specific window id. This is equal to the hwnd on 
+	 * Windows or the x11 window id on Linux.
+	 *
+	 * Bugs:
+	 *     Unknown if this works on Mac OSX.
+	 *
+	 * Returns:
+	 *     The platform specific window id.
+	 */
+	public @property size_t hwnd()
 	{
-		/**
-		 * Get the window hwnd.
-		 *
-		 * Returns:
-		 *     The windows handle.
-		 */
-		public @property size_t hwnd()
-		{
-			this._tk.eval("winfo id %s", this.id);
+		this._tk.eval("winfo id %s", this.id);
 
-			return this._tk.getResult!(string).chompPrefix("0x").to!(size_t)(16);
-		}
-	}
-
-	version (linux)
-	{
-		/**
-		 * Get the linux x window id.
-		 *
-		 * Returns:
-		 *     The x id.
-		 */
-		public @property size_t xId()
-		{
-			this._tk.eval("winfo id %s", this.id);
-
-			return this._tk.getResult!(string).chompPrefix("0x").to!(size_t)(16);
-		}
+		return this._tk.getResult!(string).chompPrefix("0x").to!(size_t)(16);
 	}
 
 	/**

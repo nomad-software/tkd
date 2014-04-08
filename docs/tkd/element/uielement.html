@@ -213,11 +213,15 @@ Once an element is destroyed it can no longer be referenced in your
 <h3>Return Value</h3><p>The height of the element.</p>
 </div>
 </div>
-<h2><a name="UiElement.xId"></a>@property size_t <span class="symbol">xId</span>();
+<h2><a name="UiElement.hwnd"></a>@property size_t <span class="symbol">hwnd</span>();
 </h2>
-<div class="declaration-description"><div class="sections"><p>Get the linux x window id.
+<div class="declaration-description"><div class="sections"><p>Get the platform specific window id. This is equal to the <span class="symbol">hwnd</span> on
+ Windows or the x11 window id on Linux.
 </p>
-<h3>Return Value</h3><p>The x id.</p>
+<h3>Bugs</h3><p>Unknown if this works on Mac OSX.
+
+</p>
+<h3>Return Value</h3><p>The platform specific window id.</p>
 </div>
 </div>
 <h2><a name="UiElement.getCursorPos"></a>int[] <span class="symbol">getCursorPos</span>();
