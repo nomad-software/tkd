@@ -51,7 +51,7 @@ abstract class Widget : UiElement
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./state.html, tkd.widget.state) for states.
+	 *     $(LINK2 ./state.html, tkd.widget.state)
 	 */
 	public auto setState(this T)(string[] state)
 	{
@@ -67,7 +67,7 @@ abstract class Widget : UiElement
 	 *     An array of widget states.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./state.html, tkd.widget.state) for returned states.
+	 *     $(LINK2 ./state.html, tkd.widget.state)
 	 */
 	public string[] getState()
 	{
@@ -85,7 +85,7 @@ abstract class Widget : UiElement
 	 *     true is the widget is in that state, false if not.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./state.html, tkd.widget.state) for states.
+	 *     $(LINK2 ./state.html, tkd.widget.state)
 	 */
 	public bool inState(string[] state)
 	{
@@ -108,7 +108,7 @@ abstract class Widget : UiElement
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./state.html, tkd.widget.state) for states.
+	 *     $(LINK2 ./state.html, tkd.widget.state)
 	 */
 	public auto removeState(this T)(string[] state)
 	{
@@ -124,7 +124,7 @@ abstract class Widget : UiElement
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./state.html, tkd.widget.state) for widget states.
+	 *     $(LINK2 ./state.html, tkd.widget.state)
 	 */
 	public auto resetState(this T)()
 	{
@@ -143,7 +143,7 @@ abstract class Widget : UiElement
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./style.html, tkd.widget.style) for styles.
+	 *     $(LINK2 ./style.html, tkd.widget.style)
 	 */
 	public auto setStyle(this T)(string style)
 	{
@@ -159,7 +159,7 @@ abstract class Widget : UiElement
 	 *     The widget's style.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./style.html, tkd.widget.style) for returned styles.
+	 *     $(LINK2 ./style.html, tkd.widget.style)
 	 */
 	public string getStyle()
 	{
@@ -181,7 +181,7 @@ abstract class Widget : UiElement
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./focus.html, tkd.widget.focus) for focus states.
+	 *     $(LINK2 ./focus.html, tkd.widget.focus)
 	 */
 	public auto setFocus(this T)(string focus)
 	{
@@ -197,7 +197,7 @@ abstract class Widget : UiElement
 	 *     The widget's focus setting.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./focus.html, tkd.widget.focus) for returned focus states.
+	 *     $(LINK2 ./focus.html, tkd.widget.focus)
 	 */
 	public string getFocus()
 	{
@@ -206,8 +206,8 @@ abstract class Widget : UiElement
 	}
 
 	/**
-	 * Geometry method for placing this widget inside its parent. If no parent 
-	 * was specified the main window is used as a parent.
+	 * Geometry method for loosely placing this widget inside its parent using 
+	 * a web browser model. Widgets flow around each other in the available space.
 	 *
 	 * Params:
 	 *     outerPadding = The amound of padding to add around the widget.
@@ -219,14 +219,66 @@ abstract class Widget : UiElement
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../element/uielement.html#UiElement.enableGeometryAutoSize, tkd.element.uielement.UiElement.enableGeometryAutoSize) $(BR)
+	 *     $(LINK2 ./anchorposition.html, tkd.widget.anchorposition) $(BR)
+	 *     $(LINK2 ./widget.html#GeometryFill, tkd.widget.widget.GeometryFill) $(BR)
+	 *     $(LINK2 ./widget.html#GeometrySide, tkd.widget.widget.GeometrySide) $(BR)
 	 */
 	public auto pack(this T)(int outerPadding = 0, int innerPadding = 0, string side = GeometrySide.top, string fill = GeometryFill.none, string anchor = AnchorPosition.center, bool expand = false)
 	{
-		string tkScript = format("pack %s -padx %s -pady %s -ipadx %s -ipady %s -side %s -fill %s -anchor %s -expand %s", this.id, outerPadding, outerPadding, innerPadding, innerPadding, side, fill, anchor, expand);
+		string tkScript = format("pack %s -padx %s -pady %s -ipadx %s -ipady %s -side {%s} -fill {%s} -anchor {%s} -expand %s", this.id, outerPadding, outerPadding, innerPadding, innerPadding, side, fill, anchor, expand);
 		this._tk.eval(tkScript);
 
 		return cast(T) this;
 	}
+
+	/**
+	 * Geometry method for placing this widget inside its parent using numbered 
+	 * cells to which widgets are manually assigned. Somewhat more direct and 
+	 * intuitive than pack. Choose grid for tabular layouts, and when there's 
+	 * no good reason to choose something else. This widget can be assigned a 
+	 * cell via column and row numbers.
+	 *
+	 * If a widget's cell is larger than its default dimensions, the sticky 
+	 * parameter may be used to position (or stretch) the widget within its 
+	 * cell. The sticky argument is a string that contains zero or more of the 
+	 * characters n, s, e or w. Each letter refers to a side (north, south, 
+	 * east, or west) that the widget will 'stick' to. If both n and s (or e 
+	 * and w) are specified, the slave will be stretched to fill the entire 
+	 * height (or width) of its cell. The sticky parameter subsumes the 
+	 * combination of anchor and fill that is used by pack. The default is an 
+	 * empty string, which causes the widget to be centered in its cell, at its 
+	 * default size. The $(LINK2 ./anchorposition.html, anchorposition) enum 
+	 * may be of use here but doesn't provide all combinations.
+	 *
+	 * Params:
+	 *     column = The column in which to place this widget.
+	 *     row = The row in which to place this widget.
+	 *     outerPadding = The amound of padding to add around the widget.
+	 *     innerPadding = The amound of padding to add inside the widget.
+	 *     columnSpan = The amount of column this widget should span across.
+	 *     rowSpan = The amount of rows this widget should span across.
+	 *     sticky = Which edges of the cell the widget should touch.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../element/uielement.html#UiElement.configureGeometryColumn, tkd.element.uielement.UiElement.configureGeometryColumn) $(BR)
+	 *     $(LINK2 ../element/uielement.html#UiElement.configureGeometryRow, tkd.element.uielement.UiElement.configureGeometryRow) $(BR)
+	 *     $(LINK2 ../element/uielement.html#UiElement.enableGeometryAutoSize, tkd.element.uielement.UiElement.enableGeometryAutoSize) $(BR)
+	 *     $(LINK2 ./anchorposition.html, tkd.widget.anchorposition) $(BR)
+	 */
+	public auto grid(this T)(int column, int row, int outerPadding = 0, int innerPadding = 0, int columnSpan = 1, int rowSpan = 1, string sticky = "")
+	{
+		string tkScript = format("grid %s -column %s -row %s -padx %s -pady %s -ipadx %s -ipady %s -columnspan %s -rowspan %s -sticky {%s}", this.id, column, row, outerPadding, outerPadding, innerPadding, innerPadding, columnSpan, rowSpan, sticky);
+		this._tk.eval(tkScript);
+
+		return cast(T) this;
+	}
+
 }
 
 /**

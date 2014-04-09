@@ -42,7 +42,7 @@ class Application : TkdApplication
 	override protected void initInterface()
 	{
 		auto frame = new Frame()
-			.pack(10);
+			.grid(0, 0, 10, 0, 1, 1, "nesw");
 
 		this._canvas = new Canvas(frame)
 			.bind("<ButtonPress-1>", &this.mark)
@@ -61,21 +61,20 @@ class Application : TkdApplication
 
 		auto xscroll = new XScrollBar(frame)
 			.attachWidget(this._canvas)
-			.pack(0, 0, GeometrySide.bottom, GeometryFill.x);
+			.grid(0, 1, 0, 0, 1, 1, "esw");
 
 		auto yscroll = new YScrollBar(frame)
 			.attachWidget(this._canvas)
-			.pack(0, 0, GeometrySide.right, GeometryFill.y);
-
-		this._canvas.pack();
+			.grid(1, 0, 0, 0, 1, 1, "nes");
 
 		this._canvas
 			.attachXScrollBar(xscroll)
-			.attachYScrollBar(yscroll);
+			.attachYScrollBar(yscroll)
+			.grid(0, 0, 0, 0, 1, 1, "nesw");
 
 		auto button = new Button("Exit")
 			.setCommand(&this.exitCommand)
-			.pack(10);
+			.grid(0, 1, 10, 0, 1, 1, "s");
 	}
 }
 

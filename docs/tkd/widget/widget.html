@@ -41,7 +41,7 @@
 <h3>Return Value</h3><p>This widget to aid method chaining.
 
 </p>
-<h3>See Also</h3><p><a href="./state.html">tkd.widget.state</a> for states.</p>
+<h3>See Also</h3><p><a href="./state.html">tkd.widget.state</a></p>
 </div>
 </div>
 <h2><a name="Widget.getState"></a>string[] <span class="symbol">getState</span>();
@@ -51,7 +51,7 @@
 <h3>Return Value</h3><p>An array of widget states.
 
 </p>
-<h3>See Also</h3><p><a href="./state.html">tkd.widget.state</a> for returned states.</p>
+<h3>See Also</h3><p><a href="./state.html">tkd.widget.state</a></p>
 </div>
 </div>
 <h2><a name="Widget.inState"></a>bool <span class="symbol">inState</span>(string[] state);
@@ -64,7 +64,7 @@
 <h3>Return Value</h3><p><strong>true</strong> is the widget is in that state, <strong>false</strong> if not.
 
 </p>
-<h3>See Also</h3><p><a href="./state.html">tkd.widget.state</a> for states.</p>
+<h3>See Also</h3><p><a href="./state.html">tkd.widget.state</a></p>
 </div>
 </div>
 <h2><a name="Widget.removeState"></a>auto <span class="symbol">removeState</span>(this T)(string[] state);
@@ -77,7 +77,7 @@
 <h3>Return Value</h3><p>This widget to aid method chaining.
 
 </p>
-<h3>See Also</h3><p><a href="./state.html">tkd.widget.state</a> for states.</p>
+<h3>See Also</h3><p><a href="./state.html">tkd.widget.state</a></p>
 </div>
 </div>
 <h2><a name="Widget.resetState"></a>auto <span class="symbol">resetState</span>(this T)();
@@ -87,7 +87,7 @@
 <h3>Return Value</h3><p>This widget to aid method chaining.
 
 </p>
-<h3>See Also</h3><p><a href="./state.html">tkd.widget.state</a> for widget states.</p>
+<h3>See Also</h3><p><a href="./state.html">tkd.widget.state</a></p>
 </div>
 </div>
 <h2><a name="Widget.setStyle"></a>auto <span class="symbol">setStyle</span>(this T)(string style);
@@ -100,7 +100,7 @@
 <h3>Return Value</h3><p>This widget to aid method chaining.
 
 </p>
-<h3>See Also</h3><p><a href="./style.html">tkd.widget.style</a> for styles.</p>
+<h3>See Also</h3><p><a href="./style.html">tkd.widget.style</a></p>
 </div>
 </div>
 <h2><a name="Widget.getStyle"></a>string <span class="symbol">getStyle</span>();
@@ -110,7 +110,7 @@
 <h3>Return Value</h3><p>The widget's style.
 
 </p>
-<h3>See Also</h3><p><a href="./style.html">tkd.widget.style</a> for returned styles.</p>
+<h3>See Also</h3><p><a href="./style.html">tkd.widget.style</a></p>
 </div>
 </div>
 <h2><a name="Widget.setFocus"></a>auto <span class="symbol">setFocus</span>(this T)(string focus);
@@ -123,7 +123,7 @@
 <h3>Return Value</h3><p>This widget to aid method chaining.
 
 </p>
-<h3>See Also</h3><p><a href="./focus.html">tkd.widget.focus</a> for focus states.</p>
+<h3>See Also</h3><p><a href="./focus.html">tkd.widget.focus</a></p>
 </div>
 </div>
 <h2><a name="Widget.getFocus"></a>string <span class="symbol">getFocus</span>();
@@ -133,13 +133,13 @@
 <h3>Return Value</h3><p>The widget's focus setting.
 
 </p>
-<h3>See Also</h3><p><a href="./focus.html">tkd.widget.focus</a> for returned focus states.</p>
+<h3>See Also</h3><p><a href="./focus.html">tkd.widget.focus</a></p>
 </div>
 </div>
 <h2><a name="Widget.pack"></a>auto <span class="symbol">pack</span>(this T)(int outerPadding = 0, int innerPadding = 0, string side = GeometrySide.top, string fill = GeometryFill.none, string anchor = AnchorPosition.center, bool expand = false);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Geometry method for placing this widget inside its parent. If no parent
- was specified the main window is used as a parent.
+<div class="declaration-description"><div class="sections"><p>Geometry method for loosely placing this widget inside its parent using
+ a web browser model. Widgets flow around each other in the available space.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>int outerPadding</td>
 <td>The amound of padding to add around the widget.</td></tr>
@@ -154,7 +154,58 @@
 <tr><td>bool expand</td>
 <td>Whether or not to expand to fill the entire given space.</td></tr>
 </table>
-<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+<h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p>
+<h3>See Also</h3><p><a href="../element/uielement.html#UiElement.enableGeometryAutoSize">tkd.element.uielement.UiElement.enableGeometryAutoSize</a> <br>
+     <a href="./anchorposition.html">tkd.widget.anchorposition</a> <br>
+     <a href="./widget.html#GeometryFill">tkd.widget.widget.GeometryFill</a> <br>
+     <a href="./widget.html#GeometrySide">tkd.widget.widget.GeometrySide</a> <br></p>
+</div>
+</div>
+<h2><a name="Widget.grid"></a>auto <span class="symbol">grid</span>(this T)(int column, int row, int outerPadding = 0, int innerPadding = 0, int columnSpan = 1, int rowSpan = 1, string sticky = "");
+</h2>
+<div class="declaration-description"><div class="sections"><p>Geometry method for placing this widget inside its parent using numbered
+ cells to which widgets are manually assigned. Somewhat more direct and
+ intuitive than pack. Choose <span class="symbol">grid</span> for tabular layouts, and when there's
+ no good reason to choose something else. This widget can be assigned a
+ cell via column and row numbers.
+</p>
+<p>If a widget's cell is larger than its default dimensions, the sticky
+ parameter may be used to position (or stretch) the widget within its
+ cell. The sticky argument is a string that contains zero or more of the
+ characters n, s, e or w. Each letter refers to a side (north, south,
+ east, or west) that the widget will 'stick' to. If both n and s (or e
+ and w) are specified, the slave will be stretched to fill the entire
+ height (or width) of its cell. The sticky parameter subsumes the
+ combination of anchor and fill that is used by pack. The default is an
+ empty string, which causes the widget to be centered in its cell, at its
+ default size. The <a href="./anchorposition.html">anchorposition</a> enum
+ may be of use here but doesn't provide all combinations.
+
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int column</td>
+<td>The column in which to place this widget.</td></tr>
+<tr><td>int row</td>
+<td>The row in which to place this widget.</td></tr>
+<tr><td>int outerPadding</td>
+<td>The amound of padding to add around the widget.</td></tr>
+<tr><td>int innerPadding</td>
+<td>The amound of padding to add inside the widget.</td></tr>
+<tr><td>int columnSpan</td>
+<td>The amount of column this widget should span across.</td></tr>
+<tr><td>int rowSpan</td>
+<td>The amount of rows this widget should span across.</td></tr>
+<tr><td>string sticky</td>
+<td>Which edges of the cell the widget should touch.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p>
+<h3>See Also</h3><p><a href="../element/uielement.html#UiElement.configureGeometryColumn">tkd.element.uielement.UiElement.configureGeometryColumn</a> <br>
+     <a href="../element/uielement.html#UiElement.configureGeometryRow">tkd.element.uielement.UiElement.configureGeometryRow</a> <br>
+     <a href="../element/uielement.html#UiElement.enableGeometryAutoSize">tkd.element.uielement.UiElement.enableGeometryAutoSize</a> <br>
+     <a href="./anchorposition.html">tkd.widget.anchorposition</a> <br></p>
 </div>
 </div>
 </div>

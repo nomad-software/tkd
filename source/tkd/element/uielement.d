@@ -415,11 +415,61 @@ abstract class UiElement : Element
 	 *
 	 * Returns:
 	 *     This element to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../widget/widget.html#Widget.pack, tkd.widget.widget.Widget.pack) $(BR)
+	 *     $(LINK2 ../widget/widget.html#Widget.grid, tkd.widget.widget.Widget.grid) $(BR)
 	 */
-	public auto setGeometryAutoSize(this T)(bool enable)
+	public auto enableGeometryAutoSize(this T)(bool enable)
 	{
 		this._tk.eval("pack propagate %s %s", this.id, enable);
 		this._tk.eval("grid propagate %s %s", this.id, enable);
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Used by the grid geometry manager. Sets options for columns.
+	 *
+	 * Params:
+	 *     index = The index of the column to configure.
+	 *     weight = The weight of the column while expanding.
+	 *     minSize = The min size of the column.
+	 *     uniformGroup = The group to which the column will resize in uniform.
+	 *     pad = Extra padding for the column.
+	 *
+	 * Returns:
+	 *     This element to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../widget/widget.html#Widget.grid, tkd.widget.widget.Widget.grid) $(BR)
+	 */
+	public auto configureGeometryColumn(this T)(int index, int weight, int minSize, int uniformGroup = 0, int pad = 0)
+	{
+		this._tk.eval("grid columnconfigure %s %s -weight %s -minsize %s -uniform %s -pad %s", this.id, index, weight, minSize, uniformGroup, pad);
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Used by the grid geometry manager. Sets options for row.
+	 *
+	 * Params:
+	 *     index = The index of the row to configure.
+	 *     weight = The weight of the row while expanding.
+	 *     minSize = The min size of the row.
+	 *     uniformGroup = The group to which the row will resize in uniform.
+	 *     pad = Extra padding for the row.
+	 *
+	 * Returns:
+	 *     This element to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../widget/widget.html#Widget.grid, tkd.widget.widget.Widget.grid) $(BR)
+	 */
+	public auto configureGeometryRow(this T)(int index, int weight, int minSize, int uniformGroup = 0, int pad = 0)
+	{
+		this._tk.eval("grid rowconfigure %s %s -weight %s -minsize %s -uniform %s -pad %s", this.id, index, weight, minSize, uniformGroup, pad);
 
 		return cast(T) this;
 	}
