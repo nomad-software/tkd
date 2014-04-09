@@ -9,6 +9,7 @@ module tkd.element.uielement;
 /**
  * Imports.
  */
+import std.algorithm;
 import std.conv;
 import std.range;
 import std.string;
