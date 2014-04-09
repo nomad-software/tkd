@@ -398,10 +398,7 @@ class Canvas : Widget, IXScrollable!(Canvas), IYScrollable!(Canvas)
 	 */
 	public auto setScanMark(this T)(double xPos, double yPos)
 	{
-		if (this._parent)
-		{
-			this._tk.eval("%s scan mark %s %s", this.id, xPos, yPos);
-		}
+		this._tk.eval("%s scan mark %s %s", this.id, xPos, yPos);
 
 		return cast(T) this;
 	}
@@ -429,10 +426,7 @@ class Canvas : Widget, IXScrollable!(Canvas), IYScrollable!(Canvas)
 	 */
 	public auto scanDragTo(this T)(double xPos, double yPos, int gain = 1)
 	{
-		if (this._parent)
-		{
-			this._tk.eval("%s scan dragto %s %s %s", this.id, xPos, yPos, gain);
-		}
+		this._tk.eval("%s scan dragto %s %s %s", this.id, xPos, yPos, gain);
 
 		return cast(T) this;
 	}
@@ -656,7 +650,7 @@ protected abstract class CanvasItem : Element
 
 		if (this._parent)
 		{
-			this._tk.eval("%s coords %s [list %s]", this.parent.id, this.id, this._coords.map!(to!(string)).join(" "));
+			this._tk.eval("%s coords %s [list %s]", this._parent.id, this.id, this._coords.map!(to!(string)).join(" "));
 		}
 
 		return cast(T) this;
@@ -782,7 +776,7 @@ protected abstract class CanvasItem : Element
 	{
 		if (this._parent)
 		{
-			this._tk.eval("%s delete %s", this.parent.id, this.id);
+			this._tk.eval("%s delete %s", this._parent.id, this.id);
 		}
 
 		super.destroy();

@@ -304,14 +304,14 @@ Once an element is destroyed it can no longer be referenced in your
      <a href="../widget/widget.html#Widget.grid">tkd.widget.widget.Widget.grid</a> <br></p>
 </div>
 </div>
-<h2><a name="UiElement.configureGeometryColumn"></a>auto <span class="symbol">configureGeometryColumn</span>(this T)(int index, int weight, int minSize, int uniformGroup = 0, int pad = 0);
+<h2><a name="UiElement.configureGeometryColumn"></a>auto <span class="symbol">configureGeometryColumn</span>(this T)(int index, int weight, int minSize = 0, int uniformGroup = 0, int pad = 0);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Used by the grid geometry manager. Sets options for columns.
+<div class="declaration-description"><div class="sections"><p>Used by the grid geometry manager. Sets options for grid columns that contain child widgets.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>int index</td>
 <td>The index of the column to configure.</td></tr>
 <tr><td>int weight</td>
-<td>The weight of the column while expanding.</td></tr>
+<td>The weight of the column while expanding. The default is 1. 2 means expand twice as much, etc.</td></tr>
 <tr><td>int minSize</td>
 <td>The min size of the column.</td></tr>
 <tr><td>int uniformGroup</td>
@@ -325,14 +325,14 @@ Once an element is destroyed it can no longer be referenced in your
 <h3>See Also</h3><p><a href="../widget/widget.html#Widget.grid">tkd.widget.widget.Widget.grid</a> <br></p>
 </div>
 </div>
-<h2><a name="UiElement.configureGeometryRow"></a>auto <span class="symbol">configureGeometryRow</span>(this T)(int index, int weight, int minSize, int uniformGroup = 0, int pad = 0);
+<h2><a name="UiElement.configureGeometryRow"></a>auto <span class="symbol">configureGeometryRow</span>(this T)(int index, int weight, int minSize = 0, int uniformGroup = 0, int pad = 0);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Used by the grid geometry manager. Sets options for row.
+<div class="declaration-description"><div class="sections"><p>Used by the grid geometry manager. Sets options for grid rows that contain child widgets.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>int index</td>
 <td>The index of the row to configure.</td></tr>
 <tr><td>int weight</td>
-<td>The weight of the row while expanding.</td></tr>
+<td>The weight of the column while expanding. The default is 1. 2 means expand twice as much, etc.</td></tr>
 <tr><td>int minSize</td>
 <td>The min size of the row.</td></tr>
 <tr><td>int uniformGroup</td>

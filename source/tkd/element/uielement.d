@@ -429,11 +429,11 @@ abstract class UiElement : Element
 	}
 
 	/**
-	 * Used by the grid geometry manager. Sets options for columns.
+	 * Used by the grid geometry manager. Sets options for grid columns that contain child widgets.
 	 *
 	 * Params:
 	 *     index = The index of the column to configure.
-	 *     weight = The weight of the column while expanding.
+	 *     weight = The weight of the column while expanding. The default is 1. 2 means expand twice as much, etc.
 	 *     minSize = The min size of the column.
 	 *     uniformGroup = The group to which the column will resize in uniform.
 	 *     pad = Extra padding for the column.
@@ -444,7 +444,7 @@ abstract class UiElement : Element
 	 * See_Also:
 	 *     $(LINK2 ../widget/widget.html#Widget.grid, tkd.widget.widget.Widget.grid) $(BR)
 	 */
-	public auto configureGeometryColumn(this T)(int index, int weight, int minSize, int uniformGroup = 0, int pad = 0)
+	public auto configureGeometryColumn(this T)(int index, int weight, int minSize = 0, int uniformGroup = 0, int pad = 0)
 	{
 		this._tk.eval("grid columnconfigure %s %s -weight %s -minsize %s -uniform %s -pad %s", this.id, index, weight, minSize, uniformGroup, pad);
 
@@ -452,11 +452,11 @@ abstract class UiElement : Element
 	}
 
 	/**
-	 * Used by the grid geometry manager. Sets options for row.
+	 * Used by the grid geometry manager. Sets options for grid rows that contain child widgets.
 	 *
 	 * Params:
 	 *     index = The index of the row to configure.
-	 *     weight = The weight of the row while expanding.
+	 *     weight = The weight of the column while expanding. The default is 1. 2 means expand twice as much, etc.
 	 *     minSize = The min size of the row.
 	 *     uniformGroup = The group to which the row will resize in uniform.
 	 *     pad = Extra padding for the row.
@@ -467,7 +467,7 @@ abstract class UiElement : Element
 	 * See_Also:
 	 *     $(LINK2 ../widget/widget.html#Widget.grid, tkd.widget.widget.Widget.grid) $(BR)
 	 */
-	public auto configureGeometryRow(this T)(int index, int weight, int minSize, int uniformGroup = 0, int pad = 0)
+	public auto configureGeometryRow(this T)(int index, int weight, int minSize = 0, int uniformGroup = 0, int pad = 0)
 	{
 		this._tk.eval("grid rowconfigure %s %s -weight %s -minsize %s -uniform %s -pad %s", this.id, index, weight, minSize, uniformGroup, pad);
 

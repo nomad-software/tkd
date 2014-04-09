@@ -165,11 +165,10 @@
 </div>
 <h2><a name="Widget.grid"></a>auto <span class="symbol">grid</span>(this T)(int column, int row, int outerPadding = 0, int innerPadding = 0, int columnSpan = 1, int rowSpan = 1, string sticky = "");
 </h2>
-<div class="declaration-description"><div class="sections"><p>Geometry method for placing this widget inside its parent using numbered
- cells to which widgets are manually assigned. Somewhat more direct and
- intuitive than pack. Choose <span class="symbol">grid</span> for tabular layouts, and when there's
- no good reason to choose something else. This widget can be assigned a
- cell via column and row numbers.
+<div class="declaration-description"><div class="sections"><p>Geometry method for placing this widget inside its parent using an
+ imaginary <span class="symbol">grid</span>. Somewhat more direct and intuitive than pack. Choose
+ <span class="symbol">grid</span> for tabular layouts, and when there's no good reason to choose
+ something else.
 </p>
 <p>If a widget's cell is larger than its default dimensions, the sticky
  parameter may be used to position (or stretch) the widget within its
@@ -200,6 +199,12 @@
 <td>Which edges of the cell the widget should touch. See note above.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p>
+<p><h3>Caveats:</h3>
+In order for a gridded UI to be fully dynamic to expand and contract
+     when resizing elements, you must to assign a weight to at least one
+     column and row using <a href="    ../element/uielement.html#UiElement.configureGeometryColumn">     configureGeometryColumn</a> and <a href="    ../element/uielement.html#UiElement.configureGeometryRow">     configureGeometryRow</a> respectively.
 
 </p>
 <h3>See Also</h3><p><a href="../element/uielement.html#UiElement.configureGeometryColumn">tkd.element.uielement.UiElement.configureGeometryColumn</a> <br>

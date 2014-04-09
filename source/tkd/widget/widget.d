@@ -228,18 +228,16 @@ abstract class Widget : UiElement
 	 */
 	public auto pack(this T)(int outerPadding = 0, int innerPadding = 0, string side = GeometrySide.top, string fill = GeometryFill.none, string anchor = AnchorPosition.center, bool expand = false)
 	{
-		string tkScript = format("pack %s -padx %s -pady %s -ipadx %s -ipady %s -side {%s} -fill {%s} -anchor {%s} -expand %s", this.id, outerPadding, outerPadding, innerPadding, innerPadding, side, fill, anchor, expand);
-		this._tk.eval(tkScript);
+		this._tk.eval("pack %s -padx %s -pady %s -ipadx %s -ipady %s -side {%s} -fill {%s} -anchor {%s} -expand %s", this.id, outerPadding, outerPadding, innerPadding, innerPadding, side, fill, anchor, expand);
 
 		return cast(T) this;
 	}
 
 	/**
-	 * Geometry method for placing this widget inside its parent using numbered 
-	 * cells to which widgets are manually assigned. Somewhat more direct and 
-	 * intuitive than pack. Choose grid for tabular layouts, and when there's 
-	 * no good reason to choose something else. This widget can be assigned a 
-	 * cell via column and row numbers.
+	 * Geometry method for placing this widget inside its parent using an 
+	 * imaginary grid. Somewhat more direct and intuitive than pack. Choose 
+	 * grid for tabular layouts, and when there's no good reason to choose 
+	 * something else.
 	 *
 	 * If a widget's cell is larger than its default dimensions, the sticky 
 	 * parameter may be used to position (or stretch) the widget within its 
@@ -265,6 +263,15 @@ abstract class Widget : UiElement
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 *
+	 * Caveats:
+	 *     In order for a gridded UI to be fully dynamic to expand and contract 
+	 *     when resizing elements, you must to assign a weight to at least one 
+	 *     column and row using $(LINK2 
+	 *     ../element/uielement.html#UiElement.configureGeometryColumn, 
+	 *     configureGeometryColumn) and $(LINK2 
+	 *     ../element/uielement.html#UiElement.configureGeometryRow, 
+	 *     configureGeometryRow) respectively.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ../element/uielement.html#UiElement.configureGeometryColumn, tkd.element.uielement.UiElement.configureGeometryColumn) $(BR)
 	 *     $(LINK2 ../element/uielement.html#UiElement.configureGeometryRow, tkd.element.uielement.UiElement.configureGeometryRow) $(BR)
@@ -273,8 +280,7 @@ abstract class Widget : UiElement
 	 */
 	public auto grid(this T)(int column, int row, int outerPadding = 0, int innerPadding = 0, int columnSpan = 1, int rowSpan = 1, string sticky = "")
 	{
-		string tkScript = format("grid %s -column %s -row %s -padx %s -pady %s -ipadx %s -ipady %s -columnspan %s -rowspan %s -sticky {%s}", this.id, column, row, outerPadding, outerPadding, innerPadding, innerPadding, columnSpan, rowSpan, sticky);
-		this._tk.eval(tkScript);
+		this._tk.eval("grid %s -column %s -row %s -padx %s -pady %s -ipadx %s -ipady %s -columnspan %s -rowspan %s -sticky {%s}", this.id, column, row, outerPadding, outerPadding, innerPadding, innerPadding, columnSpan, rowSpan, sticky);
 
 		return cast(T) this;
 	}
@@ -300,8 +306,7 @@ abstract class Widget : UiElement
 	 */
 	public auto place(this T)(int xPos, int yPos, int width, int height, string anchor = AnchorPosition.northWest, string borderMode = GeometryBorderMode.inside)
 	{
-		string tkScript = format("place %s -x %s -y %s -width %s -height %s -anchor {%s} -bordermode {%s}", this.id, xPos, yPos, width, height, anchor, borderMode);
-		this._tk.eval(tkScript);
+		this._tk.eval("place %s -x %s -y %s -width %s -height %s -anchor {%s} -bordermode {%s}", this.id, xPos, yPos, width, height, anchor, borderMode);
 
 		return cast(T) this;
 	}
@@ -335,8 +340,7 @@ abstract class Widget : UiElement
 		assert(relativeWidth >= 0 && relativeWidth <= 1);
 		assert(relativeHeight >= 0 && relativeHeight <= 1);
 
-		string tkScript = format("place %s -relx %s -rely %s -relwidth %s -relheight %s -anchor {%s} -bordermode {%s}", this.id, relativeXPos, relativeYPos, relativeWidth, relativeHeight, anchor, borderMode);
-		this._tk.eval(tkScript);
+		this._tk.eval("place %s -relx %s -rely %s -relwidth %s -relheight %s -anchor {%s} -bordermode {%s}", this.id, relativeXPos, relativeYPos, relativeWidth, relativeHeight, anchor, borderMode);
 
 		return cast(T) this;
 	}

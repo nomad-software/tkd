@@ -41,7 +41,12 @@ class Application : TkdApplication
 	 */
 	override protected void initInterface()
 	{
+		this.mainWindow.configureGeometryColumn(0, 1);
+		this.mainWindow.configureGeometryRow(0, 1);
+
 		auto frame = new Frame()
+			.configureGeometryColumn(0, 1)
+			.configureGeometryRow(0, 1)
 			.grid(0, 0, 10, 0, 1, 1, "nesw");
 
 		this._canvas = new Canvas(frame)
@@ -75,6 +80,9 @@ class Application : TkdApplication
 		auto button = new Button("Exit")
 			.setCommand(&this.exitCommand)
 			.grid(0, 1, 10, 0, 1, 1, "s");
+
+		auto sizegrip = new SizeGrip()
+			.grid(0, 2, 0, 0, 1, 1, "se");
 	}
 }
 
