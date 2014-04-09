@@ -33,10 +33,6 @@ should be a beta release soon.
 
 ### Widgets
 
-#### Canvas 
-
-This widget is not yet implemented but is intended to be.
-
 #### Text
 
 Extended functionality of this widget has not been implement because there are 
