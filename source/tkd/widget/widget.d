@@ -14,6 +14,7 @@ import std.array;
 import std.string;
 import tkd.element.element;
 import tkd.element.uielement;
+import tkd.widget.anchorposition;
 import tkd.widget.state;
 
 /**
@@ -205,13 +206,47 @@ abstract class Widget : UiElement
 	}
 
 	/**
-	 * Geometry method for placing the widget onto the uielement.
+	 * Geometry method for placing this widget inside its parent. If no parent 
+	 * was specified the main window is used as a parent.
+	 *
+	 * Params:
+	 *     outerPadding = The amound of padding to add around the widget.
+	 *     innerPadding = The amound of padding to add inside the widget.
+	 *     side = The side to place the widget inside its parent.
+	 *     fill = The space to fill inside its parent.
+	 *     anchor = The anchor position of the widget inside its parent.
+	 *     expand = Whether or not to expand to fill the entire given space.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
 	 */
-	public auto pack(this T)()
+	public auto pack(this T)(int outerPadding = 0, int innerPadding = 0, string side = GeometrySide.top, string fill = GeometryFill.none, string anchor = AnchorPosition.center, bool expand = false)
 	{
-		string tkScript = format("pack %s -padx 10 -pady 10", this.id);
+		string tkScript = format("pack %s -padx %s -pady %s -ipadx %s -ipady %s -side %s -fill %s -anchor %s -expand %s", this.id, outerPadding, outerPadding, innerPadding, innerPadding, side, fill, anchor, expand);
 		this._tk.eval(tkScript);
 
 		return cast(T) this;
 	}
+}
+
+/**
+ * Side values for widget geometry layout.
+ */
+enum GeometrySide : string
+{
+	left   = "left",   /// Set geometry to the left.
+	right  = "right",  /// Set geometry to the right.
+	top    = "top",    /// Set geometry to the top.
+	bottom = "bottom", /// Set geometry to the bottom.
+}
+
+/**
+ * Fill values for widget geometry layout.
+ */
+enum GeometryFill : string
+{
+	none = "none", /// No filling.
+	x    = "x",    /// Fill the available horizontal space.
+	y    = "y",    /// Fill the available vertical space.
+	both = "both", /// Fill all available space.
 }

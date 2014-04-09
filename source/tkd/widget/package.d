@@ -37,3 +37,4 @@ public import tkd.widget.style;
 public import tkd.widget.text;
 public import tkd.widget.textwrapmode;
 public import tkd.widget.treeview;
+public import tkd.widget.widget : GeometrySide, GeometryFill;

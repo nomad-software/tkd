@@ -41,8 +41,8 @@ class Application : TkdApplication
 	 */
 	override protected void initInterface()
 	{
-		auto frame = new Frame(2, ReliefStyle.groove)
-			.pack();
+		auto frame = new Frame()
+			.pack(10);
 
 		this._canvas = new Canvas(frame)
 			.bind("<ButtonPress-1>", &this.mark)
@@ -57,24 +57,25 @@ class Application : TkdApplication
 			.addItem(new CanvasPolygon([220, 80, 320, 80, 300, 120, 240, 120], Color.white))
 			.addItem(new CanvasText([20, 202], "Lorem ipsum dolor sit amet.").addTag("tagged"))
 			.addItem(new CanvasWidget([220, 140], new Button("Embedded\nButton")).setWidth(100).setHeight(100))
-			.addTagConfig(new CanvasTagConfig("tagged").setFillColor(Color.red))
-			.pack();
+			.addTagConfig(new CanvasTagConfig("tagged").setFillColor(Color.red));
 
 		auto xscroll = new XScrollBar(frame)
 			.attachWidget(this._canvas)
-			.pack();
+			.pack(0, 0, GeometrySide.bottom, GeometryFill.x);
 
 		auto yscroll = new YScrollBar(frame)
 			.attachWidget(this._canvas)
-			.pack();
+			.pack(0, 0, GeometrySide.right, GeometryFill.y);
+
+		this._canvas.pack();
 
 		this._canvas
 			.attachXScrollBar(xscroll)
 			.attachYScrollBar(yscroll);
 
-		auto button = new Button(frame, "Exit")
+		auto button = new Button("Exit")
 			.setCommand(&this.exitCommand)
-			.pack();
+			.pack(10);
 	}
 }
 

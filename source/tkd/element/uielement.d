@@ -405,4 +405,22 @@ abstract class UiElement : Element
 
 		return this._tk.getResult!(int);
 	}
+
+	/**
+	 * Set if the element should change it size when requested to do so by a 
+	 * geometry manager.
+	 *
+	 * Params:
+	 *     enable = True to enable, false to disable.
+	 *
+	 * Returns:
+	 *     This element to aid method chaining.
+	 */
+	public auto setGeometryAutoSize(this T)(bool enable)
+	{
+		this._tk.eval("pack propagate %s %s", this.id, enable);
+		this._tk.eval("grid propagate %s %s", this.id, enable);
+
+		return cast(T) this;
+	}
 }

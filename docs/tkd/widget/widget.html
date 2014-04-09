@@ -136,9 +136,69 @@
 <h3>See Also</h3><p><a href="./focus.html">tkd.widget.focus</a> for returned focus states.</p>
 </div>
 </div>
-<h2><a name="Widget.pack"></a>auto <span class="symbol">pack</span>(this T)();
+<h2><a name="Widget.pack"></a>auto <span class="symbol">pack</span>(this T)(int outerPadding = 0, int innerPadding = 0, string side = GeometrySide.top, string fill = GeometryFill.none, string anchor = AnchorPosition.center, bool expand = false);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Geometry method for placing the widget onto the uielement.</p>
+<div class="declaration-description"><div class="sections"><p>Geometry method for placing this widget inside its parent. If no parent
+ was specified the main window is used as a parent.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int outerPadding</td>
+<td>The amound of padding to add around the widget.</td></tr>
+<tr><td>int innerPadding</td>
+<td>The amound of padding to add inside the widget.</td></tr>
+<tr><td>string side</td>
+<td>The side to place the widget inside its parent.</td></tr>
+<tr><td>string fill</td>
+<td>The space to fill inside its parent.</td></tr>
+<tr><td>string anchor</td>
+<td>The anchor position of the widget inside its parent.</td></tr>
+<tr><td>bool expand</td>
+<td>Whether or not to expand to fill the entire given space.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="GeometrySide"></a>enum <span class="symbol">GeometrySide</span>: string;
+</h2>
+<div class="declaration-description"><div class="sections"><p>Side values for widget geometry layout.</p>
+</div>
+<div class="enum-members"><h2><a name="GeometrySide.left"></a><span class="symbol">left</span></h2>
+<div class="declaration-description"><div class="sections"><p>Set geometry to the <span class="symbol">left</span>.</p>
+</div>
+</div>
+<h2><a name="GeometrySide.right"></a><span class="symbol">right</span></h2>
+<div class="declaration-description"><div class="sections"><p>Set geometry to the <span class="symbol">right</span>.</p>
+</div>
+</div>
+<h2><a name="GeometrySide.top"></a><span class="symbol">top</span></h2>
+<div class="declaration-description"><div class="sections"><p>Set geometry to the <span class="symbol">top</span>.</p>
+</div>
+</div>
+<h2><a name="GeometrySide.bottom"></a><span class="symbol">bottom</span></h2>
+<div class="declaration-description"><div class="sections"><p>Set geometry to the <span class="symbol">bottom</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="GeometryFill"></a>enum <span class="symbol">GeometryFill</span>: string;
+</h2>
+<div class="declaration-description"><div class="sections"><p>Fill values for widget geometry layout.</p>
+</div>
+<div class="enum-members"><h2><a name="GeometryFill.none"></a><span class="symbol">none</span></h2>
+<div class="declaration-description"><div class="sections"><p>No filling.</p>
+</div>
+</div>
+<h2><a name="GeometryFill.x"></a><span class="symbol">x</span></h2>
+<div class="declaration-description"><div class="sections"><p>Fill the available horizontal space.</p>
+</div>
+</div>
+<h2><a name="GeometryFill.y"></a><span class="symbol">y</span></h2>
+<div class="declaration-description"><div class="sections"><p>Fill the available vertical space.</p>
+</div>
+</div>
+<h2><a name="GeometryFill.both"></a><span class="symbol">both</span></h2>
+<div class="declaration-description"><div class="sections"><p>Fill all available space.</p>
 </div>
 </div>
 </div>
