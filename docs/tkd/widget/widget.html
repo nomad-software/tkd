@@ -197,7 +197,7 @@
 <tr><td>int rowSpan</td>
 <td>The amount of rows this widget should span across.</td></tr>
 <tr><td>string sticky</td>
-<td>Which edges of the cell the widget should touch.</td></tr>
+<td>Which edges of the cell the widget should touch. See note above.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.
 
@@ -206,6 +206,59 @@
      <a href="../element/uielement.html#UiElement.configureGeometryRow">tkd.element.uielement.UiElement.configureGeometryRow</a> <br>
      <a href="../element/uielement.html#UiElement.enableGeometryAutoSize">tkd.element.uielement.UiElement.enableGeometryAutoSize</a> <br>
      <a href="./anchorposition.html">tkd.widget.anchorposition</a> <br></p>
+</div>
+</div>
+<h2><a name="Widget.place"></a>auto <span class="symbol">place</span>(this T)(int xPos, int yPos, int width, int height, string anchor = AnchorPosition.northWest, string borderMode = GeometryBorderMode.inside);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Geometry method for placing this widget inside its parent using absolute
+ positioning.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int xPos</td>
+<td>The horizontal position of the widget inside its parent.</td></tr>
+<tr><td>int yPos</td>
+<td>The vertical position of the widget inside its parent.</td></tr>
+<tr><td>int width</td>
+<td>The width of the widget.</td></tr>
+<tr><td>int height</td>
+<td>The height of the widget.</td></tr>
+<tr><td>string anchor</td>
+<td>The anchor position of the widget inside its parent.</td></tr>
+<tr><td>string borderMode</td>
+<td>How the widget interacts with the parent's border.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p>
+<h3>See Also</h3><p><a href="./anchorposition.html">tkd.widget.anchorposition</a> <br>
+     <a href="./widget.html#GeometryBorderMode">tkd.widget.widget.GeometryBorderMode</a> <br></p>
+</div>
+</div>
+<h2><a name="Widget.place"></a>auto <span class="symbol">place</span>(this T)(double relativeXPos, double relativeYPos, double relativeWidth, double relativeHeight, string anchor = AnchorPosition.northWest, string borderMode = GeometryBorderMode.inside);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Geometry method for placing this widget inside its parent using relative
+ positioning. In this case the position and size is specified as a
+ floating-point number between 0.0 and 1.0 relative to the height of the
+ parent. 0.5 means the widget will be half as high as the parent and 1.0
+ means the widget will have the same height as the parent, and so on.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>double relativeXPos</td>
+<td>The relative horizontal position of the widget inside its parent.</td></tr>
+<tr><td>double relativeYPos</td>
+<td>The relative vertical position of the widget inside its parent.</td></tr>
+<tr><td>double relativeWidth</td>
+<td>The relative width of the widget.</td></tr>
+<tr><td>double relativeHeight</td>
+<td>The relative height of the widget.</td></tr>
+<tr><td>string anchor</td>
+<td>The anchor position of the widget inside its parent.</td></tr>
+<tr><td>string borderMode</td>
+<td>How the widget interacts with the parent's border.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p>
+<h3>See Also</h3><p><a href="./anchorposition.html">tkd.widget.anchorposition</a> <br>
+     <a href="./widget.html#GeometryBorderMode">tkd.widget.widget.GeometryBorderMode</a> <br></p>
 </div>
 </div>
 </div>
@@ -250,6 +303,24 @@
 </div>
 <h2><a name="GeometryFill.both"></a><span class="symbol">both</span></h2>
 <div class="declaration-description"><div class="sections"><p>Fill all available space.</p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="GeometryBorderMode"></a>enum <span class="symbol">GeometryBorderMode</span>: string;
+</h2>
+<div class="declaration-description"><div class="sections"><p>Interaction modes for parent borders.</p>
+</div>
+<div class="enum-members"><h2><a name="GeometryBorderMode.inside"></a><span class="symbol">inside</span></h2>
+<div class="declaration-description"><div class="sections"><p>Take into consideration the border when placing widgets.</p>
+</div>
+</div>
+<h2><a name="GeometryBorderMode.outside"></a><span class="symbol">outside</span></h2>
+<div class="declaration-description"><div class="sections"><p>Don't take consideration the border when placing widgets.</p>
+</div>
+</div>
+<h2><a name="GeometryBorderMode.ignore"></a><span class="symbol">ignore</span></h2>
+<div class="declaration-description"><div class="sections"><p>Ignore borders.</p>
 </div>
 </div>
 </div>

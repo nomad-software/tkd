@@ -260,7 +260,7 @@ abstract class Widget : UiElement
 	 *     innerPadding = The amound of padding to add inside the widget.
 	 *     columnSpan = The amount of column this widget should span across.
 	 *     rowSpan = The amount of rows this widget should span across.
-	 *     sticky = Which edges of the cell the widget should touch.
+	 *     sticky = Which edges of the cell the widget should touch. See note above.
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
@@ -279,6 +279,67 @@ abstract class Widget : UiElement
 		return cast(T) this;
 	}
 
+	/**
+	 * Geometry method for placing this widget inside its parent using absolute 
+	 * positioning.
+	 *
+	 * Params:
+	 *     xPos = The horizontal position of the widget inside its parent.
+	 *     yPos = The vertical position of the widget inside its parent.
+	 *     width = The width of the widget.
+	 *     height = The height of the widget.
+	 *     anchor = The anchor position of the widget inside its parent.
+	 *     borderMode = How the widget interacts with the parent's border.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./anchorposition.html, tkd.widget.anchorposition) $(BR)
+	 *     $(LINK2 ./widget.html#GeometryBorderMode, tkd.widget.widget.GeometryBorderMode) $(BR)
+	 */
+	public auto place(this T)(int xPos, int yPos, int width, int height, string anchor = AnchorPosition.northWest, string borderMode = GeometryBorderMode.inside)
+	{
+		string tkScript = format("place %s -x %s -y %s -width %s -height %s -anchor {%s} -bordermode {%s}", this.id, xPos, yPos, width, height, anchor, borderMode);
+		this._tk.eval(tkScript);
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Geometry method for placing this widget inside its parent using relative 
+	 * positioning. In this case the position and size is specified as a 
+	 * floating-point number between 0.0 and 1.0 relative to the height of the 
+	 * parent. 0.5 means the widget will be half as high as the parent and 1.0 
+	 * means the widget will have the same height as the parent, and so on.
+	 *
+	 * Params:
+	 *     relativeXPos = The relative horizontal position of the widget inside its parent.
+	 *     relativeYPos = The relative vertical position of the widget inside its parent.
+	 *     relativeWidth = The relative width of the widget.
+	 *     relativeHeight = The relative height of the widget.
+	 *     anchor = The anchor position of the widget inside its parent.
+	 *     borderMode = How the widget interacts with the parent's border.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./anchorposition.html, tkd.widget.anchorposition) $(BR)
+	 *     $(LINK2 ./widget.html#GeometryBorderMode, tkd.widget.widget.GeometryBorderMode) $(BR)
+	 */
+	public auto place(this T)(double relativeXPos, double relativeYPos, double relativeWidth, double relativeHeight, string anchor = AnchorPosition.northWest, string borderMode = GeometryBorderMode.inside)
+	{
+		assert(relativeXPos >= 0 && relativeXPos <= 1);
+		assert(relativeYPos >= 0 && relativeYPos <= 1);
+		assert(relativeWidth >= 0 && relativeWidth <= 1);
+		assert(relativeHeight >= 0 && relativeHeight <= 1);
+
+		string tkScript = format("place %s -relx %s -rely %s -relwidth %s -relheight %s -anchor {%s} -bordermode {%s}", this.id, relativeXPos, relativeYPos, relativeWidth, relativeHeight, anchor, borderMode);
+		this._tk.eval(tkScript);
+
+		return cast(T) this;
+	}
 }
 
 /**
@@ -301,4 +362,14 @@ enum GeometryFill : string
 	x    = "x",    /// Fill the available horizontal space.
 	y    = "y",    /// Fill the available vertical space.
 	both = "both", /// Fill all available space.
+}
+
+/**
+ * Interaction modes for parent borders.
+ */
+enum GeometryBorderMode : string
+{
+	inside  = "inside",  /// Take into consideration the border when placing widgets.
+	outside = "outside", /// Don't take consideration the border when placing widgets.
+	ignore  = "ignore",  /// Ignore borders.
 }
