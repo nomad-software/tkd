@@ -8,9 +8,6 @@
 	"dependencies": {
 		"tcltk": "~master",
 	},
-	"subConfigurations": {
-		"tcltk": "activetcl"
-	},
 	"configurations": [
 		{
 			"name": "library",
