@@ -13,6 +13,7 @@
 			"name": "library",
 			"targetType": "library",
 			"excludedSourceFiles": ["source/example.d"],
+			"targetPath": "build/lib",
 		},
 		{
 			"name": "example",
@@ -20,6 +21,7 @@
 			"mainSourceFile": "source/example.d",
 			"lflags-windows": ["/subsystem:windows"],
 			"dflags": ["-Jmedia"],
+			"targetPath": "build/examples",
 		},
 	],
 }
