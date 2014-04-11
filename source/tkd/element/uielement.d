@@ -13,6 +13,7 @@ import std.algorithm;
 import std.conv;
 import std.range;
 import std.string;
+import tkd.element.cursor;
 import tkd.element.element;
 
 /**
@@ -530,5 +531,54 @@ abstract class UiElement : Element
 		this._tk.eval("grid rowconfigure %s %s -weight %s -minsize %s -uniform %s -pad %s", this.id, index, weight, minSize, uniformGroup, pad);
 
 		return cast(T) this;
+	}
+
+	/**
+	 * Provides a simple means to block keyboard, button, and pointer events 
+	 * from elements, while overriding the cursor with a configurable busy 
+	 * cursor.
+	 *
+	 * Params:
+	 *     busy = Specifies whether this element is busy or not.
+	 *     cursor = The cursor to use if the element is busy.
+	 *
+	 * Returns:
+	 *     This element to aid method chaining.
+	 *
+	 * Caveats:
+	 *     Note that this method does not currently have any effect on 
+	 *     MacOSX when Tk is built using Aqua support.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./cursor.html, tkd.element.cursor) $(BR)
+	 */
+	public auto setBusy(this T)(bool busy, string cursor = Cursor.watch)
+	{
+		if (busy)
+		{
+			this._tk.eval("tk busy hold %s -cursor {%s}", this.id, cursor);
+		}
+		else
+		{
+			this._tk.eval("tk busy forget %s", this.id);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Gets if the element is busy or not.
+	 *
+	 * Returns:
+	 *     true if the element is busy, false if not.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./cursor.html, tkd.element.cursor) $(BR)
+	 */
+	public bool isBusy(this T)()
+	{
+		this._tk.eval("tk busy status %s", this.id);
+
+		return this._tk.getResult!(int) == 1;
 	}
 }

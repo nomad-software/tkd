@@ -120,6 +120,21 @@ abstract class TkdApplication
 	}
 
 	/**
+	 * This method is used to bring the application 'up to date' by entering 
+	 * the event loop repeatedly until all pending events (including idle 
+	 * callbacks) have been processed.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto update(this T)()
+	{
+		this._tk.eval("update");
+
+		return cast(T) this;
+	}
+
+	/**
 	 * Exit the application.
 	 */
 	public void exit()

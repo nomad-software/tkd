@@ -89,7 +89,6 @@ enum Cursor : string
 	urAngle                 = "ur_angle",
 	watch                   = "watch",
 	xterm                   = "xterm",
-
 }
 
 /**
