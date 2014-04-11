@@ -1,3 +1,4 @@
 .dub/*
 build/*
 debug.log
+docs/__main.html
