@@ -50,19 +50,22 @@ class Application : TkdApplication
 			.grid(0, 0, 10, 0, 1, 1, "nesw");
 
 		this._canvas = new Canvas(frame)
-			.bind("<ButtonPress-1>", &this.mark)
-			.bind("<B1-Motion>", &this.drag)
+			.setWidth(330)
+			.setHeight(270)
 			.setCursor(Cursor.hand1)
-			.setScrollRegion(-500, -500, 800, 800)
+			.setScrollRegion(-300, -250, 610, 500)
 			.addItem(new CanvasRectangle([10, 10, 200, 100]).addTag("tagged"))
 			.addItem(new CanvasArc([10, 110, 110, 210], CanvasArcStyle.pie, Color.white))
 			.addItem(new CanvasImage([210, 10], new Png!("thumbnail.png")))
+			.addItem(new CanvasImage([260, 10], new Gif!("thumbnail.gif")))
 			.addItem(new CanvasLine([120, 110, 200, 110, 200, 160]).setArrowPosition(CanvasLineArrow.last))
 			.addItem(new CanvasOval([10, 170, 200, 250], Color.white))
 			.addItem(new CanvasPolygon([220, 80, 320, 80, 300, 120, 240, 120], Color.white))
 			.addItem(new CanvasText([20, 202], "Lorem ipsum dolor sit amet.").addTag("tagged"))
 			.addItem(new CanvasWidget([220, 140], new Button("Embedded\nButton")).setWidth(100).setHeight(100))
-			.addTagConfig(new CanvasTagConfig("tagged").setFillColor(Color.red));
+			.addTagConfig(new CanvasTagConfig("tagged").setFillColor(Color.red))
+			.bind("<ButtonPress-1>", &this.mark)
+			.bind("<B1-Motion>", &this.drag);
 
 		auto xscroll = new XScrollBar(frame)
 			.attachWidget(this._canvas)
