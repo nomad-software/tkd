@@ -42,12 +42,15 @@ class Application : TkdApplication
 	override protected void initInterface()
 	{
 		this.mainWindow.configureGeometryColumn(0, 1);
-		this.mainWindow.configureGeometryRow(0, 1);
+		this.mainWindow.configureGeometryRow(1, 1);
+
+		auto label = new Label("The canvas widget can be used to draw shapes,\nimages and widgets on a user defined area.")
+			.grid(0, 0, 10, 0, 1, 1, "new");
 
 		auto frame = new Frame()
 			.configureGeometryColumn(0, 1)
 			.configureGeometryRow(0, 1)
-			.grid(0, 0, 10, 0, 1, 1, "nesw");
+			.grid(0, 1, 10, 0, 1, 1, "nesw");
 
 		this._canvas = new Canvas(frame)
 			.setWidth(330)
@@ -82,10 +85,10 @@ class Application : TkdApplication
 
 		auto button = new Button("Exit")
 			.setCommand(&this.exitCommand)
-			.grid(0, 1, 10, 0, 1, 1, "s");
+			.grid(0, 2, 10, 0, 1, 1, "s");
 
 		auto sizegrip = new SizeGrip()
-			.grid(0, 2, 0, 0, 1, 1, "se");
+			.grid(0, 3, 0, 0, 1, 1, "se");
 	}
 }
 

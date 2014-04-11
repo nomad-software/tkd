@@ -18,6 +18,8 @@ mixin template Bind()
 
 	/**
 	 * Bind a callback to a particular event triggered by this item.
+	 * This command is identical to $(LINK2 
+	 * ../../../element/uielement.html#UiElement, UiElement)'s bind method.
 	 *
 	 * If bindings have been created for a canvas widget they are invoked in 
 	 * addition to bindings created for the canvas's items. The bindings for 
