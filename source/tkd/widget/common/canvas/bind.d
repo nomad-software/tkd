@@ -44,6 +44,8 @@ mixin template Bind()
 	 */
 	public auto bind(this T)(string binding, CommandCallback callback)
 	{
+		assert(!std.regex.match(binding, r"^<.*?>$").empty, "Binding must take the form of <binding>");
+
 		this._bindings[binding] = callback;
 
 		if (this._parent)

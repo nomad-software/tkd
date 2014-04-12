@@ -47,11 +47,6 @@ public import tkd.widget;
  * 	app.run();
  * }
  * ---
- *
- * As shown in the above example, the TkdApplication class supports automatic 
- * declaration for all widget types so they don't have to be declared 
- * beforehand. e.g. you can refer to all buttons through the magic property 
- * `this.button`, all frames through the magic property `this.frame` etc.
  */
 abstract class TkdApplication
 {
@@ -140,6 +135,51 @@ abstract class TkdApplication
 	public void exit()
 	{
 		this.mainWindow.destroy();
+	}
+
+	/**
+	 * Associates the virtual event with the binding, so that the virtual event 
+	 * will trigger whenever the binding occurs. Virtual events may be any 
+	 * string value and binding may have any of the values allowed for the 
+	 * binding argument of the $(LINK2 ./uielement.html#UiElement.bind, bind) 
+	 * method. If the virtual event is already defined, the new binding adds to 
+	 * the existing bindings for the event.
+	 *
+	 * Params:
+	 *     virtualEvent = The virtual event to create.
+	 *     binding = The binding that triggers this event.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./element/uielement.html, tkd.element.uielement)
+	 */
+	public void addVirtualEvent(this T)(string virtualEvent, string binding)
+	{
+		assert(!std.regex.match(virtualEvent, r"^<<.*?>>$").empty, "Virtual event must take the form of <<event>>");
+
+		this._tk.eval("event add %s %s", virtualEvent, binding);
+	}
+
+	/**
+	 * Deletes each of the bindings from those associated with the virtual 
+	 * event. Virtual events may be any string value and binding may have any 
+	 * of the values allowed for the binding argument of the $(LINK2 
+	 * ./uielement.html#UiElement.bind, bind) method. Any bindings not 
+	 * currently associated with virtual events are ignored. If no binding 
+	 * argument is provided, all bindings are removed for the virtual event, so 
+	 * that the virtual event will not trigger anymore.
+	 *
+	 * Params:
+	 *     virtualEvent = The virtual event to create.
+	 *     binding = The binding that triggers this event.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ./element/uielement.html, tkd.element.uielement)
+	 */
+	public void deleteVirtualEvent(this T)(string virtualEvent, string binding = null)
+	{
+		assert(!std.regex.match(virtualEvent, r"^<<.*?>>$").empty, "Virtual event must take the form of <<event>>");
+
+		this._tk.eval("event delete %s %s", virtualEvent, binding);
 	}
 
 	/**

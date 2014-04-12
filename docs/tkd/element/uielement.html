@@ -226,7 +226,59 @@ The last part of a long event specification is detail. In the case
      equivalent to <b>&lt;Control-KeyPress-comma&gt;</b>.
 
 </p>
-<h3>See Also</h3><p><a href="./element.html#CommandCallback">tkd.element.element.CommandCallback</a></p>
+<p><h3>Virtual Events:</h3>
+The following are built-in virtual events for the purposes of notification:
+     <p>        <table class="parameter-list">            <tr><td>&lt;&lt;AltUnderlined&gt;&gt;</td><td>This is sent to widget to notify it that the letter it has underlined (as an accelerator indicator) with the -underline option has been pressed in combination with the Alt key. The usual response to this is to either focus into the widget (or some related widget) or to invoke the widget.</td></tr>
+             <tr><td>&lt;&lt;Invoke&gt;&gt;</td><td>This can be sent to some widgets (e.g. button, listbox, menu) as an alternative to &lt;space&gt;.</td></tr>
+             <tr><td>&lt;&lt;ListboxSelect&gt;&gt;</td><td>This is sent to a listbox when the set of selected item(s) in the listbox is updated.</td></tr>
+             <tr><td>&lt;&lt;MenuSelect&gt;&gt;</td><td>This is sent to a menu when the currently selected item in the menu changes. It is intended for use with context-sensitive help systems.</td></tr>
+             <tr><td>&lt;&lt;Modified&gt;&gt;</td><td>This is sent to a text widget when the contents of the widget are changed.</td></tr>
+             <tr><td>&lt;&lt;Selection&gt;&gt;</td><td>This is sent to a text widget when the selection in the widget is changed.</td></tr>
+             <tr><td>&lt;&lt;ThemeChanged&gt;&gt;</td><td>This is sent to a text widget when the ttk (Tile) theme changed.</td></tr>
+             <tr><td>&lt;&lt;TraverseIn&gt;&gt;</td><td>This is sent to a widget when the focus enters the widget because of a user-driven “tab to widget” action.</td></tr>
+             <tr><td>&lt;&lt;TraverseOut&gt;&gt;</td><td>This is sent to a widget when the focus leaves the widget because of a user-driven “tab to widget” action.</td></tr>
+         </table>
+     </p>
+     The following are built-in virtual events for the purposes of unifying bindings across multiple platforms.
+     <p>        <table class="parameter-list">            <tr><td>&lt;&lt;Clear&gt;&gt;</td><td>Delete the currently selected widget contents.</td></tr>
+             <tr><td>&lt;&lt;Copy&gt;&gt;</td><td>Copy the currently selected widget contents to the clipboard.</td></tr>
+             <tr><td>&lt;&lt;Cut&gt;&gt;</td><td>Move the currently selected widget contents to the clipboard.</td></tr>
+             <tr><td>&lt;&lt;LineEnd&gt;&gt;</td><td>Move to the end of the line in the current widget while deselecting any selected contents.</td></tr>
+             <tr><td>&lt;&lt;LineStart&gt;&gt;</td><td>Move to the start of the line in the current widget while deselecting any selected contents.</td></tr>
+             <tr><td>&lt;&lt;NextChar&gt;&gt;</td><td>Move to the next item (i.e., visible character) in the current widget while deselecting any selected contents.</td></tr>
+             <tr><td>&lt;&lt;NextLine&gt;&gt;</td><td>Move to the next line in the current widget while deselecting any selected contents.</td></tr>
+             <tr><td>&lt;&lt;NextPara&gt;&gt;</td><td>Move to the next paragraph in the current widget while deselecting any selected contents.</td></tr>
+             <tr><td>&lt;&lt;NextWord&gt;&gt;</td><td>Move to the next group of items (i.e., visible word) in the current widget while deselecting any selected contents.</td></tr>
+             <tr><td>&lt;&lt;Paste&gt;&gt;</td><td>Replace the currently selected widget contents with the contents of the clipboard.</td></tr>
+             <tr><td>&lt;&lt;PasteSelection&gt;&gt;</td><td>Insert the contents of the selection at the mouse location. (This event has meaningful %x and %y substitutions).</td></tr>
+             <tr><td>&lt;&lt;PrevChar&gt;&gt;</td><td>Move to the previous item (i.e., visible character) in the current widget while deselecting any selected contents.</td></tr>
+             <tr><td>&lt;&lt;PrevLine&gt;&gt;</td><td>Move to the previous line in the current widget while deselecting any selected contents.</td></tr>
+             <tr><td>&lt;&lt;PrevPara&gt;&gt;</td><td>Move to the previous paragraph in the current widget while deselecting any selected contents.</td></tr>
+             <tr><td>&lt;&lt;PrevWindow&gt;&gt;</td><td>Traverse to the previous window.</td></tr>
+             <tr><td>&lt;&lt;PrevWord&gt;&gt;</td><td>Move to the previous group of items (i.e., visible word) in the current widget while deselecting any selected contents.</td></tr>
+             <tr><td>&lt;&lt;Redo&gt;&gt;</td><td>Redo one undone action.</td></tr>
+             <tr><td>&lt;&lt;SelectAll&gt;&gt;</td><td>Set the range of selected contents to the complete widget.</td></tr>
+             <tr><td>&lt;&lt;SelectLineEnd&gt;&gt;</td><td>Move to the end of the line in the current widget while extending the range of selected contents.</td></tr>
+             <tr><td>&lt;&lt;SelectLineStart&gt;&gt;</td><td>Move to the start of the line in the current widget while extending the range of selected contents.</td></tr>
+             <tr><td>&lt;&lt;SelectNextChar&gt;&gt;</td><td>Move to the next item (i.e., visible character) in the current widget while extending the range of selected contents.</td></tr>
+             <tr><td>&lt;&lt;SelectNextLine&gt;&gt;</td><td>Move to the next line in the current widget while extending the range of selected contents.</td></tr>
+             <tr><td>&lt;&lt;SelectNextPara&gt;&gt;</td><td>Move to the next paragraph in the current widget while extending the range of selected contents.</td></tr>
+             <tr><td>&lt;&lt;SelectNextWord&gt;&gt;</td><td>Move to the next group of items (i.e., visible word) in the current widget while extending the range of selected contents.</td></tr>
+             <tr><td>&lt;&lt;SelectNone&gt;&gt;</td><td>Reset the range of selected contents to be empty.</td></tr>
+             <tr><td>&lt;&lt;SelectPrevChar&gt;&gt;</td><td>Move to the previous item (i.e., visible character) in the current widget while extending the range of selected contents.</td></tr>
+             <tr><td>&lt;&lt;SelectPrevLine&gt;&gt;</td><td>Move to the previous line in the current widget while extending the range of selected contents.</td></tr>
+             <tr><td>&lt;&lt;SelectPrevPara&gt;&gt;</td><td>Move to the previous paragraph in the current widget while extending the range of selected contents.</td></tr>
+             <tr><td>&lt;&lt;SelectPrevWord&gt;&gt;</td><td>Move to the previous group of items (i.e., visible word) in the current widget while extending the range of selected contents.</td></tr>
+             <tr><td>&lt;&lt;ToggleSelection&gt;&gt;</td><td>Toggle the selection.</td></tr>
+             <tr><td>&lt;&lt;Undo&gt;&gt;</td><td>Undo the last action.</td></tr>
+         </table>
+     </p>
+
+</p>
+<h3>See Also</h3><p><a href="../tkdapplication.html#TkdApplication.addVirtualEvent">tkd.tkdapplication.TkdApplication.addVirtualEvent</a> <br>
+     <a href="../tkdapplication.html#TkdApplication.deleteVirtualEvent">tkd.tkdapplication.TkdApplication.deleteVirtualEvent</a> <br>
+     <a href="./element.html#CommandCallback">tkd.element.element.CommandCallback</a> <br>
+     <a href="./uielement.html#UiElement.generateEvent">tkd.element.element.UiElement.generateEvent</a> <br></p>
 </div>
 </div>
 <h2><a name="UiElement.unbind"></a>auto <span class="symbol">unbind</span>(this T)(string binding);
@@ -433,6 +485,23 @@ Note that this method does not currently have any effect on
 
 </p>
 <h3>See Also</h3><p><a href="./cursor.html">tkd.element.cursor</a> <br></p>
+</div>
+</div>
+<h2><a name="UiElement.generateEvent"></a>void <span class="symbol">generateEvent</span>(this T)(string event);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Generates an event and arranges for it to be processed just as if it had
+ come from the operating system. Event provides a basic description of
+ the event, such as <b>&lt;Shift-Button-2&gt;</b> or <b>&lt;&lt;Paste&gt;&gt;</b>. The event argument may have any of the forms
+ allowed for the binding argument of the <a href="./uielement.html#UiElement.bind">bind</a> method except that it must
+ consist of a single event pattern only. Certain events, such as key
+ events, require that the window has focus to receive the event properly.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string event</td>
+<td>The event to issue.</td></tr>
+</table>
+<h3>See Also</h3><p><a href="../tkdapplication.html#TkdApplication.addVirtualEvent">tkd.tkdapplication.TkdApplication.addVirtualEvent</a> <br>
+     <a href="../tkdapplication.html#TkdApplication.deleteVirtualEvent">tkd.tkdapplication.TkdApplication.deleteVirtualEvent</a> <br>
+     <a href="./uielement.html#UiElement.bind">tkd.element.uielement.UiElement.bind</a> <br></p>
 </div>
 </div>
 </div>

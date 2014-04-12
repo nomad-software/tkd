@@ -42,12 +42,7 @@
 	app.run();
 }
 </pre>
-<br><br>
-
- As shown in the above example, the <span class="symbol">TkdApplication</span> class supports automatic
- declaration for all widget types so they don't have to be declared
- beforehand. e.g. you can refer to all buttons through the magic property
- `this.button`, all frames through the magic property `this.frame` etc.</p>
+</p>
 </div>
 <div class="class-members"><h2><a name="TkdApplication.this"></a> this();
 </h2>
@@ -90,6 +85,40 @@
 <h2><a name="TkdApplication.exit"></a>void <span class="symbol">exit</span>();
 </h2>
 <div class="declaration-description"><div class="sections"><p>Exit the application.</p>
+</div>
+</div>
+<h2><a name="TkdApplication.addVirtualEvent"></a>void <span class="symbol">addVirtualEvent</span>(this T)(string virtualEvent, string binding);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Associates the virtual event with the binding, so that the virtual event
+ will trigger whenever the binding occurs. Virtual events may be any
+ string value and binding may have any of the values allowed for the
+ binding argument of the <a href="./uielement.html#UiElement.bind">bind</a>
+ method. If the virtual event is already defined, the new binding adds to
+ the existing bindings for the event.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string virtualEvent</td>
+<td>The virtual event to create.</td></tr>
+<tr><td>string binding</td>
+<td>The binding that triggers this event.</td></tr>
+</table>
+<h3>See Also</h3><p><a href="./element/uielement.html">tkd.element.uielement</a></p>
+</div>
+</div>
+<h2><a name="TkdApplication.deleteVirtualEvent"></a>void <span class="symbol">deleteVirtualEvent</span>(this T)(string virtualEvent, string binding = null);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Deletes each of the bindings from those associated with the virtual
+ event. Virtual events may be any string value and binding may have any
+ of the values allowed for the binding argument of the <a href="./uielement.html#UiElement.bind">bind</a> method. Any bindings not
+ currently associated with virtual events are ignored. If no binding
+ argument is provided, all bindings are removed for the virtual event, so
+ that the virtual event will not trigger anymore.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string virtualEvent</td>
+<td>The virtual event to create.</td></tr>
+<tr><td>string binding</td>
+<td>The binding that triggers this event.</td></tr>
+</table>
+<h3>See Also</h3><p><a href="./element/uielement.html">tkd.element.uielement</a></p>
 </div>
 </div>
 <h2><a name="TkdApplication.initInterface"></a>protected abstract void <span class="symbol">initInterface</span>();

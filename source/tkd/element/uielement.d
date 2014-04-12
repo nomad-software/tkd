@@ -246,11 +246,68 @@ abstract class UiElement : Element
 	 *     default to KeyPress. For example, $(B &lt;Control-comma&gt;) is 
 	 *     equivalent to $(B &lt;Control-KeyPress-comma&gt;).
 	 *
+	 * Virtual_Events:
+	 *     The following are built-in virtual events for the purposes of notification:
+	 *     $(P
+	 *         $(PARAM_TABLE
+	 *             $(PARAM_ROW &lt;&lt;AltUnderlined&gt;&gt;, This is sent to widget to notify it that the letter it has underlined (as an accelerator indicator) with the -underline option has been pressed in combination with the Alt key. The usual response to this is to either focus into the widget (or some related widget) or to invoke the widget.)
+	 *             $(PARAM_ROW &lt;&lt;Invoke&gt;&gt;, This can be sent to some widgets (e.g. button, listbox, menu) as an alternative to &lt;space&gt;.)
+	 *             $(PARAM_ROW &lt;&lt;ListboxSelect&gt;&gt;, This is sent to a listbox when the set of selected item(s) in the listbox is updated.)
+	 *             $(PARAM_ROW &lt;&lt;MenuSelect&gt;&gt;, This is sent to a menu when the currently selected item in the menu changes. It is intended for use with context-sensitive help systems.)
+	 *             $(PARAM_ROW &lt;&lt;Modified&gt;&gt;, This is sent to a text widget when the contents of the widget are changed.)
+	 *             $(PARAM_ROW &lt;&lt;Selection&gt;&gt;, This is sent to a text widget when the selection in the widget is changed.)
+	 *             $(PARAM_ROW &lt;&lt;ThemeChanged&gt;&gt;, This is sent to a text widget when the ttk (Tile) theme changed.)
+	 *             $(PARAM_ROW &lt;&lt;TraverseIn&gt;&gt;, This is sent to a widget when the focus enters the widget because of a user-driven “tab to widget” action.)
+	 *             $(PARAM_ROW &lt;&lt;TraverseOut&gt;&gt;, This is sent to a widget when the focus leaves the widget because of a user-driven “tab to widget” action.)
+	 *         )
+	 *     )
+	 *     The following are built-in virtual events for the purposes of unifying bindings across multiple platforms.
+	 *     $(P
+	 *         $(PARAM_TABLE
+	 *             $(PARAM_ROW &lt;&lt;Clear&gt;&gt;, Delete the currently selected widget contents.)
+	 *             $(PARAM_ROW &lt;&lt;Copy&gt;&gt;, Copy the currently selected widget contents to the clipboard.)
+	 *             $(PARAM_ROW &lt;&lt;Cut&gt;&gt;, Move the currently selected widget contents to the clipboard.)
+	 *             $(PARAM_ROW &lt;&lt;LineEnd&gt;&gt;, Move to the end of the line in the current widget while deselecting any selected contents.)
+	 *             $(PARAM_ROW &lt;&lt;LineStart&gt;&gt;, Move to the start of the line in the current widget while deselecting any selected contents.)
+	 *             $(PARAM_ROW &lt;&lt;NextChar&gt;&gt;, Move to the next item (i.e., visible character) in the current widget while deselecting any selected contents.)
+	 *             $(PARAM_ROW &lt;&lt;NextLine&gt;&gt;, Move to the next line in the current widget while deselecting any selected contents.)
+	 *             $(PARAM_ROW &lt;&lt;NextPara&gt;&gt;, Move to the next paragraph in the current widget while deselecting any selected contents.)
+	 *             $(PARAM_ROW &lt;&lt;NextWord&gt;&gt;, Move to the next group of items (i.e., visible word) in the current widget while deselecting any selected contents.)
+	 *             $(PARAM_ROW &lt;&lt;Paste&gt;&gt;, Replace the currently selected widget contents with the contents of the clipboard.)
+	 *             $(PARAM_ROW &lt;&lt;PasteSelection&gt;&gt;, Insert the contents of the selection at the mouse location. (This event has meaningful %x and %y substitutions).)
+	 *             $(PARAM_ROW &lt;&lt;PrevChar&gt;&gt;, Move to the previous item (i.e., visible character) in the current widget while deselecting any selected contents.)
+	 *             $(PARAM_ROW &lt;&lt;PrevLine&gt;&gt;, Move to the previous line in the current widget while deselecting any selected contents.)
+	 *             $(PARAM_ROW &lt;&lt;PrevPara&gt;&gt;, Move to the previous paragraph in the current widget while deselecting any selected contents.)
+	 *             $(PARAM_ROW &lt;&lt;PrevWindow&gt;&gt;, Traverse to the previous window.)
+	 *             $(PARAM_ROW &lt;&lt;PrevWord&gt;&gt;, Move to the previous group of items (i.e., visible word) in the current widget while deselecting any selected contents.)
+	 *             $(PARAM_ROW &lt;&lt;Redo&gt;&gt;, Redo one undone action.)
+	 *             $(PARAM_ROW &lt;&lt;SelectAll&gt;&gt;, Set the range of selected contents to the complete widget.)
+	 *             $(PARAM_ROW &lt;&lt;SelectLineEnd&gt;&gt;, Move to the end of the line in the current widget while extending the range of selected contents.)
+	 *             $(PARAM_ROW &lt;&lt;SelectLineStart&gt;&gt;, Move to the start of the line in the current widget while extending the range of selected contents.)
+	 *             $(PARAM_ROW &lt;&lt;SelectNextChar&gt;&gt;, Move to the next item (i.e., visible character) in the current widget while extending the range of selected contents.)
+	 *             $(PARAM_ROW &lt;&lt;SelectNextLine&gt;&gt;, Move to the next line in the current widget while extending the range of selected contents.)
+	 *             $(PARAM_ROW &lt;&lt;SelectNextPara&gt;&gt;, Move to the next paragraph in the current widget while extending the range of selected contents.)
+	 *             $(PARAM_ROW &lt;&lt;SelectNextWord&gt;&gt;, Move to the next group of items (i.e., visible word) in the current widget while extending the range of selected contents.)
+	 *             $(PARAM_ROW &lt;&lt;SelectNone&gt;&gt;, Reset the range of selected contents to be empty.)
+	 *             $(PARAM_ROW &lt;&lt;SelectPrevChar&gt;&gt;, Move to the previous item (i.e., visible character) in the current widget while extending the range of selected contents.)
+	 *             $(PARAM_ROW &lt;&lt;SelectPrevLine&gt;&gt;, Move to the previous line in the current widget while extending the range of selected contents.)
+	 *             $(PARAM_ROW &lt;&lt;SelectPrevPara&gt;&gt;, Move to the previous paragraph in the current widget while extending the range of selected contents.)
+	 *             $(PARAM_ROW &lt;&lt;SelectPrevWord&gt;&gt;, Move to the previous group of items (i.e., visible word) in the current widget while extending the range of selected contents.)
+	 *             $(PARAM_ROW &lt;&lt;ToggleSelection&gt;&gt;, Toggle the selection.)
+	 *             $(PARAM_ROW &lt;&lt;Undo&gt;&gt;, Undo the last action.)
+	 *         )
+	 *     )
+	 *
 	 * See_Also:
-	 *     $(LINK2 ./element.html#CommandCallback, tkd.element.element.CommandCallback)
+	 *     $(LINK2 ../tkdapplication.html#TkdApplication.addVirtualEvent, tkd.tkdapplication.TkdApplication.addVirtualEvent) $(BR)
+	 *     $(LINK2 ../tkdapplication.html#TkdApplication.deleteVirtualEvent, tkd.tkdapplication.TkdApplication.deleteVirtualEvent) $(BR)
+	 *     $(LINK2 ./element.html#CommandCallback, tkd.element.element.CommandCallback) $(BR)
+	 *     $(LINK2 ./uielement.html#UiElement.generateEvent, tkd.element.element.UiElement.generateEvent) $(BR)
 	 */
 	public auto bind(this T)(string binding, CommandCallback callback)
 	{
+		assert(!std.regex.match(binding, r"^<.*?>$").empty, "Binding must take the form of <binding>");
+
 		string command = this.createCommand(callback, binding);
 		this._tk.eval("bind %s {%s} {%s %%b %%k %%x %%y %%D %%K %%X %%Y}", this.id, binding, command);
 
@@ -580,5 +637,30 @@ abstract class UiElement : Element
 		this._tk.eval("tk busy status %s", this.id);
 
 		return this._tk.getResult!(int) == 1;
+	}
+
+	/**
+	 * Generates an event and arranges for it to be processed just as if it had 
+	 * come from the operating system. Event provides a basic description of 
+	 * the event, such as $(B &lt;Shift-Button-2&gt;) or $(B 
+	 * &lt;&lt;Paste&gt;&gt;). The event argument may have any of the forms 
+	 * allowed for the binding argument of the $(LINK2 
+	 * ./uielement.html#UiElement.bind, bind) method except that it must 
+	 * consist of a single event pattern only. Certain events, such as key 
+	 * events, require that the window has focus to receive the event properly.
+	 *
+	 * Params:
+	 *     event = The event to issue.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../tkdapplication.html#TkdApplication.addVirtualEvent, tkd.tkdapplication.TkdApplication.addVirtualEvent) $(BR)
+	 *     $(LINK2 ../tkdapplication.html#TkdApplication.deleteVirtualEvent, tkd.tkdapplication.TkdApplication.deleteVirtualEvent) $(BR)
+	 *     $(LINK2 ./uielement.html#UiElement.bind, tkd.element.uielement.UiElement.bind) $(BR)
+	 */
+	public void generateEvent(this T)(string event)
+	{
+		assert(!std.regex.match(event, r"^<.*?>$").empty, "Event must take the form of <binding>");
+
+		this._tk.eval("event generate %s %s", this.id, event);
 	}
 }
