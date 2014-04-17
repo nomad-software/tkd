@@ -1,4 +1,5 @@
 .dub/*
 build/*
 debug.log
-docs/__main.html
+__main.html
+package.html
