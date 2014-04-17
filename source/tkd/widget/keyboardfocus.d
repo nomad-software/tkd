@@ -4,12 +4,12 @@
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.widget.focus;
+module tkd.widget.keyboardfocus;
 
 /**
- * State values of widgets.
+ * Keyboard values values of widgets.
  */
-enum Focus : string
+enum KeyboardFocus : string
 {
 	normal  = "ttk::takefocus", /// Default focus setting.
 	enable  = "1",              /// Enable widget focus.

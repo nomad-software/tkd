@@ -181,9 +181,9 @@ abstract class Widget : UiElement
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./focus.html, tkd.widget.focus)
+	 *     $(LINK2 ./keyboardfocus.html, tkd.widget.keyboardfocus)
 	 */
-	public auto setFocus(this T)(string focus)
+	public auto setKeyboardFocus(this T)(string focus)
 	{
 		this._tk.eval("%s configure -takefocus %s", this.id, focus);
 
@@ -197,9 +197,9 @@ abstract class Widget : UiElement
 	 *     The widget's focus setting.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./focus.html, tkd.widget.focus)
+	 *     $(LINK2 ./keyboardfocus.html, tkd.widget.keyboardfocus)
 	 */
-	public string getFocus()
+	public string getKeyboardFocus()
 	{
 		this._tk.eval("%s cget -takefocus", this.id);
 		return this._tk.getResult!(string);

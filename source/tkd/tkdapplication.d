@@ -111,6 +111,7 @@ abstract class TkdApplication
 	 */
 	public void run()
 	{
+		this.mainWindow.focus(true);
 		this._tk.run();
 	}
 

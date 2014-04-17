@@ -663,4 +663,29 @@ abstract class UiElement : Element
 
 		this._tk.eval("event generate %s %s", this.id, event);
 	}
+
+	/**
+	 * Set the element to take focus so any key press or key release events for 
+	 * the application are sent to that element. It is also possible to force 
+	 * the operating system to apply focus to the element immediately.
+	 *
+	 * Params:
+	 *     force = Whether or not to force the focus.
+	 *
+	 * Returns:
+	 *     This element to aid method chaining.
+	 */
+	public auto focus(this T)(bool force = false)
+	{
+		if (force)
+		{
+			this._tk.eval("focus -force %s", this.id);
+		}
+		else
+		{
+			this._tk.eval("focus %s", this.id);
+		}
+
+		return cast(T) this;
+	}
 }
