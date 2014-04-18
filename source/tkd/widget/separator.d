@@ -45,7 +45,7 @@ class Separator : Widget
 	public this(UiElement parent, string orientation = Orientation.horizontal)
 	{
 		super(parent);
-		this._elementId     = "separator";
+		this._elementId = "separator";
 
 		this._tk.eval("ttk::separator %s -orient %s", this.id, orientation);
 	}

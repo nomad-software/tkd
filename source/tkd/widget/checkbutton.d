@@ -9,6 +9,7 @@ module tkd.widget.checkbutton;
 /**
  * Imports.
  */
+import std.string;
 import tkd.element.uielement;
 import tkd.widget.common.command;
 import tkd.widget.common.invoke;

@@ -16,6 +16,7 @@ import tkd.theme;
 /**
  * Public imports.
  */
+public import tkd.dialog;
 public import tkd.element;
 public import tkd.image;
 public import tkd.widget;

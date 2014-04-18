@@ -11,8 +11,7 @@ module tkd.widget.common.command;
  */
 mixin template Command()
 {
-	import std.string;
-	import tkd.element.element;
+	import tkd.element.element : CommandCallback;
 
 	/**
 	 * Add a command to a widget.

@@ -189,7 +189,7 @@ abstract class Element
 					return T.init;
 				}
 
-				if (argc > 1)
+				if (argc == 9)
 				{
 					args.event.button  = getCommandParameter!(int)(argv, 1);
 					args.event.keyCode = getCommandParameter!(int)(argv, 2);
@@ -199,6 +199,10 @@ abstract class Element
 					args.event.key     = getCommandParameter!(string)(argv, 6);
 					args.event.screenX = getCommandParameter!(int)(argv, 7);
 					args.event.screenY = getCommandParameter!(int)(argv, 8);
+				}
+				else if (argc == 2)
+				{
+					args.dialog.font = getCommandParameter!(string)(argv, 1);
 				}
 
 				args.callback(args);
@@ -223,6 +227,7 @@ abstract class Element
 
 		CommandArgs* args = cast(CommandArgs*)malloc(CommandArgs.sizeof);
 
+		(*args)            = CommandArgs.init;
 		(*args).element    = this;
 		(*args).uniqueData = uniqueData;
 		(*args).callback   = callback;
@@ -303,8 +308,20 @@ struct CommandArgs
 		 * The vertical position of the mouse relative to the screen.
 		 */
 		int screenY;
-
 	}
 
 	Event event;
+
+	/**
+	 * Data populated from dialog interaction.
+	 */
+	static struct Dialog
+	{
+		/**
+		 * Font information populated from dialog interaction.
+		 */
+		string font;
+	}
+
+	Dialog dialog;
 }

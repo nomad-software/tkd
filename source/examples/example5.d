@@ -41,6 +41,7 @@ class Application : TkdApplication
 	 */
 	override protected void initInterface()
 	{
+		this.mainWindow.setTitle("Canvas example");
 		this.mainWindow.configureGeometryColumn(0, 1);
 		this.mainWindow.configureGeometryRow(1, 1);
 
