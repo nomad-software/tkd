@@ -38,6 +38,26 @@ mixin template Bind()
 	 *     related to the mouse and keyboard (such as Enter, Leave, 
 	 *     ButtonPress, Motion, and KeyPress) or virtual events.
 	 *
+	 * Callback_Arguments:
+	 *     These are the fields within the callback's $(LINK2 
+	 *     ../../../element/element.html#CommandArgs, CommandArgs) parameter which 
+	 *     are populated by this method when the callback is executed. 
+	 *     $(P
+	 *         $(PARAM_TABLE
+	 *             $(PARAM_ROW CommandArgs.element, The item that executed the callback.)
+	 *             $(PARAM_ROW CommandArgs.uniqueData, The binding that was responded to.)
+	 *             $(PARAM_ROW CommandArgs.callback, The callback which was executed.)
+	 *             $(PARAM_ROW CommandArgs.event.button, The number of any button that was pressed.)
+	 *             $(PARAM_ROW CommandArgs.event.keyCode, The key code of any key pressed.)
+	 *             $(PARAM_ROW CommandArgs.event.x, The horizontal position of the mouse relative to the widget.)
+	 *             $(PARAM_ROW CommandArgs.event.y, The vertical position of the mouse relative to the widget.)
+	 *             $(PARAM_ROW CommandArgs.event.wheel, Mouse wheel delta.)
+	 *             $(PARAM_ROW CommandArgs.event.key, Key symbol of any key pressed.)
+	 *             $(PARAM_ROW CommandArgs.event.screenX, The horizontal position of the mouse relative to the screen.)
+	 *             $(PARAM_ROW CommandArgs.event.screenY, The vertical position of the mouse relative to the screen.)
+	 *         )
+	 *     )
+	 *
 	 * See_Also:
 	 *     $(LINK2 ../../../element/element.html#CommandCallback, tkd.element.element.CommandCallback) $(BR)
 	 *     $(LINK2 ../../../element/uielement.html#UiElement, tkd.element.uielement.UiElement) $(BR)

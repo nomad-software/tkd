@@ -22,6 +22,17 @@ mixin template Command()
 	 * Returns:
 	 *     This widget to aid method chaining.
 	 *
+	 * Callback_Arguments:
+	 *     These are the fields within the callback's $(LINK2 
+	 *     ./element/element.html#CommandArgs, CommandArgs) parameter which 
+	 *     are populated by this method when the callback is executed. 
+	 *     $(P
+	 *         $(PARAM_TABLE
+	 *             $(PARAM_ROW CommandArgs.element, The element that executed the callback.)
+	 *             $(PARAM_ROW CommandArgs.callback, The callback which was executed.)
+	 *         )
+	 *     )
+	 *
 	 * See_Also:
 	 *     $(LINK2 ../../element/element.html#CommandCallback, tkd.element.element.CommandCallback)
 	 */

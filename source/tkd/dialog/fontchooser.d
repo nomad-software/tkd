@@ -56,14 +56,26 @@ class FontChooser : Element
 
 	/**
 	 * Set the callback to execute when a new font is choosen. When the 
-	 * callback is executed the font choosen is stored in the CommandArgs 
-	 * struct.
+	 * callback is executed information about the choosen font is stored as a 
+	 * string in the CommandArgs.Dialog struct.
 	 *
 	 * Params:
 	 *     callback = The delegate callback to execute when invoking the command.
 	 *
 	 * Returns:
-	 *     This widget to aid method chaining.
+	 *     This dialog to aid method chaining.
+	 *
+	 * Callback_Arguments:
+	 *     These are the fields within the callback's $(LINK2 
+	 *     ../element/element.html#CommandArgs, CommandArgs) parameter which 
+	 *     are populated by this method when the callback is executed. 
+	 *     $(P
+	 *         $(PARAM_TABLE
+	 *             $(PARAM_ROW CommandArgs.element, The element that executed the callback.)
+	 *             $(PARAM_ROW CommandArgs.callback, The callback which was executed.)
+	 *             $(PARAM_ROW CommandArgs.dialog.font, Font information populated from dialog interaction.)
+	 *         )
+	 *     )
 	 *
 	 * See_Also:
 	 *     $(LINK2 ../element/element.html#CommandArgs, tkd.element.element.CommandArgs) $(BR)
@@ -81,7 +93,7 @@ class FontChooser : Element
 	 * Remove a previously set command.
 	 *
 	 * Returns:
-	 *     This widget to aid method chaining.
+	 *     This dialog to aid method chaining.
 	 */
 	public auto removeCommand(this T)()
 	{
@@ -104,7 +116,7 @@ class FontChooser : Element
 	 * Show the dialog.
 	 *
 	 * Returns:
-	 *     This widget to aid method chaining.
+	 *     This dialog to aid method chaining.
 	 */
 	public auto show(this T)()
 	{
@@ -117,7 +129,7 @@ class FontChooser : Element
 	 * Hide the dialog.
 	 *
 	 * Returns:
-	 *     This widget to aid method chaining.
+	 *     This dialog to aid method chaining.
 	 */
 	public auto hide(this T)()
 	{
@@ -130,7 +142,7 @@ class FontChooser : Element
 	 * Check if the dialog is visible.
 	 *
 	 * Returns:
-	 *     This widget to aid method chaining.
+	 *     This dialog to aid method chaining.
 	 */
 	public bool isVisible()
 	{

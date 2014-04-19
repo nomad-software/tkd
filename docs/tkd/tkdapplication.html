@@ -331,16 +331,26 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h2><a name="Window.addProtocolCommand"></a>auto <span class="symbol">addProtocolCommand</span>(this T)(string protocol, CommandCallback callback);
 </h2>
 <div class="declaration-description"><div class="sections"><p>This command is used to manage window manager protocols such as
- WM_DELETE_WINDOW. Name is the name of an atom corresponding to a window
- manager protocol, such as WM_DELETE_WINDOW or WM_SAVE_YOURSELF or
+ WM_DELETE_WINDOW. Protocol is the name of an atom corresponding to a
+ window manager protocol, such as WM_DELETE_WINDOW or WM_SAVE_YOURSELF or
  WM_TAKE_FOCUS.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string protocol</td>
-<td>The protocol to add the command to.</td></tr>
+<td>The protocol to respond to.</td></tr>
 <tr><td>CommandCallback callback</td>
 <td>The callback to invoke when the protocol is encountered.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p>
+<p><h3>Callback Arguments:</h3>
+These are the fields within the callback's <a href="    ./element/element.html#CommandArgs">CommandArgs</a> parameter which
+     are populated by this method when the callback is executed.
+     <p>        <table class="parameter-list">            <tr><td>CommandArgs.element</td><td>The window that executed the callback.</td></tr>
+             <tr><td>CommandArgs.uniqueData</td><td>The protocol that was responded to.</td></tr>
+             <tr><td>CommandArgs.callback</td><td>The callback which was executed.</td></tr>
+         </table>
+     </p>
 
 </p>
 <h3>See Also</h3><p><a href="./element/element.html#CommandCallback">tkd.element.element.CommandCallback</a> <br>

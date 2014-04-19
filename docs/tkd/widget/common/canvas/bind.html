@@ -43,6 +43,24 @@ The only events for which bindings may be specified are those
      ButtonPress, Motion, and KeyPress) or virtual events.
 
 </p>
+<p><h3>Callback Arguments:</h3>
+These are the fields within the callback's <a href="    ../../../element/element.html#CommandArgs">CommandArgs</a> parameter which
+     are populated by this method when the callback is executed.
+     <p>        <table class="parameter-list">            <tr><td>CommandArgs.element</td><td>The item that executed the callback.</td></tr>
+             <tr><td>CommandArgs.uniqueData</td><td>The binding that was responded to.</td></tr>
+             <tr><td>CommandArgs.callback</td><td>The callback which was executed.</td></tr>
+             <tr><td>CommandArgs.event.button</td><td>The number of any button that was pressed.</td></tr>
+             <tr><td>CommandArgs.event.keyCode</td><td>The key code of any key pressed.</td></tr>
+             <tr><td>CommandArgs.event.x</td><td>The horizontal position of the mouse relative to the widget.</td></tr>
+             <tr><td>CommandArgs.event.y</td><td>The vertical position of the mouse relative to the widget.</td></tr>
+             <tr><td>CommandArgs.event.wheel</td><td>Mouse wheel delta.</td></tr>
+             <tr><td>CommandArgs.event.key</td><td>Key symbol of any key pressed.</td></tr>
+             <tr><td>CommandArgs.event.screenX</td><td>The horizontal position of the mouse relative to the screen.</td></tr>
+             <tr><td>CommandArgs.event.screenY</td><td>The vertical position of the mouse relative to the screen.</td></tr>
+         </table>
+     </p>
+
+</p>
 <h3>See Also</h3><p><a href="../../../element/element.html#CommandCallback">tkd.element.element.CommandCallback</a> <br>
      <a href="../../../element/uielement.html#UiElement">tkd.element.uielement.UiElement</a> <br></p>
 </div>

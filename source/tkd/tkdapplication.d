@@ -557,16 +557,28 @@ class Window : UiElement
 
 	/**
 	 * This command is used to manage window manager protocols such as 
-	 * WM_DELETE_WINDOW. Name is the name of an atom corresponding to a window 
-	 * manager protocol, such as WM_DELETE_WINDOW or WM_SAVE_YOURSELF or 
+	 * WM_DELETE_WINDOW. Protocol is the name of an atom corresponding to a 
+	 * window manager protocol, such as WM_DELETE_WINDOW or WM_SAVE_YOURSELF or 
 	 * WM_TAKE_FOCUS.
 	 *
 	 * Params:
-	 *     protocol = The protocol to add the command to.
+	 *     protocol = The protocol to respond to.
 	 *     callback = The callback to invoke when the protocol is encountered.
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
+	 *
+	 * Callback_Arguments:
+	 *     These are the fields within the callback's $(LINK2 
+	 *     ./element/element.html#CommandArgs, CommandArgs) parameter which 
+	 *     are populated by this method when the callback is executed. 
+	 *     $(P
+	 *         $(PARAM_TABLE
+	 *             $(PARAM_ROW CommandArgs.element, The window that executed the callback.)
+	 *             $(PARAM_ROW CommandArgs.uniqueData, The protocol that was responded to.)
+	 *             $(PARAM_ROW CommandArgs.callback, The callback which was executed.)
+	 *         )
+	 *     )
 	 *
 	 * See_Also:
 	 *     $(LINK2 ./element/element.html#CommandCallback, tkd.element.element.CommandCallback) $(BR)
