@@ -45,7 +45,7 @@ mixin template FillColor()
 
 	/**
 	 * Set the fill color.
-	 * Use colors from the preset color $(LINK2 ../../color.html, list) or a web style hex color.
+	 * Use colors from the preset color $(LINK2 ../../../element/color.html, list) or a web style hex color.
 	 *
 	 * Params:
 	 *    color = The fill color.
@@ -54,7 +54,7 @@ mixin template FillColor()
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ../../color.html, tkd.widget.color) $(BR)
+	 *     $(LINK2 ../../../element/color.html, tkd.widget.color) $(BR)
 	 */
 	public auto setFillColor(this T)(string color)
 	{
@@ -89,7 +89,7 @@ mixin template FillColor()
 	/**
 	 * Set the active fill color.
 	 * An item's active state is triggered when the mouse rolls over the item.
-	 * Use colors from the preset color $(LINK2 ../../color.html, list) or a web style hex color.
+	 * Use colors from the preset color $(LINK2 ../../../element/color.html, list) or a web style hex color.
 	 *
 	 * Params:
 	 *    color = The fill color.
@@ -98,7 +98,7 @@ mixin template FillColor()
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ../../color.html, tkd.widget.color) $(BR)
+	 *     $(LINK2 ../../../element/color.html, tkd.widget.color) $(BR)
 	 */
 	public auto setActiveFillColor(this T)(string color)
 	{
@@ -131,7 +131,7 @@ mixin template FillColor()
 
 	/**
 	 * Set the disabled fill color.
-	 * Use colors from the preset color $(LINK2 ../../color.html, list) or a web style hex color.
+	 * Use colors from the preset color $(LINK2 ../../../element/color.html, list) or a web style hex color.
 	 *
 	 * Params:
 	 *    color = The fill color.
@@ -140,7 +140,7 @@ mixin template FillColor()
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ../../color.html, tkd.widget.color) $(BR)
+	 *     $(LINK2 ../../../element/color.html, tkd.widget.color) $(BR)
 	 */
 	public auto setDisabledFillColor(this T)(string color)
 	{

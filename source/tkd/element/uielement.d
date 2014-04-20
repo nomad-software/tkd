@@ -12,6 +12,7 @@ module tkd.element.uielement;
 import std.algorithm;
 import std.conv;
 import std.range;
+import std.regex : match;
 import std.string;
 import tkd.element.cursor;
 import tkd.element.element;

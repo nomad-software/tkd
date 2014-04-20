@@ -11,6 +11,8 @@ module tkd.widget.common.canvas.bind;
  */
 mixin template Bind()
 {
+	import std.regex : match;
+
 	/**
 	 * The bindings.
 	 */

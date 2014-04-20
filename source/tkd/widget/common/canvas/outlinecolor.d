@@ -45,7 +45,7 @@ mixin template OutlineColor()
 
 	/**
 	 * Set the outline color.
-	 * Use colors from the preset color $(LINK2 ../../color.html, list) or a web style hex color.
+	 * Use colors from the preset color $(LINK2 ../../../element/color.html, list) or a web style hex color.
 	 *
 	 * Params:
 	 *    color = The outline color.
@@ -54,7 +54,7 @@ mixin template OutlineColor()
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ../../color.html, tkd.widget.color) $(BR)
+	 *     $(LINK2 ../../../element/color.html, tkd.widget.color) $(BR)
 	 */
 	public auto setOutlineColor(this T)(string color)
 	{
@@ -89,7 +89,7 @@ mixin template OutlineColor()
 	/**
 	 * Set the active outline color.
 	 * An item's active state is triggered when the mouse rolls over the item.
-	 * Use colors from the preset color $(LINK2 ../../color.html, list) or a web style hex color.
+	 * Use colors from the preset color $(LINK2 ../../../element/color.html, list) or a web style hex color.
 	 *
 	 * Params:
 	 *    color = The outline color.
@@ -98,7 +98,7 @@ mixin template OutlineColor()
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ../../color.html, tkd.widget.color) $(BR)
+	 *     $(LINK2 ../../../element/color.html, tkd.widget.color) $(BR)
 	 */
 	public auto setActiveOutlineColor(this T)(string color)
 	{
@@ -131,7 +131,7 @@ mixin template OutlineColor()
 
 	/**
 	 * Set the disabled outline color.
-	 * Use colors from the preset color $(LINK2 ../../color.html, list) or a web style hex color.
+	 * Use colors from the preset color $(LINK2 ../../../element/color.html, list) or a web style hex color.
 	 *
 	 * Params:
 	 *    color = The outline color.
@@ -140,7 +140,7 @@ mixin template OutlineColor()
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ../../color.html, tkd.widget.color) $(BR)
+	 *     $(LINK2 ../../../element/color.html, tkd.widget.color) $(BR)
 	 */
 	public auto setDisabledOutlineColor(this T)(string color)
 	{

@@ -4,13 +4,13 @@
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.dialog.fontchooser;
+module tkd.dialog.fontdialog;
 
 /**
  * Imports.
  */
+import tkd.dialog.dialog;
 import tkd.element.element;
-import tkd.tkdapplication : Window;
 
 /**
  * The fontchooser dialog allows users to choose a font installed on the 
@@ -28,14 +28,12 @@ import tkd.tkdapplication : Window;
  *         &lt;&lt;TkFontchooserFontChanged&gt;&gt;,
  *         &lt;&lt;TkFontchooserVisibility&gt;&gt;,
  *     )
+ *
+ * See_Also:
+ *     $(LINK2 ./dialog.html, tkd.dialog.dialog) $(BR)
  */
-class FontChooser : Element
+class FontDialog : Dialog
 {
-	/**
-	 * The title of the dialog.
-	 */
-	private string _title;
-
 	/**
 	 * The name of the callback to execute when a new font is choosen.
 	 */
@@ -45,13 +43,23 @@ class FontChooser : Element
 	 * Construct the dialog.
 	 *
 	 * Params:
+	 *     parent = The parent window of the dialog.
+	 *     title = The title of the dialog.
+	 */
+	this(Window parent, string title = "Font")
+	{
+		super(parent, title);
+	}
+
+	/**
+	 * Construct the dialog.
+	 *
+	 * Params:
 	 *     title = The title of the dialog.
 	 */
 	this(string title = "Font")
 	{
-		this._elementId = "dialog";
-
-		this._title = title;
+		super(null, title);
 	}
 
 	/**
@@ -109,7 +117,14 @@ class FontChooser : Element
 	 */
 	private void configureDialog()
 	{
-		this._tk.eval("tk fontchooser configure -title {%s} -command {%s}", this._title, this._command);
+		if (this._parent)
+		{
+			this._tk.eval("tk fontchooser configure -parent %s -title {%s} -command {%s}", this._parent.id, this._title, this._command);
+		}
+		else
+		{
+			this._tk.eval("tk fontchooser configure -title {%s} -command {%s}", this._title, this._command);
+		}
 	}
 
 	/**

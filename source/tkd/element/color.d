@@ -1,10 +1,10 @@
 /**
- * Widget module.
+ * Element module.
  *
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.widget.color;
+module tkd.element.color;
 
 /**
  * Standard supported colors.

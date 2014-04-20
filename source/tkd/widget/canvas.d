@@ -14,11 +14,11 @@ import std.array;
 import std.conv;
 import std.string;
 import std.uni;
+import tkd.element.color;
 import tkd.element.element;
 import tkd.element.uielement;
 import tkd.image.image;
 import tkd.widget.anchorposition;
-import tkd.widget.color;
 import tkd.widget.common.border;
 import tkd.widget.common.canvas.anchor;
 import tkd.widget.common.canvas.arcspecific;
@@ -101,7 +101,7 @@ class Canvas : Widget, IXScrollable!(Canvas), IYScrollable!(Canvas)
 
 	/**
 	 * Set the background color.
-	 * Use colors from the preset color $(LINK2 ../../color.html, list) or a web style hex color.
+	 * Use colors from the preset color $(LINK2 ../element/color.html, list) or a web style hex color.
 	 *
 	 * Params:
 	 *     color = The background color.
@@ -110,7 +110,7 @@ class Canvas : Widget, IXScrollable!(Canvas), IYScrollable!(Canvas)
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./color.html, tkd.widget.color) $(BR)
+	 *     $(LINK2 ../element/color.html, tkd.widget.color) $(BR)
 	 */
 	public auto setBackgroundColor(this T)(string color)
 	{
@@ -921,7 +921,7 @@ class CanvasArc : CanvasItem
 {
 	/**
 	 * Create an arc.
-	 * Use colors from the preset color $(LINK2 ../../color.html, list) or a web style hex color.
+	 * Use colors from the preset color $(LINK2 ../element/color.html, list) or a web style hex color.
 	 *
 	 * Params:
 	 *     coords = The coordinates of the outer elipse.
@@ -931,7 +931,7 @@ class CanvasArc : CanvasItem
 	 *     outlineWidth = The outline width.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./color.html, tkd.widget.color) $(BR)
+	 *     $(LINK2 ../element/color.html, tkd.widget.color) $(BR)
 	 *     $(LINK2 ./canvas.html#CanvasArcStyle, tkd.widget.canvas.CanvasArcStyle)
 	 */
 	public this(double[] coords, string style = CanvasArcStyle.pie, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1)
@@ -1076,7 +1076,7 @@ class CanvasLine : CanvasItem
 {
 	/**
 	 * Create a line from coordinates.
-	 * Use colors from the preset color $(LINK2 ../../color.html, list) or a web style hex color.
+	 * Use colors from the preset color $(LINK2 ../element/color.html, list) or a web style hex color.
 	 *
 	 * Params:
 	 *     coords = The coordinates where to draw the line.
@@ -1084,7 +1084,7 @@ class CanvasLine : CanvasItem
 	 *     outlineWidth = The outline width.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./color.html, tkd.widget.color) $(BR)
+	 *     $(LINK2 ../element/color.html, tkd.widget.color) $(BR)
 	 */
 	public this(double[] coords, string fillColor = Color.black, int outlineWidth = 1)
 	{
@@ -1203,7 +1203,7 @@ class CanvasRectangle : CanvasItem
 	 *     outlineWidth = The outline width.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./color.html, tkd.widget.color) $(BR)
+	 *     $(LINK2 ../element/color.html, tkd.widget.color) $(BR)
 	 */
 	public this(double[] coords, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1)
 	{
@@ -1269,7 +1269,7 @@ class CanvasOval : CanvasItem
 {
 	/**
 	 * Create an oval from four coordinates.
-	 * Use colors from the preset color $(LINK2 ../../color.html, list) or a web style hex color.
+	 * Use colors from the preset color $(LINK2 ../element/color.html, list) or a web style hex color.
 	 *
 	 * Params:
 	 *     coords = The coordinates where to draw the oval.
@@ -1278,7 +1278,7 @@ class CanvasOval : CanvasItem
 	 *     outlineWidth = The outline width.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./color.html, tkd.widget.color) $(BR)
+	 *     $(LINK2 ../element/color.html, tkd.widget.color) $(BR)
 	 */
 	public this(double[] coords, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1)
 	{
@@ -1345,7 +1345,7 @@ class CanvasPolygon : CanvasItem
 {
 	/**
 	 * Create a polygon from coordinates.
-	 * Use colors from the preset color $(LINK2 ../../color.html, list) or a web style hex color.
+	 * Use colors from the preset color $(LINK2 ../element/color.html, list) or a web style hex color.
 	 *
 	 * Params:
 	 *     coords = The coordinates where to draw the polygon.
@@ -1354,7 +1354,7 @@ class CanvasPolygon : CanvasItem
 	 *     outlineWidth = The outline width.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./color.html, tkd.widget.color) $(BR)
+	 *     $(LINK2 ../element/color.html, tkd.widget.color) $(BR)
 	 */
 	public this(double[] coords, string fillColor = Color.default_, string outlineColor = Color.black, int outlineWidth = 1)
 	{
@@ -1423,7 +1423,7 @@ class CanvasText : CanvasItem
 {
 	/**
 	 * Create a text item.
-	 * Use colors from the preset color $(LINK2 ../../color.html, list) or a web style hex color.
+	 * Use colors from the preset color $(LINK2 ../element/color.html, list) or a web style hex color.
 	 *
 	 * Params:
 	 *     coords = The coordinates where to draw the polygon.
@@ -1432,7 +1432,7 @@ class CanvasText : CanvasItem
 	 *     anchor = The anchor position of the image.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./color.html, tkd.widget.color) $(BR)
+	 *     $(LINK2 ../element/color.html, tkd.widget.color) $(BR)
 	 */
 	public this(double[] coords, string text, string fillColor = Color.default_, string anchor = AnchorPosition.northWest)
 	{

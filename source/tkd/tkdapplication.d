@@ -9,6 +9,7 @@ module tkd.tkdapplication;
 /**
  * Private imports.
  */
+import std.regex : match;
 import std.string;
 import tkd.interpreter;
 import tkd.theme;

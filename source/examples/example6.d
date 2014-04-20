@@ -17,17 +17,48 @@ class Application : TkdApplication
 	 * Wigets.
 	 */
 	private Entry _fontEntry;
+	private Entry _colorEntry;
+	private Entry _directoryEntry;
+	private Entry _fileOpenEntry;
+	private Entry _fileSaveEntry;
+	private Entry _messageEntry;
 
 	/**
 	 * Event callbacks.
 	 */
 	private void fontChooser(CommandArgs args)
 	{
-		auto dialog = new FontChooser("Choose a font")
+		auto dialog = new FontDialog("Choose a font")
 			.setCommand(delegate(CommandArgs args){
 				this._fontEntry.setValue(args.dialog.font);
 			})
 			.show();
+	}
+
+	private void colorChooser(CommandArgs args)
+	{
+		auto dialog = new ColorDialog("Choose a color")
+			.setInitialColor(Color.beige)
+			.show();
+		this._colorEntry.setValue(dialog.getResult());
+	}
+
+	private void directoryChooser(CommandArgs args)
+	{
+		auto dialog = new DirectoryDialog("Choose a directory")
+			.setDirectoryMustExist(true)
+			.show();
+		this._directoryEntry.setValue(dialog.getResult());
+	}
+
+	private void message(CommandArgs args)
+	{
+		auto dialog = new MessageDialog()
+			.setMessage("Lorem ipsum dolor sit amet.")
+			.setDetailMessage("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at aliquam arcu. Sed eget tellus ligula. Sed egestas est et tempus cursus. Nunc non congue justo, quis adipiscing enim.")
+			.setType(MessageDialogType.okcancel)
+			.show();
+		this._messageEntry.setValue(dialog.getResult());
 	}
 
 	/**
@@ -38,21 +69,57 @@ class Application : TkdApplication
 		this.mainWindow.setTitle("Dialog example");
 
 		auto label = new Label("Various dialog boxes are supported.\nClick on the buttons to see various dialogs.")
-			.grid(0, 0, 5, 0, 2, 1, "new");
+			.grid(0, 0, 10, 0, 2, 1, "new");
 
-		auto fontChooserButton = new Button("Font Chooser")
+		auto fontChooserButton = new Button("Font")
 			.setCommand(&this.fontChooser)
-			.grid(0, 1, 10);
+			.grid(0, 1, 10, 0, 1, 1, "w");
 
 		this._fontEntry = new Entry()
-			.grid(1, 1, 10);
+			.setWidth(40)
+			.grid(1, 1, 10, 0, 1, 1, "w");
 
-		auto separator = new Separator()
-			.grid(0, 2, 10, 0, 2, 1, "ew");
+		auto colorChooserButton = new Button("Color")
+			.setCommand(&this.colorChooser)
+			.grid(0, 2, 10, 0, 1, 1, "w");
+
+		this._colorEntry = new Entry()
+			.setWidth(40)
+			.grid(1, 2, 10, 0, 1, 1, "w");
+
+		auto directoryChooserButton = new Button("Directory")
+			.setCommand(&this.directoryChooser)
+			.grid(0, 3, 10, 0, 1, 1, "w");
+
+		this._directoryEntry = new Entry()
+			.setWidth(40)
+			.grid(1, 3, 10, 0, 1, 1, "w");
+
+		auto fileOpenButton = new Button("Open File")
+			.grid(0, 4, 10, 0, 1, 1, "w");
+
+		this._fileOpenEntry = new Entry()
+			.setWidth(40)
+			.grid(1, 4, 10, 0, 1, 1, "w");
+
+		auto fileSaveButton = new Button("Save File")
+			.grid(0, 5, 10, 0, 1, 1, "w");
+
+		this._fileSaveEntry = new Entry()
+			.setWidth(40)
+			.grid(1, 5, 10, 0, 1, 1, "w");
+
+		auto messageButton = new Button("Message")
+			.setCommand(&this.message)
+			.grid(0, 6, 10, 0, 1, 1, "w");
+
+		this._messageEntry = new Entry()
+			.setWidth(40)
+			.grid(1, 6, 10, 0, 1, 1, "w");
 
 		auto quitButton = new Button("Exit")
 			.setCommand(delegate(CommandArgs args){this.exit();})
-			.grid(0, 3, 10, 0, 2);
+			.grid(0, 7, 10, 0, 2);
 	}
 }
 

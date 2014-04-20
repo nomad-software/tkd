@@ -13,11 +13,11 @@ import std.algorithm;
 import std.array;
 import std.regex;
 import std.string;
+import tkd.element.color;
 import tkd.element.element;
 import tkd.element.uielement;
 import tkd.image.image;
 import tkd.widget.anchorposition;
-import tkd.widget.color;
 import tkd.widget.common.height;
 import tkd.widget.common.padding;
 import tkd.widget.common.xscrollcommand;
@@ -392,8 +392,8 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	}
 
 	/**
-	 * Set image and colors for a specific tag. Colors can be from the preset 
-	 * list or a web style hex color.
+	 * Set image and colors for a specific tag.
+	 * Use colors from the preset color $(LINK2 ../element/color.html, list) or a web style hex color.
 	 *
 	 * Params:
 	 *     name = The name of the tag.
@@ -405,7 +405,7 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 *     This widget to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./color.html, tkd.widget.color) $(BR)
+	 *     $(LINK2 ../element/color.html, tkd.widget.color) $(BR)
 	 */
 	public auto setTag(this T)(string name, Image image, string foreground = Color.default_, string background = Color.default_)
 	{
