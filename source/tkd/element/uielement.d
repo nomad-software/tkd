@@ -708,4 +708,82 @@ abstract class UiElement : Element
 
 		return cast(T) this;
 	}
+
+	/**
+	 * This command implements simple pointer and keyboard grabs. When a grab 
+	 * is set for a particular element, it restricts all pointer events to the 
+	 * grab window and its descendants. Whenever the pointer is within the grab 
+	 * element, the pointer will behave exactly the same as if there had been 
+	 * no grab at all and all events will be reported in the normal fashion. 
+	 * When the pointer is outside the element, button presses, releases and 
+	 * mouse motion events are reported to the element, and element entry and 
+	 * exit events are ignored. The grab 'owns' the pointer: elements outside 
+	 * the grab will be visible on the screen but they will be insensitive 
+	 * until the grab is released. The tree of elements underneath the grab 
+	 * element can include windows, in which case all windows and their 
+	 * descendants will continue to receive mouse events during the grab.
+	 *
+	 * Two forms of grabs are possible: local and global. A local grab affects 
+	 * only the grabbing application: events will be reported to other 
+	 * applications as if the grab had never occurred. Grabs are local by 
+	 * default. A global grab locks out all applications on the screen, so that 
+	 * only the given element and its descendants of the grabbing application 
+	 * will be sensitive to pointer events (mouse button presses, mouse button 
+	 * releases, pointer motions, entries, and exits). During global grabs the 
+	 * window manager will not receive pointer events either.
+	 *
+	 * During local grabs, keyboard events (key presses and key releases) are 
+	 * delivered as usual: the window manager controls which application 
+	 * receives keyboard events, and if they are sent to any element in the 
+	 * grabbing application then they are redirected to the focused element. 
+	 * During a global grab all keyboard events are always sent to the grabbing 
+	 * application. The focus command is still used to determine which element 
+	 * in the application receives the keyboard events. The keyboard grab is 
+	 * released when the grab is released.
+	 *
+	 * Params:
+	 *     enable = Whether to enable or release the grab.
+	 *     global = Whether or not the grab should be global.
+	 *
+	 * Returns:
+	 *     This element to aid method chaining.
+	 *
+	 * Caveats:
+	 *     It is very easy to use global grabs to render a display completely 
+	 *     unusable (e.g. by setting a grab on an element which does not 
+	 *     respond to events and not providing any mechanism for releasing the 
+	 *     grab).  Take extreme care when using them! For a global grab to work 
+	 *     the element needs to be placed and visible on the UI. Local grabs 
+	 *     are not affected by this requirement.
+	 */
+	public auto setGrab(this T)(bool enable, bool global = false)
+	{
+		if (!enable)
+		{
+			this._tk.eval("grab release %s", this.id);
+		}
+		else if (global)
+		{
+			this._tk.eval("grab -global %s", this.id);
+		}
+		else
+		{
+			this._tk.eval("grab %s", this.id);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Gets if the element is currently grabbing all events or not.
+	 *
+	 * Returns:
+	 *     This element to aid method chaining.
+	 */
+	public bool isGrabbing(this T)()
+	{
+		this._tk.eval("grab status %s", this.id);
+
+		return this._tk.getResult!(string) != "none";
+	}
 }
