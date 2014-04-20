@@ -29,10 +29,15 @@ class Image : Element
 
 	/**
 	 * Clears the image of all pixel data and effectively makes it transparent.
+	 *
+	 * Returns:
+	 *     This image to aid method chaining.
 	 */
-	public void blank()
+	public auto blank(this T)()
 	{
 		this._tk.eval("%s blank", this.id);
+
+		return cast(T) this;
 	}
 
 	/**
@@ -41,10 +46,15 @@ class Image : Element
 	 *
 	 * Params:
 	 *     data = Base64 encoded data.
+	 *
+	 * Returns:
+	 *     This image to aid method chaining.
 	 */
-	public void setData(string data)
+	public auto setData(this T)(string data)
 	{
 		this._tk.eval("%s configure -data %s", this.id, data);
+
+		return cast(T) this;
 	}
 
 	/**
@@ -66,12 +76,17 @@ class Image : Element
 	 * Params:
 	 *     format = A valid image format.
 	 *
+	 * Returns:
+	 *     This image to aid method chaining.
+	 *
 	 * See_Also:
 	 *     $(LINK2 ./imageformat.html, tkd.image.imageformat) for supported formats.
 	 */
-	public void setFormat(string format)
+	public auto setFormat(this T)(string format)
 	{
 		this._tk.eval("%s configure -format %s", this.id, format);
+
+		return cast(T) this;
 	}
 
 	/**
@@ -94,10 +109,15 @@ class Image : Element
 	 *
 	 * Params:
 	 *     file = The file to read the image data from.
+	 *
+	 * Returns:
+	 *     This image to aid method chaining.
 	 */
-	public void setFile(string file)
+	public auto setFile(this T)(string file)
 	{
 		this._tk.eval("%s configure -file %s", this.id, file);
+
+		return cast(T) this;
 	}
 
 	/**
@@ -106,10 +126,15 @@ class Image : Element
 	 *
 	 * Params:
 	 *     filename = The filename to read the data from.
+	 *
+	 * Returns:
+	 *     This image to aid method chaining.
 	 */
-	public void embedDataFromFile(string filename)()
+	public auto embedDataFromFile(string filename, this T)()
 	{
 		this.setData(base64Encode!(filename));
+
+		return cast(T) this;
 	}
 
 	/**
@@ -129,8 +154,11 @@ class Image : Element
 	 *
 	 * Params:
 	 *     gamma = The destination gamma.
+	 *
+	 * Returns:
+	 *     This image to aid method chaining.
 	 */
-	public void setGamma(double gamma)
+	public auto setGamma(this T)(double gamma)
 	{
 		if (gamma < 0)
 		{
@@ -138,6 +166,8 @@ class Image : Element
 		}
 
 		this._tk.eval("%s configure -gamma %s", this.id, gamma);
+
+		return cast(T) this;
 	}
 
 	/**
@@ -157,10 +187,15 @@ class Image : Element
 	 *
 	 * Params:
 	 *     height = The height to crop the image to.
+	 *
+	 * Returns:
+	 *     This image to aid method chaining.
 	 */
-	public void setHeight(int height)
+	public auto setHeight(this T)(int height)
 	{
 		this._tk.eval("%s configure -height %s", this.id, height);
+
+		return cast(T) this;
 	}
 
 	/**
@@ -186,10 +221,15 @@ class Image : Element
 	 *
 	 * Params:
 	 *     palette = A string describing the palette to use.
+	 *
+	 * Returns:
+	 *     This image to aid method chaining.
 	 */
-	public void setPalette(string palette)
+	public auto setPalette(this T)(string palette)
 	{
 		this._tk.eval("%s configure -palette %s", this.id, palette);
+
+		return cast(T) this;
 	}
 
 	/**
@@ -209,10 +249,15 @@ class Image : Element
 	 *
 	 * Params:
 	 *     width = The width to crop the image to.
+	 *
+	 * Returns:
+	 *     This image to aid method chaining.
 	 */
-	public void setWidth(int width)
+	public auto setWidth(this T)(int width)
 	{
 		this._tk.eval("%s configure -width %s", this.id, width);
+
+		return cast(T) this;
 	}
 
 	/**

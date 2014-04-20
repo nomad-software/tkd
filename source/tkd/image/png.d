@@ -39,14 +39,19 @@ class Png(string filename) : Image
 	 *
 	 * Params:
 	 *     alpha = The alpha of the image.
+	 *
+	 * Returns:
+	 *     This image to aid method chaining.
 	 */
-	public void setAlpha(double alpha)
+	public auto setAlpha(this T)(double alpha)
 	{
 		if (alpha < 0f || alpha > 1.0f)
 		{
 			alpha = 1.0f;
 		}
 
-		this._tk.eval("%s configure -format \"png -alpha %s\"", this.id, alpha);
+		this._tk.eval("%s configure -format {png -alpha %s}", this.id, alpha);
+
+		return cast(T) this;
 	}
 }

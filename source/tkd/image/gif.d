@@ -40,9 +40,14 @@ class Gif(string filename) : Image
 	 *
 	 * Params:
 	 *     index = The index to select.
+	 *
+	 * Returns:
+	 *     This image to aid method chaining.
 	 */
-	public void setIndex(int index)
+	public auto setIndex(this T)(int index)
 	{
-		this._tk.eval("%s configure -format \"gif -index %s\"", this.id, index);
+		this._tk.eval("%s configure -format {gif -index %s}", this.id, index);
+
+		return cast(T) this;
 	}
 }
