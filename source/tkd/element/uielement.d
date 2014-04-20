@@ -786,4 +786,50 @@ abstract class UiElement : Element
 
 		return this._tk.getResult!(string) != "none";
 	}
+
+	/**
+	 * Lower a window's position in the stacking order.
+	 *
+	 * Params:
+	 *     element = The optional element to lower immedately beneath.
+	 *
+	 * Returns:
+	 *     This element to aid method chaining.
+	 */
+	public auto lower(this T)(UiElement element = null)
+	{
+		if (element)
+		{
+			this._tk.eval("lower %s %s", this.id, element.id);
+		}
+		else
+		{
+			this._tk.eval("lower %s", this.id);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Raise a window's position in the stacking order.
+	 *
+	 * Params:
+	 *     element = The optional element to raise immedately above.
+	 *
+	 * Returns:
+	 *     This element to aid method chaining.
+	 */
+	public auto raise(this T)(UiElement element = null)
+	{
+		if (element)
+		{
+			this._tk.eval("raise %s %s", this.id, element.id);
+		}
+		else
+		{
+			this._tk.eval("raise %s", this.id);
+		}
+
+		return cast(T) this;
+	}
 }
