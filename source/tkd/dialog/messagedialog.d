@@ -17,6 +17,9 @@ import tkd.dialog.messagedialogtype;
 /**
  * pops up a dialog box with a user defined message and buttons.
  *
+ * Result:
+ *     The symbolic name of the button pressed.
+ *
  * See_Also:
  *     $(LINK2 ./dialog.html, tkd.dialog.dialog) $(BR)
  */
@@ -68,7 +71,7 @@ class MessageDialog : Dialog
 	 */
 	this(string title = "Information")
 	{
-		super(null, title);
+		this(null, title);
 	}
 
 	/**

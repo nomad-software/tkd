@@ -20,7 +20,7 @@ import tkd.interpreter.logger;
  */
 class Tcl
 {
-	/**
+	/*
 	 * An instance of the native tcl interpreter.
 	 */
 	protected Tcl_Interp* _interpreter;
@@ -30,12 +30,12 @@ class Tcl
 	 */
 	private static Tcl _instance;
 
-	/**
+	/*
 	 * The logger.
 	 */
 	protected Logger _log;
 
-	/**
+	/*
 	 * Create the interpreter and initialise it.
 	 *
 	 * Throws:
@@ -55,7 +55,7 @@ class Tcl
 		}
 	}
 
-	/**
+	/*
 	 * Clean up.
 	 */
 	protected ~this()

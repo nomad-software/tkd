@@ -30,12 +30,12 @@ import tkd.widget.widget;
  */
 abstract class TextWidget : Widget
 {
-	/**
+	/*
 	 * The name of the text variable that contains the widget's text.
 	 */
 	protected string _textVariable;
 
-	/**
+	/*
 	 * The image of this widget.
 	 */
 	protected Image _image;

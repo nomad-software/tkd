@@ -16,6 +16,9 @@ import tkd.element.color;
 /**
  * pops up a dialog box for the user to select a color.
  *
+ * Result:
+ *     The web style hex color selected.
+ *
  * See_Also:
  *     $(LINK2 ./dialog.html, tkd.dialog.dialog) $(BR)
  */
@@ -46,7 +49,7 @@ class ColorDialog : Dialog
 	 */
 	this(string title = "Color")
 	{
-		super(null, title);
+		this(null, title);
 	}
 
 	/**

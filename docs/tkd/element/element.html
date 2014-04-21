@@ -19,32 +19,7 @@
 </h2>
 <div class="declaration-description"><div class="sections"><p>The ui element base class.</p>
 </div>
-<div class="class-members"><h2><a name="Element._tk"></a>protected Tk <span class="symbol">_tk</span>;
-</h2>
-<div class="declaration-description"><div class="sections"><p>The Tk interpreter.</p>
-</div>
-</div>
-<h2><a name="Element._parent"></a>protected Element <span class="symbol">_parent</span>;
-</h2>
-<div class="declaration-description"><div class="sections"><p>The parent of this element if nested within another.</p>
-</div>
-</div>
-<h2><a name="Element._manualIdentifier"></a>protected string <span class="symbol">_manualIdentifier</span>;
-</h2>
-<div class="declaration-description"><div class="sections"><p>An optional identifier that overrides the generated id.</p>
-</div>
-</div>
-<h2><a name="Element._elementId"></a>protected string <span class="symbol">_elementId</span>;
-</h2>
-<div class="declaration-description"><div class="sections"><p>Internal element identifier.</p>
-</div>
-</div>
-<h2><a name="Element._hash"></a>protected string <span class="symbol">_hash</span>;
-</h2>
-<div class="declaration-description"><div class="sections"><p>The unique hash of this element.</p>
-</div>
-</div>
-<h2><a name="Element.this"></a> this(Element parent);
+<div class="class-members"><h2><a name="Element.this"></a> this(Element parent);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the element.
 </p>
@@ -69,51 +44,7 @@
 </h2>
 <div class="declaration-description"><div class="sections"><p>The <span class="symbol">parent</span> element if any.
 </p>
-<h3>Return Value</h3><p>The <span class="symbol">parent</span> element.</p>
-</div>
-</div>
-<h2><a name="Element.generateHash"></a>protected string <span class="symbol">generateHash</span>();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Generate the unique hash for this element.
-</p>
-<h3>Return Value</h3><p>The string hash.</p>
-</div>
-</div>
-<h2><a name="Element.generateHash"></a>string <span class="symbol">generateHash</span>(A...)(string text, A args);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Generate the unique hash for this element.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string text</td>
-<td>The format of the text to generate a hash of.</td></tr>
-<tr><td>A args</td>
-<td>The arguments that the format defines (if any).</td></tr>
-</table>
-<h3>Return Value</h3><p>The string hash.</p>
-</div>
-</div>
-<h2><a name="Element.getCommandName"></a>protected string <span class="symbol">getCommandName</span>(string uniqueData = null);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Get the internal name for a command.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string uniqueData</td>
-<td>An extra seed for the internal command name hash.</td></tr>
-</table>
-<h3>Return Value</h3><p>The internal name of the command.</p>
-</div>
-</div>
-<h2><a name="Element.createCommand"></a>protected string <span class="symbol">createCommand</span>(CommandCallback callback, string uniqueData = null);
-</h2>
-<div class="declaration-description"><div class="sections"><p>Create a command.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>CommandCallback callback</td>
-<td>The callback to register as a command.</td></tr>
-<tr><td>string uniqueData</td>
-<td>An extra seed for the internal command name hash.</td></tr>
-</table>
-<h3>Return Value</h3><p>The internal command name.
-
-</p>
-<h3>See Also</h3><p><a href="./element.html#CommandCallback">tkd.element.element.CommandCallback</a></p>
+<h3>Return Value</h3><p>The <span class="symbol">parent</span> element or <strong>null</strong>.</p>
 </div>
 </div>
 </div>

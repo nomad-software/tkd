@@ -24,7 +24,7 @@ class Tk : Tcl
 	 */
 	private static Tk _instance;
 
-	/**
+	/*
 	 * Create the interpreter and initialise it.
 	 *
 	 * Throws:

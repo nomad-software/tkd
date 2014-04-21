@@ -21,22 +21,7 @@
 </p>
 <h3>See Also</h3><p><a href="../element/element.html">tkd.element.element</a> <br></p>
 </div>
-<div class="class-members"><h2><a name="Dialog._parent"></a>protected Window <span class="symbol">_parent</span>;
-</h2>
-<div class="declaration-description"><div class="sections"><p>The parent window of the dialog.</p>
-</div>
-</div>
-<h2><a name="Dialog._title"></a>protected string <span class="symbol">_title</span>;
-</h2>
-<div class="declaration-description"><div class="sections"><p>The title of the dialog.</p>
-</div>
-</div>
-<h2><a name="Dialog._result"></a>protected string <span class="symbol">_result</span>;
-</h2>
-<div class="declaration-description"><div class="sections"><p>The result of the dialog.</p>
-</div>
-</div>
-<h2><a name="Dialog.this"></a> this(Window parent, string title);
+<div class="class-members"><h2><a name="Dialog.this"></a> this(Window parent, string title);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the dialog.
 </p>
@@ -49,7 +34,8 @@
 </div>
 <h2><a name="Dialog.getResult"></a>string <span class="symbol">getResult</span>();
 </h2>
-<div class="declaration-description"><div class="sections"><p>Get the dialog result.</p>
+<div class="declaration-description"><div class="sections"><p>Get the dialog result. This varies on the type of dialog used and will
+ reflect the overall result expected of each dialog.</p>
 </div>
 </div>
 <h2><a name="Dialog.show"></a>auto <span class="symbol">show</span>(this T)();

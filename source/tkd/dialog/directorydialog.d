@@ -15,13 +15,16 @@ import tkd.dialog.dialog;
 /**
  * pops up a dialog box for the user to select a directory.
  *
+ * Result:
+ *     The full path of the directory selected.
+ *
  * See_Also:
  *     $(LINK2 ./dialog.html, tkd.dialog.dialog) $(BR)
  */
 class DirectoryDialog : Dialog
 {
 	/**
-	 * The initial directory to show in the dialog.
+	 * The initial directory to start in the dialog.
 	 */
 	private string _initialDirectory;
 
@@ -50,7 +53,7 @@ class DirectoryDialog : Dialog
 	 */
 	this(string title = "Directory")
 	{
-		super(null, title);
+		this(null, title);
 	}
 
 	/**

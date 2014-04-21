@@ -23,27 +23,27 @@ import tkd.interpreter;
  */
 abstract class Element
 {
-	/**
+	/*
 	 * The Tk interpreter.
 	 */
 	protected Tk _tk;
 
-	/**
+	/*
 	 * The parent of this element if nested within another.
 	 */
 	protected Element _parent;
 
-	/**
+	/*
 	 * An optional identifier that overrides the generated id.
 	 */
 	protected string _manualIdentifier;
 
-	/**
+	/*
 	 * Internal element identifier.
 	 */
 	protected string _elementId;
 
-	/**
+	/*
 	 * The unique hash of this element.
 	 */
 	protected string _hash;
@@ -97,7 +97,7 @@ abstract class Element
 	 * The parent element if any.
 	 *
 	 * Returns:
-	 *     The parent element.
+	 *     The parent element or null.
 	 */
 	public @property Element parent()
 	{
@@ -115,7 +115,7 @@ abstract class Element
 		this._manualIdentifier = identifier;
 	}
 
-	/**
+	/*
 	 * Generate the unique hash for this element.
 	 *
 	 * Returns:
@@ -127,7 +127,7 @@ abstract class Element
 		return hexDigest!(CRC32)(text).array.to!(string);
 	}
 
-	/**
+	/*
 	 * Generate the unique hash for this element.
 	 *
 	 * Params:
@@ -142,7 +142,7 @@ abstract class Element
 		return hexDigest!(CRC32)(format(text, args)).array.to!(string);
 	}
 
-	/**
+	/*
 	 * Get the internal name for a command.
 	 *
 	 * Params:
@@ -156,7 +156,7 @@ abstract class Element
 		return format("command-%s", this.generateHash("command%s%s", uniqueData, this.id));
 	}
 
-	/**
+	/*
 	 * Create a command.
 	 *
 	 * Params:

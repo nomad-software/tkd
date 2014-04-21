@@ -19,8 +19,8 @@ class Application : TkdApplication
 	private Entry _fontEntry;
 	private Entry _colorEntry;
 	private Entry _directoryEntry;
-	private Entry _fileOpenEntry;
-	private Entry _fileSaveEntry;
+	private Entry _openFileEntry;
+	private Entry _saveFileEntry;
 	private Entry _messageEntry;
 
 	/**
@@ -49,6 +49,36 @@ class Application : TkdApplication
 			.setDirectoryMustExist(true)
 			.show();
 		this._directoryEntry.setValue(dialog.getResult());
+	}
+
+	private void openFile(CommandArgs args)
+	{
+		auto dialog = new OpenFileDialog()
+			.setMultiSelection(true)
+			.setDefaultExtension(".dmo")
+			.addFileType("{{All files} {*}}")
+			.addFileType("{{D language files} {.d .di}}")
+			.addFileType("{{HTML files} {.htm .html}}")
+			.addFileType("{{Text files} {.txt}}")
+			.setInitialDirectory("~")
+			.setInitialFile("file-to-open.dmo")
+			.show();
+		this._openFileEntry.setValue(dialog.getResult());
+	}
+
+	private void saveFile(CommandArgs args)
+	{
+		auto dialog = new SaveFileDialog()
+			.setConfirmOverwrite(true)
+			.setDefaultExtension(".dmo")
+			.addFileType("{{All files} {*}}")
+			.addFileType("{{D language files} {.d .di}}")
+			.addFileType("{{HTML files} {.htm .html}}")
+			.addFileType("{{Text files} {.txt}}")
+			.setInitialDirectory("~")
+			.setInitialFile("file-to-save.dmo")
+			.show();
+		this._saveFileEntry.setValue(dialog.getResult());
 	}
 
 	private void message(CommandArgs args)
@@ -96,16 +126,18 @@ class Application : TkdApplication
 			.grid(1, 3, 10, 0, 1, 1, "w");
 
 		auto fileOpenButton = new Button("Open File")
+			.setCommand(&this.openFile)
 			.grid(0, 4, 10, 0, 1, 1, "w");
 
-		this._fileOpenEntry = new Entry()
+		this._openFileEntry = new Entry()
 			.setWidth(40)
 			.grid(1, 4, 10, 0, 1, 1, "w");
 
 		auto fileSaveButton = new Button("Save File")
+			.setCommand(&this.saveFile)
 			.grid(0, 5, 10, 0, 1, 1, "w");
 
-		this._fileSaveEntry = new Entry()
+		this._saveFileEntry = new Entry()
 			.setWidth(40)
 			.grid(1, 5, 10, 0, 1, 1, "w");
 

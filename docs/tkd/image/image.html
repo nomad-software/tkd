@@ -24,12 +24,14 @@
 <div class="declaration-description"><div class="sections"><p>Construct the image.</p>
 </div>
 </div>
-<h2><a name="Image.blank"></a>void <span class="symbol">blank</span>();
+<h2><a name="Image.blank"></a>auto <span class="symbol">blank</span>(this T)();
 </h2>
-<div class="declaration-description"><div class="sections"><p>Clears the image of all pixel data and effectively makes it transparent.</p>
+<div class="declaration-description"><div class="sections"><p>Clears the image of all pixel data and effectively makes it transparent.
+</p>
+<h3>Return Value</h3><p>This image to aid method chaining.</p>
 </div>
 </div>
-<h2><a name="Image.setData"></a>void <span class="symbol">setData</span>(string data);
+<h2><a name="Image.setData"></a>auto <span class="symbol">setData</span>(this T)(string data);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Set the image data.
  This should be base64 encoded binary data.
@@ -37,6 +39,7 @@
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string data</td>
 <td>Base64 encoded data.</td></tr>
 </table>
+<h3>Return Value</h3><p>This image to aid method chaining.</p>
 </div>
 </div>
 <h2><a name="Image.getData"></a>string <span class="symbol">getData</span>();
@@ -46,7 +49,7 @@
 <h3>Return Value</h3><p>Base64 encoded image data.</p>
 </div>
 </div>
-<h2><a name="Image.setFormat"></a>void <span class="symbol">setFormat</span>(string format);
+<h2><a name="Image.setFormat"></a>auto <span class="symbol">setFormat</span>(this T)(string format);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Set the image format.
  Once set the image only accepts files or data in this format.
@@ -54,6 +57,9 @@
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string format</td>
 <td>A valid image format.</td></tr>
 </table>
+<h3>Return Value</h3><p>This image to aid method chaining.
+
+</p>
 <h3>See Also</h3><p><a href="./imageformat.html">tkd.image.imageformat</a> for supported formats.</p>
 </div>
 </div>
@@ -67,16 +73,17 @@
 <h3>See Also</h3><p><a href="./imageformat.html">tkd.image.imageformat</a> for returned formats.</p>
 </div>
 </div>
-<h2><a name="Image.setFile"></a>void <span class="symbol">setFile</span>(string file);
+<h2><a name="Image.setFile"></a>auto <span class="symbol">setFile</span>(this T)(string file);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Set the file to read the image data from.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string file</td>
 <td>The file to read the image data from.</td></tr>
 </table>
+<h3>Return Value</h3><p>This image to aid method chaining.</p>
 </div>
 </div>
-<h2><a name="Image.embedDataFromFile"></a>void <span class="symbol">embedDataFromFile</span>(string filename)();
+<h2><a name="Image.embedDataFromFile"></a>auto <span class="symbol">embedDataFromFile</span>(string filename, this T)();
 </h2>
 <div class="declaration-description"><div class="sections"><p>This method embeds the image as a base64 encoded string into the application.
  The path to the image must be passed to the compiler using the -J switch.
@@ -84,6 +91,7 @@
 <h3>Parameters</h3><table class="parameter-list"><tr><td>filename</td>
 <td>The filename to read the data from.</td></tr>
 </table>
+<h3>Return Value</h3><p>This image to aid method chaining.</p>
 </div>
 </div>
 <h2><a name="Image.getFile"></a>string <span class="symbol">getFile</span>();
@@ -93,13 +101,14 @@
 <h3>Return Value</h3><p>The file that was loaded for this image.</p>
 </div>
 </div>
-<h2><a name="Image.setGamma"></a>void <span class="symbol">setGamma</span>(double gamma);
+<h2><a name="Image.setGamma"></a>auto <span class="symbol">setGamma</span>(this T)(double gamma);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Set the image gamma.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>double gamma</td>
 <td>The destination gamma.</td></tr>
 </table>
+<h3>Return Value</h3><p>This image to aid method chaining.</p>
 </div>
 </div>
 <h2><a name="Image.getGamma"></a>string <span class="symbol">getGamma</span>();
@@ -109,13 +118,14 @@
 <h3>Return Value</h3><p>A string containing the image gamma setting.</p>
 </div>
 </div>
-<h2><a name="Image.setHeight"></a>void <span class="symbol">setHeight</span>(int height);
+<h2><a name="Image.setHeight"></a>auto <span class="symbol">setHeight</span>(this T)(int height);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Set the image height.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>int height</td>
 <td>The height to crop the image to.</td></tr>
 </table>
+<h3>Return Value</h3><p>This image to aid method chaining.</p>
 </div>
 </div>
 <h2><a name="Image.getHeight"></a>string <span class="symbol">getHeight</span>();
@@ -125,7 +135,7 @@
 <h3>Return Value</h3><p>The current cropped image height. Returns 0 if no cropping is taking place.</p>
 </div>
 </div>
-<h2><a name="Image.setPalette"></a>void <span class="symbol">setPalette</span>(string palette);
+<h2><a name="Image.setPalette"></a>auto <span class="symbol">setPalette</span>(this T)(string palette);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Set the image palette. This setting set how many levels of color/gray are used.
 </p>
@@ -138,6 +148,7 @@
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string palette</td>
 <td>A string describing the palette to use.</td></tr>
 </table>
+<h3>Return Value</h3><p>This image to aid method chaining.</p>
 </div>
 </div>
 <h2><a name="Image.getPalette"></a>string <span class="symbol">getPalette</span>();
@@ -147,13 +158,14 @@
 <h3>Return Value</h3><p>A string describing the palette.</p>
 </div>
 </div>
-<h2><a name="Image.setWidth"></a>void <span class="symbol">setWidth</span>(int width);
+<h2><a name="Image.setWidth"></a>auto <span class="symbol">setWidth</span>(this T)(int width);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Set the image width.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>int width</td>
 <td>The width to crop the image to.</td></tr>
 </table>
+<h3>Return Value</h3><p>This image to aid method chaining.</p>
 </div>
 </div>
 <h2><a name="Image.getWidth"></a>string <span class="symbol">getWidth</span>();

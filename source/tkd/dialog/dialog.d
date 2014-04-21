@@ -20,17 +20,17 @@ import tkd.tkdapplication : Window;
  */
 abstract class Dialog : Element
 {
-	/**
+	/*
 	 * The parent window of the dialog.
 	 */
 	protected Window _parent;
 
-	/**
+	/*
 	 * The title of the dialog.
 	 */
 	protected string _title;
 
-	/**
+	/*
 	 * The result of the dialog.
 	 */
 	protected string _result;
@@ -50,7 +50,8 @@ abstract class Dialog : Element
 	}
 
 	/**
-	 * Get the dialog result.
+	 * Get the dialog result. This varies on the type of dialog used and will 
+	 * reflect the overall result expected of each dialog.
 	 */
 	public string getResult()
 	{

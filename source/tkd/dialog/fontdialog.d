@@ -29,6 +29,9 @@ import tkd.element.element;
  *         &lt;&lt;TkFontchooserVisibility&gt;&gt;,
  *     )
  *
+ * Result:
+ *     The result is empty as all interaction takes place via callbacks.
+ *
  * See_Also:
  *     $(LINK2 ./dialog.html, tkd.dialog.dialog) $(BR)
  */
@@ -59,7 +62,7 @@ class FontDialog : Dialog
 	 */
 	this(string title = "Font")
 	{
-		super(null, title);
+		this(null, title);
 	}
 
 	/**
