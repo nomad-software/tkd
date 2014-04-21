@@ -673,6 +673,19 @@ class Window : UiElement
 
 		return cast(T) this;
 	}
+
+	/**
+	 * Wait until this window has been destroyed.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto wait(this T)()
+	{
+		this._tk.eval("tkwait window %s", this.id);
+
+		return cast(T) this;
+	}
 }
 
 /**
