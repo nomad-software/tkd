@@ -53,11 +53,11 @@ pre-existing C libraries. The source dependencies are as follows:
 Dub handles these automatically and during a build acquires them. While
 building, the tcltk repository is configured to link against the required
 Tcl/Tk libraries, hence they need to be installed for the application to
-function. This works across all platforms but there are other considerations.
+function.
 
 #### Libraries
 
-*Tkd requires v8.6.1 of the Tcl/Tk libraries or greater installed.*
+**Tkd requires v8.6.1 of the Tcl/Tk libraries or greater installed.**
 
 ##### Windows
 
