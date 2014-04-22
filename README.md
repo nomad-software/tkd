@@ -57,7 +57,7 @@ function.
 
 #### Libraries
 
-**Tkd requires v8.6.1 of the Tcl/Tk libraries or greater installed.**
+Tkd requires version **8.6.1** of the Tcl/Tk libraries or greater installed.
 
 ##### Windows
 
@@ -92,10 +92,10 @@ build.
 
 ##### Linux/Mac OSX
 
-On Linux and Mac OSX things are a little more easier as both operating systems
-both have Tcl/Tk installed by default. If however they do not have the latest
-version, the libraries can be installed via their respective package managers
-or use ActiveTcl.
+On Linux and Mac OSX things are a little easier as both operating systems have
+Tcl/Tk installed by default. If however they do not have the latest version,
+the libraries can be installed via their respective package managers or use
+ActiveTcl.
 
 ### Widgets
 
