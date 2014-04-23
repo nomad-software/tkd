@@ -31,7 +31,7 @@ There is full HTML documentation within the repository inside the [docs](https:/
 
 ### Example
 
-```d
+```c++
 import tkd.tkdapplication;                               // Import Tkd.
 
 class Application : TkdApplication                       // Extend TkdApplication.
