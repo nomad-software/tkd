@@ -9,13 +9,7 @@ Tkd is a fully cross-platform GUI toolkit based on
 [Tcl/Tk](http://www.tcl.tk/). Tkd allows you to build GUI applications easily
 and with the knowledge of a consistent, native look and feel on every platform.
 
-### Supported platforms
-
-* Windows
-* Linux
-* Mac OSX
-
-## Why Tcl/Tk
+### Why Tcl/Tk?
 
 Tkd development was initiated based on the performance and uptake of the
 [Tkinter](https://wiki.python.org/moin/TkInter) toolkit distributed as a
@@ -24,6 +18,12 @@ Tkinter allows developers easy access to GUI programming with very little
 learning. Being the _de facto_ GUI toolkit of Python has introduced more
 developers to GUI application programming and increased the popularity of the
 language as a whole. Tkd is an attempt to provide D with the same resource.
+
+### Supported platforms
+
+* Windows
+* Linux
+* Mac OSX
 
 ## Documentation
 
