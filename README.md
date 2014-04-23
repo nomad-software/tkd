@@ -33,12 +33,12 @@ There is full HTML documentation within the repository inside the [docs](https:/
 
 ```d
 /**
- * Your application should extend the TkdApplication.
+ * All applications extend the TkdApplication.
  */
 class Application : TkdApplication
 {
 	/**
-	 * Callback for the 'Exit' button.
+	 * Define a callback to be used later.
 	 */
 	private void exitCommand(CommandArgs args)
 	{
@@ -46,7 +46,7 @@ class Application : TkdApplication
 	}
 
 	/**
-	 * Initialise the GUI.
+	 * Initialise the user interface.
 	 */
 	override protected void initInterface()
 	{
