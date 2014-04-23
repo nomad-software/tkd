@@ -27,6 +27,8 @@ public import tkd.widget;
  *
  * Example:
  * ---
+ * import tkd.tkdapplication;
+ *
  * class Application : TkdApplication
  * {
  * 	private void exitCommand(CommandArgs args)

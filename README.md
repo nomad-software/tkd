@@ -32,6 +32,8 @@ There is full HTML documentation within the repository inside the [docs](https:/
 ### Example
 
 ```d
+import tkd.tkdapplication;                            // Import Tkd.
+
 class Application : TkdApplication                    // Extend TkdApplication.
 {
 	private void exitCommand(CommandArgs args)        // Create a callback.
