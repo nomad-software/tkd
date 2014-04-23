@@ -50,7 +50,7 @@ class Application : TkdApplication                       // Extend TkdApplicatio
 			.pack(10);                                   // Place the label.
 
 		auto exitButton = new Button(frame, "Exit")      // Create a button.
-			.setCommand(&this.exitCommand);              // Use the callback.
+			.setCommand(&this.exitCommand)               // Use the callback.
 			.pack(10);                                   // Place the button.
 	}
 }
@@ -61,6 +61,7 @@ void main(string[] args)
 	app.run();                                           // Run the application.
 }
 ```
+[The above example.](media/example.png)
 
 ### Supported GUI widgets
 

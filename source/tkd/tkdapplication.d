@@ -45,7 +45,7 @@ public import tkd.widget;
  * 			.pack(10);
  * 
  * 		auto exitButton = new Button(frame, "Exit")
- * 			.setCommand(&this.exitCommand);
+ * 			.setCommand(&this.exitCommand)
  * 			.pack(10);
  * 	}
  * }
