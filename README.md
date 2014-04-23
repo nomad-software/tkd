@@ -32,43 +32,31 @@ There is full HTML documentation within the repository inside the [docs](https:/
 ### Example
 
 ```d
-/**
- * All applications extend the TkdApplication.
- */
-class Application : TkdApplication
+class Application : TkdApplication                    // Extend TkdApplication.
 {
-	/**
-	 * Define a callback to be used later.
-	 */
-	private void exitCommand(CommandArgs args)
+	private void exitCommand(CommandArgs args)        // Create a callback for the button.
 	{
-		this.exit();
+		this.exit();                                  // Exit the application.
 	}
 
-	/**
-	 * Initialise the user interface.
-	 */
-	override protected void initInterface()
+	override protected void initInterface()           // Initialise the user interface.
 	{
-		// Create a frame to hold the other widgets.
-		auto frame = new Frame(2, ReliefStyle.groove).pack(10);
+		auto frame = new Frame(2, ReliefStyle.groove) // Create a frame.
+			.pack(10);                                // Place the widget with padding.
 
-		// Add a label and button to the frame.
-		auto label = new Label(frame, "Hello World!").pack(10);
-		auto exitButton = new Button(frame, "Exit").pack(10);
+		auto label = new Label(frame, "Hello World!") // Create a label.
+			.pack(10);                                // Place the widget with padding.
 
-		// Make the button use the callback when pressed.
-		exitButton.setCommand(&this.exitCommand);
+		auto exitButton = new Button(frame, "Exit")   // Create a button.
+			.setCommand(&this.exitCommand);           // Use the callback when pressed.
+			.pack(10);                                // Place the widget with padding.
 	}
 }
 
-/**
- * Start the application.
- */
 void main(string[] args)
 {
-	auto app = new Application();
-	app.run();
+	auto app = new Application();                     // Create the application.
+	app.run();                                        // Run the application.
 }
 ```
 
