@@ -34,7 +34,7 @@ There is full HTML documentation within the repository inside the [docs](https:/
 ```d
 class Application : TkdApplication                    // Extend TkdApplication.
 {
-	private void exitCommand(CommandArgs args)        // Create a callback for the button.
+	private void exitCommand(CommandArgs args)        // Create a callback.
 	{
 		this.exit();                                  // Exit the application.
 	}
