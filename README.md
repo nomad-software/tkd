@@ -27,6 +27,32 @@ language as a whole. Tkd is an attempt to provide D with the same resource.
 
 ## Documentation
 
+### Example
+
+```d
+class Application : TkdApplication
+{
+	private void exitCommand(CommandArgs args)
+	{
+		this.exit();
+	}
+
+	override protected void initInterface()
+	{
+		auto frame      = new Frame().pack();
+		auto exitButton = new Button(frame, "Exit").pack();
+
+		exitButton.setCommand(&this.exitCommand);
+	}
+}
+
+void main(string[] args)
+{
+	auto app = new Application();
+	app.run();
+}
+```
+
 There is full HTML documentation within the repository inside the [docs](https://github.com/nomad-software/tkd/tree/master/docs/) directory.
 
 ### Supported GUI widgets
