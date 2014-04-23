@@ -39,17 +39,17 @@ class Application : TkdApplication                    // Extend TkdApplication.
 		this.exit();                                  // Exit the application.
 	}
 
-	override protected void initInterface()           // Initialise the user interface.
+	override protected void initInterface()           // Initialise user interface.
 	{
 		auto frame = new Frame(2, ReliefStyle.groove) // Create a frame.
-			.pack(10);                                // Place the widget with padding.
+			.pack(10);                                // Place the widget.
 
 		auto label = new Label(frame, "Hello World!") // Create a label.
-			.pack(10);                                // Place the widget with padding.
+			.pack(10);                                // Place the widget.
 
 		auto exitButton = new Button(frame, "Exit")   // Create a button.
-			.setCommand(&this.exitCommand);           // Use the callback when pressed.
-			.pack(10);                                // Place the widget with padding.
+			.setCommand(&this.exitCommand);           // Use the callback.
+			.pack(10);                                // Place the widget.
 	}
 }
 
