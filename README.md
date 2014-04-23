@@ -61,7 +61,7 @@ void main(string[] args)
 	app.run();                                           // Run the application.
 }
 ```
-[The above example.](media/example.png)
+![The above example.](media/example.png)
 
 ### Supported GUI widgets
 
