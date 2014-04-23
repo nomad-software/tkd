@@ -44,14 +44,14 @@ class Application : TkdApplication                    // Extend TkdApplication.
 	override protected void initInterface()           // Initialise user interface.
 	{
 		auto frame = new Frame(2, ReliefStyle.groove) // Create a frame.
-			.pack(10);                                // Place the widget.
+			.pack(10);                                // Place the frame.
 
 		auto label = new Label(frame, "Hello World!") // Create a label.
-			.pack(10);                                // Place the widget.
+			.pack(10);                                // Place the label.
 
 		auto exitButton = new Button(frame, "Exit")   // Create a button.
 			.setCommand(&this.exitCommand);           // Use the callback.
-			.pack(10);                                // Place the widget.
+			.pack(10);                                // Place the button.
 	}
 }
 
