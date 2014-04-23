@@ -29,10 +29,15 @@
 
 	<span class="keyword">override</span> <span class="keyword">protected</span> <span class="keyword">void</span> initInterface()
 	{
-		<span class="keyword">auto</span> frame      = <span class="keyword">new</span> Frame().pack();
-		<span class="keyword">auto</span> exitButton = <span class="keyword">new</span> Button(frame, <span class="string">"Exit"</span>).pack();
+		<span class="keyword">auto</span> frame = <span class="keyword">new</span> Frame(2, ReliefStyle.groove)
+			.pack(10);
 
-		exitButton.setCommand(&amp;<span class="keyword">this</span>.exitCommand);
+		<span class="keyword">auto</span> label = <span class="keyword">new</span> Label(frame, <span class="string">"Hello World!"</span>)
+			.pack(10);
+
+		<span class="keyword">auto</span> exitButton = <span class="keyword">new</span> Button(frame, <span class="string">"Exit"</span>)
+			.setCommand(&amp;<span class="keyword">this</span>.exitCommand);
+			.pack(10);
 	}
 }
 
