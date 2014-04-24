@@ -50,6 +50,16 @@ import tkd.widget.widget;
  * associated with items in much the same way that the bind command allows 
  * commands to be bound to widgets.
  *
+ * Example:
+ * ---
+ * auto canvas = new Canvas(Color.white)
+ * .setWidth(350)
+ * .setHeight(250)
+ * .addItem(new CanvasRectangle([10, 10, 200, 100]))
+ * .bind("<ButtonPress-1>", delegate(CommandArgs args){ ... })
+ * .pack()
+ * ---
+ *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.
  *     $(P
@@ -87,7 +97,7 @@ class Canvas : Widget, IXScrollable!(Canvas), IYScrollable!(Canvas)
 	 * See_Also:
 	 *     $(LINK2 ../element/uielement.html, tkd.element.UiElement) $(BR)
 	 */
-	public this(UiElement parent = null, string backgroundColor = Color.default_)
+	public this(UiElement parent, string backgroundColor = Color.default_)
 	{
 		super(parent);
 		this._elementId = "canvas";
@@ -97,6 +107,20 @@ class Canvas : Widget, IXScrollable!(Canvas), IYScrollable!(Canvas)
 		this.setBorderWidth(1);
 		this.setRelief(ReliefStyle.sunken);
 		this.setBackgroundColor(backgroundColor);
+	}
+
+	/**
+	 * Construct the widget.
+	 *
+	 * Params:
+	 *     backgroundColor = The background color.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../element/uielement.html, tkd.element.UiElement) $(BR)
+	 */
+	public this(string backgroundColor = Color.default_)
+	{
+		this(null, backgroundColor);
 	}
 
 	/**

@@ -15,12 +15,18 @@ import tkd.image.imageposition;
 import tkd.widget.common.command;
 import tkd.widget.common.default_;
 import tkd.widget.common.invoke;
-import tkd.widget.common.width;
 import tkd.widget.textwidget;
 
 /**
  * A button widget displays a textual label and/or image, and evaluates a 
  * command when pressed.
+ *
+ * Example:
+ * ---
+ * auto button = new Button(new Png!("image.png"), "Text")
+ * .setCommand(delegate(CommandArgs arg){ ... })
+ * .pack();
+ * ---
  *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.
@@ -28,7 +34,6 @@ import tkd.widget.textwidget;
  *         $(LINK2 ./common/command.html, Command) $(BR)
  *         $(LINK2 ./common/default_.html, Default) $(BR)
  *         $(LINK2 ./common/invoke.html, Invoke) $(BR)
- *         $(LINK2 ./common/width.html, Width) $(BR)
  *     )
  *
  * Additional_Events:
@@ -63,7 +68,7 @@ class Button : TextWidget
 	 * Params:
 	 *     parent = The parent of this widget.
 	 *     text = The text of the button.
-	 *     image = The tool button image.
+	 *     image = The button image.
 	 *     imagePosition = The position of the image in relation to the text.
 	 *
 	 * See_Also:
@@ -93,7 +98,7 @@ class Button : TextWidget
 	 *
 	 * Params:
 	 *     parent = The parent of this widget.
-	 *     image = The tool button image.
+	 *     image = The button image.
 	 *     text = The text of the button.
 	 *     imagePosition = The position of the image in relation to the text.
 	 *
@@ -114,7 +119,7 @@ class Button : TextWidget
 	 *
 	 * Params:
 	 *     text = The text of the button.
-	 *     image = The tool button image.
+	 *     image = The button image.
 	 *     imagePosition = The position of the image in relation to the text.
 	 *
 	 * See_Also:
@@ -132,7 +137,7 @@ class Button : TextWidget
 	 * Construct the widget.
 	 *
 	 * Params:
-	 *     image = The tool button image.
+	 *     image = The button image.
 	 *     text = The text of the button.
 	 *     imagePosition = The position of the image in relation to the text.
 	 *
@@ -144,7 +149,7 @@ class Button : TextWidget
 	 */
 	this(Image image, string text = null, string imagePosition = ImagePosition.image)
 	{
-		this(null, image, text, imagePosition);
+		this(null, text, image, imagePosition);
 	}
 
 	/**
@@ -153,5 +158,4 @@ class Button : TextWidget
 	mixin Command;
 	mixin Default_;
 	mixin Invoke;
-	mixin Width;
 }

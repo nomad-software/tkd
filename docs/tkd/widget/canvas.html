@@ -23,6 +23,16 @@
  associated with items in much the same way that the bind command allows
  commands to be bound to widgets.
 </p>
+<p><h3>Example:</h3>
+<pre><span class="keyword">auto</span> canvas = <span class="keyword">new</span> <span class="symbol">Canvas</span>(Color.white)
+.setWidth(350)
+.setHeight(250)
+.addItem(<span class="keyword">new</span> CanvasRectangle([10, 10, 200, 100]))
+.bind(<span class="string">"&lt;ButtonPress-1&gt;"</span>, <span class="keyword">delegate</span>(CommandArgs args){ ... })
+.pack()
+</pre>
+
+</p>
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this widget.
      <p>        <a href="./common/border.html">Border</a> <br>
@@ -47,13 +57,23 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </p>
 <h3>See Also</h3><p><a href="./widget.html">tkd.widget.widget</a></p>
 </div>
-<div class="class-members"><h2><a name="Canvas.this"></a> this(UiElement parent = null, string backgroundColor = Color.default_);
+<div class="class-members"><h2><a name="Canvas.this"></a> this(UiElement parent, string backgroundColor = Color.default_);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>UiElement parent</td>
 <td>The parent of this widget.</td></tr>
 <tr><td>string backgroundColor</td>
+<td>The background color.</td></tr>
+</table>
+<h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.UiElement</a> <br></p>
+</div>
+</div>
+<h2><a name="Canvas.this"></a> this(string backgroundColor = Color.default_);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Construct the widget.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string backgroundColor</td>
 <td>The background color.</td></tr>
 </table>
 <h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.UiElement</a> <br></p>
