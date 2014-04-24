@@ -27,7 +27,8 @@ language as a whole. Tkd is an attempt to provide D with the same resource.
 
 ## Documentation
 
-There is full HTML documentation within the repository inside the [docs](https://github.com/nomad-software/tkd/tree/master/docs/) directory.
+There is full HTML documentation within the repository inside the
+[docs](https://github.com/nomad-software/tkd/tree/master/docs/) directory.
 
 ### Example
 
