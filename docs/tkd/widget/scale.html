@@ -22,6 +22,15 @@
  over a trough, with the relative position of the slider over the trough
  indicating the value.
 </p>
+<p><h3>Example:</h3>
+<pre><span class="keyword">auto</span> scale = <span class="keyword">new</span> <span class="symbol">Scale</span>()
+	.setCommand(<span class="keyword">delegate</span>(CommandArgs arg){ ... })
+	.setFromValue(0.0)
+	.setToValue(100.0)
+	.pack();
+</pre>
+
+</p>
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this widget.
      <p>        <a href="./common/command.html">Command</a> <br>

@@ -24,6 +24,15 @@ import tkd.widget.widget;
  * over a trough, with the relative position of the slider over the trough 
  * indicating the value.
  *
+ * Example:
+ * ---
+ * auto scale = new Scale()
+ * 	.setCommand(delegate(CommandArgs arg){ ... })
+ * 	.setFromValue(0.0)
+ * 	.setToValue(100.0)
+ * 	.pack();
+ * ---
+ *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.
  *     $(P

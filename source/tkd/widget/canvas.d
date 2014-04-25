@@ -53,11 +53,11 @@ import tkd.widget.widget;
  * Example:
  * ---
  * auto canvas = new Canvas(Color.white)
- * .setWidth(350)
- * .setHeight(250)
- * .addItem(new CanvasRectangle([10, 10, 200, 100]))
- * .bind("<ButtonPress-1>", delegate(CommandArgs args){ ... })
- * .pack()
+ * 	.setWidth(350)
+ * 	.setHeight(250)
+ * 	.addItem(new CanvasRectangle([10, 10, 200, 100]))
+ * 	.bind("<ButtonPress-1>", delegate(CommandArgs args){ ... })
+ * 	.pack();
  * ---
  *
  * Common_Commands:

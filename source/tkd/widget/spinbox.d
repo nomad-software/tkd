@@ -38,6 +38,17 @@ import tkd.widget.widget;
  * override any numeric range or step set. The widget will instead use the 
  * values specified beginning with the first value.
  *
+ * Example:
+ * ---
+ * auto spinBox = new SpinBox()
+ * 	.setCommand(delegate(CommandArgs arg){ ... })
+ * 	.setFromValue(0.0)
+ * 	.setToValue(100.0)
+ * 	.setStep(0.5)
+ * 	.setValue(0.0)
+ * 	.pack();
+ * ---
+ *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.
  *     $(P

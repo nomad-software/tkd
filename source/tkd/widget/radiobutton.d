@@ -25,6 +25,22 @@ import tkd.widget.textwidget;
  * button widgets within the group must share the same immediate parent 
  * (usually a frame) and all must have individual selected values set.
  *
+ * Example:
+ * ---
+ * // The radio button group parent.
+ * auto frame = new Frame()
+ * 	.pack();
+ *
+ * auto option1 = new RadioButton(frame, "Foo")
+ * 	.setSelectedValue("foo")
+ * 	.select()
+ * 	.pack();
+ *
+ * auto option2 = new RadioButton(frame, "Bar")
+ * 	.setSelectedValue("bar")
+ * 	.pack();
+ * ---
+ *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.
  *     $(P

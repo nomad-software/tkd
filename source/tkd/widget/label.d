@@ -20,6 +20,12 @@ import tkd.widget.textwidget;
 /**
  * A label widget displays a textual label and/or image.
  *
+ * Example:
+ * ---
+ * auto label = new Label("Text")
+ * 	.pack();
+ * ---
+ *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.
  *     $(P

@@ -26,6 +26,13 @@ import tkd.widget.widget;
  * A text widget displays one or more lines of text and allows that text to be 
  * edited. Text widgets support embedded widgets or embedded images.
  *
+ * Example:
+ * ---
+ * auto text = new Text()
+ * 	.appendText("Text")
+ * 	.pack();
+ * ---
+ *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.
  *     $(P

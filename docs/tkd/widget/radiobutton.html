@@ -26,6 +26,22 @@
  (usually a frame) and all must have individual selected values set.
 
 </p>
+<p><h3>Example:</h3>
+<pre><span class="comment">// The radio button group parent.
+</span><span class="keyword">auto</span> frame = <span class="keyword">new</span> Frame()
+	.pack();
+
+<span class="keyword">auto</span> option1 = <span class="keyword">new</span> <span class="symbol">RadioButton</span>(frame, <span class="string">"Foo"</span>)
+	.setSelectedValue(<span class="string">"foo"</span>)
+	.select()
+	.pack();
+
+<span class="keyword">auto</span> option2 = <span class="keyword">new</span> <span class="symbol">RadioButton</span>(frame, <span class="string">"Bar"</span>)
+	.setSelectedValue(<span class="string">"bar"</span>)
+	.pack();
+</pre>
+
+</p>
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this widget.
      <p>        <a href="./common/command.html">Command</a> <br>

@@ -30,6 +30,13 @@ import tkd.widget.widget;
  * An entry widget displays a one-line text string and allows that string to be 
  * edited by the user. Entry widgets support horizontal scrolling.
  *
+ * Example:
+ * ---
+ * auto entry = new Entry()
+ * 	.setValue("Text")
+ * 	.pack();
+ * ---
+ *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.
  *     $(P

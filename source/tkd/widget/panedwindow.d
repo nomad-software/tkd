@@ -21,6 +21,18 @@ import tkd.widget.widget;
  * vertically or horizontally. The user may adjust the relative sizes of the 
  * subwindows by dragging the sash between panes.
  *
+ * Example:
+ * ---
+ * // The pane's widgets are contained within the frames.
+ * auto left = new Frame();
+ * auto right = new Frame();
+ *
+ * auto panedWindow = new PanedWindow()
+ * 	.addPane(left)
+ * 	.addPane(right)
+ * 	.pack();
+ * ---
+ *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.
  *     $(P

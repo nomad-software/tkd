@@ -21,6 +21,16 @@ import tkd.widget.widget;
 /**
  * A frame widget is a container, used to group other widgets together.
  *
+ * Example:
+ * ---
+ * auto frame = new Frame(2, ReliefStyle.groove)
+ * 	.pack(0, 10);
+ *
+ * // Put the button inside the frame.
+ * auto button = new Button(frame, "Text")
+ * 	.pack();
+ * ---
+ *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.
  *     $(P
@@ -50,21 +60,21 @@ class Frame : Widget
 	 *
 	 * Params:
 	 *     parent = The parent of this widget.
-	 *     width = The width of the frame border.
+	 *     borderWidth = The width of the frame border.
 	 *     relief = The relief style of the border.
 	 *
 	 * See_Also:
 	 *     $(LINK2 ../element/uielement.html, tkd.element.UiElement) $(BR)
 	 *     $(LINK2 ./reliefstyle.html, tkd.widget.reliefstyle) $(BR)
 	 */
-	public this(UiElement parent, int width = 0, string relief = ReliefStyle.flat)
+	public this(UiElement parent, int borderWidth = 0, string relief = ReliefStyle.flat)
 	{
 		super(parent);
 		this._elementId = "frame";
 
 		this._tk.eval("ttk::frame %s", this.id);
 
-		this.setBorderWidth(width);
+		this.setBorderWidth(borderWidth);
 		this.setRelief(relief);
 	}
 
@@ -72,15 +82,15 @@ class Frame : Widget
 	 * Construct the widget.
 	 *
 	 * Params:
-	 *     width = The width of the frame border.
+	 *     borderWidth = The width of the frame border.
 	 *     relief = The relief style of the border.
 	 *
 	 * See_Also:
 	 *     $(LINK2 ./reliefstyle.html, tkd.widget.reliefstyle) $(BR)
 	 */
-	public this(int width = 0, string relief = ReliefStyle.flat)
+	public this(int borderWidth = 0, string relief = ReliefStyle.flat)
 	{
-		this(null, width, relief);
+		this(null, borderWidth, relief);
 	}
 
 	/**

@@ -21,6 +21,18 @@
  vertically or horizontally. The user may adjust the relative sizes of the
  subwindows by dragging the sash between panes.
 </p>
+<p><h3>Example:</h3>
+<pre><span class="comment">// The pane's widgets are contained within the frames.
+</span><span class="keyword">auto</span> left = <span class="keyword">new</span> Frame();
+<span class="keyword">auto</span> right = <span class="keyword">new</span> Frame();
+
+<span class="keyword">auto</span> panedWindow = <span class="keyword">new</span> <span class="symbol">PanedWindow</span>()
+	.addPane(left)
+	.addPane(right)
+	.pack();
+</pre>
+
+</p>
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this widget.
      <p>        <a href="./common/height.html">Height</a> <br>

@@ -19,6 +19,16 @@
 </h2>
 <div class="declaration-description"><div class="sections"><p>A frame widget is a container, used to group other widgets together.
 </p>
+<p><h3>Example:</h3>
+<pre><span class="keyword">auto</span> frame = <span class="keyword">new</span> <span class="symbol">Frame</span>(2, ReliefStyle.groove)
+	.pack(0, 10);
+
+<span class="comment">// Put the button inside the frame.
+</span><span class="keyword">auto</span> button = <span class="keyword">new</span> Button(frame, <span class="string">"Text"</span>)
+	.pack();
+</pre>
+
+</p>
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this widget.
      <p>        <a href="./common/border.html">Border</a> <br>
@@ -40,13 +50,13 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </p>
 <h3>See Also</h3><p><a href="./widget.html">tkd.widget.widget</a></p>
 </div>
-<div class="class-members"><h2><a name="Frame.this"></a> this(UiElement parent, int width = 0, string relief = ReliefStyle.flat);
+<div class="class-members"><h2><a name="Frame.this"></a> this(UiElement parent, int borderWidth = 0, string relief = ReliefStyle.flat);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>UiElement parent</td>
 <td>The parent of this widget.</td></tr>
-<tr><td>int width</td>
+<tr><td>int borderWidth</td>
 <td>The width of the frame border.</td></tr>
 <tr><td>string relief</td>
 <td>The relief style of the border.</td></tr>
@@ -55,11 +65,11 @@ Additional events that can also be bound to using the <a href="../element/uielem
      <a href="./reliefstyle.html">tkd.widget.reliefstyle</a> <br></p>
 </div>
 </div>
-<h2><a name="Frame.this"></a> this(int width = 0, string relief = ReliefStyle.flat);
+<h2><a name="Frame.this"></a> this(int borderWidth = 0, string relief = ReliefStyle.flat);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>int width</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int borderWidth</td>
 <td>The width of the frame border.</td></tr>
 <tr><td>string relief</td>
 <td>The relief style of the border.</td></tr>

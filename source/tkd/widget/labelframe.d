@@ -22,6 +22,16 @@ import tkd.widget.widget;
  * A label frame widget is a container used to group other widgets together. It 
  * has an optional label, which may be a plain text string or another widget.
  *
+ * Example:
+ * ---
+ * auto labelFrame = new LabelFrame("Text")
+ * 	.pack(0, 10);
+ *
+ * // Put the button inside the label frame.
+ * auto button = new Button(labelFrame, "Text")
+ * 	.pack();
+ * ---
+ *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.
  *     $(P

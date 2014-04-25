@@ -17,6 +17,16 @@ import tkd.widget.textwidget;
  * A menu button widget displays a textual label and/or image, and displays a 
  * menu when pressed.
  *
+ * Example:
+ * ---
+ * auto menu = new Menu()
+ * 	.addEntry("Entry 1", delegate(CommandArgs args){ ... })
+ * 	.addEntry("Entry 2", delegate(CommandArgs args){ ... });
+ *
+ * auto menuButton = new MenuButton("Text", menu)
+ * 	.pack();
+ * ---
+ *
  * Additional_Events:
  *     Additional events that can also be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) method.
  *     $(P

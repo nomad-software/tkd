@@ -30,6 +30,15 @@
  and vertical scrolling with the standard scroll commands.
 
 </p>
+<p><h3>Example:</h3>
+<pre><span class="keyword">auto</span> treeView = <span class="keyword">new</span> <span class="symbol">TreeView</span>()
+	.setHeading(<span class="string">"Text"</span>)
+	.addRow(<span class="keyword">new</span> TreeViewRow([<span class="string">"row1"</span>]))
+	.addRow(<span class="keyword">new</span> TreeViewRow([<span class="string">"row2"</span>]))
+	.pack();
+</pre>
+
+</p>
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this widget.
      <p>        <a href="./common/height.html">Height</a> <br>

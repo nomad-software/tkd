@@ -26,6 +26,17 @@
  values specified beginning with the first value.
 
 </p>
+<p><h3>Example:</h3>
+<pre><span class="keyword">auto</span> spinBox = <span class="keyword">new</span> <span class="symbol">SpinBox</span>()
+	.setCommand(<span class="keyword">delegate</span>(CommandArgs arg){ ... })
+	.setFromValue(0.0)
+	.setToValue(100.0)
+	.setStep(0.5)
+	.setValue(0.0)
+	.pack();
+</pre>
+
+</p>
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this widget.
      <p>        <a href="./common/boundingbox.html">BoundingBox</a> <br>

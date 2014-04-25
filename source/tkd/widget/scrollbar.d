@@ -25,6 +25,29 @@ import tkd.widget.widget;
  * buttons may also be present; these are used to scroll the visible region in 
  * discrete units.
  *
+ * Example:
+ * ---
+ * auto frame = new Frame()
+ * 	.grid(0, 0);
+ *
+ * auto canvas = new Canvas(frame);
+ * 	.setWidth(300)
+ * 	.setHeight(150)
+ * 	.setScrollRegion(-100, -150, 500, 350)
+ *
+ * auto yscroll = new YScrollBar(frame)
+ * 	.attachWidget(canvas)
+ * 	.grid(1, 0, 0, 0, 1, 1, "nes");
+ *
+ * auto xscroll = new XScrollBar(frame)
+ * 	.attachWidget(canvas)
+ * 	.grid(0, 1, 0, 0, 1, 1, "esw");
+ *
+ * canvas.attachXScrollBar(xscroll)
+ * 	.attachYScrollBar(yscroll)
+ * 	.grid(0, 0, 0, 0, 1, 1, "nesw");
+ * ---
+ *
  * Additional_Events:
  *     Additional events that can also be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) method.
  *     $(P

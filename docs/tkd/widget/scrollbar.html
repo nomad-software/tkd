@@ -26,6 +26,29 @@
  buttons may also be present; these are used to scroll the visible region in
  discrete units.
 </p>
+<p><h3>Example:</h3>
+<pre><span class="keyword">auto</span> frame = <span class="keyword">new</span> Frame()
+	.grid(0, 0);
+
+<span class="keyword">auto</span> canvas = <span class="keyword">new</span> Canvas(frame);
+	.setWidth(300)
+	.setHeight(150)
+	.setScrollRegion(-100, -150, 500, 350)
+
+<span class="keyword">auto</span> yscroll = <span class="keyword">new</span> YScrollBar(frame)
+	.attachWidget(canvas)
+	.grid(1, 0, 0, 0, 1, 1, <span class="string">"nes"</span>);
+
+<span class="keyword">auto</span> xscroll = <span class="keyword">new</span> XScrollBar(frame)
+	.attachWidget(canvas)
+	.grid(0, 1, 0, 0, 1, 1, <span class="string">"esw"</span>);
+
+canvas.attachXScrollBar(xscroll)
+	.attachYScrollBar(yscroll)
+	.grid(0, 0, 0, 0, 1, 1, <span class="string">"nesw"</span>);
+</pre>
+
+</p>
 <p><h3>Additional Events:</h3>
 Additional events that can also be bound to using the <a href="../element/uielement.html#UiElement.bind">bind</a> method.
      <p>        &lt;&lt;PrevWindow&gt;&gt;,

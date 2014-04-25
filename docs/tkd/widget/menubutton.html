@@ -20,6 +20,16 @@
 <div class="declaration-description"><div class="sections"><p>A menu button widget displays a textual label and/or image, and displays a
  menu when pressed.
 </p>
+<p><h3>Example:</h3>
+<pre><span class="keyword">auto</span> menu = <span class="keyword">new</span> Menu()
+	.addEntry(<span class="string">"Entry 1"</span>, <span class="keyword">delegate</span>(CommandArgs args){ ... })
+	.addEntry(<span class="string">"Entry 2"</span>, <span class="keyword">delegate</span>(CommandArgs args){ ... });
+
+<span class="keyword">auto</span> menuButton = <span class="keyword">new</span> <span class="symbol">MenuButton</span>(<span class="string">"Text"</span>, menu)
+	.pack();
+</pre>
+
+</p>
 <p><h3>Additional Events:</h3>
 Additional events that can also be bound to using the <a href="../element/uielement.html#UiElement.bind">bind</a> method.
      <p>        &lt;&lt;Invoke&gt;&gt;,

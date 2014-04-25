@@ -39,6 +39,15 @@ import tkd.widget.widget;
  * value list. See the below widget specific and common commands for an 
  * overview of how this works.
  *
+ * Example:
+ * ---
+ * auto values = ["foo", "bar", "baz", "qux"];
+ *
+ * auto comboBox = new ComboBox()
+ * 	.setValues(values);
+ * 	.pack();
+ * ---
+ *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.
  *     $(P

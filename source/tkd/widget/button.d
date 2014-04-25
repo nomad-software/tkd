@@ -24,8 +24,8 @@ import tkd.widget.textwidget;
  * Example:
  * ---
  * auto button = new Button(new Png!("image.png"), "Text")
- * .setCommand(delegate(CommandArgs arg){ ... })
- * .pack();
+ * 	.setCommand(delegate(CommandArgs arg){ ... })
+ * 	.pack();
  * ---
  *
  * Common_Commands:

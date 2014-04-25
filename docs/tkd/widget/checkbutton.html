@@ -21,6 +21,14 @@
  selected and deselected. The state of the checkbutton may be linked to a
  value.
 </p>
+<p><h3>Example:</h3>
+<pre><span class="keyword">auto</span> checkButton = <span class="keyword">new</span> <span class="symbol">CheckButton</span>(<span class="string">"Text"</span>)
+	.setCommand(<span class="keyword">delegate</span>(CommandArgs arg){ ... })
+	.check()
+	.pack();
+</pre>
+
+</p>
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this widget.
      <p>        <a href="./common/command.html">Command</a> <br>

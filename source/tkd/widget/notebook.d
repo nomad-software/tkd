@@ -23,6 +23,16 @@ import tkd.widget.widget;
  * a time. Each pane is associated with a tab, which the user may select to 
  * change the currently-displayed pane.
  *
+ * Example:
+ * ---
+ * // The pane's widgets are contained within the frame.
+ * auto pane = new Frame();
+ *
+ * auto noteBook = new NoteBook()
+ * 	.addTab("Text", pane)
+ * 	.pack();
+ * ---
+ *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.
  *     $(P

@@ -22,6 +22,14 @@ import tkd.widget.widget;
  * to the total amount of work to be done, and indeterminate mode provides an 
  * animated display to let the user know that something is happening.
  *
+ * Example:
+ * ---
+ * auto progressBar = new ProgressBar()
+ * 	.setMaxValue(100)
+ * 	.setValue(10)
+ * 	.pack();
+ * ---
+ *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.
  *     $(P
@@ -119,7 +127,7 @@ class ProgressBar : Widget
 
 	/**
 	 * The widget periodically increments the value of this option whenever the 
-	 * -value is greater than 0 and, in determinate mode, less than -maximum. 
+	 * value is greater than 0 and, in determinate mode, less than the maximum. 
 	 * This option may be used by the current theme to provide additional 
 	 * animation effects.
 	 *

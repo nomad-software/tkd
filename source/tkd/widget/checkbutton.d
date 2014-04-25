@@ -21,6 +21,14 @@ import tkd.widget.textwidget;
  * selected and deselected. The state of the checkbutton may be linked to a 
  * value.
  *
+ * Example:
+ * ---
+ * auto checkButton = new CheckButton("Text")
+ * 	.setCommand(delegate(CommandArgs arg){ ... })
+ * 	.check()
+ * 	.pack();
+ * ---
+ *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.
  *     $(P

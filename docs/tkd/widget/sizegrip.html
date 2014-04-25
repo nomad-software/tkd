@@ -20,6 +20,12 @@
 <div class="declaration-description"><div class="sections"><p>A sizegrip widget (also known as a grow box) allows the user to resize the
  containing toplevel window by pressing and dragging the grip.
 </p>
+<p><h3>Example:</h3>
+<pre><span class="keyword">auto</span> sizeGrip = <span class="keyword">new</span> <span class="symbol">SizeGrip</span>()
+	.pack(0, 0, GeometrySide.bottom, GeometryFill.none, AnchorPosition.southEast);
+</pre>
+
+</p>
 <p><h3>Additional Events:</h3>
 Additional events that can also be bound to using the <a href="../element/uielement.html#UiElement.bind">bind</a> method.
      <p>        &lt;&lt;PrevWindow&gt;&gt;,

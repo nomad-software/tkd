@@ -21,6 +21,16 @@
  a time. Each pane is associated with a tab, which the user may select to
  change the currently-displayed pane.
 </p>
+<p><h3>Example:</h3>
+<pre><span class="comment">// The pane's widgets are contained within the frame.
+</span><span class="keyword">auto</span> pane = <span class="keyword">new</span> Frame();
+
+<span class="keyword">auto</span> noteBook = <span class="keyword">new</span> <span class="symbol">NoteBook</span>()
+	.addTab(<span class="string">"Text"</span>, pane)
+	.pack();
+</pre>
+
+</p>
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this widget.
      <p>        <a href="./common/height.html">Height</a> <br>

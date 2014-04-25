@@ -17,6 +17,12 @@ import tkd.widget.widget;
  * A sizegrip widget (also known as a grow box) allows the user to resize the 
  * containing toplevel window by pressing and dragging the grip.
  *
+ * Example:
+ * ---
+ * auto sizeGrip = new SizeGrip()
+ * 	.pack(0, 0, GeometrySide.bottom, GeometryFill.none, AnchorPosition.southEast);
+ * ---
+ *
  * Additional_Events:
  *     Additional events that can also be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) method.
  *     $(P

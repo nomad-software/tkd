@@ -17,6 +17,12 @@ import tkd.widget.widget;
 /**
  * A separator widget displays a horizontal or vertical separator bar.
  *
+ * Example:
+ * ---
+ * auto separator = new Separator()
+ * 	.pack(0, 0, GeometrySide.top, GeometryFill.x);
+ * ---
+ *
  * Additional_Events:
  *     Additional events that can also be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) method.
  *     $(P

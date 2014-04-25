@@ -36,6 +36,15 @@ import tkd.widget.widget;
  * bindings and control their appearance. Treeview widgets support horizontal 
  * and vertical scrolling with the standard scroll commands.
  *
+ * Example:
+ * ---
+ * auto treeView = new TreeView()
+ * 	.setHeading("Text")
+ * 	.addRow(new TreeViewRow(["row1"]))
+ * 	.addRow(new TreeViewRow(["row2"]))
+ * 	.pack();
+ * ---
+ *
  * Common_Commands:
  *     These are injected common commands that can also be used with this widget.
  *     $(P
