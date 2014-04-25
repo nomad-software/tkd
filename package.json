@@ -6,7 +6,7 @@
 	"copyright": "Copyright (c) 2014 Gary Willoughby",
 	"license": "MIT",
 	"dependencies": {
-		"tcltk": "~master",
+		"tcltk": ">=8.6.1",
 	},
 	"configurations": [
 		{
