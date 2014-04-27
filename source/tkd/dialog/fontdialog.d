@@ -13,14 +13,13 @@ import tkd.dialog.dialog;
 import tkd.element.element;
 
 /**
- * The fontchooser dialog allows users to choose a font installed on the 
- * system. It uses the native platform font selection dialog where available, 
- * or a dialog implemented in Tcl/Tk otherwise. Unlike most of the other 
- * dialogs, the fontchooser does not return an immediate result because on some 
- * platforms (Mac OSX) the standard font dialog is modeless while on others 
- * (Windows) it is modal. To accommodate this difference, all user interaction 
- * with the dialog will be communicated to the caller via commands or virtual 
- * events.
+ * The font dialog allows users to choose a font installed on the system. It 
+ * uses the native platform font selection dialog where available, or a dialog 
+ * implemented in Tcl/Tk otherwise. Unlike most of the other dialogs, the 
+ * fontchooser does not return an immediate result because on some platforms 
+ * (Mac OSX) the standard font dialog is modeless while on others (Windows) it 
+ * is modal. To accommodate this difference, all user interaction with the 
+ * dialog will be communicated to the caller via commands or virtual events.
  *
  * Additional_Events:
  *     Additional events that can also be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) method.

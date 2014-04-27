@@ -15,7 +15,7 @@ import tkd.dialog.dialog;
 import tkd.tkdapplication : Window;
 
 /**
- * pops up a dialog box for the user to select a color.
+ * Pops up a dialog box for the user to select a color.
  *
  * See_Also:
  *     $(LINK2 ./dialog.html, tkd.dialog.dialog) $(BR)

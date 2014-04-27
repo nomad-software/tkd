@@ -55,7 +55,7 @@ The symbolic name of the button pressed.
 <h3>Return Value</h3><p>This dialog to aid method chaining.
 
 </p>
-<h3>See Also</h3><p><a href="./messagedialogbutton.html">tkd.dialog.messagedialogbutton</a> <br></p>
+<h3>See Also</h3><p><a href="./messagedialog.html#MessageDialogButton">tkd.dialog.messagedialog.MessageDialogButton</a> <br></p>
 </div>
 </div>
 <h2><a name="MessageDialog.setDetailMessage"></a>auto <span class="symbol">setDetailMessage</span>(this T)(string message);
@@ -81,7 +81,7 @@ The symbolic name of the button pressed.
 <h3>Return Value</h3><p>This dialog to aid method chaining.
 
 </p>
-<h3>See Also</h3><p><a href="./messagedialogicon.html">tkd.dialog.messagedialogicon</a> <br></p>
+<h3>See Also</h3><p><a href="./messagedialog.html#MessageDialogIcon">tkd.dialog.messagedialog.MessageDialogIcon</a> <br></p>
 </div>
 </div>
 <h2><a name="MessageDialog.setMessage"></a>auto <span class="symbol">setMessage</span>(this T)(string message);
@@ -105,7 +105,7 @@ The symbolic name of the button pressed.
 <h3>Return Value</h3><p>This dialog to aid method chaining.
 
 </p>
-<h3>See Also</h3><p><a href="./messagedialogtype.html">tkd.dialog.messagedialogtype</a> <br></p>
+<h3>See Also</h3><p><a href="./messagedialog.html#MessageDialogType">tkd.dialog.messagedialog.MessageDialogType</a> <br></p>
 </div>
 </div>
 <h2><a name="MessageDialog.show"></a>auto <span class="symbol">show</span>(this T)();
@@ -113,6 +113,93 @@ The symbolic name of the button pressed.
 <div class="declaration-description"><div class="sections"><p>Show the dialog.
 </p>
 <h3>Return Value</h3><p>This dialog to aid method chaining.</p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="MessageDialogButton"></a>enum <span class="symbol">MessageDialogButton</span>: string;
+</h2>
+<div class="declaration-description"><div class="sections"><p>Symbolic names for message dialog buttons.</p>
+</div>
+<div class="enum-members"><h2><a name="MessageDialogButton.abort"></a><span class="symbol">abort</span></h2>
+<div class="declaration-description"><div class="sections"><p>The '<span class="symbol">abort</span>' button.</p>
+</div>
+</div>
+<h2><a name="MessageDialogButton.cancel"></a><span class="symbol">cancel</span></h2>
+<div class="declaration-description"><div class="sections"><p>The '<span class="symbol">cancel</span>' button.</p>
+</div>
+</div>
+<h2><a name="MessageDialogButton.ignore"></a><span class="symbol">ignore</span></h2>
+<div class="declaration-description"><div class="sections"><p>The '<span class="symbol">ignore</span>' button.</p>
+</div>
+</div>
+<h2><a name="MessageDialogButton.no"></a><span class="symbol">no</span></h2>
+<div class="declaration-description"><div class="sections"><p>The '<span class="symbol">no</span>' button.</p>
+</div>
+</div>
+<h2><a name="MessageDialogButton.ok"></a><span class="symbol">ok</span></h2>
+<div class="declaration-description"><div class="sections"><p>The '<span class="symbol">ok</span>' button.</p>
+</div>
+</div>
+<h2><a name="MessageDialogButton.retry"></a><span class="symbol">retry</span></h2>
+<div class="declaration-description"><div class="sections"><p>The '<span class="symbol">retry</span>' button.</p>
+</div>
+</div>
+<h2><a name="MessageDialogButton.yes"></a><span class="symbol">yes</span></h2>
+<div class="declaration-description"><div class="sections"><p>The '<span class="symbol">yes</span>' button.</p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="MessageDialogIcon"></a>enum <span class="symbol">MessageDialogIcon</span>: string;
+</h2>
+<div class="declaration-description"><div class="sections"><p>Preset icons used for the message dialog.</p>
+</div>
+<div class="enum-members"><h2><a name="MessageDialogIcon.error"></a><span class="symbol">error</span></h2>
+<div class="declaration-description"><div class="sections"><p>An <span class="symbol">error</span> icon.</p>
+</div>
+</div>
+<h2><a name="MessageDialogIcon.info"></a><span class="symbol">info</span></h2>
+<div class="declaration-description"><div class="sections"><p>An information icon</p>
+</div>
+</div>
+<h2><a name="MessageDialogIcon.question"></a><span class="symbol">question</span></h2>
+<div class="declaration-description"><div class="sections"><p>A <span class="symbol">question</span> icon.</p>
+</div>
+</div>
+<h2><a name="MessageDialogIcon.warning"></a><span class="symbol">warning</span></h2>
+<div class="declaration-description"><div class="sections"><p>A <span class="symbol">warning</span> icon.</p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="MessageDialogType"></a>enum <span class="symbol">MessageDialogType</span>: string;
+</h2>
+<div class="declaration-description"><div class="sections"><p>Arranges for a predefined set of buttons to be displayed. The following
+ values are possible for predefinedType:</p>
+</div>
+<div class="enum-members"><h2><a name="MessageDialogType.abortretryignore"></a><span class="symbol">abortretryignore</span></h2>
+<div class="declaration-description"><div class="sections"><p>Displays three buttons whose symbolic names are abort, retry and ignore.</p>
+</div>
+</div>
+<h2><a name="MessageDialogType.ok"></a><span class="symbol">ok</span></h2>
+<div class="declaration-description"><div class="sections"><p>Displays one button whose symbolic name is <span class="symbol">ok</span>.</p>
+</div>
+</div>
+<h2><a name="MessageDialogType.okcancel"></a><span class="symbol">okcancel</span></h2>
+<div class="declaration-description"><div class="sections"><p>Displays two buttons whose symbolic names are ok and cancel.</p>
+</div>
+</div>
+<h2><a name="MessageDialogType.retrycancel"></a><span class="symbol">retrycancel</span></h2>
+<div class="declaration-description"><div class="sections"><p>Displays two buttons whose symbolic names are retry and cancel.</p>
+</div>
+</div>
+<h2><a name="MessageDialogType.yesno"></a><span class="symbol">yesno</span></h2>
+<div class="declaration-description"><div class="sections"><p>Displays two buttons whose symbolic names are yes and no.</p>
+</div>
+</div>
+<h2><a name="MessageDialogType.yesnocancel"></a><span class="symbol">yesnocancel</span></h2>
+<div class="declaration-description"><div class="sections"><p>Displays three buttons whose symbolic names are yes, no and cancel.</p>
 </div>
 </div>
 </div>

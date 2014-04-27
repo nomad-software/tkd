@@ -17,14 +17,13 @@
 </div>
 <div class="module-members"><h2><a name="FontDialog"></a>class <span class="symbol">FontDialog</span>: tkd.dialog.dialog.Dialog;
 </h2>
-<div class="declaration-description"><div class="sections"><p>The fontchooser dialog allows users to choose a font installed on the
- system. It uses the native platform font selection dialog where available,
- or a dialog implemented in Tcl/Tk otherwise. Unlike most of the other
- dialogs, the fontchooser does not return an immediate result because on some
- platforms (Mac OSX) the standard font dialog is modeless while on others
- (Windows) it is modal. To accommodate this difference, all user interaction
- with the dialog will be communicated to the caller via commands or virtual
- events.
+<div class="declaration-description"><div class="sections"><p>The font dialog allows users to choose a font installed on the system. It
+ uses the native platform font selection dialog where available, or a dialog
+ implemented in Tcl/Tk otherwise. Unlike most of the other dialogs, the
+ fontchooser does not return an immediate result because on some platforms
+ (Mac OSX) the standard font dialog is modeless while on others (Windows) it
+ is modal. To accommodate this difference, all user interaction with the
+ dialog will be communicated to the caller via commands or virtual events.
 </p>
 <p><h3>Additional Events:</h3>
 Additional events that can also be bound to using the <a href="../element/uielement.html#UiElement.bind">bind</a> method.

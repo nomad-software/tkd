@@ -11,11 +11,9 @@ module tkd.dialog.messagedialog;
  */
 import std.regex;
 import tkd.dialog.dialog;
-import tkd.dialog.messagedialogicon;
-import tkd.dialog.messagedialogtype;
 
 /**
- * pops up a dialog box with a user defined message and buttons.
+ * Pops up a dialog box with a user defined message and buttons.
  *
  * Result:
  *     The symbolic name of the button pressed.
@@ -84,7 +82,7 @@ class MessageDialog : Dialog
 	 *     This dialog to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./messagedialogbutton.html, tkd.dialog.messagedialogbutton) $(BR)
+	 *     $(LINK2 ./messagedialog.html#MessageDialogButton, tkd.dialog.messagedialog.MessageDialogButton) $(BR)
 	 */
 	public auto setDefaultButton(this T)(string button)
 	{
@@ -122,7 +120,7 @@ class MessageDialog : Dialog
 	 *     This dialog to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./messagedialogicon.html, tkd.dialog.messagedialogicon) $(BR)
+	 *     $(LINK2 ./messagedialog.html#MessageDialogIcon, tkd.dialog.messagedialog.MessageDialogIcon) $(BR)
 	 */
 	public auto setIcon(this T)(string icon)
 	{
@@ -158,7 +156,7 @@ class MessageDialog : Dialog
 	 *     This dialog to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ./messagedialogtype.html, tkd.dialog.messagedialogtype) $(BR)
+	 *     $(LINK2 ./messagedialog.html#MessageDialogType, tkd.dialog.messagedialog.MessageDialogType) $(BR)
 	 */
 	public auto setType(this T)(string type)
 	{
@@ -189,4 +187,43 @@ class MessageDialog : Dialog
 
 		return cast(T) this;
 	}
+}
+
+/**
+ * Symbolic names for message dialog buttons.
+ */
+enum MessageDialogButton : string
+{
+	abort  = "abort",  /// The 'abort' button.
+	cancel = "cancel", /// The 'cancel' button.
+	ignore = "ignore", /// The 'ignore' button.
+	no     = "no",     /// The 'no' button.
+	ok     = "ok",     /// The 'ok' button.
+	retry  = "retry",  /// The 'retry' button.
+	yes    = "yes",    /// The 'yes' button.
+}
+
+/**
+ * Preset icons used for the message dialog.
+ */
+enum MessageDialogIcon : string
+{
+	error    = "error",    /// An error icon.
+	info     = "info",     /// An information icon
+	question = "question", /// A question icon.
+	warning  = "warning",  /// A warning icon.
+}
+
+/**
+ * Arranges for a predefined set of buttons to be displayed. The following 
+ * values are possible for predefinedType:
+ */
+enum MessageDialogType : string
+{
+	abortretryignore = "abortretryignore", /// Displays three buttons whose symbolic names are abort, retry and ignore.
+	ok               = "ok",               /// Displays one button whose symbolic name is ok.
+	okcancel         = "okcancel",         /// Displays two buttons whose symbolic names are ok and cancel.
+	retrycancel      = "retrycancel",      /// Displays two buttons whose symbolic names are retry and cancel.
+	yesno            = "yesno",            /// Displays two buttons whose symbolic names are yes and no.
+	yesnocancel      = "yesnocancel",      /// Displays three buttons whose symbolic names are yes, no and cancel.
 }

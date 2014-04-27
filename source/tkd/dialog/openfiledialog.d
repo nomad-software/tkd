@@ -14,7 +14,7 @@ import std.regex;
 import tkd.dialog.filedialog;
 
 /**
- * pops up a dialog box for the user to open a file.
+ * Pops up a dialog box for the user to open a file.
  *
  * Result:
  *     The full path of the file selected.

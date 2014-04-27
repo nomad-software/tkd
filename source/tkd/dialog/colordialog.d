@@ -14,7 +14,7 @@ import tkd.dialog.dialog;
 import tkd.element.color;
 
 /**
- * pops up a dialog box for the user to select a color.
+ * Pops up a dialog box for the user to select a color.
  *
  * Result:
  *     The web style hex color selected.

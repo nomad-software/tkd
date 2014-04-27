@@ -13,7 +13,7 @@ import std.regex;
 import tkd.dialog.dialog;
 
 /**
- * pops up a dialog box for the user to select a directory.
+ * Pops up a dialog box for the user to select a directory.
  *
  * Result:
  *     The full path of the directory selected.
