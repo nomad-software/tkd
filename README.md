@@ -64,7 +64,7 @@ void main(string[] args)
 ```
 ![The above example.](media/example.png)
 
-### Selected GUI elements
+### GUI elements
 
 #### Windows
 
@@ -73,7 +73,7 @@ program. Every application has at least one top level window.
 
 | Window | Description |
 | :----- | :---------- |
-| [Top level window](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/tkdapplication.html#Window) | A window is similar to a frame except that it is created as a top level window. The primary purpose of a window is to serve as a dialog box and/or other collections of widgets. |
+| [Window](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/tkdapplication.html#Window) | A window is similar to a frame except that it is created as a top level window. The primary purpose of a window is to serve as a dialog box and/or other collections of widgets. |
 
 #### Menus
 
@@ -82,7 +82,7 @@ attached to a window (via a menu bar) or popped up independantly.
 
 | Menu | Description |
 | :----- | :---------- |
-| [Menu bar](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/menu/menubar.html) | A menubar is the bar across the top of a window holding the menu items. |
+| [MenuBar](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/menu/menubar.html) | A menubar is the bar across the top of a window holding the menu items. |
 | [Menu](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/menu/menu.html) | The cascading menu that items are selected from. These menus can be nested as items in another.|
 
 #### Widgets
@@ -95,24 +95,24 @@ methods.
 | :----- | :---------- |
 | [Button](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/button.html) | A button widget displays a textual label and/or image, and evaluates a command when pressed. |
 | [Canvas](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/canvas.html) | Canvas widgets implement structured graphics. A canvas displays any number of items, which may be things like rectangles, circles, lines, and text. Items may be manipulated (e.g. moved or re-colored) and commands may be associated with items in much the same way that the bind command allows commands to be bound to widgets. |
-| [Check button](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/checkbutton.html) | A checkbutton widget is used to show or change a setting. It has two states, selected and deselected. The state of the checkbutton may be linked to a value. |
-| [Combo box](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/combobox.html) | A combobox combines a text field with a pop-down list of values; the user may select the value of the text field from among the values in the list. |
+| [CheckButton](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/checkbutton.html) | A checkbutton widget is used to show or change a setting. It has two states, selected and deselected. The state of the checkbutton may be linked to a value. |
+| [ComboBox](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/combobox.html) | A combobox combines a text field with a pop-down list of values; the user may select the value of the text field from among the values in the list. |
 | [Entry](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/entry.html) | An entry widget displays a one-line text string and allows that string to be edited by the user. |
 | [Frame](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/frame.html) | A frame widget is a container, used to group other widgets together. |
-| [Label frame](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/labelframe.html) | A label frame widget is a container used to group other widgets together. It has an optional label, which may be a plain text string or another widget. |
+| [LabelFrame](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/labelframe.html) | A label frame widget is a container used to group other widgets together. It has an optional label, which may be a plain text string or another widget. |
 | [Label](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/label.html) | A label widget displays a textual label and/or image. |
-| [Menu button](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/menubutton.html) | A menu button widget displays a textual label and/or image, and displays a menu when pressed. |
-| [Note book](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/notebook.html) | A notebook widget manages a collection of panes and displays a single one at a time. Each pane is associated with a tab, which the user may select to change the currently-displayed pane. |
-| [Paned window](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/panedwindow.html) | A paned window widget displays a number of subwindows, stacked either vertically or horizontally. The user may adjust the relative sizes of the subwindows by dragging the sash between panes. |
+| [MenuButton](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/menubutton.html) | A menu button widget displays a textual label and/or image, and displays a menu when pressed. |
+| [NoteBook](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/notebook.html) | A notebook widget manages a collection of panes and displays a single one at a time. Each pane is associated with a tab, which the user may select to change the currently-displayed pane. |
+| [PanedWindow](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/panedwindow.html) | A paned window widget displays a number of subwindows, stacked either vertically or horizontally. The user may adjust the relative sizes of the subwindows by dragging the sash between panes. |
 | [ProgressBar](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/progressbar.html) | A progress bar widget shows the status of a long-running operation. |
-| [Radio button](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/radiobutton.html) | Radio button widgets are used in groups to show or change a set of mutually-exclusive options. |
+| [RadioButton](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/radiobutton.html) | Radio button widgets are used in groups to show or change a set of mutually-exclusive options. |
 | [Scale](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/scale.html) | A scale widget is typically used to control the numeric value that varies uniformly over some range. A scale displays a slider that can be moved along over a trough, with the relative position of the slider over the trough indicating the value. |
-| [Scroll bar](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/scrollbar.html) | Scrollbar widgets are typically linked to an associated window that displays a document of some sort, such as a file being edited or a drawing. A scrollbar displays a thumb in the middle portion of the scrollbar, whose position and size provides information about the portion of the document visible in the associated window. The thumb may be dragged by the user to control the visible region. Depending on the theme, two or more arrow buttons may also be present; these are used to scroll the visible region in discrete units. |
+| [ScrollBar](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/scrollbar.html) | Scrollbar widgets are typically linked to an associated window that displays a document of some sort, such as a file being edited or a drawing. A scrollbar displays a thumb in the middle portion of the scrollbar, whose position and size provides information about the portion of the document visible in the associated window. The thumb may be dragged by the user to control the visible region. Depending on the theme, two or more arrow buttons may also be present; these are used to scroll the visible region in discrete units. |
 | [Separator](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/separator.html) | A separator widget displays a horizontal or vertical separator bar. |
-| [Size grip](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/sizegrip.html) | A sizegrip widget (also known as a grow box) allows the user to resize the containing toplevel window by pressing and dragging the grip. |
-| [Spin box](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/spinbox.html) | A spinbox widget is an entry widget with built-in up and down buttons that are used to either modify a numeric value or to select among a set of values. |
+| [SizeGrip](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/sizegrip.html) | A sizegrip widget (also known as a grow box) allows the user to resize the containing toplevel window by pressing and dragging the grip. |
+| [SpinBox](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/spinbox.html) | A spinbox widget is an entry widget with built-in up and down buttons that are used to either modify a numeric value or to select among a set of values. |
 | [Text](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/text.html) | A text widget displays one or more lines of text and allows that text to be edited. Text widgets support embedded widgets or embedded images. |
-| [Tree view](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/treeview.html) | The treeview widget displays a hierarchical collection of items. Each item has a textual label, an optional image, and an optional list of data values. |
+| [TreeView](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/widget/treeview.html) | The treeview widget displays a hierarchical collection of items. Each item has a textual label, an optional image, and an optional list of data values. |
 
 #### Geometry methods
 
@@ -130,13 +130,13 @@ These are pre-built dialog boxes to gather various pieces of data from a user.
 
 | Dialog box | Description |
 | :----- | :---------- |
-| [Color dialog](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/dialog/colordialog.html) | Pops up a dialog box for the user to select a color. |
-| [Directory dialog](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/dialog/directorydialog.html) | Pops up a dialog box for the user to select a directory. |
-| [File dialog](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/dialog/filedialog.html) | Pops up a dialog box for the user to select a color. |
-| [Font dialog](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/dialog/fontdialog.html) | Pops up a dialog box for the user to select a font. |
-| [Message dialog](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/dialog/messagedialog.html) | Pops up a dialog box with a user defined message and buttons. |
-| [Open file dialog](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/dialog/openfiledialog.html) | Pops up a dialog box for the user to open a file. |
-| [Save file dialog](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/dialog/savefiledialog.html) | Pops up a dialog box for the user to save a file. |
+| [ColorDialog](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/dialog/colordialog.html) | Pops up a dialog box for the user to select a color. |
+| [DirectoryDialog](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/dialog/directorydialog.html) | Pops up a dialog box for the user to select a directory. |
+| [FileDialog](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/dialog/filedialog.html) | Pops up a dialog box for the user to select a color. |
+| [FontDialog](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/dialog/fontdialog.html) | Pops up a dialog box for the user to select a font. |
+| [MessageDialog](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/dialog/messagedialog.html) | Pops up a dialog box with a user defined message and buttons. |
+| [OpenFileDialog](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/dialog/openfiledialog.html) | Pops up a dialog box for the user to open a file. |
+| [SaveFileDialog](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/dialog/savefiledialog.html) | Pops up a dialog box for the user to save a file. |
 
 ## Building
 
