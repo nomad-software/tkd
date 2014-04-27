@@ -205,6 +205,14 @@ abstract class TkdApplication
  * widget. The primary purpose of a toplevel is to serve as a container for 
  * dialog boxes and other collections of widgets.
  *
+ * Example:
+ * ---
+ * auto window = new Window("New window")
+ * 	.setGeometry(640, 480, 10, 10)
+ * 	.setDefaultIcon(new Png!("icon.png"))
+ * 	.setMaxSize(1024, 768)
+ * 	.addProtocolCommand(WindowProtocol.deleteWindow, delegate(CommandArgs args){ ... });
+ * ---
  * Additional_Events:
  *     Additional events that can also be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) method.
  *     $(P
@@ -476,8 +484,8 @@ class Window : UiElement
 	}
 
 	/**
-	 * Set the default icon for this window while this is also applied to all 
-	 * future created windows as well.
+	 * Set the default icon for this window. This is applied to all future 
+	 * child windows as well.
 	 *
 	 * The data in the images is taken as a snapshot at the time of invocation. 
 	 * If the images are later changed, this is not reflected to the titlebar 
