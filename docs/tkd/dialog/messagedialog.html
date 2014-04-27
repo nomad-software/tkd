@@ -17,7 +17,18 @@
 </div>
 <div class="module-members"><h2><a name="MessageDialog"></a>class <span class="symbol">MessageDialog</span>: tkd.dialog.dialog.Dialog;
 </h2>
-<div class="declaration-description"><div class="sections"><p>pops up a dialog box with a user defined message and buttons.
+<div class="declaration-description"><div class="sections"><p>Pops up a dialog box with a user defined message and buttons.
+</p>
+<p><h3>Example:</h3>
+<pre><span class="keyword">auto</span> dialog = <span class="keyword">new</span> <span class="symbol">MessageDialog</span>(<span class="string">"Save file?"</span>)
+	.setIcon(MessageDialogIcon.question)
+	.setMessage(<span class="string">"Do you want to save this file?"</span>)
+	.setType(MessageDialogType.okcancel)
+	.show();
+
+string buttonClicked = dialog.getResult();
+</pre>
+
 </p>
 <p><h3>Result:</h3>
 The symbolic name of the button pressed.

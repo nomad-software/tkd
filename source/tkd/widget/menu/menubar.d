@@ -15,6 +15,20 @@ import tkd.tkdapplication : Window;
 /**
  * A menubar is the bar across the top of a window holding the menu items.
  *
+ * Example:
+ * ---
+ * // Add a menu bar to a window.
+ * auto menuBar = new MenuBar(mainWindow)
+ * 	.pack();
+ *
+ * // Add a menu to the menu bar.
+ * auto menu = new Menu(menuBar, "Menu 1")
+ * 	.addEntry("Entry 1", delegate(CommandArgs args){ ... })
+ * 	.addEntry("Entry 2", delegate(CommandArgs args){ ... })
+ * 	.addSeparator()
+ * 	.addEntry("Entry 3", delegate(CommandArgs args){ ... });
+ * ---
+ *
  * Additional_Events:
  *     Additional events that can also be bound to using the $(LINK2 ../../element/uielement.html#UiElement.bind, bind) method.
  *     $(P

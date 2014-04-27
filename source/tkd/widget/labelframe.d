@@ -27,7 +27,7 @@ import tkd.widget.widget;
  * auto labelFrame = new LabelFrame("Text")
  * 	.pack(0, 10);
  *
- * // Put the button inside the label frame.
+ * // Add a button to the label frame.
  * auto button = new Button(labelFrame, "Text")
  * 	.pack();
  * ---

@@ -26,7 +26,7 @@ import tkd.widget.widget;
  * auto frame = new Frame(2, ReliefStyle.groove)
  * 	.pack(0, 10);
  *
- * // Put the button inside the frame.
+ * // Add a button to the frame.
  * auto button = new Button(frame, "Text")
  * 	.pack();
  * ---

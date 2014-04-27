@@ -21,6 +21,15 @@ import tkd.element.element;
  * is modal. To accommodate this difference, all user interaction with the 
  * dialog will be communicated to the caller via commands or virtual events.
  *
+ * Example:
+ * ---
+ * auto dialog = new FontDialog("Select a font")
+ * 	.setCommand(delegate(CommandArgs args){
+ * 		string font = args.dialog.font;
+ * 	})
+ * 	.show();
+ * ---
+ *
  * Additional_Events:
  *     Additional events that can also be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) method.
  *     $(P

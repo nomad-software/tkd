@@ -15,6 +15,17 @@ import tkd.dialog.dialog;
 /**
  * Pops up a dialog box with a user defined message and buttons.
  *
+ * Example:
+ * ---
+ * auto dialog = new MessageDialog("Save file?")
+ * 	.setIcon(MessageDialogIcon.question)
+ * 	.setMessage("Do you want to save this file?")
+ * 	.setType(MessageDialogType.okcancel)
+ * 	.show();
+ *
+ * string buttonClicked = dialog.getResult();
+ * ---
+ *
  * Result:
  *     The symbolic name of the button pressed.
  *

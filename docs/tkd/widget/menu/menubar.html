@@ -19,6 +19,20 @@
 </h2>
 <div class="declaration-description"><div class="sections"><p>A menubar is the bar across the top of a window holding the menu items.
 </p>
+<p><h3>Example:</h3>
+<pre><span class="comment">// Add a menu bar to a window.
+</span><span class="keyword">auto</span> menuBar = <span class="keyword">new</span> <span class="symbol">MenuBar</span>(mainWindow)
+	.pack();
+
+<span class="comment">// Add a menu to the menu bar.
+</span><span class="keyword">auto</span> menu = <span class="keyword">new</span> Menu(menuBar, <span class="string">"Menu 1"</span>)
+	.addEntry(<span class="string">"Entry 1"</span>, <span class="keyword">delegate</span>(CommandArgs args){ ... })
+	.addEntry(<span class="string">"Entry 2"</span>, <span class="keyword">delegate</span>(CommandArgs args){ ... })
+	.addSeparator()
+	.addEntry(<span class="string">"Entry 3"</span>, <span class="keyword">delegate</span>(CommandArgs args){ ... });
+</pre>
+
+</p>
 <p><h3>Additional Events:</h3>
 Additional events that can also be bound to using the <a href="../../element/uielement.html#UiElement.bind">bind</a> method.
      <p>        &lt;&lt;MenuSelect&gt;&gt;,

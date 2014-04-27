@@ -14,7 +14,21 @@ import std.regex;
 import tkd.dialog.filedialog;
 
 /**
- * pops up a dialog box for the user to save a file.
+ * Pops up a dialog box for the user to save a file.
+ *
+ * Example:
+ * ---
+ * auto dialog = new SaveFileDialog("Save a file")
+ * 	.setConfirmOverwrite(true)
+ * 	.setDefaultExtension(".txt")
+ * 	.addFileType("{{All files} {*}}")
+ * 	.addFileType("{{Text files} {.txt}}")
+ * 	.setInitialDirectory("~")
+ * 	.setInitialFile("file.txt")
+ * 	.show();
+ *
+ * string fileToWrite = dialog.getResult();
+ * ---
  *
  * Result:
  *     The full path of the file selected.

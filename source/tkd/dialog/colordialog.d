@@ -16,6 +16,15 @@ import tkd.element.color;
 /**
  * Pops up a dialog box for the user to select a color.
  *
+ * Example:
+ * ---
+ * auto dialog = new ColorDialog("Select a color")
+ * .setInitialColor(Color.white)
+ * .show();
+ *
+ * string color = dialog.getResult();
+ * ---
+ *
  * Result:
  *     The web style hex color selected.
  *

@@ -73,7 +73,7 @@ program. Every application has at least one top level window.
 
 | Window | Description |
 | :----- | :---------- |
-| [Window](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/tkdapplication.html#Window) | A window is similar to a frame except that it is created as a top level window. The primary purpose of a window is to serve as a dialog box and/or other collections of widgets. |
+| [Window](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/tkdapplication.html#Window) | A window is similar to a frame except that it is created as a top level window. The primary purpose of a window is to serve as a dialog box and/or collections of widgets. |
 
 #### Menus
 
@@ -132,7 +132,6 @@ These are pre-built dialog boxes to gather various pieces of data from a user.
 | :----- | :---------- |
 | [ColorDialog](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/dialog/colordialog.html) | Pops up a dialog box for the user to select a color. |
 | [DirectoryDialog](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/dialog/directorydialog.html) | Pops up a dialog box for the user to select a directory. |
-| [FileDialog](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/dialog/filedialog.html) | Pops up a dialog box for the user to select a color. |
 | [FontDialog](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/dialog/fontdialog.html) | Pops up a dialog box for the user to select a font. |
 | [MessageDialog](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/dialog/messagedialog.html) | Pops up a dialog box with a user defined message and buttons. |
 | [OpenFileDialog](http://htmlpreview.github.io/?https://github.com/nomad-software/tkd/master/docs/tkd/dialog/openfiledialog.html) | Pops up a dialog box for the user to open a file. |

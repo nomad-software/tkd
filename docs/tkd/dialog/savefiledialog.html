@@ -17,7 +17,21 @@
 </div>
 <div class="module-members"><h2><a name="SaveFileDialog"></a>class <span class="symbol">SaveFileDialog</span>: tkd.dialog.filedialog.FileDialog;
 </h2>
-<div class="declaration-description"><div class="sections"><p>pops up a dialog box for the user to save a file.
+<div class="declaration-description"><div class="sections"><p>Pops up a dialog box for the user to save a file.
+</p>
+<p><h3>Example:</h3>
+<pre><span class="keyword">auto</span> dialog = <span class="keyword">new</span> <span class="symbol">SaveFileDialog</span>(<span class="string">"Save a file"</span>)
+	.setConfirmOverwrite(<span class="keyword">true</span>)
+	.setDefaultExtension(<span class="string">".txt"</span>)
+	.addFileType(<span class="string">"{{All files} {*}}"</span>)
+	.addFileType(<span class="string">"{{Text files} {.txt}}"</span>)
+	.setInitialDirectory(<span class="string">"~"</span>)
+	.setInitialFile(<span class="string">"file.txt"</span>)
+	.show();
+
+string fileToWrite = dialog.getResult();
+</pre>
+
 </p>
 <p><h3>Result:</h3>
 The full path of the file selected.

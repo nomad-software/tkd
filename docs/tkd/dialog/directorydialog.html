@@ -19,6 +19,16 @@
 </h2>
 <div class="declaration-description"><div class="sections"><p>Pops up a dialog box for the user to select a directory.
 </p>
+<p><h3>Example:</h3>
+<pre><span class="keyword">auto</span> dialog = <span class="keyword">new</span> <span class="symbol">DirectoryDialog</span>(<span class="string">"Select a directory"</span>)
+.setInitialDirectory(<span class="string">"~"</span>)
+.setDirectoryMustExist(<span class="keyword">true</span>)
+.show();
+
+string directory = dialog.getResult();
+</pre>
+
+</p>
 <p><h3>Result:</h3>
 The full path of the directory selected.
 

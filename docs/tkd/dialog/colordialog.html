@@ -19,6 +19,15 @@
 </h2>
 <div class="declaration-description"><div class="sections"><p>Pops up a dialog box for the user to select a color.
 </p>
+<p><h3>Example:</h3>
+<pre><span class="keyword">auto</span> dialog = <span class="keyword">new</span> <span class="symbol">ColorDialog</span>(<span class="string">"Select a color"</span>)
+.setInitialColor(Color.white)
+.show();
+
+string color = dialog.getResult();
+</pre>
+
+</p>
 <p><h3>Result:</h3>
 The web style hex color selected.
 

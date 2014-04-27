@@ -16,6 +16,20 @@ import tkd.dialog.filedialog;
 /**
  * Pops up a dialog box for the user to open a file.
  *
+ * Example:
+ * ---
+ * auto dialog = new OpenFileDialog("Open a file")
+ * 	.setMultiSelection(flase)
+ * 	.setDefaultExtension(".txt")
+ * 	.addFileType("{{All files} {*}}")
+ * 	.addFileType("{{Text files} {.txt}}")
+ * 	.setInitialDirectory("~")
+ * 	.setInitialFile("file.txt")
+ * 	.show();
+ *
+ * string fileToOpen = dialog.getResult();
+ * ---
+ *
  * Result:
  *     The full path of the file selected.
  *

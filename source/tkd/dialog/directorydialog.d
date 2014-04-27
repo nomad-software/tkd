@@ -15,6 +15,16 @@ import tkd.dialog.dialog;
 /**
  * Pops up a dialog box for the user to select a directory.
  *
+ * Example:
+ * ---
+ * auto dialog = new DirectoryDialog("Select a directory")
+ * .setInitialDirectory("~")
+ * .setDirectoryMustExist(true)
+ * .show();
+ *
+ * string directory = dialog.getResult();
+ * ---
+ *
  * Result:
  *     The full path of the directory selected.
  *

@@ -25,6 +25,15 @@
  is modal. To accommodate this difference, all user interaction with the
  dialog will be communicated to the caller via commands or virtual events.
 </p>
+<p><h3>Example:</h3>
+<pre><span class="keyword">auto</span> dialog = <span class="keyword">new</span> <span class="symbol">FontDialog</span>(<span class="string">"Select a font"</span>)
+	.setCommand(<span class="keyword">delegate</span>(CommandArgs args){
+		string font = args.dialog.font;
+	})
+	.show();
+</pre>
+
+</p>
 <p><h3>Additional Events:</h3>
 Additional events that can also be bound to using the <a href="../element/uielement.html#UiElement.bind">bind</a> method.
      <p>        &lt;&lt;TkFontchooserFontChanged&gt;&gt;,
