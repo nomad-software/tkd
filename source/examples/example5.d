@@ -3,8 +3,6 @@ module main;
 /**
  * Imports.
  */
-import std.algorithm;
-import std.range;
 import std.stdio;
 import tkd.tkdapplication;
 
@@ -63,9 +61,9 @@ class Application : TkdApplication
 			.addItem(new CanvasImage([210, 10], new Png!("thumbnail.png")))
 			.addItem(new CanvasImage([260, 10], new Gif!("thumbnail.gif")))
 			.addItem(new CanvasLine([120, 110, 200, 110, 200, 160]).setArrowPosition(CanvasLineArrow.last))
-			.addItem(new CanvasOval([10, 170, 200, 250], Color.white))
+			.addItem(new CanvasOval([10, 170, 200, 245], Color.white))
 			.addItem(new CanvasPolygon([220, 80, 320, 80, 300, 120, 240, 120], Color.white))
-			.addItem(new CanvasText([20, 202], "Lorem ipsum dolor sit amet.").addTag("tagged"))
+			.addItem(new CanvasText([20, 200], "Lorem ipsum dolor sit amet.").addTag("tagged"))
 			.addItem(new CanvasWidget([220, 140], new Button("Embedded\nButton")).setWidth(100).setHeight(100))
 			.addTagConfig(new CanvasTagConfig("tagged").setFillColor(Color.red))
 			.bind("<ButtonPress-1>", &this.mark)

@@ -3,8 +3,6 @@ module main;
 /**
  * Imports.
  */
-import std.algorithm;
-import std.range;
 import std.stdio;
 import tkd.tkdapplication;
 
