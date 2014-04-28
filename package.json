@@ -19,7 +19,10 @@
 			"name": "example5",
 			"targetType": "executable",
 			"mainSourceFile": "source/examples/example5.d",
-			"excludedSourceFiles": ["source/examples/example6.d"],
+			"excludedSourceFiles": [
+				"source/examples/example1.d",
+				"source/examples/example6.d"
+			],
 			"lflags-windows": ["/subsystem:windows"],
 			"dflags": ["-Jmedia"],
 			"targetName": "example5",
