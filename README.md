@@ -66,7 +66,6 @@ void main(string[] args)
 	app.run();                                           // Run the application.
 }
 ```
-![The above example.](source/example/media/example.png)
 
 ## Documentation
 
