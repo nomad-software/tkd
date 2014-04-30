@@ -12,7 +12,6 @@ module tkd.tkdapplication;
 import std.regex : match;
 import std.string;
 import tkd.interpreter;
-import tkd.theme;
 
 /**
  * Public imports.
@@ -20,6 +19,7 @@ import tkd.theme;
 public import tkd.dialog;
 public import tkd.element;
 public import tkd.image;
+public import tkd.theme;
 public import tkd.widget;
 
 /**

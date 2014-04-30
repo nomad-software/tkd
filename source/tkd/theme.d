@@ -7,11 +7,6 @@
 module tkd.theme;
 
 /**
- * Imports.
- */
-import std.system;
-
-/**
  * Standard themes.
  */
 enum Theme : string
