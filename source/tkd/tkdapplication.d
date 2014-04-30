@@ -79,13 +79,6 @@ abstract class TkdApplication
 	{
 		this._tk = Tk.getInstance();
 
-		version (linux)
-		{
-			// The default linux theme is a bit ropey so use the Clam theme as 
-			// the new default.
-			this.setTheme(Theme.clam);
-		}
-
 		this._mainWindow = new Window();
 		this.initInterface();
 	}

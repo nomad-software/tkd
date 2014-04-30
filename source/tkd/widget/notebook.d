@@ -25,11 +25,14 @@ import tkd.widget.widget;
  *
  * Example:
  * ---
- * // The pane's widgets are contained within the frame.
- * auto pane = new Frame();
+ * // The notebook must be created first.
+ * // See the constructor notes in the documentation.
+ * auto noteBook = new NoteBook();
  *
- * auto noteBook = new NoteBook()
- * 	.addTab("Text", pane)
+ * // The pane's widgets are contained within the frame.
+ * auto pane = new Frame(noteBook);
+ *
+ * noteBook.addTab("Text", pane)
  * 	.pack();
  * ---
  *
@@ -71,10 +74,10 @@ class NoteBook : Widget
 	 *
 	 * Bugs:
 	 *     Because this widget contains and handles other widget's geometry, it 
-	 *     is important that the constructor is not chained with methods that 
-	 *     add new tabs. If it is chained, tabs will not be handled correctly 
-	 *     and might not show at all. This seems to be a limitation with 
-	 *     Tcl/Tk.
+	 *     must be created before the child panes and not chained with methods 
+	 *     that add new tabs. If it is chained, tabs will not be handled 
+	 *     correctly and might not show at all. This seems to be a limitation 
+	 *     with Tcl/Tk.
 	 *
 	 * See_Also:
 	 *     $(LINK2 ../element/uielement.html, tkd.element.UiElement) $(BR)

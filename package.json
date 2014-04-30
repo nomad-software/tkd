@@ -13,20 +13,16 @@
 			"name": "library",
 			"targetType": "library",
 			"targetPath": "build",
-			"excludedSourceFiles": ["source/examples/*"],
+			"excludedSourceFiles": ["source/example/*"],
 		},
 		{
-			"name": "example5",
+			"name": "example",
 			"targetType": "executable",
-			"mainSourceFile": "source/examples/example5.d",
-			"excludedSourceFiles": [
-				"source/examples/example1.d",
-				"source/examples/example6.d"
-			],
+			"mainSourceFile": "source/example/example.d",
 			"lflags-windows": ["/subsystem:windows"],
-			"dflags": ["-Jmedia"],
-			"targetName": "example5",
-			"targetPath": "build/examples",
+			"dflags": ["-Jsource/example/media"],
+			"targetName": "example",
+			"targetPath": "build/example",
 		},
 	],
 }

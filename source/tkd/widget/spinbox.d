@@ -14,6 +14,7 @@ import tkd.element.uielement;
 import tkd.widget.common.boundingbox;
 import tkd.widget.common.command;
 import tkd.widget.common.cursor;
+import tkd.widget.common.data;
 import tkd.widget.common.delete_;
 import tkd.widget.common.exportselection;
 import tkd.widget.common.index;
@@ -23,7 +24,6 @@ import tkd.widget.common.range;
 import tkd.widget.common.selection;
 import tkd.widget.common.show;
 import tkd.widget.common.value;
-import tkd.widget.common.values;
 import tkd.widget.common.width;
 import tkd.widget.common.xscrollcommand;
 import tkd.widget.common.xview;
@@ -55,6 +55,7 @@ import tkd.widget.widget;
  *         $(LINK2 ./common/boundingbox.html, BoundingBox) $(BR)
  *         $(LINK2 ./common/command.html, Command) $(BR)
  *         $(LINK2 ./common/cursor.html, Cursor) $(BR)
+ *         $(LINK2 ./common/data.html, Data) $(BR)
  *         $(LINK2 ./common/delete_.html, Delete) $(BR)
  *         $(LINK2 ./common/exportselection.html, Exportselection) $(BR)
  *         $(LINK2 ./common/index.html, Index) $(BR)
@@ -64,7 +65,6 @@ import tkd.widget.widget;
  *         $(LINK2 ./common/selection.html, Selection) $(BR)
  *         $(LINK2 ./common/show.html, Show) $(BR)
  *         $(LINK2 ./common/value.html, Value) $(BR)
- *         $(LINK2 ./common/values.html, Values) $(BR)
  *         $(LINK2 ./common/width.html, Width) $(BR)
  *         $(LINK2 ./common/xscrollcommand.html, XScrollCommand) $(BR)
  *         $(LINK2 ./common/xview.html, XView) $(BR)
@@ -235,6 +235,7 @@ class SpinBox : Widget, IXScrollable!(SpinBox)
 	mixin BoundingBox;
 	mixin Command;
 	mixin Cursor;
+	mixin Data;
 	mixin Delete_;
 	mixin ExportSelection;
 	mixin Index;
@@ -244,7 +245,6 @@ class SpinBox : Widget, IXScrollable!(SpinBox)
 	mixin Selection;
 	mixin Show;
 	mixin Value!(this._valueVariable, string);
-	mixin Values;
 	mixin Width;
 	mixin XScrollCommand!(SpinBox);
 	mixin XView;

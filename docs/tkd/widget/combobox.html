@@ -28,10 +28,11 @@
 
 </p>
 <p><h3>Example:</h3>
-<pre><span class="keyword">auto</span> values = [<span class="string">"foo"</span>, <span class="string">"bar"</span>, <span class="string">"baz"</span>, <span class="string">"qux"</span>];
+<pre><span class="keyword">auto</span> data = [<span class="string">"foo"</span>, <span class="string">"bar"</span>, <span class="string">"baz"</span>, <span class="string">"qux"</span>];
 
 <span class="keyword">auto</span> comboBox = <span class="keyword">new</span> <span class="symbol">ComboBox</span>()
-	.setValues(values);
+	.setData(data);
+	.setValue(data[0])
 	.pack();
 </pre>
 
@@ -40,6 +41,7 @@
 These are injected common commands that can also be used with this widget.
      <p>        <a href="./common/boundingbox.html">BoundingBox</a> <br>
          <a href="./common/cursor.html">Cursor</a> <br>
+         <a href="./common/data.html">Data</a> <br>
          <a href="./common/delete_.html">Delete</a> <br>
          <a href="./common/exportselection.html">Exportselection</a> <br>
          <a href="./common/height.html">Height</a> <br>
@@ -49,7 +51,6 @@ These are injected common commands that can also be used with this widget.
          <a href="./common/postcommand.html">PostCommand</a> <br>
          <a href="./common/selection.html">Selection</a> <br>
          <a href="./common/value.html">Value</a> <br>
-         <a href="./common/values.html">Values</a> <br>
          <a href="./common/width.html">Width</a> <br>
          <a href="./common/xscrollcommand.html">XScrollCommand</a> <br>
          <a href="./common/xview.html">XView</a> <br>

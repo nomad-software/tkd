@@ -25,12 +25,16 @@ language as a whole. Tkd is an attempt to provide D with the same resource.
 * Linux
 * Mac OSX
 
-## Documentation
+## Example
 
-There is full HTML documentation within the repository inside the
-[docs](https://github.com/nomad-software/tkd/tree/master/docs/) directory.
+There is an example in this package which can be built using dub. Clone
+this repository and use the following command to build this example to see
+what's possible.
+```
+dub --config=example
+```
 
-### Example
+### Usage
 
 ```d
 import tkd.tkdapplication;                               // Import Tkd.
@@ -62,7 +66,12 @@ void main(string[] args)
 	app.run();                                           // Run the application.
 }
 ```
-![The above example.](media/example.png)
+![The above example.](source/example/media/example.png)
+
+## Documentation
+
+There is full HTML documentation within the repository inside the
+[docs](https://github.com/nomad-software/tkd/tree/master/docs/) directory.
 
 ### GUI elements
 
@@ -142,14 +151,6 @@ These are pre-built dialog boxes to gather various pieces of data from a user.
 It's recommended to use the [dub](http://code.dlang.org/about) build tool to
 build all Tkd projects.
 
-## Examples
-
-There are a few examples in this package which can be built using dub. Clone
-this repository and use the following commands to build the examples to see
-what's possible.
-```
-dub --config=example5
-```
 ## Dependencies
 
 ### Source code

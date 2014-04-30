@@ -14,6 +14,7 @@ import tkd.element.element;
 import tkd.element.uielement;
 import tkd.widget.common.boundingbox;
 import tkd.widget.common.cursor;
+import tkd.widget.common.data;
 import tkd.widget.common.delete_;
 import tkd.widget.common.exportselection;
 import tkd.widget.common.height;
@@ -23,7 +24,6 @@ import tkd.widget.common.justify;
 import tkd.widget.common.postcommand;
 import tkd.widget.common.selection;
 import tkd.widget.common.value;
-import tkd.widget.common.values;
 import tkd.widget.common.width;
 import tkd.widget.common.xscrollcommand;
 import tkd.widget.common.xview;
@@ -41,10 +41,11 @@ import tkd.widget.widget;
  *
  * Example:
  * ---
- * auto values = ["foo", "bar", "baz", "qux"];
+ * auto data = ["foo", "bar", "baz", "qux"];
  *
  * auto comboBox = new ComboBox()
- * 	.setValues(values);
+ * 	.setData(data);
+ * 	.setValue(data[0])
  * 	.pack();
  * ---
  *
@@ -53,6 +54,7 @@ import tkd.widget.widget;
  *     $(P
  *         $(LINK2 ./common/boundingbox.html, BoundingBox) $(BR)
  *         $(LINK2 ./common/cursor.html, Cursor) $(BR)
+ *         $(LINK2 ./common/data.html, Data) $(BR)
  *         $(LINK2 ./common/delete_.html, Delete) $(BR)
  *         $(LINK2 ./common/exportselection.html, Exportselection) $(BR)
  *         $(LINK2 ./common/height.html, Height) $(BR)
@@ -62,7 +64,6 @@ import tkd.widget.widget;
  *         $(LINK2 ./common/postcommand.html, PostCommand) $(BR)
  *         $(LINK2 ./common/selection.html, Selection) $(BR)
  *         $(LINK2 ./common/value.html, Value) $(BR)
- *         $(LINK2 ./common/values.html, Values) $(BR)
  *         $(LINK2 ./common/width.html, Width) $(BR)
  *         $(LINK2 ./common/xscrollcommand.html, XScrollCommand) $(BR)
  *         $(LINK2 ./common/xview.html, XView) $(BR)
@@ -197,6 +198,7 @@ class ComboBox : Widget, IXScrollable!(ComboBox)
 	 */
 	mixin BoundingBox;
 	mixin Cursor;
+	mixin Data;
 	mixin Delete_;
 	mixin ExportSelection;
 	mixin Height;
@@ -206,7 +208,6 @@ class ComboBox : Widget, IXScrollable!(ComboBox)
 	mixin PostCommand;
 	mixin Selection;
 	mixin Value!(this._valueVariable, string);
-	mixin Values;
 	mixin Width;
 	mixin XScrollCommand!(ComboBox);
 	mixin XView;

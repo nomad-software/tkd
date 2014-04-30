@@ -22,11 +22,14 @@
  change the currently-displayed pane.
 </p>
 <p><h3>Example:</h3>
-<pre><span class="comment">// The pane's widgets are contained within the frame.
-</span><span class="keyword">auto</span> pane = <span class="keyword">new</span> Frame();
+<pre><span class="comment">// The notebook must be created first.
+</span><span class="comment">// See the constructor notes in the documentation.
+</span><span class="keyword">auto</span> noteBook = <span class="keyword">new</span> <span class="symbol">NoteBook</span>();
 
-<span class="keyword">auto</span> noteBook = <span class="keyword">new</span> <span class="symbol">NoteBook</span>()
-	.addTab(<span class="string">"Text"</span>, pane)
+<span class="comment">// The pane's widgets are contained within the frame.
+</span><span class="keyword">auto</span> pane = <span class="keyword">new</span> Frame(noteBook);
+
+noteBook.addTab(<span class="string">"Text"</span>, pane)
 	.pack();
 </pre>
 
@@ -66,10 +69,10 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <td>The parent of this widget.</td></tr>
 </table>
 <h3>Bugs</h3><p>Because this widget contains and handles other widget's geometry, it
-     is important that the constructor is not chained with methods that
-     add new tabs. If it is chained, tabs will not be handled correctly
-     and might not show at all. This seems to be a limitation with
-     Tcl/Tk.
+     must be created before the child panes and not chained with methods
+     that add new tabs. If it is chained, tabs will not be handled
+     correctly and might not show at all. This seems to be a limitation
+     with Tcl/Tk.
 
 </p>
 <h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.UiElement</a> <br></p>
