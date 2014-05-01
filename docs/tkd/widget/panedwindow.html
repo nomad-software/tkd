@@ -22,12 +22,15 @@
  subwindows by dragging the sash between panes.
 </p>
 <p><h3>Example:</h3>
-<pre><span class="comment">// The pane's widgets are contained within the frames.
-</span><span class="keyword">auto</span> left = <span class="keyword">new</span> Frame();
-<span class="keyword">auto</span> right = <span class="keyword">new</span> Frame();
+<pre><span class="comment">// The paned window must be created first.
+</span><span class="comment">// See the constructor notes in the documentation.
+</span><span class="keyword">auto</span> panedWindow = <span class="keyword">new</span> <span class="symbol">PanedWindow</span>();
 
-<span class="keyword">auto</span> panedWindow = <span class="keyword">new</span> <span class="symbol">PanedWindow</span>()
-	.addPane(left)
+<span class="comment">// The pane's widgets are contained within the frames.
+</span><span class="keyword">auto</span> left = <span class="keyword">new</span> Frame(panedWindow);
+<span class="keyword">auto</span> right = <span class="keyword">new</span> Frame(panedWindow);
+
+panedwindow.addPane(left)
 	.addPane(right)
 	.pack();
 </pre>
@@ -68,17 +71,17 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <td>The orientation of the widget.</td></tr>
 </table>
 <h3>Bugs</h3><p>Because this widget contains and handles other widget's geometry, it
-     is important that the constructor is not chained with methods that
-     add new panes. If it is chained, panes will not be handled correctly
-     and might not show at all. This seems to be a limitation with
-     Tcl/Tk.
+     must be created before the child panes and not chained with methods
+     that add new tabs. If it is chained, tabs will not be handled
+     correctly and might not show at all. This seems to be a limitation
+     with Tcl/Tk.
 
 </p>
 <h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.UiElement</a> <br>
      <a href="./orientation.html">tkd.widget.orientation</a> for orientations.</p>
 </div>
 </div>
-<h2><a name="PanedWindow.this"></a> this(string orientation = Orientation.horizontal);
+<h2><a name="PanedWindow.this"></a> this(string orientation = Orientation.vertical);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
@@ -86,10 +89,10 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <td>The orientation of the widget.</td></tr>
 </table>
 <h3>Bugs</h3><p>Because this widget contains and handles other widget's geometry, it
-     is important that the constructor is not chained with methods that
-     add new panes. If it is chained, panes will not be handled correctly
-     and might not show at all. This seems to be a limitation with
-     Tcl/Tk.
+     must be created before the child panes and not chained with methods
+     that add new tabs. If it is chained, tabs will not be handled
+     correctly and might not show at all. This seems to be a limitation
+     with Tcl/Tk.
 
 </p>
 <h3>See Also</h3><p><a href="./orientation.html">tkd.widget.orientation</a> for orientations.</p>
@@ -157,10 +160,10 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </div>
 <h2><a name="PanedWindow.setSashPosition"></a>auto <span class="symbol">setSashPosition</span>(this T)(int sashIndex, int position);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Sets the position of a sash. May adjust the positions of
- adjacent sashes to ensure that positions are monotonically increasing.
- Sash positions are further constrained to be between 0 and the total
- size of the widget. Must be called after the UI has been drawn.
+<div class="declaration-description"><div class="sections"><p>Sets the position of a sash. May adjust the positions of adjacent sashes
+ to ensure that positions are monotonically increasing.  Sash positions
+ are further constrained to be between 0 and the total size of the
+ widget. Must be called after the UI has been drawn.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>int sashIndex</td>
 <td>The index of the sash.</td></tr>

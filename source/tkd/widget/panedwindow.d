@@ -23,12 +23,15 @@ import tkd.widget.widget;
  *
  * Example:
  * ---
- * // The pane's widgets are contained within the frames.
- * auto left = new Frame();
- * auto right = new Frame();
+ * // The paned window must be created first.
+ * // See the constructor notes in the documentation.
+ * auto panedWindow = new PanedWindow();
  *
- * auto panedWindow = new PanedWindow()
- * 	.addPane(left)
+ * // The pane's widgets are contained within the frames.
+ * auto left = new Frame(panedWindow);
+ * auto right = new Frame(panedWindow);
+ *
+ * panedwindow.addPane(left)
  * 	.addPane(right)
  * 	.pack();
  * ---
@@ -70,10 +73,10 @@ class PanedWindow : Widget
 	 *
 	 * Bugs:
 	 *     Because this widget contains and handles other widget's geometry, it 
-	 *     is important that the constructor is not chained with methods that 
-	 *     add new panes. If it is chained, panes will not be handled correctly 
-	 *     and might not show at all. This seems to be a limitation with 
-	 *     Tcl/Tk.
+	 *     must be created before the child panes and not chained with methods 
+	 *     that add new tabs. If it is chained, tabs will not be handled 
+	 *     correctly and might not show at all. This seems to be a limitation 
+	 *     with Tcl/Tk.
 	 *
 	 * See_Also:
 	 *     $(LINK2 ../element/uielement.html, tkd.element.UiElement) $(BR)
@@ -95,15 +98,15 @@ class PanedWindow : Widget
 	 *
 	 * Bugs:
 	 *     Because this widget contains and handles other widget's geometry, it 
-	 *     is important that the constructor is not chained with methods that 
-	 *     add new panes. If it is chained, panes will not be handled correctly 
-	 *     and might not show at all. This seems to be a limitation with 
-	 *     Tcl/Tk.
+	 *     must be created before the child panes and not chained with methods 
+	 *     that add new tabs. If it is chained, tabs will not be handled 
+	 *     correctly and might not show at all. This seems to be a limitation 
+	 *     with Tcl/Tk.
 	 *
 	 * See_Also:
 	 *     $(LINK2 ./orientation.html, tkd.widget.orientation) for orientations.
 	 */
-	public this(string orientation = Orientation.horizontal)
+	public this(string orientation = Orientation.vertical)
 	{
 		this(null, orientation);
 	}
@@ -196,10 +199,10 @@ class PanedWindow : Widget
 	}
 
 	/**
-	 * Sets the position of a sash. May adjust the positions of 
-	 * adjacent sashes to ensure that positions are monotonically increasing. 
-	 * Sash positions are further constrained to be between 0 and the total 
-	 * size of the widget. Must be called after the UI has been drawn.
+	 * Sets the position of a sash. May adjust the positions of adjacent sashes 
+	 * to ensure that positions are monotonically increasing.  Sash positions 
+	 * are further constrained to be between 0 and the total size of the 
+	 * widget. Must be called after the UI has been drawn.
 	 *
 	 * Params:
 	 *     sashIndex = The index of the sash.
