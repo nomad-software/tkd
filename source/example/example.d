@@ -146,12 +146,37 @@ class Application : TkdApplication
 	}
 
 	/**
+	 * Show the about box.
+	 */
+	private void showAbout(CommandArgs args)
+	{
+		auto dialog = new MessageDialog("About")
+			.setMessage("Tkd Showcase")
+			.setDetailMessage("An showcase Tkd application demonstrating menus, widgets and dialogs.\n\nThe possiblities are endless.")
+			.show();
+	}
+
+	/**
+	 * Create the menu.
+	 */
+	private void createMenu()
+	{
+		auto menuBar = new MenuBar(this.mainWindow);
+
+		auto fileMenu = new Menu(menuBar, "File", 0)
+			.addEntry(new Png!("cancel.png"), "Quit", &this.exitApplication, ImagePosition.left, "Ctrl-Q");
+
+		auto helpMenu = new Menu(menuBar, "Help", 0)
+			.addEntry(new Png!("help.png"), "About...", &this.showAbout, ImagePosition.left, "F1");
+	}
+
+	/**
 	 * Create the widget pane for the note book.
 	 *
 	 * Returns:
 	 *     The widget pane.
 	 */
-	public Frame createWidgetPane()
+	private Frame createWidgetPane()
 	{
 		auto widgetPane = new Frame();
 
@@ -228,7 +253,7 @@ class Application : TkdApplication
 	 * Returns:
 	 *     The paned pane.
 	 */
-	public Frame createPanedPane()
+	private Frame createPanedPane()
 	{
 		auto panedPane = new Frame();
 
@@ -284,7 +309,7 @@ class Application : TkdApplication
 	 * Returns:
 	 *     The canvas pane.
 	 */
-	public Frame createCanvasPane()
+	private Frame createCanvasPane()
 	{
 		auto canvasPane = new Frame();
 
@@ -334,7 +359,7 @@ class Application : TkdApplication
 	 * Returns:
 	 *     The dialog pane.
 	 */
-	public Frame createDialogPane()
+	private Frame createDialogPane()
 	{
 		auto dialogPane = new Frame();
 
@@ -397,12 +422,23 @@ class Application : TkdApplication
 	}
 
 	/**
+	 * Set up the key bindings for the application.
+	 */
+	private void setUpKeyBindings()
+	{
+		this.mainWindow.bind("<F1>", &this.showAbout);
+		this.mainWindow.bind("<Control-q>", &this.exitApplication);
+	}
+
+	/**
 	 * Initialise the user interface.
 	 */
 	override protected void initInterface()
 	{
-		this.mainWindow.setTitle("Tkd example");
+		this.mainWindow.setTitle("Tkd Showcase");
 		this.mainWindow.setMinSize(550, 560);
+
+		this.createMenu();
 
 		auto noteBook   = new NoteBook();
 		auto widgetPane = this.createWidgetPane();
@@ -423,6 +459,8 @@ class Application : TkdApplication
 
 		auto sizeGrip = new SizeGrip(this.mainWindow)
 			.pack(0, 0, GeometrySide.bottom, GeometryFill.none, AnchorPosition.southEast);
+
+		this.setUpKeyBindings();
 	}
 
 	/**
