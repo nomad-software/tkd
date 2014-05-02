@@ -177,6 +177,35 @@ class MessageDialog : Dialog
 	}
 
 	/**
+	 * Check the default button and if not set, set it.
+	 */
+	private void checkDefaultButton()
+	{
+		if (!this._defaultButton)
+		{
+			switch(this._type)
+			{
+				case MessageDialogType.abortretryignore:
+					this._defaultButton = MessageDialogButton.abort;
+					break;
+
+				case MessageDialogType.retrycancel:
+					this._defaultButton = MessageDialogButton.retry;
+					break;
+
+				case MessageDialogType.yesno:
+				case MessageDialogType.yesnocancel:
+					this._defaultButton = MessageDialogButton.yes;
+					break;
+
+				default:
+					this._defaultButton = MessageDialogButton.ok;
+					break;
+			}
+		}
+	}
+
+	/**
 	 * Show the dialog.
 	 *
 	 * Returns:
@@ -184,6 +213,8 @@ class MessageDialog : Dialog
 	 */
 	public auto show(this T)()
 	{
+		this.checkDefaultButton();
+
 		if (this._parent)
 		{
 			this._tk.eval("tk_messageBox -parent %s -title {%s} -default {%s} -detail {%s} -icon {%s} -message {%s} -type {%s}", this._parent.id, this._title, this._defaultButton, this._detailMessage, this._icon, this._message, this._type);
