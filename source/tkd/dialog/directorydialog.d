@@ -119,7 +119,7 @@ class DirectoryDialog : Dialog
 
 		if (match(result, r"^bad window path name").empty)
 		{
-			this._result = result;
+			this._results = [result];
 		}
 
 		return cast(T) this;

@@ -105,7 +105,7 @@ class ColorDialog : Dialog
 
 		if (match(result, r"^unknown color name").empty)
 		{
-			this._result = result;
+			this._results = [result];
 		}
 
 		return cast(T) this;

@@ -103,9 +103,38 @@ class OpenFileDialog : FileDialog
 
 		if (match(result, r"^bad window path name").empty)
 		{
-			this._result = result;
+			if (this._selectMultiple)
+			{
+				auto regexResult = matchAll(result, r"\{.*?\}");
+				result           = result.replaceAll(regex(r"\{.*?\}"), "");
+				this._results   ~= result.split();
+
+				foreach (match; regexResult)
+				{
+					this._results ~= match.hit;
+				}
+
+				this.removeBracesFromResults;
+			}
+			else
+			{
+				this._results = [result];
+			}
 		}
 
 		return cast(T) this;
+	}
+
+	/**
+	 * Get multiple dialog results.
+	 *
+	 * Returns:
+	 *     The multiple results of the dialog.
+	 */
+	public string[] getResults()
+	{
+		assert(this._selectMultiple, "You need to set multi-selection on to retrieve more than one result.");
+
+		return this._results;
 	}
 }

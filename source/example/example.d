@@ -3,6 +3,7 @@ module main;
 /**
  * Imports.
  */
+import std.array;
 import std.file;
 import tkd.tkdapplication;
 
@@ -83,7 +84,7 @@ class Application : TkdApplication
 			.setInitialDirectory("~")
 			.setInitialFile("file-to-open.dmo")
 			.show();
-		this._openFileEntry.setValue(dialog.getResult());
+		this._openFileEntry.setValue(dialog.getResults().join(" "));
 	}
 
 	/**

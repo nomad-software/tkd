@@ -9,6 +9,7 @@ module tkd.dialog.dialog;
 /**
  * Imports.
  */
+import std.regex;
 import tkd.element.element;
 import tkd.tkdapplication : Window;
 
@@ -33,7 +34,7 @@ abstract class Dialog : Element
 	/*
 	 * The result of the dialog.
 	 */
-	protected string _result;
+	protected string[] _results;
 
 	/**
 	 * Construct the dialog.
@@ -52,10 +53,25 @@ abstract class Dialog : Element
 	/**
 	 * Get the dialog result. This varies on the type of dialog used and will 
 	 * reflect the overall result expected of each dialog.
+	 *
+	 * Returns:
+	 *     The result of the dialog or an empty string.
 	 */
 	public string getResult()
 	{
-		return this._result;
+		return this._results.length ? this._results[0] : "";
+	}
+
+	/**
+	 * Remove any leading or trailing braces.
+	 */
+	protected void removeBracesFromResults()
+	{
+		foreach (ref result; this._results)
+		{
+			result = result.replace(regex(r"^\{"), "");
+			result = result.replace(regex(r"\}$"), "");
+		}
 	}
 
 	/**

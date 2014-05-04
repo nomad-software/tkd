@@ -224,8 +224,7 @@ class MessageDialog : Dialog
 			this._tk.eval("tk_messageBox -title {%s} -default {%s} -detail {%s} -icon {%s} -message {%s} -type {%s}", this._title, this._defaultButton, this._detailMessage, this._icon, this._message, this._type);
 		}
 
-		string result = this._tk.getResult!(string);
-		this._result = result;
+		this._results = [this._tk.getResult!(string)];
 
 		return cast(T) this;
 	}
