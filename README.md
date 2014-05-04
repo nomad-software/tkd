@@ -33,7 +33,7 @@ what's possible.
 ```
 dub --config=example
 ```
-+![The above example.](source/example/example.gif)
+![The above example.](source/example/example.gif)
 
 ### Usage
 
