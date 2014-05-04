@@ -20,7 +20,7 @@
 			"targetType": "executable",
 			"mainSourceFile": "source/example/example.d",
 			"lflags-windows": ["/subsystem:windows"],
-			"dflags": ["-Jsource/example/media"],
+			"stringImportPaths": ["source/example/media"],
 			"targetName": "example",
 			"targetPath": "build/example",
 		},
