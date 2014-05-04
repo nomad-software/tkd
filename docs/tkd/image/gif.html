@@ -21,21 +21,13 @@
 </p>
 <h3>See Also</h3><p><a href="../image/image.html">tkd.image.image</a> <br></p>
 </div>
-<div class="class-members"><h2><a name="Gif.this"></a> this(string fileName, bool embed = false);
+<div class="class-members"><h2><a name="Gif.this"></a> this(string file);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the image.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string fileName</td>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string file</td>
 <td>The file name of the image to load.</td></tr>
-<tr><td>bool embed</td>
-<td>Whether to embed image data or not.</td></tr>
 </table>
-<h3>Bugs</h3><p>Embedding images over 20x20 pixels can cause issues with event and
-     command callbacks. It seems it can corrupt the client data passed
-     internally to the command callback handler (element.d). This is
-     incredibly fustrating and hard to track down. Any help is
-     appreciated due to the fact this makes embedding images into
-     applications very difficult.</p>
 </div>
 </div>
 <h2><a name="Gif.setIndex"></a>auto <span class="symbol">setIndex</span>(this T)(int index);
@@ -47,6 +39,30 @@
 <td>The index to select.</td></tr>
 </table>
 <h3>Return Value</h3><p>This image to aid method chaining.</p>
+</div>
+</div>
+</div>
+</div>
+<h2><a name="EmbeddedGif"></a>class <span class="symbol">EmbeddedGif</span>(string file): Gif;
+</h2>
+<div class="declaration-description"><div class="sections"><p>Helper class to quickly create an embedded Gif format image.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>file</td>
+<td>The file name of the image to embed.</td></tr>
+</table>
+<h3>Bugs</h3><p>Embedding images over 20x20 pixels can cause issues with event and
+     command callbacks. It seems it can corrupt the client data passed
+     internally to the command callback handler (element.d). This is
+     incredibly fustrating and hard to track down. Any help is appreciated
+     due to the fact this makes embedding images into applications very
+     difficult.
+
+</p>
+<h3>See Also</h3><p><a href="../image/image.html">tkd.image.image</a> <br></p>
+</div>
+<div class="class-members"><h2><a name="this"></a> this();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Construct the image.</p>
 </div>
 </div>
 </div>

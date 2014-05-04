@@ -117,7 +117,7 @@ class Application : TkdApplication
 	{
 		auto dialog = new MessageDialog()
 			.setMessage("Lorem ipsum dolor sit amet.")
-			.setDetailMessage("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at aliquam arcu. Sed eget tellus ligula. Sed egestas est et tempus cursus. Nunc non congue justo, quis adipiscing enim.")
+			.setDetailMessage("Nunc at aliquam arcu. Sed eget tellus ligula.\nSed egestas est et tempus cursus.")
 			.setType(MessageDialogType.okcancel)
 			.show();
 		this._messageEntry.setValue(dialog.getResult());
@@ -164,10 +164,10 @@ class Application : TkdApplication
 		auto menuBar = new MenuBar(this.mainWindow);
 
 		auto fileMenu = new Menu(menuBar, "File", 0)
-			.addEntry(new Png("media/cancel.png"), "Quit", &this.exitApplication, ImagePosition.left, "Ctrl-Q");
+			.addEntry(new EmbeddedPng!("cancel.png"), "Quit", &this.exitApplication, ImagePosition.left, "Ctrl-Q");
 
 		auto helpMenu = new Menu(menuBar, "Help", 0)
-			.addEntry(new Png("media/help.png"), "About...", &this.showAbout, ImagePosition.left, "F1");
+			.addEntry(new EmbeddedPng!("help.png"), "About...", &this.showAbout, ImagePosition.left, "F1");
 	}
 
 	/**
@@ -216,7 +216,7 @@ class Application : TkdApplication
 			.pack(10, 0, GeometrySide.left, GeometryFill.both, AnchorPosition.center, true);
 			auto button1 = new Button(buttonLabelFrame, "Text button")
 				.pack(5);
-			auto button2 = new Button(buttonLabelFrame, new Png("media/disk.png"), "Image button", ImagePosition.left)
+			auto button2 = new Button(buttonLabelFrame, new EmbeddedPng!("disk.png"), "Image button", ImagePosition.left)
 				.pack(5);
 
 			auto buttonMenu = new Menu()
@@ -275,12 +275,12 @@ class Application : TkdApplication
 					rows.children[2].children ~= new TreeViewRow(["Aliens (1986).mpg"], true, ["video"]);
 
 				auto tree1 = new TreeView(panedWindow)
-					.setTag("computer", new Png("media/computer.png"))
-					.setTag("folder", new Png("media/folder.png"))
-					.setTag("file", new Png("media/page.png"))
-					.setTag("pdf", new Png("media/page_white_acrobat.png"))
-					.setTag("video", new Png("media/film.png"))
-					.setTag("image", new Png("media/images.png"))
+					.setTag("computer", new EmbeddedPng!("computer.png"))
+					.setTag("folder", new EmbeddedPng!("folder.png"))
+					.setTag("file", new EmbeddedPng!("page.png"))
+					.setTag("pdf", new EmbeddedPng!("page_white_acrobat.png"))
+					.setTag("video", new EmbeddedPng!("film.png"))
+					.setTag("image", new EmbeddedPng!("images.png"))
 					.setHeading("Directory listing")
 					.addRow(rows);
 
@@ -329,13 +329,15 @@ class Application : TkdApplication
 					.setScrollRegion(-300, -250, 610, 500)
 					.addItem(new CanvasRectangle([10, 10, 200, 100]).addTag("tagged"))
 					.addItem(new CanvasArc([10, 110, 110, 210], CanvasArcStyle.pie, Color.paleGreen))
-					.addItem(new CanvasImage([210, 10], new Png("media/thumbnail.png")))
-					.addItem(new CanvasImage([260, 10], new Gif("media/thumbnail.gif")))
+					.addItem(new CanvasImage([210, 10], new EmbeddedPng!("layout_content.png")))
+					.addItem(new CanvasImage([230, 10], new EmbeddedPng!("shape_ungroup.png")))
+					.addItem(new CanvasImage([250, 10], new EmbeddedPng!("images.png")))
+					.addItem(new CanvasImage([270, 10], new EmbeddedPng!("color_swatch.png")))
 					.addItem(new CanvasLine([120, 110, 200, 110, 200, 160]).setArrowPosition(CanvasLineArrow.last))
 					.addItem(new CanvasOval([10, 170, 200, 245], Color.rosyBrown3))
 					.addItem(new CanvasPolygon([220, 80, 320, 80, 300, 120, 240, 120], Color.mediumPurple))
 					.addItem(new CanvasText([30, 192], "Tkd Canvas", Color.white).setFont("{Arial} 20 bold"))
-					.addItem(new CanvasWidget([220, 140], new Button("Embedded\nWidget", new Png("media/color_swatch.png"))).setWidth(100).setHeight(100))
+					.addItem(new CanvasWidget([220, 140], new Button("Embedded\nWidget", new EmbeddedPng!("error.png"))).setWidth(100).setHeight(100))
 					.addTagConfig(new CanvasTagConfig("tagged").setFillColor(Color.salmon))
 					.setXView(0.25)
 					.setYView(0.24)
@@ -372,14 +374,14 @@ class Application : TkdApplication
 				.configureGeometryColumn(1, 1)
 				.pack(10, 0, GeometrySide.top, GeometryFill.both, AnchorPosition.center, true);
 
-				auto colorButton = new Button(modalLabelFrame, new Png("media/color_swatch.png"), "Color", ImagePosition.left)
+				auto colorButton = new Button(modalLabelFrame, new EmbeddedPng!("color_swatch.png"), "Color", ImagePosition.left)
 					.setCommand(&this.openColorDialog)
 					.grid(0, 0, 10);
 
 				this._colorEntry = new Entry(modalLabelFrame)
 					.grid(1, 0, 10, 0, 1, 1, "ew");
 
-				auto directoryButton = new Button(modalLabelFrame, new Png("media/chart_organisation.png"), "Directory", ImagePosition.left)
+				auto directoryButton = new Button(modalLabelFrame, new EmbeddedPng!("chart_organisation.png"), "Directory", ImagePosition.left)
 					.setCommand(&this.openDirectoryDialog)
 					.grid(0, 1, 10);
 
@@ -387,7 +389,7 @@ class Application : TkdApplication
 					.setWidth(40)
 					.grid(1, 1, 10, 0, 1, 1, "ew");
 
-				auto fileOpenButton = new Button(modalLabelFrame, new Png("media/folder_page.png"), "Open File", ImagePosition.left)
+				auto fileOpenButton = new Button(modalLabelFrame, new EmbeddedPng!("folder_page.png"), "Open File", ImagePosition.left)
 					.setCommand(&this.openOpenFileDialog)
 					.grid(0, 2, 10);
 
@@ -395,7 +397,7 @@ class Application : TkdApplication
 					.setWidth(40)
 					.grid(1, 2, 10, 0, 1, 1, "ew");
 
-				auto fileSaveButton = new Button(modalLabelFrame, new Png("media/disk.png"), "Save File", ImagePosition.left)
+				auto fileSaveButton = new Button(modalLabelFrame, new EmbeddedPng!("disk.png"), "Save File", ImagePosition.left)
 					.setCommand(&this.openSaveFileDialog)
 					.grid(0, 3, 10);
 
@@ -403,7 +405,7 @@ class Application : TkdApplication
 					.setWidth(40)
 					.grid(1, 3, 10, 0, 1, 1, "ew");
 
-				auto messageButton = new Button(modalLabelFrame, new Png("media/comment.png"), "Message", ImagePosition.left)
+				auto messageButton = new Button(modalLabelFrame, new EmbeddedPng!("comment.png"), "Message", ImagePosition.left)
 					.setCommand(&this.openMessageDialog)
 					.grid(0, 4, 10);
 
@@ -415,7 +417,7 @@ class Application : TkdApplication
 				.configureGeometryColumn(1, 1)
 				.pack(10, 0, GeometrySide.top, GeometryFill.both, AnchorPosition.center, true);
 
-				auto fontButton = new Button(nonModalLabelFrame, new Png("media/style.png"), "Font", ImagePosition.left)
+				auto fontButton = new Button(nonModalLabelFrame, new EmbeddedPng!("style.png"), "Font", ImagePosition.left)
 					.setCommand(&this.openFontDialog)
 					.grid(0, 0, 10);
 
@@ -452,10 +454,10 @@ class Application : TkdApplication
 		auto dialogPane = this.createDialogPane();
 
 		noteBook
-			.addTab("Widgets", widgetPane).setTabImage(0, new Png("media/layout_content.png"), ImagePosition.left)
-			.addTab("Panes", panedPane).setTabImage(1, new Png("media/application_tile_horizontal.png"), ImagePosition.left)
-			.addTab("Canvas", canvasPane).setTabImage(2, new Png("media/shape_ungroup.png"), ImagePosition.left)
-			.addTab("Dialogs", dialogPane).setTabImage(3, new Png("media/application_double.png"), ImagePosition.left)
+			.addTab("Widgets", widgetPane).setTabImage(0, new EmbeddedPng!("layout_content.png"), ImagePosition.left)
+			.addTab("Panes", panedPane).setTabImage(1, new EmbeddedPng!("application_tile_horizontal.png"), ImagePosition.left)
+			.addTab("Canvas", canvasPane).setTabImage(2, new EmbeddedPng!("shape_ungroup.png"), ImagePosition.left)
+			.addTab("Dialogs", dialogPane).setTabImage(3, new EmbeddedPng!("application_double.png"), ImagePosition.left)
 			.pack(10, 0, GeometrySide.top, GeometryFill.both, AnchorPosition.center, true);
 
 		auto exitButton = new Button("Exit")

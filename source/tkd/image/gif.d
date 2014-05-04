@@ -26,30 +26,17 @@ class Gif : Image
 	 * Construct the image.
 	 *
 	 * Params:
-	 *     fileName = The file name of the image to load.
-	 *     embed = Whether to embed image data or not.
-	 *
-	 * Bugs:
-	 *     Embedding images over 20x20 pixels can cause issues with event and 
-	 *     command callbacks. It seems it can corrupt the client data passed 
-	 *     internally to the command callback handler (element.d). This is 
-	 *     incredibly fustrating and hard to track down. Any help is 
-	 *     appreciated due to the fact this makes embedding images into 
-	 *     applications very difficult.
+	 *     file = The file name of the image to load.
 	 */
-	public this(string fileName, bool embed = false)
+	public this(string file)
 	{
 		super();
 
 		this.setFormat(ImageFormat.gif);
 
-		if (embed)
+		if (file)
 		{
-			this.setData(Base64.encode(cast(ubyte[])read(fileName)));
-		}
-		else
-		{
-			this.setFile(fileName);
+			this.setFile(file);
 		}
 	}
 
@@ -68,5 +55,35 @@ class Gif : Image
 		this._tk.eval("%s configure -format {gif -index %s}", this.id, index);
 
 		return cast(T) this;
+	}
+}
+
+/**
+ * Helper class to quickly create an embedded Gif format image.
+ *
+ * Params:
+ *     file = The file name of the image to embed.
+ *
+ * Bugs:
+ *     Embedding images over 20x20 pixels can cause issues with event and 
+ *     command callbacks. It seems it can corrupt the client data passed 
+ *     internally to the command callback handler (element.d). This is 
+ *     incredibly fustrating and hard to track down. Any help is appreciated 
+ *     due to the fact this makes embedding images into applications very 
+ *     difficult.
+ *
+ * See_Also:
+ *     $(LINK2 ../image/image.html, tkd.image.image) $(BR)
+ */
+class EmbeddedGif(string file) : Gif
+{
+	/**
+	 * Construct the image.
+	 */
+	public this()
+	{
+		super(null);
+
+		this.embedBase64Data!(file);
 	}
 }

@@ -28,6 +28,24 @@ class Image : Element
 	}
 
 	/**
+	 * This method embeds the image as a base64 encoded string into the 
+	 * application at compile-time. The path to the image must be passed to the 
+	 * compiler using the -J switch.
+	 *
+	 * Params:
+	 *     filename = The filename to read the data from.
+	 *
+	 * Returns:
+	 *     This image to aid method chaining.
+	 */
+	protected auto embedBase64Data(string filename, this T)()
+	{
+		this.setData(base64Encode!(filename));
+
+		return cast(T) this;
+	}
+
+	/**
 	 * Clears the image of all pixel data and effectively makes it transparent.
 	 *
 	 * Returns:
@@ -118,7 +136,7 @@ class Image : Element
 	 * Set the image file.
 	 *
 	 * Params:
-	 *     fileName = The name of the file.
+	 *     file = The name of the file.
 	 *
 	 * Returns:
 	 *     This image to aid method chaining.
@@ -278,4 +296,22 @@ class Image : Element
 		this._tk.eval("image delete %s", this.id);
 		super.destroy();
 	}
+}
+
+/**
+ * Template to base64 encode files at compile time.
+ *
+ * Params:
+ *     file = The file name to encode and embed.
+ */
+private template base64Encode(string file)
+{
+	import std.base64;
+
+	private string getData()
+	{
+		return Base64.encode(cast(ubyte[])import(file));
+	}
+
+	enum base64Encode = getData();
 }
