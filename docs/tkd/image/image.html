@@ -33,11 +33,21 @@
 </div>
 <h2><a name="Image.setData"></a>auto <span class="symbol">setData</span>(this T)(string data);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Set the image data.
- This should be base64 encoded binary data.
+<div class="declaration-description"><div class="sections"><p>Specifies the contents of the image as a string. The string should
+ contain binary data or, for some formats, base64-encoded data (this is
+ currently guaranteed to be supported for PNG and GIF images). A set
+ file takes precedence over the setting of data.
+</p>
+<h3>Bugs</h3><p>Setting base64 data for images over 20x20 pixels can cause issues
+     with event and command callbacks. It seems it can corrupt the client
+     data passed internally to the command callback handler (element.d).
+     This is incredibly fustrating and hard to track down. Any help is
+     appreciated due to the fact this makes embedding images into
+     applications very difficult.
+
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string data</td>
-<td>Base64 encoded data.</td></tr>
+<td>The image data.</td></tr>
 </table>
 <h3>Return Value</h3><p>This image to aid method chaining.</p>
 </div>
@@ -75,21 +85,10 @@
 </div>
 <h2><a name="Image.setFile"></a>auto <span class="symbol">setFile</span>(this T)(string file);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Set the file to read the image data from.
+<div class="declaration-description"><div class="sections"><p>Set the image file.
 </p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>string file</td>
-<td>The file to read the image data from.</td></tr>
-</table>
-<h3>Return Value</h3><p>This image to aid method chaining.</p>
-</div>
-</div>
-<h2><a name="Image.embedDataFromFile"></a>auto <span class="symbol">embedDataFromFile</span>(string filename, this T)();
-</h2>
-<div class="declaration-description"><div class="sections"><p>This method embeds the image as a base64 encoded string into the application.
- The path to the image must be passed to the compiler using the -J switch.
-</p>
-<h3>Parameters</h3><table class="parameter-list"><tr><td>filename</td>
-<td>The filename to read the data from.</td></tr>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>fileName</td>
+<td>The name of the file.</td></tr>
 </table>
 <h3>Return Value</h3><p>This image to aid method chaining.</p>
 </div>

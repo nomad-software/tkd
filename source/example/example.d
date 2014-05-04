@@ -164,10 +164,10 @@ class Application : TkdApplication
 		auto menuBar = new MenuBar(this.mainWindow);
 
 		auto fileMenu = new Menu(menuBar, "File", 0)
-			.addEntry(new Png!("cancel.png"), "Quit", &this.exitApplication, ImagePosition.left, "Ctrl-Q");
+			.addEntry(new Png("media/cancel.png"), "Quit", &this.exitApplication, ImagePosition.left, "Ctrl-Q");
 
 		auto helpMenu = new Menu(menuBar, "Help", 0)
-			.addEntry(new Png!("help.png"), "About...", &this.showAbout, ImagePosition.left, "F1");
+			.addEntry(new Png("media/help.png"), "About...", &this.showAbout, ImagePosition.left, "F1");
 	}
 
 	/**
@@ -214,11 +214,16 @@ class Application : TkdApplication
 
 		auto buttonLabelFrame = new LabelFrame(widgetPane, "Buttons")
 			.pack(10, 0, GeometrySide.left, GeometryFill.both, AnchorPosition.center, true);
-			auto button1 = new Button(buttonLabelFrame, new Png!("thumbnail.png"))
-				.pack(5, 0, GeometrySide.left);
-			auto button2 = new Button(buttonLabelFrame, "Text button")
+			auto button1 = new Button(buttonLabelFrame, "Text button")
 				.pack(5);
-			auto button3 = new Button(buttonLabelFrame, new Png!("disk.png"), "Image button", ImagePosition.left)
+			auto button2 = new Button(buttonLabelFrame, new Png("media/disk.png"), "Image button", ImagePosition.left)
+				.pack(5);
+
+			auto buttonMenu = new Menu()
+				.addEntry("Option 1", delegate(CommandArgs args){})
+				.addEntry("Option 2", delegate(CommandArgs args){})
+				.addEntry("Option 3", delegate(CommandArgs args){});
+			auto button3 = new MenuButton(buttonLabelFrame, "Menu button", buttonMenu)
 				.pack(5);
 
 		auto checkBoxLabelFrame = new LabelFrame(widgetPane, "Check buttons")
@@ -270,12 +275,12 @@ class Application : TkdApplication
 					rows.children[2].children ~= new TreeViewRow(["Aliens (1986).mpg"], true, ["video"]);
 
 				auto tree1 = new TreeView(panedWindow)
-					.setTag("computer", new Png!("computer.png"))
-					.setTag("folder", new Png!("folder.png"))
-					.setTag("file", new Png!("page.png"))
-					.setTag("pdf", new Png!("page_white_acrobat.png"))
-					.setTag("video", new Png!("film.png"))
-					.setTag("image", new Png!("images.png"))
+					.setTag("computer", new Png("media/computer.png"))
+					.setTag("folder", new Png("media/folder.png"))
+					.setTag("file", new Png("media/page.png"))
+					.setTag("pdf", new Png("media/page_white_acrobat.png"))
+					.setTag("video", new Png("media/film.png"))
+					.setTag("image", new Png("media/images.png"))
 					.setHeading("Directory listing")
 					.addRow(rows);
 
@@ -324,13 +329,13 @@ class Application : TkdApplication
 					.setScrollRegion(-300, -250, 610, 500)
 					.addItem(new CanvasRectangle([10, 10, 200, 100]).addTag("tagged"))
 					.addItem(new CanvasArc([10, 110, 110, 210], CanvasArcStyle.pie, Color.paleGreen))
-					.addItem(new CanvasImage([210, 10], new Png!("thumbnail.png")))
-					.addItem(new CanvasImage([260, 10], new Gif!("thumbnail.gif")))
+					.addItem(new CanvasImage([210, 10], new Png("media/thumbnail.png")))
+					.addItem(new CanvasImage([260, 10], new Gif("media/thumbnail.gif")))
 					.addItem(new CanvasLine([120, 110, 200, 110, 200, 160]).setArrowPosition(CanvasLineArrow.last))
 					.addItem(new CanvasOval([10, 170, 200, 245], Color.rosyBrown3))
 					.addItem(new CanvasPolygon([220, 80, 320, 80, 300, 120, 240, 120], Color.mediumPurple))
 					.addItem(new CanvasText([30, 192], "Tkd Canvas", Color.white).setFont("{Arial} 20 bold"))
-					.addItem(new CanvasWidget([220, 140], new Button("Embedded\nWidget", new Png!("color_swatch.png"))).setWidth(100).setHeight(100))
+					.addItem(new CanvasWidget([220, 140], new Button("Embedded\nWidget", new Png("media/color_swatch.png"))).setWidth(100).setHeight(100))
 					.addTagConfig(new CanvasTagConfig("tagged").setFillColor(Color.salmon))
 					.setXView(0.25)
 					.setYView(0.24)
@@ -367,42 +372,42 @@ class Application : TkdApplication
 				.configureGeometryColumn(1, 1)
 				.pack(10, 0, GeometrySide.top, GeometryFill.both, AnchorPosition.center, true);
 
-				auto colorButton = new Button(modalLabelFrame, new Png!("color_swatch.png"), "Color", ImagePosition.left)
+				auto colorButton = new Button(modalLabelFrame, new Png("media/color_swatch.png"), "Color", ImagePosition.left)
 					.setCommand(&this.openColorDialog)
 					.grid(0, 0, 10);
 
 				this._colorEntry = new Entry(modalLabelFrame)
 					.grid(1, 0, 10, 0, 1, 1, "ew");
 
-				auto directoryButton = new Button(modalLabelFrame, new Png!("chart_organisation.png"), "Directory", ImagePosition.left)
+				auto directoryButton = new Button(modalLabelFrame, new Png("media/chart_organisation.png"), "Directory", ImagePosition.left)
 					.setCommand(&this.openDirectoryDialog)
 					.grid(0, 1, 10);
 
-				this._directoryEntry = new Entry(modalLabelFrame, )
+				this._directoryEntry = new Entry(modalLabelFrame)
 					.setWidth(40)
 					.grid(1, 1, 10, 0, 1, 1, "ew");
 
-				auto fileOpenButton = new Button(modalLabelFrame, new Png!("folder_page.png"), "Open File", ImagePosition.left)
+				auto fileOpenButton = new Button(modalLabelFrame, new Png("media/folder_page.png"), "Open File", ImagePosition.left)
 					.setCommand(&this.openOpenFileDialog)
 					.grid(0, 2, 10);
 
-				this._openFileEntry = new Entry(modalLabelFrame, )
+				this._openFileEntry = new Entry(modalLabelFrame)
 					.setWidth(40)
 					.grid(1, 2, 10, 0, 1, 1, "ew");
 
-				auto fileSaveButton = new Button(modalLabelFrame, new Png!("disk.png"), "Save File", ImagePosition.left)
+				auto fileSaveButton = new Button(modalLabelFrame, new Png("media/disk.png"), "Save File", ImagePosition.left)
 					.setCommand(&this.openSaveFileDialog)
 					.grid(0, 3, 10);
 
-				this._saveFileEntry = new Entry(modalLabelFrame, )
+				this._saveFileEntry = new Entry(modalLabelFrame)
 					.setWidth(40)
 					.grid(1, 3, 10, 0, 1, 1, "ew");
 
-				auto messageButton = new Button(modalLabelFrame, new Png!("comment.png"), "Message", ImagePosition.left)
+				auto messageButton = new Button(modalLabelFrame, new Png("media/comment.png"), "Message", ImagePosition.left)
 					.setCommand(&this.openMessageDialog)
 					.grid(0, 4, 10);
 
-				this._messageEntry = new Entry(modalLabelFrame, )
+				this._messageEntry = new Entry(modalLabelFrame)
 					.setWidth(40)
 					.grid(1, 4, 10, 0, 1, 1, "ew");
 
@@ -410,11 +415,11 @@ class Application : TkdApplication
 				.configureGeometryColumn(1, 1)
 				.pack(10, 0, GeometrySide.top, GeometryFill.both, AnchorPosition.center, true);
 
-				auto fontButton = new Button(nonModalLabelFrame, new Png!("style.png"), "Font", ImagePosition.left)
+				auto fontButton = new Button(nonModalLabelFrame, new Png("media/style.png"), "Font", ImagePosition.left)
 					.setCommand(&this.openFontDialog)
 					.grid(0, 0, 10);
 
-				this._fontEntry = new Entry(nonModalLabelFrame, )
+				this._fontEntry = new Entry(nonModalLabelFrame)
 					.setWidth(40)
 					.grid(1, 0, 10, 0, 1, 1, "ew");
 
@@ -447,10 +452,10 @@ class Application : TkdApplication
 		auto dialogPane = this.createDialogPane();
 
 		noteBook
-			.addTab("Widgets", widgetPane).setTabImage(0, new Png!("layout_content.png"), ImagePosition.left)
-			.addTab("Panes", panedPane).setTabImage(1, new Png!("application_tile_horizontal.png"), ImagePosition.left)
-			.addTab("Canvas", canvasPane).setTabImage(2, new Png!("shape_ungroup.png"), ImagePosition.left)
-			.addTab("Dialogs", dialogPane).setTabImage(3, new Png!("application_double.png"), ImagePosition.left)
+			.addTab("Widgets", widgetPane).setTabImage(0, new Png("media/layout_content.png"), ImagePosition.left)
+			.addTab("Panes", panedPane).setTabImage(1, new Png("media/application_tile_horizontal.png"), ImagePosition.left)
+			.addTab("Canvas", canvasPane).setTabImage(2, new Png("media/shape_ungroup.png"), ImagePosition.left)
+			.addTab("Dialogs", dialogPane).setTabImage(3, new Png("media/application_double.png"), ImagePosition.left)
 			.pack(10, 0, GeometrySide.top, GeometryFill.both, AnchorPosition.center, true);
 
 		auto exitButton = new Button("Exit")
@@ -487,8 +492,3 @@ void main(string[] args)
 	auto app = new Application();
 	app.run();
 }
-
-// todo
-// menubutton.d
-// separator.d
-// menus

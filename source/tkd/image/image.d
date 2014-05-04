@@ -41,18 +41,28 @@ class Image : Element
 	}
 
 	/**
-	 * Set the image data.
-	 * This should be base64 encoded binary data.
+	 * Specifies the contents of the image as a string. The string should 
+	 * contain binary data or, for some formats, base64-encoded data (this is 
+	 * currently guaranteed to be supported for PNG and GIF images). A set 
+	 * file takes precedence over the setting of data.
+	 *
+	 * Bugs:
+	 *     Setting base64 data for images over 20x20 pixels can cause issues 
+	 *     with event and command callbacks. It seems it can corrupt the client 
+	 *     data passed internally to the command callback handler (element.d). 
+	 *     This is incredibly fustrating and hard to track down. Any help is 
+	 *     appreciated due to the fact this makes embedding images into 
+	 *     applications very difficult.
 	 *
 	 * Params:
-	 *     data = Base64 encoded data.
+	 *     data = The image data.
 	 *
 	 * Returns:
 	 *     This image to aid method chaining.
 	 */
 	public auto setData(this T)(string data)
 	{
-		this._tk.eval("%s configure -data %s", this.id, data);
+		this._tk.eval("%s configure -data {%s}", this.id, data);
 
 		return cast(T) this;
 	}
@@ -84,7 +94,7 @@ class Image : Element
 	 */
 	public auto setFormat(this T)(string format)
 	{
-		this._tk.eval("%s configure -format %s", this.id, format);
+		this._tk.eval("%s configure -format {%s}", this.id, format);
 
 		return cast(T) this;
 	}
@@ -105,34 +115,17 @@ class Image : Element
 	}
 
 	/**
-	 * Set the file to read the image data from.
+	 * Set the image file.
 	 *
 	 * Params:
-	 *     file = The file to read the image data from.
+	 *     fileName = The name of the file.
 	 *
 	 * Returns:
 	 *     This image to aid method chaining.
 	 */
 	public auto setFile(this T)(string file)
 	{
-		this._tk.eval("%s configure -file %s", this.id, file);
-
-		return cast(T) this;
-	}
-
-	/**
-	 * This method embeds the image as a base64 encoded string into the application.
-	 * The path to the image must be passed to the compiler using the -J switch.
-	 *
-	 * Params:
-	 *     filename = The filename to read the data from.
-	 *
-	 * Returns:
-	 *     This image to aid method chaining.
-	 */
-	public auto embedDataFromFile(string filename, this T)()
-	{
-		this.setData(base64Encode!(filename));
+		this._tk.eval("%s configure -file {%s}", this.id, file);
 
 		return cast(T) this;
 	}
@@ -227,7 +220,7 @@ class Image : Element
 	 */
 	public auto setPalette(this T)(string palette)
 	{
-		this._tk.eval("%s configure -palette %s", this.id, palette);
+		this._tk.eval("%s configure -palette {%s}", this.id, palette);
 
 		return cast(T) this;
 	}
@@ -285,23 +278,4 @@ class Image : Element
 		this._tk.eval("image delete %s", this.id);
 		super.destroy();
 	}
-}
-
-/**
- * Template to base64 encode files at compile time, effectively embedding them 
- * inside the application.
- *
- * Params:
- *     file = The file name to encode and embed.
- */
-private template base64Encode(string file)
-{
-	import std.base64;
-
-	private string getData()
-	{
-		return Base64.encode(cast(ubyte[])import(file));
-	}
-
-	enum base64Encode = getData();
 }
