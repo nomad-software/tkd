@@ -10,7 +10,7 @@ module tkd.widget.menu.menubar;
  * Imports.
  */
 import tkd.element.uielement;
-import tkd.tkdapplication : Window;
+import tkd.window.window;
 
 /**
  * A menubar is the bar across the top of a window holding the menu items.

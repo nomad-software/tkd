@@ -4,14 +4,15 @@
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.dialog.savefiledialog;
+module tkd.window.dialog.savefiledialog;
 
 /**
  * Imports.
  */
 import std.array;
 import std.regex;
-import tkd.dialog.filedialog;
+import tkd.window.dialog.filedialog;
+import tkd.window.window;
 
 /**
  * Pops up a dialog box for the user to save a file.

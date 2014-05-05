@@ -6,7 +6,7 @@
  */
 module tkd.widget;
 
-public import tkd.element.element : CommandCallback, CommandArgs;
+public import tkd.element.element : CommandArgs;
 public import tkd.widget.alignment;
 public import tkd.widget.anchorposition;
 public import tkd.widget.button;
@@ -36,4 +36,4 @@ public import tkd.widget.style;
 public import tkd.widget.text;
 public import tkd.widget.textwrapmode;
 public import tkd.widget.treeview;
-public import tkd.widget.widget : GeometrySide, GeometryFill;
+public import tkd.widget.widget : GeometrySide, GeometryFill, GeometryBorderMode;

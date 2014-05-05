@@ -4,13 +4,14 @@
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.dialog.directorydialog;
+module tkd.window.dialog.directorydialog;
 
 /**
  * Imports.
  */
 import std.regex;
-import tkd.dialog.dialog;
+import tkd.window.dialog.dialog;
+import tkd.window.window;
 
 /**
  * Pops up a dialog box for the user to select a directory.

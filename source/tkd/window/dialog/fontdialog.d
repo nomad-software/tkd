@@ -4,13 +4,14 @@
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.dialog.fontdialog;
+module tkd.window.dialog.fontdialog;
 
 /**
  * Imports.
  */
-import tkd.dialog.dialog;
+import tkd.window.dialog.dialog;
 import tkd.element.element;
+import tkd.window.window;
 
 /**
  * The font dialog allows users to choose a font installed on the system. It 
@@ -31,7 +32,7 @@ import tkd.element.element;
  * ---
  *
  * Additional_Events:
- *     Additional events that can also be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) method.
+ *     Additional events that can also be bound to using the $(LINK2 ../../element/uielement.html#UiElement.bind, bind) method.
  *     $(P
  *         &lt;&lt;TkFontchooserFontChanged&gt;&gt;,
  *         &lt;&lt;TkFontchooserVisibility&gt;&gt;,
@@ -86,7 +87,7 @@ class FontDialog : Dialog
 	 *
 	 * Callback_Arguments:
 	 *     These are the fields within the callback's $(LINK2 
-	 *     ../element/element.html#CommandArgs, CommandArgs) parameter which 
+	 *     ../../element/element.html#CommandArgs, CommandArgs) parameter which 
 	 *     are populated by this method when the callback is executed. 
 	 *     $(P
 	 *         $(PARAM_TABLE
@@ -97,8 +98,8 @@ class FontDialog : Dialog
 	 *     )
 	 *
 	 * See_Also:
-	 *     $(LINK2 ../element/element.html#CommandArgs, tkd.element.element.CommandArgs) $(BR)
-	 *     $(LINK2 ../element/element.html#CommandCallback, tkd.element.element.CommandCallback) $(BR)
+	 *     $(LINK2 ../../element/element.html#CommandArgs, tkd.element.element.CommandArgs) $(BR)
+	 *     $(LINK2 ../../element/element.html#CommandCallback, tkd.element.element.CommandCallback) $(BR)
 	 */
 	public auto setCommand(this T)(CommandCallback callback)
 	{

@@ -4,14 +4,15 @@
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.dialog.openfiledialog;
+module tkd.window.dialog.openfiledialog;
 
 /**
  * Imports.
  */
 import std.array;
 import std.regex;
-import tkd.dialog.filedialog;
+import tkd.window.dialog.filedialog;
+import tkd.window.window;
 
 /**
  * Pops up a dialog box for the user to open a file.
@@ -19,7 +20,7 @@ import tkd.dialog.filedialog;
  * Example:
  * ---
  * auto dialog = new OpenFileDialog("Open a file")
- * 	.setMultiSelection(flase)
+ * 	.setMultiSelection(false)
  * 	.setDefaultExtension(".txt")
  * 	.addFileType("{{All files} {*}}")
  * 	.addFileType("{{Text files} {.txt}}")

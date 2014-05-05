@@ -4,20 +4,20 @@
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.dialog.dialog;
+module tkd.window.dialog.dialog;
 
 /**
  * Imports.
  */
 import std.regex;
 import tkd.element.element;
-import tkd.tkdapplication : Window;
+import tkd.window.window;
 
 /**
  * Abstract base class for all dialog boxes.
  *
  * See_Also:
- *     $(LINK2 ../element/element.html, tkd.element.element) $(BR)
+ *     $(LINK2 ../../element/element.html, tkd.element.element) $(BR)
  */
 abstract class Dialog : Element
 {

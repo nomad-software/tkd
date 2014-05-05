@@ -4,13 +4,14 @@
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.dialog.messagedialog;
+module tkd.window.dialog.messagedialog;
 
 /**
  * Imports.
  */
 import std.regex;
-import tkd.dialog.dialog;
+import tkd.window.dialog.dialog;
+import tkd.window.window;
 
 /**
  * Pops up a dialog box with a user defined message and buttons.

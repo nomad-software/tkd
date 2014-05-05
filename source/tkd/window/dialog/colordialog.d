@@ -4,14 +4,15 @@
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.dialog.colordialog;
+module tkd.window.dialog.colordialog;
 
 /**
  * Imports.
  */
 import std.regex;
-import tkd.dialog.dialog;
 import tkd.element.color;
+import tkd.window.dialog.dialog;
+import tkd.window.window;
 
 /**
  * Pops up a dialog box for the user to select a color.
@@ -63,7 +64,7 @@ class ColorDialog : Dialog
 
 	/**
 	 * Set the initial color to display in the dialog.
-	 * Use colors from the preset color $(LINK2 ../element/color.html, list) or a web style hex color.
+	 * Use colors from the preset color $(LINK2 ../../element/color.html, list) or a web style hex color.
 	 *
 	 * Params:
 	 *     color = The initial color.
@@ -72,7 +73,7 @@ class ColorDialog : Dialog
 	 *     This dialog to aid method chaining.
 	 *
 	 * See_Also:
-	 *     $(LINK2 ../element/color.html, tkd.widget.color) $(BR)
+	 *     $(LINK2 ../../element/color.html, tkd.widget.color) $(BR)
 	 *
 	 * Caveats:
 	 *     If the passed color is not recognised the dialog will fail to show.

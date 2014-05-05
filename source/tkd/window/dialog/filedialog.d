@@ -4,15 +4,15 @@
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.dialog.filedialog;
+module tkd.window.dialog.filedialog;
 
 /**
  * Imports.
  */
 import std.regex;
 import std.string;
-import tkd.dialog.dialog;
-import tkd.tkdapplication : Window;
+import tkd.window.dialog.dialog;
+import tkd.window.window;
 
 /**
  * Pops up a dialog box for the user to select a color.
