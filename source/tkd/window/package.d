@@ -7,4 +7,5 @@
 module tkd.window;
 
 public import tkd.window.dialog;
+public import tkd.window.theme;
 public import tkd.window.window;

@@ -43,13 +43,18 @@ import tkd.interpreter;
 class Window : UiElement
 {
 	/**
+	 * The main window of the application.
+	 */
+	static private Window _mainWindow;
+
+	/*
 	 * Constructor.
 	 *
 	 * This constructor is mainly for internal use. When creating a window 
 	 * using this constructor what you are really doing is creating a new 
 	 * reference to the main application window.
 	 */
-	public this()
+	private this()
 	{
 		super();
 		this.overrideGeneratedId(".");
@@ -519,6 +524,28 @@ class Window : UiElement
 		this._tk.eval("tkwait window %s", this.id);
 
 		return cast(T) this;
+	}
+
+	/**
+	 * Get the main window of the application. This is just a convenience 
+	 * method and shouldn't really be used. Instead use the $(LINK2 
+	 * ../tkdapplication.html#TkdApplication.mainWindow, mainWindow) property 
+	 * of the $(LINK2 ../tkdapplication.html, TkdApplication) class.
+	 *
+	 * Returns:
+	 *     A reference to the main window of the application.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../tkdapplication.html, tkd.tkdapplication)
+	 */
+	static public Window getMainWindow()
+	{
+		if (this._mainWindow is null)
+		{
+			this._mainWindow = new Window();
+		}
+
+		return this._mainWindow;
 	}
 }
 

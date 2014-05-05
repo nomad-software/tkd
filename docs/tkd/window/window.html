@@ -43,16 +43,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </p>
 <h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.uielement</a></p>
 </div>
-<div class="class-members"><h2><a name="Window.this"></a> this();
-</h2>
-<div class="declaration-description"><div class="sections"><p>Constructor.
-</p>
-<p>This constructor is mainly for internal use. When creating a window
- using this constructor what you are really doing is creating a new
- reference to the main application window.</p>
-</div>
-</div>
-<h2><a name="Window.this"></a> this(Window parent, string title, bool waitForWindow = true);
+<div class="class-members"><h2><a name="Window.this"></a> this(Window parent, string title, bool waitForWindow = true);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Constructor.
 </p>
@@ -317,6 +308,18 @@ These are the fields within the callback's <a href="    ../element/element.html#
 <div class="declaration-description"><div class="sections"><p>Wait until this window has been destroyed.
 </p>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="Window.getMainWindow"></a>static Window <span class="symbol">getMainWindow</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the main window of the application. This is just a convenience
+ method and shouldn't really be used. Instead use the <a href="../tkdapplication.html#TkdApplication.mainWindow">mainWindow</a> property
+ of the <a href="../tkdapplication.html">TkdApplication</a> class.
+</p>
+<h3>Return Value</h3><p>A reference to the main window of the application.
+
+</p>
+<h3>See Also</h3><p><a href="../tkdapplication.html">tkd.tkdapplication</a></p>
 </div>
 </div>
 </div>

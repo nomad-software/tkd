@@ -18,7 +18,6 @@ import tkd.interpreter;
  */
 public import tkd.element;
 public import tkd.image;
-public import tkd.theme;
 public import tkd.widget;
 public import tkd.window;
 
@@ -79,7 +78,7 @@ abstract class TkdApplication
 	{
 		this._tk = Tk.getInstance();
 
-		this._mainWindow = new Window();
+		this._mainWindow = Window.getMainWindow();
 		this.initInterface();
 	}
 

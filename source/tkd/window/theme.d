@@ -1,10 +1,10 @@
 /**
- * TkdApplication module.
+ * Window module.
  *
  * License:
  *     MIT. See LICENSE for full details.
  */
-module tkd.theme;
+module tkd.window.theme;
 
 /**
  * Standard themes.
