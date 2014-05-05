@@ -210,6 +210,23 @@ ActiveTcl. The linked libraries are **libtcl** and **libtk**.
 
 ## Notes
 
+### Debugging
+
+The following debug flags can be passed to Tkd to help debug certain issues.
+
+```
+-debug=log
+```
+Write a log called `debug.log` in the current directory detailing all Tcl/Tk
+interaction logging all commands the Tcl interpreter is executing. (All errors
+are marked as WARN.)
+
+```
+-debug=showTclErrors
+```
+Write all Tcl/Tk errors to stdout. This is useful to immediately be notified of
+interpreter errors without trawling through the debug log.
+
 ### Widgets
 
 #### Canvas
