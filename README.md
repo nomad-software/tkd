@@ -37,6 +37,9 @@ dub --config=example
 
 ### Usage
 
+Just import the `tkd.tkdapplication` module and all tkd elements are publically
+imported.
+
 ```d
 import tkd.tkdapplication;                               // Import Tkd.
 
