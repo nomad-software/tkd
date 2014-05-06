@@ -78,6 +78,14 @@ abstract class TkdApplication
 	{
 		this._tk = Tk.getInstance();
 
+		// Fix to remove hard-coded background colors from widgets.
+		version (Windows)
+		{
+			this._tk.eval("ttk::style configure TEntry -fieldbackground {SystemWindow}");
+			this._tk.eval("ttk::style configure TSpinbox -fieldbackground {SystemWindow}");
+			this._tk.eval("ttk::style configure Treeview -fieldbackground {SystemWindow}");
+		}
+
 		this._mainWindow = Window.getMainWindow();
 		this.initInterface();
 	}
