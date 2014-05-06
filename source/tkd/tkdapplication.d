@@ -9,6 +9,8 @@ module tkd.tkdapplication;
 /**
  * Private imports.
  */
+import std.file : chdir, thisExePath;
+import std.path : dirName;
 import std.regex : match;
 import std.string;
 import tkd.interpreter;
@@ -76,6 +78,16 @@ abstract class TkdApplication
 	 */
 	public this()
 	{
+		// On Windows the Tcl/Tk library folder might be included in the 
+		// executable's directory to make the entire application self-contained 
+		// (using a local library and Tcl/Tk DLL's). So always set the current 
+		// working directory to that of the executable's. Tcl/Tk should then 
+		// always find it if it's there.
+		version (Windows)
+		{
+			thisExePath().dirName().chdir();
+		}
+
 		this._tk = Tk.getInstance();
 
 		// Fix to remove hard-coded background colors from widgets.
