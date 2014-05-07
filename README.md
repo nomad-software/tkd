@@ -151,8 +151,9 @@ These are pre-built dialog boxes to gather various pieces of data from a user.
 
 ## Building
 
-It's recommended to use the [dub](http://code.dlang.org/about) build tool to
-build all Tkd projects.
+ * Tkd has been developed and tested using DMD version **2.065** compiler.
+ * It's recommended to use the [dub](http://code.dlang.org/about) build tool to
+   build all Tkd projects.
 
 ## Dependencies
 
@@ -171,7 +172,9 @@ function.
 
 ### Libraries
 
-Tkd requires version **8.6.1** of the Tcl/Tk libraries or greater installed.
+Tkd requires version **8.6** (or greater) of the Tcl/Tk libraries installed. A
+small exception is when creating a self-contained installation on Windows. See
+details below.
 
 #### Windows
 
@@ -199,10 +202,25 @@ project
 └── library
     └── *.tcl files
 ```
-I'm hoping once [this](https://github.com/rejectedsoftware/dub/issues/299) dub
-issue is resolved this will become the default option on Windows and dub will
-copy all required DLL's and files to the application's directory on every dub
-build.
+You can automate this process when building your applications using the
+following in the dub build file (`package.json`). Dub version **0.9.22** or
+greater is required! Assuming `build` is the output directory.
+```
+...
+"postGenerateCommands-windows-x86": [
+	"copy $TCLTK_PACKAGE_DIR\\dist\\x86\\tcl86.dll build\\tcl86.dll /y",
+	"copy $TCLTK_PACKAGE_DIR\\dist\\x86\\tcl86.dll build\\tk86.dll /y",
+	"copy $TCLTK_PACKAGE_DIR\\dist\\x86\\tcl86.dll build\\zlib1.dll /y",
+	"xcopy $TCLTK_PACKAGE_DIR\\dist\\library build\\library /i /e /y",
+],
+"postGenerateCommands-windows-x86_64": [
+	"copy $TCLTK_PACKAGE_DIR\\dist\\x86_64\\tcl86.dll build\\tcl86.dll /y",
+	"copy $TCLTK_PACKAGE_DIR\\dist\\x86_64\\tcl86.dll build\\tk86.dll /y",
+	"copy $TCLTK_PACKAGE_DIR\\dist\\x86_64\\tcl86.dll build\\zlib1.dll /y",
+	"xcopy $TCLTK_PACKAGE_DIR\\dist\\library build\\library /i /e /y",
+],
+...
+```
 
 #### Linux/Mac OSX
 
