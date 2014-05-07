@@ -202,9 +202,10 @@ project
 └── library
     └── *.tcl files
 ```
-You can automate this process when building your applications using the
-following in the dub build file (`package.json`). Dub version **0.9.22** or
-greater is required! Assuming `build` is the output directory.
+You can automate this process when building an application by placing the
+following in the application's `package.json` build file. Dub version
+**0.9.22** or greater is required. The following assumes `build` is the output
+directory.
 ```
 ...
 "postGenerateCommands-windows-x86": [
