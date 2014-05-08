@@ -210,14 +210,14 @@ directory.
 ...
 "postGenerateCommands-windows-x86": [
 	"copy $TCLTK_PACKAGE_DIR\\dist\\x86\\tcl86.dll build\\tcl86.dll /y",
-	"copy $TCLTK_PACKAGE_DIR\\dist\\x86\\tcl86.dll build\\tk86.dll /y",
-	"copy $TCLTK_PACKAGE_DIR\\dist\\x86\\tcl86.dll build\\zlib1.dll /y",
+	"copy $TCLTK_PACKAGE_DIR\\dist\\x86\\tk86.dll build\\tk86.dll /y",
+	"copy $TCLTK_PACKAGE_DIR\\dist\\x86\\zlib1.dll build\\zlib1.dll /y",
 	"xcopy $TCLTK_PACKAGE_DIR\\dist\\library build\\library /i /e /y",
 ],
 "postGenerateCommands-windows-x86_64": [
 	"copy $TCLTK_PACKAGE_DIR\\dist\\x86_64\\tcl86.dll build\\tcl86.dll /y",
-	"copy $TCLTK_PACKAGE_DIR\\dist\\x86_64\\tcl86.dll build\\tk86.dll /y",
-	"copy $TCLTK_PACKAGE_DIR\\dist\\x86_64\\tcl86.dll build\\zlib1.dll /y",
+	"copy $TCLTK_PACKAGE_DIR\\dist\\x86_64\\tk86.dll build\\tk86.dll /y",
+	"copy $TCLTK_PACKAGE_DIR\\dist\\x86_64\\zlib1.dll build\\zlib1.dll /y",
 	"xcopy $TCLTK_PACKAGE_DIR\\dist\\library build\\library /i /e /y",
 ],
 ...
