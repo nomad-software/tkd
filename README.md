@@ -163,7 +163,7 @@ Tkd requires other D source libraries to correctly use and link against
 pre-existing C libraries. The source dependencies are as follows:
 
  * https://github.com/nomad-software/tcltk
- * https://github.com/nomad-software/x11 (Linux only)
+ * https://github.com/nomad-software/x11
 
 Dub handles these automatically and during a build acquires them. While
 building, the tcltk repository is configured to link against the required
@@ -174,7 +174,7 @@ function.
 
 Tkd requires version **8.6** (or greater) of the Tcl/Tk libraries installed. A
 small exception is when creating a self-contained installation on Windows. See
-details below.
+details below. Tcl/Tk itself requires the x11 libraries installed on Linux only.
 
 #### Windows
 
