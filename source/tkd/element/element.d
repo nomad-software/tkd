@@ -9,7 +9,7 @@ module tkd.element.element;
 /**
  * Imports.
  */
-import core.stdc.stdlib : malloc, free;
+import core.memory;
 import std.array;
 import std.conv;
 import std.digest.crc;
@@ -222,10 +222,12 @@ abstract class Element
 
 		Tcl_CmdDeleteProc deleteCallbackHandler = function(ClientData data)
 		{
-			free(data);
+			GC.removeRoot(data);
+			GC.free(data);
 		};
 
-		CommandArgs* args = cast(CommandArgs*)malloc(CommandArgs.sizeof);
+		CommandArgs* args = cast(CommandArgs*)GC.malloc(CommandArgs.sizeof, GC.BlkAttr.NO_MOVE | GC.BlkAttr.NO_SCAN);
+		GC.addRoot(args);
 
 		(*args)            = CommandArgs.init;
 		(*args).element    = this;
