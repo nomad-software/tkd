@@ -223,10 +223,10 @@ abstract class Element
 		Tcl_CmdDeleteProc deleteCallbackHandler = function(ClientData data)
 		{
 			GC.removeRoot(data);
-			GC.free(data);
+			GC.clrAttr(data, GC.BlkAttr.NO_MOVE);
 		};
 
-		CommandArgs* args = cast(CommandArgs*)GC.malloc(CommandArgs.sizeof, GC.BlkAttr.NO_MOVE | GC.BlkAttr.NO_SCAN);
+		CommandArgs* args = cast(CommandArgs*)GC.malloc(CommandArgs.sizeof, GC.BlkAttr.NO_MOVE);
 		GC.addRoot(args);
 
 		(*args)            = CommandArgs.init;

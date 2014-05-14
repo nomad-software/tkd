@@ -552,7 +552,7 @@ class Window : UiElement
 /**
  * Window manager protocols.
  *
- * Bugs:
+ * Caveats:
  *     This list is incomplete.
  */
 enum WindowProtocol : string

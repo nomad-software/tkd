@@ -64,14 +64,6 @@ class Image : Element
 	 * currently guaranteed to be supported for PNG and GIF images). A set 
 	 * file takes precedence over the setting of data.
 	 *
-	 * Bugs:
-	 *     Setting base64 data for images over 20x20 pixels can cause issues 
-	 *     with event and command callbacks. It seems it can corrupt the client 
-	 *     data passed internally to the command callback handler (element.d). 
-	 *     This is incredibly fustrating and hard to track down. Any help is 
-	 *     appreciated due to the fact this makes embedding images into 
-	 *     applications very difficult.
-	 *
 	 * Params:
 	 *     data = The image data.
 	 *

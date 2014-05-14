@@ -22,6 +22,7 @@ class Application : TkdApplication
 	private Entry _saveFileEntry;
 	private Entry _messageEntry;
 	private Canvas _canvas;
+	private ProgressBar _progressBar;
 
 	/**
 	 * Open the font dialog.
@@ -203,23 +204,26 @@ class Application : TkdApplication
 
 		auto rangeLabelFrame = new LabelFrame(widgetPane, "Progress & Scale")
 			.pack(10, 0, GeometrySide.bottom, GeometryFill.both, AnchorPosition.center);
-			auto progressBar = new ProgressBar(rangeLabelFrame)
+			this._progressBar = new ProgressBar(rangeLabelFrame)
 				.setMaxValue(10)
 				.setValue(4)
 				.pack(5, 0, GeometrySide.top, GeometryFill.x, AnchorPosition.center, true);
 			auto scale = new Scale(rangeLabelFrame)
-				.setFromValue(0)
-				.setToValue(10)
-				.setValue(7)
+				.setFromValue(10)
+				.setToValue(0)
+				.setCommand(delegate(CommandArgs args){
+					auto scale = cast(Scale)args.element;
+					this._progressBar.setValue(scale.getValue());
+				})
+				.setValue(4)
 				.pack(5, 0, GeometrySide.top, GeometryFill.x, AnchorPosition.center, true);
 
 		auto buttonLabelFrame = new LabelFrame(widgetPane, "Buttons")
 			.pack(10, 0, GeometrySide.left, GeometryFill.both, AnchorPosition.center, true);
 			auto button1 = new Button(buttonLabelFrame, "Text button")
 				.pack(5);
-			auto button2 = new Button(buttonLabelFrame, new EmbeddedPng!("disk.png"), "Image button", ImagePosition.left)
+			auto button2 = new Button(buttonLabelFrame, new EmbeddedPng!("thumbnail.png"), "Image button", ImagePosition.left)
 				.pack(5);
-
 			auto buttonMenu = new Menu()
 				.addEntry("Option 1", delegate(CommandArgs args){})
 				.addEntry("Option 2", delegate(CommandArgs args){})
@@ -330,10 +334,8 @@ class Application : TkdApplication
 					.setScrollRegion(-300, -250, 610, 500)
 					.addItem(new CanvasRectangle([10, 10, 200, 100]).addTag("tagged"))
 					.addItem(new CanvasArc([10, 110, 110, 210], CanvasArcStyle.pie, Color.paleGreen))
-					.addItem(new CanvasImage([210, 10], new EmbeddedPng!("layout_content.png")))
-					.addItem(new CanvasImage([230, 10], new EmbeddedPng!("shape_ungroup.png")))
-					.addItem(new CanvasImage([250, 10], new EmbeddedPng!("images.png")))
-					.addItem(new CanvasImage([270, 10], new EmbeddedPng!("color_swatch.png")))
+					.addItem(new CanvasImage([210, 10], new EmbeddedPng!("thumbnail.png")))
+					.addItem(new CanvasImage([260, 10], new EmbeddedGif!("thumbnail.gif")))
 					.addItem(new CanvasLine([120, 110, 200, 110, 200, 160]).setArrowPosition(CanvasLineArrow.last))
 					.addItem(new CanvasOval([10, 170, 200, 245], Color.rosyBrown3))
 					.addItem(new CanvasPolygon([220, 80, 320, 80, 300, 120, 240, 120], Color.mediumPurple))
