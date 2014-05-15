@@ -10,6 +10,7 @@ module tkd.window.window;
  * Private imports.
  */
 import std.string;
+import tkd.element.element : CommandCallback;
 import tkd.element.uielement;
 import tkd.interpreter;
 
