@@ -447,6 +447,11 @@ class Application : TkdApplication
 	{
 		this.mainWindow.setTitle("Tkd Showcase");
 		this.mainWindow.setMinSize(550, 560);
+		this.mainWindow.setDefaultIcon([new EmbeddedPng!("tkicon.png")]);
+		this.mainWindow.addProtocolCommand(WindowProtocol.deleteWindow, delegate(CommandArgs args){
+			this.showAbout(args);
+			this.exitApplication(args);
+		});
 
 		this.createMenu();
 

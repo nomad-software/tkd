@@ -12,6 +12,7 @@ module tkd.window.window;
 import std.string;
 import tkd.element.element : CommandCallback;
 import tkd.element.uielement;
+import tkd.image.image;
 import tkd.interpreter;
 
 /**
