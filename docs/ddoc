@@ -1,0 +1,71 @@
+DDOC = <!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<link type="text/css" href="http://www.nomad.so/ddoc/css/theme.css" rel="stylesheet" media="all" />
+		<script type="text/javascript" src="http://www.nomad.so/ddoc/javascript/jquery-2.0.3.min.js"></script>
+		<script type="text/javascript" src="http://www.nomad.so/ddoc/javascript/jquery.scrollTo.min.js"></script>
+		<script type="text/javascript" src="http://www.nomad.so/ddoc/javascript/index.js"></script>
+		<title>$(TITLE)</title>
+	</head>
+	<body>
+		<h1>$(TITLE)</h1>
+		$(BODY)
+	</body>
+</html>
+H2 = <h2>$0</h2>
+H3 = <h3>$0</h3>
+STRONG = <strong>$0</strong>
+EM = <em>$0</em>
+PRE = <pre>$0</pre>
+
+PARAM_TABLE = <table class="parameter-list">$0</table>
+PARAM_ROW = $(TR $(TD $1)$(TD $2))
+
+DDOC_DECL = $(H2 $0)
+DDOC_DECL_DD = <div class="declaration-description">$0</div>
+
+DDOC_CLASS_MEMBERS = <div class="class-members">$0</div>
+DDOC_SUMMARY = $(P $0)
+DDOC_DESCRIPTION = $(P $0)
+
+DDOC_MEMBERS = <div class="members">$0</div>
+DDOC_ENUM_MEMBERS = <div class="enum-members">$0</div>
+DDOC_MODULE_MEMBERS = <div class="module-members">$0</div>
+DDOC_STRUCT_MEMBERS = <div class="struct-members">$0</div>
+DDOC_TEMPLATE_MEMBERS = <div class="template-members">$0</div>
+
+DDOC_SECTIONS = <div class="sections">$0</div>
+DDOC_SECTION = $(P $0)
+DDOC_SECTION_H = $(H3 $0)
+
+DDOC_PARAMS = $(H3 Parameters)$(PARAM_TABLE $0)
+DDOC_PARAM_ROW = $(TR $0)
+DDOC_PARAM_ID = $(TD $0)
+DDOC_PARAM_DESC = $(TD $0)
+
+DDOC_AUTHORS = $(H3 Authors)$(P $0)
+DDOC_BUGS = $(H3 Bugs)$(P $0)
+DDOC_COPYRIGHT = $(H3 Copyright)$(P $0)
+DDOC_DATE = $(H3 Date)$(P $0)
+DDOC_DEPRECATED = $(H3 Deprecation Information)$(P $0)
+DDOC_EXAMPLES = $(H3 Examples)$(P $0)
+DDOC_HISTORY = $(H3 History)$(P $0)
+DDOC_LICENSE = $(H3 License)$(P $0)
+DDOC_RETURNS = $(H3 Return Value)$(P $0)
+DDOC_SEE_ALSO = $(H3 See Also)$(P $0)
+DDOC_STANDARDS = $(H3 Standards)$(P $0)
+DDOC_THROWS = $(H3 Exceptions Thrown)$(P $0)
+DDOC_VERSION = $(H3 Version Information)$(P $0)
+
+DDOC_PSYMBOL = <span class="symbol">$0</span>
+DDOC_KEYWORD = $(STRONG $0)
+DDOC_PARAM = $0
+
+D_CODE = $(PRE $0)
+D_COMMENT = <span class="comment">$0</span>
+D_STRING = <span class="string">$0</span>
+D_KEYWORD = <span class="keyword">$0</span>
+D_PSYMBOL = <span class="symbol">$0</span>
+D_PARAM = <span class="parameter">$0</span>
+

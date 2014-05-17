@@ -29,7 +29,7 @@
 	.setGeometry(640, 480, 10, 10)
 	.setDefaultIcon(<span class="keyword">new</span> Png!(<span class="string">"icon.png"</span>))
 	.setMaxSize(1024, 768)
-	.addProtocolCommand(WindowProtocol.deleteWindow, <span class="keyword">delegate</span>(CommandArgs args){ ... });
+	.setProtocolCommand(WindowProtocol.deleteWindow, <span class="keyword">delegate</span>(CommandArgs args){ ... });
 </pre>
 </p>
 <p><h3>Additional Events:</h3>
@@ -222,7 +222,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
-<h2><a name="Window.addProtocolCommand"></a>auto <span class="symbol">addProtocolCommand</span>(this T)(string protocol, CommandCallback callback);
+<h2><a name="Window.setProtocolCommand"></a>auto <span class="symbol">setProtocolCommand</span>(this T)(string protocol, CommandCallback callback);
 </h2>
 <div class="declaration-description"><div class="sections"><p>This command is used to manage window manager protocols such as
  WM_DELETE_WINDOW. Protocol is the name of an atom corresponding to a
@@ -328,7 +328,8 @@ These are the fields within the callback's <a href="    ../element/element.html#
 </h2>
 <div class="declaration-description"><div class="sections"><p>Window manager protocols.
 </p>
-<h3>Bugs</h3><p>This list is incomplete.</p>
+<p><h3>Caveats:</h3>
+This list is incomplete.</p>
 </div>
 <div class="enum-members"><h2><a name="WindowProtocol.deleteWindow"></a><span class="symbol">deleteWindow</span></h2>
 <div class="declaration-description"><div class="sections"><p>Issued when the window is to be deleted.</p>

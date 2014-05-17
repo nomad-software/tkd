@@ -28,7 +28,7 @@ import tkd.interpreter;
  * 	.setGeometry(640, 480, 10, 10)
  * 	.setDefaultIcon(new Png!("icon.png"))
  * 	.setMaxSize(1024, 768)
- * 	.addProtocolCommand(WindowProtocol.deleteWindow, delegate(CommandArgs args){ ... });
+ * 	.setProtocolCommand(WindowProtocol.deleteWindow, delegate(CommandArgs args){ ... });
  * ---
  * Additional_Events:
  *     Additional events that can also be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) method.
@@ -425,7 +425,7 @@ class Window : UiElement
 	 *     $(LINK2 ../element/element.html#CommandCallback, tkd.element.element.CommandCallback) $(BR)
 	 *     $(LINK2 ../tkdapplication.html#WindowProtocol, tkd.tkdapplication.WindowProtocol) $(BR)
 	 */
-	public auto addProtocolCommand(this T)(string protocol, CommandCallback callback)
+	public auto setProtocolCommand(this T)(string protocol, CommandCallback callback)
 	{
 		string command = this.createCommand(callback, protocol);
 		this._tk.eval("wm protocol %s %s %s", this.id, protocol, command);
