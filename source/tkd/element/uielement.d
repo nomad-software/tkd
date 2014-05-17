@@ -868,7 +868,7 @@ abstract class UiElement : Element
 	 *         performOneStep (stream.next);
 	 *
 	 *         // Re-arm the callback for the next step to be executed.
-	 *         text.idle (10_000, cmd.name);
+	 *         text.idle (10_000, cmd.callback);
 	 *     });
 	 *
 	 * ----
@@ -879,51 +879,10 @@ abstract class UiElement : Element
 	 * Returns:
 	 *     This element to aid method chaining.
 	 */
-	public auto idle(this T)(int msDelay, CommandCallback callback)
+	public auto setIdleCommand(this T)(int msDelay, CommandCallback callback)
 	{
-		return this.idle(msDelay, this.createCommand(callback, "idle"));
-	}
-	
-	/**
-	 * Set a callback to be execute after once the Tk event loop
-	 * has finished processing all other events, without delay.
-	 * 
-	 * Params:
-	 *     callback = the delegate function to be executed on idle.
-	 * Returns:
-	 *     This element to aid method chaining.
-	 */
-	public auto idle(this T)(CommandCallback callback)
-	{
-		return this.idle (0, callback);
-	}
-	
-	/**
-	 * Set a callback to be execute after once the Tk event loop
-	 * has finished processing all other events, without delay.
-	 * 
-	 * Params:
-	 *     command = the name of the command to be executed on idle.
-	 * Returns:
-	 *     This element to aid method chaining.
-	 */
-	public auto idle(this T)(string command)
-	{
-		return this.idle(0, command);
-	}
-	
-	/**
-	 * Set a callback to be execute after a given delay once the Tk event loop
-	 * has finished processing all other events.
-	 *
-	 * Params:
-	 *     msDelay = the delay in millisecond before executing the given callback.
-	 *     command = the name of the command to be executed on idle.
-	 * Returns:
-	 *     This element to aid method chaining.
-	 */
-	public auto idle(this T)(int msDelay, string command)
-	{
+		string command = this.createCommand(callback, "idle");
+		
 		this._tk.eval("after idle [list after %s %s]", msDelay.to!string, command);
 		
 		return cast(T) this;
