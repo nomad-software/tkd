@@ -107,7 +107,10 @@ mixin template TextSpecific()
 	}
 
 	/**
-	 * Specifies the font to use for the text item.
+	 * Specifies the font to use for the text item. The format of the string to 
+	 * pass when specifing a font is as follows.
+	 *
+	 * "Times New Roman" [[12] [bold] [italic] [overstrike] [underline]]
 	 *
 	 * Params:
 	 *    font = The font.

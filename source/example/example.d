@@ -280,13 +280,13 @@ class Application : TkdApplication
 					rows.children[2].children ~= new TreeViewRow(["Aliens (1986).mpg"], true, ["video"]);
 
 				auto tree1 = new TreeView(panedWindow)
+					.setHeading("Directory listing")
 					.setTag("computer", new EmbeddedPng!("computer.png"))
 					.setTag("folder", new EmbeddedPng!("folder.png"))
 					.setTag("file", new EmbeddedPng!("page.png"))
 					.setTag("pdf", new EmbeddedPng!("page_white_acrobat.png"))
 					.setTag("video", new EmbeddedPng!("film.png"))
 					.setTag("image", new EmbeddedPng!("images.png"))
-					.setHeading("Directory listing")
 					.addRow(rows);
 
 				auto tree2 = new TreeView(panedWindow)
@@ -339,7 +339,7 @@ class Application : TkdApplication
 					.addItem(new CanvasLine([120, 110, 200, 110, 200, 160]).setArrowPosition(CanvasLineArrow.last))
 					.addItem(new CanvasOval([10, 170, 200, 245], Color.rosyBrown3))
 					.addItem(new CanvasPolygon([220, 80, 320, 80, 300, 120, 240, 120], Color.mediumPurple))
-					.addItem(new CanvasText([30, 192], "Tkd Canvas", Color.white).setFont("{Arial} 20 bold"))
+					.addItem(new CanvasText([30, 192], "Tkd Canvas", Color.white).setFont("\"Arial\" 20 bold"))
 					.addItem(new CanvasWidget([220, 140], new Button("Embedded\nWidget", new EmbeddedPng!("error.png"))).setWidth(100).setHeight(100))
 					.addTagConfig(new CanvasTagConfig("tagged").setFillColor(Color.salmon))
 					.setXView(0.25)

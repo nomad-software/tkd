@@ -10,6 +10,7 @@ module tkd.interpreter.tcl;
  * Imports.
  */
 import std.conv;
+import std.regex : regex, replaceAll;
 import std.stdio;
 import std.string;
 import tcltk.tcl;
@@ -80,6 +81,27 @@ class Tcl
 	}
 
 	/**
+	 * Escape harmful characters in the script before evaluation.
+	 *
+	 * Params:
+	 *     arg = The argument to escape.
+	 *
+	 * Returns:
+	 *     The escaped script.
+	 */
+	private string escapeArg(string arg)
+	{
+		// Allow backslashes to be passed as intended to Tcl.
+		arg = arg.replaceAll(regex(r"\\"), r"\\");
+
+		// Braces are used as string delimeters in Tcl so escape those.
+		arg = arg.replaceAll(regex(r"\}"), r"\}");
+		arg = arg.replaceAll(regex(r"\{"), r"\{");
+
+		return arg;
+	}
+
+	/**
 	 * Evaluate a script fragment using the interpreter.
 	 *
 	 * Params:
@@ -88,6 +110,14 @@ class Tcl
 	 */
 	public void eval(A...)(string script, A args)
 	{
+		foreach (ref arg; args)
+		{
+			static if (is(typeof(arg) == string))
+			{
+				arg = this.escapeArg(arg);
+			}
+		}
+
 		debug (log) this._log.eval(script, args);
 
 		int result = Tcl_EvalEx(this._interpreter, format(script, args).toStringz, -1, 0);

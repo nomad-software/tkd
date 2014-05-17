@@ -3,3 +3,4 @@ build/*
 debug.log
 __main.html
 package.html
+dub.selections.json

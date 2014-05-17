@@ -345,7 +345,7 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 */
 	public auto addRow(this T)(TreeViewRow row)
 	{
-		this.appendRows("{}", [row]);
+		this.appendRows("", [row]);
 
 		return cast(T) this;
 	}
@@ -361,7 +361,7 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 */
 	public auto addRows(this T)(TreeViewRow[] rows)
 	{
-		this.appendRows("{}", rows);
+		this.appendRows("", rows);
 
 		return cast(T) this;
 	}
@@ -391,7 +391,7 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 				tags = format("\"%s\"", row.tags.join("\" \""));
 			}
 
-			this._tk.eval("%s insert %s end -text {%s} -values {%s} -open %s -tags {%s}", this.id, parentRow, row.values[0], dataValues, row.isOpen, tags);
+			this._tk.eval("%s insert {%s} end -text {%s} -values {%s} -open %s -tags {%s}", this.id, parentRow, row.values[0], dataValues, row.isOpen, tags);
 
 			if (row.children.length)
 			{
