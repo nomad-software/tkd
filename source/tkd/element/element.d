@@ -226,6 +226,8 @@ abstract class Element
 			GC.clrAttr(data, GC.BlkAttr.NO_MOVE);
 		};
 
+		string command = this.getCommandName(uniqueData);
+
 		CommandArgs* args = cast(CommandArgs*)GC.malloc(CommandArgs.sizeof, GC.BlkAttr.NO_MOVE);
 		GC.addRoot(args);
 
@@ -233,8 +235,8 @@ abstract class Element
 		(*args).element    = this;
 		(*args).uniqueData = uniqueData;
 		(*args).callback   = callback;
+		(*args).name       = command;
 
-		string command = this.getCommandName(uniqueData);
 		this._tk.createCommand(command, commandCallbackHandler, args, deleteCallbackHandler);
 
 		return command;
@@ -265,6 +267,11 @@ struct CommandArgs
 	 * The callback which was invoked as the command.
 	 */
 	CommandCallback callback;
+
+	/**
+	 * The name of this command to be used for re-arming an idle callback.
+	 */
+	string name;
 
 	/**
 	 * Data populated from a event binding created using the bind method.
