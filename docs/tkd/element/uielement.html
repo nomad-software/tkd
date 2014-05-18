@@ -613,6 +613,54 @@ It is very easy to use global grabs to render a display completely
 <h3>Return Value</h3><p>This element to aid method chaining.</p>
 </div>
 </div>
+<h2><a name="UiElement.setIdleCommand"></a>auto <span class="symbol">setIdleCommand</span>(this T)(int msDelay, CommandCallback callback);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set a callback to be execute after a given delay once the Tk event loop
+ has finished processing all other events.
+ The callback is executed only once. One has to re-arm it by calling idle()
+ again to execute it more than once.
+</p>
+<p>This is useful for refreshing the GUI at regular intervals when monitoring
+ a subprocess, or schedule a future action.
+<br><br>
+
+ Example of use:
+<pre>    SomeDataInputStream stream = ...; <span class="comment">// A data provider for this example.
+</span>
+    Text text = <span class="keyword">new</span> Text().pack(10);
+
+    text.idle (10_000, (CommandCallback cmd) {
+
+        <span class="comment">// Data is not ready: wait and increase the delay time.
+</span>        <span class="keyword">if</span> (stream.empty &amp;&amp; !stream.finished) {
+            <span class="comment">// Re-arm the callback.
+</span>            text.idle (20_000, cmd.name);
+            <span class="keyword">return</span>;
+        }
+
+        <span class="comment">// No more data to be processed: don't re-arm the callback.
+</span>        <span class="keyword">if</span> (stream.finished) {
+            <span class="keyword">return</span>;
+        }
+
+        <span class="comment">// Perform one small step, avoiding to freeze the GUI.
+</span>        performOneStep (stream.next);
+
+        <span class="comment">// Re-arm the callback for the next step to be executed.
+</span>        text.idle (10_000, cmd.callback);
+    });
+
+</pre>
+
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int msDelay</td>
+<td>the delay in millisecond before executing the given callback.</td></tr>
+<tr><td>CommandCallback callback</td>
+<td>the delegate function to be executed on idle.</td></tr>
+</table>
+<h3>Return Value</h3><p>This element to aid method chaining.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
