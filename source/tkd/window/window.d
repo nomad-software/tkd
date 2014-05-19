@@ -9,6 +9,7 @@ module tkd.window.window;
 /**
  * Private imports.
  */
+import std.conv;
 import std.string;
 import tkd.element.element : CommandCallback;
 import tkd.element.uielement;
@@ -524,6 +525,49 @@ class Window : UiElement
 	public auto wait(this T)()
 	{
 		this._tk.eval("tkwait window %s", this.id);
+
+		return cast(T) this;
+	}
+
+	/**
+	 * Add a callback to be delayed and executed after processing all other 
+	 * events. The callback is executed only once. This is useful for 
+	 * refreshing the GUI at regular intervals when monitoring a subprocess or 
+	 * to schedule a future action.
+	 *
+	 * Params:
+	 *     callback = The delegate function to be executed on idle.
+	 *     msDelay  = The delay in millisecond before executing the given callback.
+	 *
+	 * Returns:
+	 *     This element to aid method chaining.
+	 *
+	 * Example:
+	 * ----
+	 * InputStream stream = ...; // A data provider.
+	 *
+	 * this.mainWindow.setIdleCommand(delegate(CommandArgs args){
+	 *
+	 * 	// Use data.
+	 * 	if (!stream.empty && stream.finished)
+	 * 	{
+	 * 		performStep(stream.next);
+	 * 	}
+	 *
+	 * 	// Re-arm this callback and wait for more data.
+	 * 	this.mainWindow.setIdleCommand(args.callback, 10_000);
+	 *
+	 * }, 10_000);
+	 *
+	 * ----
+	 *
+	 */
+	public auto setIdleCommand(this T)(CommandCallback callback, int msDelay = 1)
+	{
+		assert(msDelay > 0, "The delay in milliseconds should be greater than zero.");
+
+		string command = this.createCommand(callback, "idle");
+		this._tk.eval("after idle [list after %s %s]", msDelay.to!(string), command);
 
 		return cast(T) this;
 	}

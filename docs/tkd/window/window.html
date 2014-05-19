@@ -310,6 +310,41 @@ These are the fields within the callback's <a href="    ../element/element.html#
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
+<h2><a name="Window.setIdleCommand"></a>auto <span class="symbol">setIdleCommand</span>(this T)(CommandCallback callback, int msDelay = 1);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Add a callback to be delayed and executed after processing all other
+ events. The callback is executed only once. This is useful for
+ refreshing the GUI at regular intervals when monitoring a subprocess or
+ to schedule a future action.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>CommandCallback callback</td>
+<td>The delegate function to be executed on idle.</td></tr>
+<tr><td>int msDelay</td>
+<td>The delay in millisecond before executing the given callback.</td></tr>
+</table>
+<h3>Return Value</h3><p>This element to aid method chaining.
+
+</p>
+<p><h3>Example:</h3>
+<pre>InputStream stream = ...; <span class="comment">// A data provider.
+</span>
+<span class="keyword">this</span>.mainWindow.<span class="symbol">setIdleCommand</span>(<span class="keyword">delegate</span>(CommandArgs args){
+
+	<span class="comment">// Use data.
+</span>	<span class="keyword">if</span> (!stream.empty &amp;&amp; stream.finished)
+	{
+		performStep(stream.next);
+	}
+
+	<span class="comment">// Re-arm this callback and wait for more data.
+</span>	<span class="keyword">this</span>.mainWindow.<span class="symbol">setIdleCommand</span>(args.callback, 10_000);
+
+}, 10_000);
+
+</pre>
+</p>
+</div>
+</div>
 <h2><a name="Window.getMainWindow"></a>static Window <span class="symbol">getMainWindow</span>();
 </h2>
 <div class="declaration-description"><div class="sections"><p>Get the main window of the application. This is just a convenience

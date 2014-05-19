@@ -3,7 +3,9 @@ module main;
 /**
  * Imports.
  */
+import std.algorithm;
 import std.array;
+import std.datetime;
 import std.file;
 import tkd.tkdapplication;
 
@@ -15,14 +17,15 @@ class Application : TkdApplication
 	/**
 	 * Widgets we need access to on the class level.
 	 */
+	private Entry _entry;
+	private ProgressBar _progressBar;
+	private Canvas _canvas;
 	private Entry _fontEntry;
 	private Entry _colorEntry;
 	private Entry _directoryEntry;
 	private Entry _openFileEntry;
 	private Entry _saveFileEntry;
 	private Entry _messageEntry;
-	private Canvas _canvas;
-	private ProgressBar _progressBar;
 
 	/**
 	 * Open the font dialog.
@@ -189,8 +192,7 @@ class Application : TkdApplication
 				.setHeight(3)
 				.appendText("Nullam sapien lectus, aliquet sit amet quam et, sagittis porttitor dolor.")
 				.pack(5, 0, GeometrySide.bottom, GeometryFill.both, AnchorPosition.northWest, true);
-			auto entry2 = new Entry(entryLabelFrame)
-				.setValue("Lorem ipsum dolor sit amet.")
+			this._entry = new Entry(entryLabelFrame)
 				.pack(5, 0, GeometrySide.left, GeometryFill.x, AnchorPosition.northWest, true);
 			auto entry3 = new SpinBox(entryLabelFrame)
 				.setData(["foo", "bar", "baz", "qux"])
@@ -448,9 +450,15 @@ class Application : TkdApplication
 		this.mainWindow.setTitle("Tkd Showcase");
 		this.mainWindow.setMinSize(550, 560);
 		this.mainWindow.setDefaultIcon([new EmbeddedPng!("tkicon.png")]);
+
 		this.mainWindow.setProtocolCommand(WindowProtocol.deleteWindow, delegate(CommandArgs args){
 			this.showAbout(args);
 			this.exitApplication(args);
+		});
+
+		this.mainWindow.setIdleCommand(delegate(CommandArgs args){
+			this._entry.setValue(Clock.currTime().toLocalTime().toSimpleString().findSplitBefore(".")[0]);
+			this.mainWindow.setIdleCommand(args.callback, 1000);
 		});
 
 		this.createMenu();
