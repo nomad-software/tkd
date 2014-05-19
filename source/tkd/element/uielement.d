@@ -833,4 +833,58 @@ abstract class UiElement : Element
 
 		return cast(T) this;
 	}
+	
+	
+	/**
+	 * Set a callback to be execute after a given delay once the Tk event loop
+	 * has finished processing all other events.
+	 * The callback is executed only once. One has to re-arm it by calling idle()
+	 * again to execute it more than once. 
+	 * 
+	 * This is useful for refreshing the GUI at regular intervals when monitoring
+	 * a subprocess, or schedule a future action.
+	 *
+	 * Example of use:
+	 * ----
+	 *     SomeDataInputStream stream = ...; // A data provider for this example.
+	 *
+	 *     Text text = new Text().pack(10);
+	 *
+	 *     text.idle (10_000, (CommandCallback cmd) {
+	 *         
+	 *         // Data is not ready: wait and increase the delay time.
+	 *         if (stream.empty && !stream.finished) {
+	 *             // Re-arm the callback.
+	 *             text.idle (20_000, cmd.name);
+	 *             return;
+	 *         }
+	 *
+	 *         // No more data to be processed: don't re-arm the callback.
+	 *         if (stream.finished) {
+	 *             return;
+	 *         }
+	 *
+	 *         // Perform one small step, avoiding to freeze the GUI.
+	 *         performOneStep (stream.next);
+	 *
+	 *         // Re-arm the callback for the next step to be executed.
+	 *         text.idle (10_000, cmd.callback);
+	 *     });
+	 *
+	 * ----
+	 *
+	 * Params:
+	 *     msDelay  = the delay in millisecond before executing the given callback.
+	 *     callback = the delegate function to be executed on idle.
+	 * Returns:
+	 *     This element to aid method chaining.
+	 */
+	public auto setIdleCommand(this T)(int msDelay, CommandCallback callback)
+	{
+		string command = this.createCommand(callback, "idle");
+		
+		this._tk.eval("after idle [list after %s %s]", msDelay.to!string, command);
+		
+		return cast(T) this;
+	}
 }
