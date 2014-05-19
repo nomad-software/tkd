@@ -134,7 +134,7 @@ class Window : UiElement
 	 *     title = The title of the window.
 	 *
 	 * Returns:
-	 *     This widget to aid method chaining.
+	 *     This window to aid method chaining.
 	 */
 	public auto setTitle(this T)(string title)
 	{
@@ -150,7 +150,7 @@ class Window : UiElement
 	 *     opacity = A number between 0.0 and 1.0 specifying the transparency.
 	 *
 	 * Returns:
-	 *     This widget to aid method chaining.
+	 *     This window to aid method chaining.
 	 */
 	public auto setOpacity(this T)(double opacity)
 	{
@@ -168,7 +168,7 @@ class Window : UiElement
 	 *     fullscreen = A boolean specifying if the window should be fullscreen or not.
 	 *
 	 * Returns:
-	 *     This widget to aid method chaining.
+	 *     This window to aid method chaining.
 	 */
 	public auto setFullscreen(this T)(bool fullscreen)
 	{
@@ -185,7 +185,7 @@ class Window : UiElement
 	 *     topmost = A boolean specifying if the window should be top-most or not.
 	 *
 	 * Returns:
-	 *     This widget to aid method chaining.
+	 *     This window to aid method chaining.
 	 */
 	public auto setTopmost(this T)(bool topmost)
 	{
@@ -203,7 +203,7 @@ class Window : UiElement
 		 *     disabled = A boolean specifying if the window should be disabled or not.
 		 *
 		 * Returns:
-		 *     This widget to aid method chaining.
+		 *     This window to aid method chaining.
 		 */
 		public auto setDisabled(this T)(bool disabled)
 		{
@@ -219,7 +219,7 @@ class Window : UiElement
 		 *     toolWindow = A boolean specifying if the window should be a tool window or not.
 		 *
 		 * Returns:
-		 *     This widget to aid method chaining.
+		 *     This window to aid method chaining.
 		 */
 		public auto setToolWindow(this T)(bool toolWindow)
 		{
@@ -238,7 +238,7 @@ class Window : UiElement
 		 *     modified = A boolean specifying if the window should show it's been modified or not.
 		 *
 		 * Returns:
-		 *     This widget to aid method chaining.
+		 *     This window to aid method chaining.
 		 */
 		public auto setModified(this T)(bool modified)
 		{
@@ -255,7 +255,7 @@ class Window : UiElement
 		 *     modified = A boolean specifying if the window should show a notification or not.
 		 *
 		 * Returns:
-		 *     This widget to aid method chaining.
+		 *     This window to aid method chaining.
 		 */
 		public auto setNotify(this T)(bool modified)
 		{
@@ -269,7 +269,7 @@ class Window : UiElement
 	 * Restore the window's state to before it was minimised or withdrawn.
 	 *
 	 * Returns:
-	 *     This widget to aid method chaining.
+	 *     This window to aid method chaining.
 	 */
 	public auto deiconify(this T)()
 	{
@@ -282,7 +282,7 @@ class Window : UiElement
 	 * Minimise the window.
 	 *
 	 * Returns:
-	 *     This widget to aid method chaining.
+	 *     This window to aid method chaining.
 	 */
 	public auto iconify(this T)()
 	{
@@ -301,7 +301,7 @@ class Window : UiElement
 	 *     yPos = The vertical position of the window.
 	 *
 	 * Returns:
-	 *     This widget to aid method chaining.
+	 *     This window to aid method chaining.
 	 */
 	public auto setGeometry(this T)(int width, int height, int xPos, int yPos)
 	{
@@ -324,7 +324,7 @@ class Window : UiElement
 	 *     images = A variadic list of images.
 	 *
 	 * Returns:
-	 *     This widget to aid method chaining.
+	 *     This window to aid method chaining.
 	 */
 	public auto setDefaultIcon(this T)(Image[] images ...)
 	{
@@ -347,7 +347,7 @@ class Window : UiElement
 	 *     images = A variadic list of images.
 	 *
 	 * Returns:
-	 *     This widget to aid method chaining.
+	 *     This window to aid method chaining.
 	 */
 	public auto setIcon(this T)(Image[] images ...)
 	{
@@ -371,7 +371,7 @@ class Window : UiElement
 	 *     height = The maximum height of the window.
 	 *
 	 * Returns:
-	 *     This widget to aid method chaining.
+	 *     This window to aid method chaining.
 	 */
 	public auto setMaxSize(this T)(int width, int height)
 	{
@@ -388,7 +388,7 @@ class Window : UiElement
 	 *     height = The minimum height of the window.
 	 *
 	 * Returns:
-	 *     This widget to aid method chaining.
+	 *     This window to aid method chaining.
 	 */
 	public auto setMinSize(this T)(int width, int height)
 	{
@@ -408,7 +408,7 @@ class Window : UiElement
 	 *     callback = The callback to invoke when the protocol is encountered.
 	 *
 	 * Returns:
-	 *     This widget to aid method chaining.
+	 *     This window to aid method chaining.
 	 *
 	 * Callback_Arguments:
 	 *     These are the fields within the callback's $(LINK2 
@@ -441,7 +441,7 @@ class Window : UiElement
 	 *     protocol = The protocol which will have the command removed.
 	 *
 	 * Returns:
-	 *     This widget to aid method chaining.
+	 *     This window to aid method chaining.
 	 *
 	 * See_Also:
 	 *     $(LINK2 ../tkdapplication.html#WindowProtocol, tkd.tkdapplication.WindowProtocol)
@@ -462,7 +462,7 @@ class Window : UiElement
 	 *     resizeHeight = True to allow height resizing, false to disable.
 	 *
 	 * Returns:
-	 *     This widget to aid method chaining.
+	 *     This window to aid method chaining.
 	 */
 	public auto setResizable(this T)(bool resizeWidth, bool resizeHeight)
 	{
@@ -507,7 +507,7 @@ class Window : UiElement
 	 * Withdraw a window from being displayed/mapped by the window manager.
 	 *
 	 * Returns:
-	 *     This widget to aid method chaining.
+	 *     This window to aid method chaining.
 	 */
 	public auto withdraw(this T)()
 	{
@@ -520,7 +520,7 @@ class Window : UiElement
 	 * Wait until this window has been destroyed.
 	 *
 	 * Returns:
-	 *     This widget to aid method chaining.
+	 *     This window to aid method chaining.
 	 */
 	public auto wait(this T)()
 	{
@@ -530,17 +530,17 @@ class Window : UiElement
 	}
 
 	/**
-	 * Add a callback to be delayed and executed after processing all other 
-	 * events. The callback is executed only once. This is useful for 
-	 * refreshing the GUI at regular intervals when monitoring a subprocess or 
-	 * to schedule a future action.
+	 * Set a callback to be executed after a delay and after processing all 
+	 * other events. The callback is executed only once and discarded. This is 
+	 * useful for refreshing the GUI at regular intervals when monitoring 
+	 * something or to schedule a future action.
 	 *
 	 * Params:
 	 *     callback = The delegate function to be executed on idle.
 	 *     msDelay  = The delay in millisecond before executing the given callback.
 	 *
 	 * Returns:
-	 *     This element to aid method chaining.
+	 *     This window to aid method chaining.
 	 *
 	 * Example:
 	 * ----
@@ -560,7 +560,10 @@ class Window : UiElement
 	 * }, 10_000);
 	 *
 	 * ----
-	 *
+	 * Caveats:
+	 *     The callback executed by this method is not asynchronous and could 
+	 *     halt the GUI from processing events if it takes a long time to 
+	 *     finish.
 	 */
 	public auto setIdleCommand(this T)(CommandCallback callback, int msDelay = 1)
 	{
