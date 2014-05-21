@@ -190,6 +190,29 @@ class Text : Widget, IXScrollable!(Text), IYScrollable!(Text)
 	}
 
 	/**
+	 * Set if the widget is readonly or not.
+	 *
+	 * Params:
+	 *     readOnly = Flag to toggle readonly state.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto setReadOnly(this T)(bool readOnly = true)
+	{
+		if(readOnly)
+		{
+			this._tk.eval("%s configure -state disabled", this.id);
+		}
+		else
+		{
+			this._tk.eval("%s configure -state normal", this.id);
+		}
+
+		return cast(T) this;
+	}
+
+	/**
 	 * Enable or disable undo support.
 	 *
 	 * Params:
