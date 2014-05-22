@@ -93,11 +93,13 @@ class OpenFileDialog : FileDialog
 	{
 		if (this._parent)
 		{
-			this._tk.eval("tk_getOpenFile -parent %s -title {%s} -multiple %s -defaultextension {%s} -filetypes {%s} -initialdir {%s} -initialfile {%s} -typevariable %s", this._parent.id, this._title, this._selectMultiple, this._defaultExtension, this._fileTypes.join(" "), this._initialDirectory, this._initialFile, this._typeVariable);
+			// String concatentation is used here to avoid the character escaping done on args.
+			this._tk.eval("tk_getOpenFile -parent %s -title {%s} -multiple %s -defaultextension {%s} -filetypes {" ~ this._fileTypes.join(" ") ~ "} -initialdir {%s} -initialfile {%s} -typevariable %s", this._parent.id, this._title, this._selectMultiple, this._defaultExtension, this._initialDirectory, this._initialFile, this._typeVariable);
 		}
 		else
 		{
-			this._tk.eval("tk_getOpenFile -title {%s} -multiple %s -defaultextension {%s} -filetypes {%s} -initialdir {%s} -initialfile {%s} -typevariable %s", this._title, this._selectMultiple, this._defaultExtension, this._fileTypes.join(" "), this._initialDirectory, this._initialFile, this._typeVariable);
+			// String concatentation is used here to avoid the character escaping done on args.
+			this._tk.eval("tk_getOpenFile -title {%s} -multiple %s -defaultextension {%s} -filetypes {" ~ this._fileTypes.join(" ") ~ "} -initialdir {%s} -initialfile {%s} -typevariable %s", this._title, this._selectMultiple, this._defaultExtension, this._initialDirectory, this._initialFile, this._typeVariable);
 		}
 
 		string result = this._tk.getResult!(string);

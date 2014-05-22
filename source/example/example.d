@@ -341,7 +341,7 @@ class Application : TkdApplication
 					.addItem(new CanvasLine([120, 110, 200, 110, 200, 160]).setArrowPosition(CanvasLineArrow.last))
 					.addItem(new CanvasOval([10, 170, 200, 245], Color.rosyBrown3))
 					.addItem(new CanvasPolygon([220, 80, 320, 80, 300, 120, 240, 120], Color.mediumPurple))
-					.addItem(new CanvasText([30, 192], "Tkd Canvas", Color.white).setFont("\"Arial\" 20 bold"))
+					.addItem(new CanvasText([30, 192], "Tkd Canvas", Color.white).setFont("{Times New Roman} 22 bold"))
 					.addItem(new CanvasWidget([220, 140], new Button("Embedded\nWidget", new EmbeddedPng!("error.png"))).setWidth(100).setHeight(100))
 					.addTagConfig(new CanvasTagConfig("tagged").setFillColor(Color.salmon))
 					.setXView(0.25)

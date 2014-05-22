@@ -98,11 +98,13 @@ class SaveFileDialog : FileDialog
 	{
 		if (this._parent)
 		{
-			this._tk.eval("tk_getSaveFile -parent %s -title {%s} -confirmoverwrite %s -defaultextension {%s} -filetypes {%s} -initialdir {%s} -initialfile {%s} -typevariable %s", this._parent.id, this._title, this._confirmOverwrite, this._defaultExtension, this._fileTypes.join(" "), this._initialDirectory, this._initialFile, this._typeVariable);
+			// String concatentation is used here to avoid the character escaping done on args.
+			this._tk.eval("tk_getSaveFile -parent %s -title {%s} -confirmoverwrite %s -defaultextension {%s} -filetypes {" ~ this._fileTypes.join(" ") ~ "} -initialdir {%s} -initialfile {%s} -typevariable %s", this._parent.id, this._title, this._confirmOverwrite, this._defaultExtension, this._initialDirectory, this._initialFile, this._typeVariable);
 		}
 		else
 		{
-			this._tk.eval("tk_getSaveFile -title {%s} -confirmoverwrite %s -defaultextension {%s} -filetypes {%s} -initialdir {%s} -initialfile {%s} -typevariable %s", this._title, this._confirmOverwrite, this._defaultExtension, this._fileTypes.join(" "), this._initialDirectory, this._initialFile, this._typeVariable);
+			// String concatentation is used here to avoid the character escaping done on args.
+			this._tk.eval("tk_getSaveFile -title {%s} -confirmoverwrite %s -defaultextension {%s} -filetypes {" ~ this._fileTypes.join(" ") ~ "} -initialdir {%s} -initialfile {%s} -typevariable %s", this._title, this._confirmOverwrite, this._defaultExtension, this._initialDirectory, this._initialFile, this._typeVariable);
 		}
 
 		string result = this._tk.getResult!(string);

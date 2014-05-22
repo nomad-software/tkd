@@ -124,7 +124,8 @@ mixin template TextSpecific()
 
 		if (this._parent && this._font.length)
 		{
-			this._tk.eval("%s itemconfigure %s -font {%s}", this._parent.id, this.id, this._font);
+			// String concatentation is used here to avoid the character escaping done on args.
+			this._tk.eval("%s itemconfigure %s -font {"~ this._font ~"}", this._parent.id, this.id);
 		}
 
 		return cast(T) this;
