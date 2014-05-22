@@ -224,7 +224,8 @@ directory.
 ```
 **Due to licensing issues and once Dub version 0.9.22+ is released, support for
 ActiveTcl on Windows will be removed. The above DLL's will be the only
-supported Tcl libraries and will need to be distributed with your application.
+supported Tcl libraries and will need to be distributed with your
+application.**
 
 #### Linux/Mac OSX
 
