@@ -151,7 +151,7 @@ These are pre-built dialog boxes to gather various pieces of data from a user.
 
 ## Building
 
- * Tkd has been developed and tested using DMD version **2.065** compiler.
+ * Tkd has been developed and tested using the latest DMD compiler.
  * It's recommended to use the [dub](http://code.dlang.org/about) build tool to
    build all Tkd projects.
 
