@@ -178,61 +178,43 @@ details below. Tcl/Tk itself requires the x11 libraries installed on Linux only.
 
 #### Windows
 
-On Windows you can download and install
-[ActiveTcl](http://www.activestate.com/activetcl/downloads) from ActiveState
-which is a fully supported professional library. This will install all needed
-Tcl/Tk DLL's and initialization scripts. Once this is installed, building and
-linking with dub will give immediate results. ActiveTcl also comes with a
-[silent
-install](http://community.activestate.com/faq/unattended-installation-a) option
-if you want to include it as part of an installation.
-
-If however you don't want to install Tcl/Tk and want the application to be
-self-contained, you can copy the DLL's and the initialization script library
-directory into the root of the finished application. These files can be
-conveniently found in the `dist` folder within the
-[tcktk](https://github.com/nomad-software/tcltk) repository. Your finished
-application's directory would then look something like this:
+You can copy the DLL's and the initialization script library directory into the
+root of the finished application. These files can be conveniently found in the
+`dist` folder within the [tcktk](https://github.com/nomad-software/tcltk)
+repository. Your finished application's directory would then look something
+like this:
 ```
 project
 ├── app.exe
-├── tcl86.dll
-├── tk86.dll
-├── zlib1.dll
+├── tcl86t.dll
+├── tk86t.dll
 └── library
     └── *.tcl files
 ```
 You can automate this process when building an application by placing the
-following in the application's `package.json` build file. Dub version
-**0.9.22** or greater is required. The following assumes `build` is the output
-directory.
+following in the application's `dub.json` build file. Dub version **0.9.22** or
+greater is required. The following assumes `build` is the output directory.
 ```
 ...
 "postGenerateCommands-windows-x86": [
-	"copy $TCLTK_PACKAGE_DIR\\dist\\x86\\tcl86.dll build\\tcl86.dll /y",
-	"copy $TCLTK_PACKAGE_DIR\\dist\\x86\\tk86.dll build\\tk86.dll /y",
-	"copy $TCLTK_PACKAGE_DIR\\dist\\x86\\zlib1.dll build\\zlib1.dll /y",
+	"copy $TCLTK_PACKAGE_DIR\\dist\\x86\\tcl86t.dll build\\tcl86t.dll /y",
+	"copy $TCLTK_PACKAGE_DIR\\dist\\x86\\tk86t.dll build\\tk86t.dll /y",
 	"xcopy $TCLTK_PACKAGE_DIR\\dist\\library build\\library /i /e /y",
 ],
 "postGenerateCommands-windows-x86_64": [
-	"copy $TCLTK_PACKAGE_DIR\\dist\\x86_64\\tcl86.dll build\\tcl86.dll /y",
-	"copy $TCLTK_PACKAGE_DIR\\dist\\x86_64\\tk86.dll build\\tk86.dll /y",
-	"copy $TCLTK_PACKAGE_DIR\\dist\\x86_64\\zlib1.dll build\\zlib1.dll /y",
+	"copy $TCLTK_PACKAGE_DIR\\dist\\x86_64\\tcl86t.dll build\\tcl86t.dll /y",
+	"copy $TCLTK_PACKAGE_DIR\\dist\\x86_64\\tk86t.dll build\\tk86t.dll /y",
 	"xcopy $TCLTK_PACKAGE_DIR\\dist\\library build\\library /i /e /y",
 ],
 ...
 ```
-**Due to licensing issues and once Dub version 0.9.22+ is released, support for
-ActiveTcl on Windows will be removed. The above DLL's will be the only
-supported Tcl libraries and will need to be distributed with your
-application.**
 
 #### Linux/Mac OSX
 
 On Linux and Mac OSX things are a little easier as both operating systems have
 Tcl/Tk installed by default. If however they do not have the latest version,
-the libraries can be updated via their respective package managers or install
-ActiveTcl. The linked libraries are **libtcl** and **libtk**.
+the libraries can be updated via their respective package managers. The linked
+libraries are **libtcl** and **libtk**.
 
 ## Notes
 
