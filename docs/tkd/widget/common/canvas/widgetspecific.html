@@ -18,14 +18,14 @@
 <div class="module-members"><h2><a name="WidgetSpecific"></a>template <span class="symbol">WidgetSpecific</span>()</h2>
 <div class="declaration-description"><div class="sections"><p>These are common commands that apply to all widgets that have them injected.</p>
 </div>
-<div class="template-members"><h2><a name="getWidget"></a>Widget <span class="symbol">getWidget</span>();
+<div class="template-members"><h2><a name="WidgetSpecific.getWidget"></a>Widget <span class="symbol">getWidget</span>();
 </h2>
 <div class="declaration-description"><div class="sections"><p>Get the widget.
 </p>
 <h3>Return Value</h3><p>The widget.</p>
 </div>
 </div>
-<h2><a name="setWidget"></a>auto <span class="symbol">setWidget</span>(this T)(Widget widget);
+<h2><a name="WidgetSpecific.setWidget"></a>auto <span class="symbol">setWidget</span>(this T)(Widget widget);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Specifies the widget to associate with this item. The widget specified
  must either be a child of the canvas widget or a child of some ancestor
@@ -37,14 +37,14 @@
 <h3>Return Value</h3><p>This item to aid method chaining.</p>
 </div>
 </div>
-<h2><a name="getWidth"></a>int <span class="symbol">getWidth</span>();
+<h2><a name="WidgetSpecific.getWidth"></a>int <span class="symbol">getWidth</span>();
 </h2>
 <div class="declaration-description"><div class="sections"><p>Get the widget width.
 </p>
 <h3>Return Value</h3><p>The widget width.</p>
 </div>
 </div>
-<h2><a name="setWidth"></a>auto <span class="symbol">setWidth</span>(this T, W)(W width) if (is(W == int) || is(W == Nullable!int));
+<h2><a name="WidgetSpecific.setWidth"></a>auto <span class="symbol">setWidth</span>(this T, W)(W width) if (is(W == int) || is(W == Nullable!int));
 </h2>
 <div class="declaration-description"><div class="sections"><p>Specifies the width to assign to the item's widget. If this option is
  not specified, or if it is specified as zero, then the widget is given
@@ -56,14 +56,14 @@
 <h3>Return Value</h3><p>This item to aid method chaining.</p>
 </div>
 </div>
-<h2><a name="getHeight"></a>int <span class="symbol">getHeight</span>();
+<h2><a name="WidgetSpecific.getHeight"></a>int <span class="symbol">getHeight</span>();
 </h2>
 <div class="declaration-description"><div class="sections"><p>Get the widget height.
 </p>
 <h3>Return Value</h3><p>The widget height.</p>
 </div>
 </div>
-<h2><a name="setHeight"></a>auto <span class="symbol">setHeight</span>(this T, H)(H height) if (is(H == int) || is(H == Nullable!int));
+<h2><a name="WidgetSpecific.setHeight"></a>auto <span class="symbol">setHeight</span>(this T, H)(H height) if (is(H == int) || is(H == Nullable!int));
 </h2>
 <div class="declaration-description"><div class="sections"><p>Specifies the height to assign to the item's widget. If this option is
  not specified, or if it is specified as zero, then the widget is given

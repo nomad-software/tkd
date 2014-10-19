@@ -18,10 +18,10 @@
 <div class="module-members"><h2><a name="Bind"></a>template <span class="symbol">Bind</span>()</h2>
 <div class="declaration-description"><div class="sections"><p>These are common commands that apply to all widgets that have them injected.</p>
 </div>
-<div class="template-members"><h2><a name="bind"></a>auto <span class="symbol">bind</span>(this T)(string binding, CommandCallback callback);
+<div class="template-members"><h2><a name="Bind.bind"></a>auto <span class="symbol">bind</span>(this T)(string binding, CommandCallback callback);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Bind a callback to a particular event triggered by this item.
- This command is identical to <a href="../../../element/uielement.html#UiElement">UiElement</a>'s <span class="symbol">bind</span> method.
+ This command is identical to <a href=" ../../../element/uielement.html#UiElement">UiElement</a>'s <span class="symbol">bind</span> method.
 </p>
 <p>If bindings have been created for a canvas widget they are invoked in
  addition to bindings created for the canvas's items. The bindings for
@@ -44,9 +44,9 @@ The only events for which bindings may be specified are those
 
 </p>
 <p><h3>Callback Arguments:</h3>
-These are the fields within the callback's <a href="    ../../../element/element.html#CommandArgs">CommandArgs</a> parameter which
+These are the fields within the callback's <a href="     ../../../element/element.html#CommandArgs">CommandArgs</a> parameter which
      are populated by this method when the callback is executed.
-     <p>        <table class="parameter-list">            <tr><td>CommandArgs.element</td><td>The item that executed the callback.</td></tr>
+     <p>         <table class="parameter-list">             <tr><td>CommandArgs.element</td><td>The item that executed the callback.</td></tr>
              <tr><td>CommandArgs.uniqueData</td><td>The binding that was responded to.</td></tr>
              <tr><td>CommandArgs.callback</td><td>The callback which was executed.</td></tr>
              <tr><td>CommandArgs.event.button</td><td>The number of any button that was pressed.</td></tr>
@@ -65,7 +65,7 @@ These are the fields within the callback's <a href="    ../../../element/element
      <a href="../../../element/uielement.html#UiElement">tkd.element.uielement.UiElement</a> <br></p>
 </div>
 </div>
-<h2><a name="unbind"></a>auto <span class="symbol">unbind</span>(this T)(string binding);
+<h2><a name="Bind.unbind"></a>auto <span class="symbol">unbind</span>(this T)(string binding);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Unbind a previous event binding.
 </p>

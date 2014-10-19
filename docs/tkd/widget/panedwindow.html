@@ -15,7 +15,7 @@
 </p>
 <h3>License</h3><p>MIT. See LICENSE for full details.</p>
 </div>
-<div class="module-members"><h2><a name="PanedWindow"></a>class <span class="symbol">PanedWindow</span>: tkd.widget.widget.Widget;
+<div class="module-members"><h2><a name="PanedWindow"></a>class <span class="symbol">PanedWindow</span>: <span class="super-symbol">tkd.widget.widget.Widget</span>;
 </h2>
 <div class="declaration-description"><div class="sections"><p>A paned window widget displays a number of subwindows, stacked either
  vertically or horizontally. The user may adjust the relative sizes of the
@@ -38,14 +38,14 @@ panedwindow.addPane(left)
 </p>
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this widget.
-     <p>        <a href="./common/height.html">Height</a> <br>
+     <p>         <a href="./common/height.html">Height</a> <br>
          <a href="./common/width.html">Width</a> <br>
      </p>
 
 </p>
 <p><h3>Additional Events:</h3>
 Additional events that can also be bound to using the <a href="../element/uielement.html#UiElement.bind">bind</a> method.
-     <p>        &lt;&lt;EnteredChild&gt;&gt;,
+     <p>         &lt;&lt;EnteredChild&gt;&gt;,
          &lt;&lt;PrevWindow&gt;&gt;,
          &lt;Alt-Key&gt;,
          &lt;B1-Motion&gt;,
@@ -61,7 +61,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </p>
 <h3>See Also</h3><p><a href="./widget.html">tkd.widget.widget</a></p>
 </div>
-<div class="class-members"><h2><a name="PanedWindow.this"></a> this(UiElement parent, string orientation = Orientation.vertical);
+<div class="class-members"><h2><a name="PanedWindow.this"></a>this(UiElement parent, string orientation = Orientation.vertical);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
@@ -81,7 +81,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
      <a href="./orientation.html">tkd.widget.orientation</a> for orientations.</p>
 </div>
 </div>
-<h2><a name="PanedWindow.this"></a> this(string orientation = Orientation.vertical);
+<h2><a name="PanedWindow.this"></a>this(string orientation = Orientation.vertical);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
@@ -179,6 +179,16 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>Parameters</h3><table class="parameter-list"><tr><td>int sashIndex</td>
 <td>The index of the sash.</td></tr>
 </table>
+</div>
+</div>
+<h2><a name="PanedWindow.setHeight"></a>auto <span class="symbol">setHeight</span>(this T)(int height);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the height of the widget if the geometry manager allows.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int height</td>
+<td>The desired widget height.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
 </div>

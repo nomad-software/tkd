@@ -15,7 +15,7 @@
 </p>
 <h3>License</h3><p>MIT. See LICENSE for full details.</p>
 </div>
-<div class="module-members"><h2><a name="SpinBox"></a>class <span class="symbol">SpinBox</span>: tkd.widget.widget.Widget, tkd.widget.common.xscrollcommand.IXScrollable!(<span class="symbol">SpinBox</span>).IXScrollable;
+<div class="module-members"><h2><a name="SpinBox"></a>class <span class="symbol">SpinBox</span>: <span class="super-symbol">tkd.widget.widget.Widget</span>, <span class="super-symbol">tkd.widget.common.xscrollcommand.IXScrollable!(<span class="symbol">SpinBox</span>).IXScrollable</span>;
 </h2>
 <div class="declaration-description"><div class="sections"><p>A spinbox widget is an entry widget with built-in up and down buttons that
  are used to either modify a numeric value or to select among a set of
@@ -39,7 +39,7 @@
 </p>
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this widget.
-     <p>        <a href="./common/boundingbox.html">BoundingBox</a> <br>
+     <p>         <a href="./common/boundingbox.html">BoundingBox</a> <br>
          <a href="./common/command.html">Command</a> <br>
          <a href="./common/cursor.html">Cursor</a> <br>
          <a href="./common/data.html">Data</a> <br>
@@ -60,7 +60,7 @@ These are injected common commands that can also be used with this widget.
 </p>
 <p><h3>Additional Events:</h3>
 Additional events that can also be bound to using the <a href="../element/uielement.html#UiElement.bind">bind</a> method.
-     <p>        &lt;&lt;Clear&gt;&gt;,
+     <p>         &lt;&lt;Clear&gt;&gt;,
          &lt;&lt;Copy&gt;&gt;,
          &lt;&lt;Cut&gt;&gt;,
          &lt;&lt;Decrement&gt;&gt;,
@@ -132,7 +132,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </p>
 <h3>See Also</h3><p><a href="./widget.html">tkd.widget.widget</a></p>
 </div>
-<div class="class-members"><h2><a name="SpinBox.this"></a> this(UiElement parent = null);
+<div class="class-members"><h2><a name="SpinBox.this"></a>this(UiElement parent = null);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
@@ -176,6 +176,16 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <td>The amount of digits to show after a decimal point.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="SpinBox.getCharBoundingBox"></a>int[] <span class="symbol">getCharBoundingBox</span>(int charIndex);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the bounding box of a character in the text.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int charIndex</td>
+<td>The index of the character to get the bounding box of.</td></tr>
+</table>
+<h3>Return Value</h3><p>An int array representing the bounding box in pixels.</p>
 </div>
 </div>
 </div>

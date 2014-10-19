@@ -15,13 +15,13 @@
 </p>
 <h3>License</h3><p>MIT. See LICENSE for full details.</p>
 </div>
-<div class="module-members"><h2><a name="UiElement"></a>abstract class <span class="symbol">UiElement</span>: tkd.element.element.Element;
+<div class="module-members"><h2><a name="UiElement"></a>abstract class <span class="symbol">UiElement</span>: <span class="super-symbol">tkd.element.element.Element</span>;
 </h2>
 <div class="declaration-description"><div class="sections"><p>The ui element base class.
 </p>
 <h3>See Also</h3><p><a href="./element.html">tkd.element.element</a></p>
 </div>
-<div class="class-members"><h2><a name="UiElement.this"></a> this(UiElement parent = null);
+<div class="class-members"><h2><a name="UiElement.this"></a>this(UiElement parent = null);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the element.
 </p>
@@ -109,7 +109,7 @@
 
 </p>
 <p><h3>Event Modifiers:</h3>
-<p>        <table class="parameter-list">            <tr><td>&lt;Alt&gt;</td><td>The Alt key.</td></tr>
+<p>         <table class="parameter-list">             <tr><td>&lt;Alt&gt;</td><td>The Alt key.</td></tr>
              <tr><td>&lt;Button1&gt; <br> &lt;B1&gt;</td><td>Mouse button one.</td></tr>
              <tr><td>&lt;Button2&gt; <br> &lt;B2&gt;</td><td>Mouse button two.</td></tr>
              <tr><td>&lt;Button3&gt; <br> &lt;B3&gt;</td><td>Mouse button three.</td></tr>
@@ -176,7 +176,7 @@
 
 </p>
 <p><h3>Event Types:</h3>
-<p>        <table class="parameter-list">            <tr><td>&lt;Activate&gt; <br> &lt;Deactivate&gt;</td><td>These two events are sent to every sub-window of a toplevel when they change state. In addition to the focus Window the Macintosh platform and Windows platforms have a notion of an active window (which often has but is not required to have the focus). On the Macintosh widgets in the active window have a different appearance than widgets in deactive windows. The Activate event is sent to all the sub-windows in a toplevel when it changes from being deactive to active. Likewise the Deactive event is sent when the window's state changes from active to deactive. There are no useful percent substitutions you would make when binding to these events.</td></tr>
+<p>         <table class="parameter-list">             <tr><td>&lt;Activate&gt; <br> &lt;Deactivate&gt;</td><td>These two events are sent to every sub-window of a toplevel when they change state. In addition to the focus Window the Macintosh platform and Windows platforms have a notion of an active window (which often has but is not required to have the focus). On the Macintosh widgets in the active window have a different appearance than widgets in deactive windows. The Activate event is sent to all the sub-windows in a toplevel when it changes from being deactive to active. Likewise the Deactive event is sent when the window's state changes from active to deactive. There are no useful percent substitutions you would make when binding to these events.</td></tr>
              <tr><td>&lt;MouseWheel&gt;</td><td>Some mice on the Windows platform support a mouse wheel which is used for scrolling documents without using the scrollbars. By rolling the wheel the system will generate MouseWheel events that the application can use to scroll. On Windows the event is always routed to the window that currently has focus (like Key events.) On Mac OS X the event is routed to the window under the pointer. When the event is received you can use the %D substitution to get the delta field for the event which is a integer value describing how the mouse wheel has moved. The smallest value for which the system will report is defined by the OS. On Windows 95 &amp; 98 machines this value is at least 120 before it is reported. However higher resolution devices may be available in the future. On Mac OS X the value is not scaled by 120 but a value of 1 corresponds to roughly one text line. The sign of the value determines which direction your widget should scroll. Positive values should scroll up and negative values should scroll down.</td></tr>
              <tr><td>&lt;KeyPress&gt; <br> &lt;KeyRelease&gt;</td><td>The KeyPress and KeyRelease events are generated whenever a key is pressed or released. KeyPress and KeyRelease events are sent to the UI element which currently has the keyboard focus.</td></tr>
              <tr><td>&lt;ButtonPress&gt; <br> &lt;ButtonRelease&gt; <br> &lt;Motion&gt;</td><td>The ButtonPress and ButtonRelease events are generated when the user presses or releases a mouse button. Motion events are generated whenever the pointer is moved. ButtonPress ButtonRelease and Motion events are normally sent to the window containing the pointer. When a mouse button is pressed the window containing the pointer automatically obtains a temporary pointer grab. Subsequent ButtonPress ButtonRelease and Motion events will be sent to that window regardless of which window contains the pointer until all buttons have been released.</td></tr>
@@ -228,7 +228,7 @@ The last part of a long event specification is detail. In the case
 </p>
 <p><h3>Virtual Events:</h3>
 The following are built-in virtual events for the purposes of notification:
-     <p>        <table class="parameter-list">            <tr><td>&lt;&lt;AltUnderlined&gt;&gt;</td><td>This is sent to widget to notify it that the letter it has underlined (as an accelerator indicator) with the -underline option has been pressed in combination with the Alt key. The usual response to this is to either focus into the widget (or some related widget) or to invoke the widget.</td></tr>
+     <p>         <table class="parameter-list">             <tr><td>&lt;&lt;AltUnderlined&gt;&gt;</td><td>This is sent to widget to notify it that the letter it has underlined (as an accelerator indicator) with the -underline option has been pressed in combination with the Alt key. The usual response to this is to either focus into the widget (or some related widget) or to invoke the widget.</td></tr>
              <tr><td>&lt;&lt;Invoke&gt;&gt;</td><td>This can be sent to some widgets (e.g. button, listbox, menu) as an alternative to &lt;space&gt;.</td></tr>
              <tr><td>&lt;&lt;ListboxSelect&gt;&gt;</td><td>This is sent to a listbox when the set of selected item(s) in the listbox is updated.</td></tr>
              <tr><td>&lt;&lt;MenuSelect&gt;&gt;</td><td>This is sent to a menu when the currently selected item in the menu changes. It is intended for use with context-sensitive help systems.</td></tr>
@@ -240,7 +240,7 @@ The following are built-in virtual events for the purposes of notification:
          </table>
      </p>
      The following are built-in virtual events for the purposes of unifying bindings across multiple platforms.
-     <p>        <table class="parameter-list">            <tr><td>&lt;&lt;Clear&gt;&gt;</td><td>Delete the currently selected widget contents.</td></tr>
+     <p>         <table class="parameter-list">             <tr><td>&lt;&lt;Clear&gt;&gt;</td><td>Delete the currently selected widget contents.</td></tr>
              <tr><td>&lt;&lt;Copy&gt;&gt;</td><td>Copy the currently selected widget contents to the clipboard.</td></tr>
              <tr><td>&lt;&lt;Cut&gt;&gt;</td><td>Move the currently selected widget contents to the clipboard.</td></tr>
              <tr><td>&lt;&lt;LineEnd&gt;&gt;</td><td>Move to the end of the line in the current widget while deselecting any selected contents.</td></tr>
@@ -276,9 +276,9 @@ The following are built-in virtual events for the purposes of notification:
 
 </p>
 <p><h3>Callback Arguments:</h3>
-These are the fields within the callback's <a href="    ./element.html#CommandArgs">CommandArgs</a> parameter which
+These are the fields within the callback's <a href="     ./element.html#CommandArgs">CommandArgs</a> parameter which
      are populated by this method when the callback is executed.
-     <p>        <table class="parameter-list">            <tr><td>CommandArgs.element</td><td>The element that executed the callback.</td></tr>
+     <p>         <table class="parameter-list">             <tr><td>CommandArgs.element</td><td>The element that executed the callback.</td></tr>
              <tr><td>CommandArgs.uniqueData</td><td>The binding that was responded to.</td></tr>
              <tr><td>CommandArgs.callback</td><td>The callback which was executed.</td></tr>
              <tr><td>CommandArgs.event.button</td><td>The number of any button that was pressed.</td></tr>
@@ -509,8 +509,8 @@ Note that this method does not currently have any effect on
 </h2>
 <div class="declaration-description"><div class="sections"><p>Generates an event and arranges for it to be processed just as if it had
  come from the operating system. Event provides a basic description of
- the event, such as <b>&lt;Shift-Button-2&gt;</b> or <b>&lt;&lt;Paste&gt;&gt;</b>. The event argument may have any of the forms
- allowed for the binding argument of the <a href="./uielement.html#UiElement.bind">bind</a> method except that it must
+ the event, such as <b>&lt;Shift-Button-2&gt;</b> or <b> &lt;&lt;Paste&gt;&gt;</b>. The event argument may have any of the forms
+ allowed for the binding argument of the <a href=" ./uielement.html#UiElement.bind">bind</a> method except that it must
  consist of a single event pattern only. Certain events, such as key
  events, require that the window has focus to receive the event properly.
 </p>

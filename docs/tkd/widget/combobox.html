@@ -15,7 +15,7 @@
 </p>
 <h3>License</h3><p>MIT. See LICENSE for full details.</p>
 </div>
-<div class="module-members"><h2><a name="ComboBox"></a>class <span class="symbol">ComboBox</span>: tkd.widget.widget.Widget, tkd.widget.common.xscrollcommand.IXScrollable!(<span class="symbol">ComboBox</span>).IXScrollable;
+<div class="module-members"><h2><a name="ComboBox"></a>class <span class="symbol">ComboBox</span>: <span class="super-symbol">tkd.widget.widget.Widget</span>, <span class="super-symbol">tkd.widget.common.xscrollcommand.IXScrollable!(<span class="symbol">ComboBox</span>).IXScrollable</span>;
 </h2>
 <div class="declaration-description"><div class="sections"><p>A combobox combines a text field with a pop-down list of values; the user
  may select the value of the text field from among the values in the list.
@@ -39,7 +39,7 @@
 </p>
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this widget.
-     <p>        <a href="./common/boundingbox.html">BoundingBox</a> <br>
+     <p>         <a href="./common/boundingbox.html">BoundingBox</a> <br>
          <a href="./common/cursor.html">Cursor</a> <br>
          <a href="./common/data.html">Data</a> <br>
          <a href="./common/delete_.html">Delete</a> <br>
@@ -59,7 +59,7 @@ These are injected common commands that can also be used with this widget.
 </p>
 <p><h3>Additional Events:</h3>
 Additional events that can also be bound to using the <a href="../element/uielement.html#UiElement.bind">bind</a> method.
-     <p>        &lt;&lt;Clear&gt;&gt;,
+     <p>         &lt;&lt;Clear&gt;&gt;,
          &lt;&lt;Copy&gt;&gt;,
          &lt;&lt;Cut&gt;&gt;,
          &lt;&lt;Paste&gt;&gt;,
@@ -120,7 +120,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </p>
 <h3>See Also</h3><p><a href="./widget.html">tkd.widget.widget</a></p>
 </div>
-<div class="class-members"><h2><a name="ComboBox.this"></a> this(UiElement parent = null);
+<div class="class-members"><h2><a name="ComboBox.this"></a>this(UiElement parent = null);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
@@ -146,6 +146,16 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <td>The index of the value to <span class="symbol">select</span>.</td></tr>
 </table>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="ComboBox.getCharBoundingBox"></a>int[] <span class="symbol">getCharBoundingBox</span>(int charIndex);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the bounding box of a character in the text.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int charIndex</td>
+<td>The index of the character to get the bounding box of.</td></tr>
+</table>
+<h3>Return Value</h3><p>An int array representing the bounding box in pixels.</p>
 </div>
 </div>
 </div>

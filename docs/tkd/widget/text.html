@@ -15,7 +15,7 @@
 </p>
 <h3>License</h3><p>MIT. See LICENSE for full details.</p>
 </div>
-<div class="module-members"><h2><a name="Text"></a>class <span class="symbol">Text</span>: tkd.widget.widget.Widget, tkd.widget.common.xscrollcommand.IXScrollable!(<span class="symbol">Text</span>).IXScrollable, tkd.widget.common.yscrollcommand.IYScrollable!(<span class="symbol">Text</span>).IYScrollable;
+<div class="module-members"><h2><a name="Text"></a>class <span class="symbol">Text</span>: <span class="super-symbol">tkd.widget.widget.Widget</span>, <span class="super-symbol">tkd.widget.common.xscrollcommand.IXScrollable!(<span class="symbol">Text</span>).IXScrollable</span>, <span class="super-symbol">tkd.widget.common.yscrollcommand.IYScrollable!(<span class="symbol">Text</span>).IYScrollable</span>;
 </h2>
 <div class="declaration-description"><div class="sections"><p>A text widget displays one or more lines of text and allows that text to be
  edited. <span class="symbol">Text</span> widgets support embedded widgets or embedded images.
@@ -29,7 +29,7 @@
 </p>
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this widget.
-     <p>        <a href="./common/border.html">Border</a> <br>
+     <p>         <a href="./common/border.html">Border</a> <br>
          <a href="./common/height.html">Height</a> <br>
          <a href="./common/relief.html">Relief</a> <br>
          <a href="./common/width.html">Width</a> <br>
@@ -42,7 +42,7 @@ These are injected common commands that can also be used with this widget.
 </p>
 <p><h3>Additional Events:</h3>
 Additional events that can also be bound to using the <a href="../element/uielement.html#UiElement.bind">bind</a> method.
-     <p>        &lt;&lt;Clear&gt;&gt;,
+     <p>         &lt;&lt;Clear&gt;&gt;,
          &lt;&lt;Copy&gt;&gt;,
          &lt;&lt;Cut&gt;&gt;,
          &lt;&lt;Modified&gt;&gt;,
@@ -143,7 +143,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </p>
 <h3>See Also</h3><p><a href="./widget.html">tkd.widget.widget</a></p>
 </div>
-<div class="class-members"><h2><a name="Text.this"></a> this(UiElement parent = null);
+<div class="class-members"><h2><a name="Text.this"></a>this(UiElement parent = null);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
@@ -347,6 +347,16 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </h2>
 <div class="declaration-description"><div class="sections"><p>Paste the selected text from the clipboard at the cursor position.
 </p>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
+<h2><a name="Text.setBorderWidth"></a>auto <span class="symbol">setBorderWidth</span>(this T)(int width);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the border width of the widget.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int width</td>
+<td>The desired border width.</td></tr>
+</table>
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>

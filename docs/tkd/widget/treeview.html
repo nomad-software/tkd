@@ -15,7 +15,7 @@
 </p>
 <h3>License</h3><p>MIT. See LICENSE for full details.</p>
 </div>
-<div class="module-members"><h2><a name="TreeView"></a>class <span class="symbol">TreeView</span>: tkd.widget.widget.Widget, tkd.widget.common.xscrollcommand.IXScrollable!(<span class="symbol">TreeView</span>).IXScrollable, tkd.widget.common.yscrollcommand.IYScrollable!(<span class="symbol">TreeView</span>).IYScrollable;
+<div class="module-members"><h2><a name="TreeView"></a>class <span class="symbol">TreeView</span>: <span class="super-symbol">tkd.widget.widget.Widget</span>, <span class="super-symbol">tkd.widget.common.xscrollcommand.IXScrollable!(<span class="symbol">TreeView</span>).IXScrollable</span>, <span class="super-symbol">tkd.widget.common.yscrollcommand.IYScrollable!(<span class="symbol">TreeView</span>).IYScrollable</span>;
 </h2>
 <div class="declaration-description"><div class="sections"><p>The treeview widget displays a hierarchical collection of items. Each item
  has a textual label, an optional image, and an optional list of data values.
@@ -41,7 +41,7 @@
 </p>
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this widget.
-     <p>        <a href="./common/height.html">Height</a> <br>
+     <p>         <a href="./common/height.html">Height</a> <br>
          <a href="./common/padding.html">Padding</a> <br>
          <a href="./common/xscrollcommand.html">XScrollCommand</a> <br>
          <a href="./common/yscrollcommand.html">YScrollCommand</a> <br>
@@ -50,7 +50,7 @@ These are injected common commands that can also be used with this widget.
 </p>
 <p><h3>Additional Events:</h3>
 Additional events that can also be bound to using the <a href="../element/uielement.html#UiElement.bind">bind</a> method.
-     <p>        &lt;&lt;PrevWindow&gt;&gt;,
+     <p>         &lt;&lt;PrevWindow&gt;&gt;,
          &lt;&lt;TreeviewClose&gt;&gt;
          &lt;&lt;TreeviewOpen&gt;&gt;
          &lt;&lt;TreeviewSelect&gt;&gt;
@@ -83,7 +83,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </p>
 <h3>See Also</h3><p><a href="./widget.html">tkd.widget.widget</a></p>
 </div>
-<div class="class-members"><h2><a name="TreeView.this"></a> this(UiElement parent = null);
+<div class="class-members"><h2><a name="TreeView.this"></a>this(UiElement parent = null);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
@@ -130,9 +130,9 @@ Additional events that can also be bound to using the <a href="../element/uielem
 
 </p>
 <p><h3>Callback Arguments:</h3>
-These are the fields within the callback's <a href="    ../element/element.html#CommandArgs">CommandArgs</a> parameter which
+These are the fields within the callback's <a href="     ../element/element.html#CommandArgs">CommandArgs</a> parameter which
      are populated by this method when the callback is executed.
-     <p>        <table class="parameter-list">            <tr><td>CommandArgs.element</td><td>The tree column.</td></tr>
+     <p>         <table class="parameter-list">             <tr><td>CommandArgs.element</td><td>The tree column.</td></tr>
              <tr><td>CommandArgs.uniqueData</td><td>The internal id of the tree view (An implementation detail that's not very useful).</td></tr>
              <tr><td>CommandArgs.callback</td><td>The callback which was executed.</td></tr>
          </table>
@@ -313,13 +313,23 @@ These are the fields within the callback's <a href="    ../element/element.html#
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
+<h2><a name="TreeView.setHeight"></a>auto <span class="symbol">setHeight</span>(this T)(int height);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the height of the widget if the geometry manager allows.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int height</td>
+<td>The desired widget height.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
-<h2><a name="TreeViewColumn"></a>class <span class="symbol">TreeViewColumn</span>: tkd.element.element.Element;
+</div>
+</div>
+<h2><a name="TreeViewColumn"></a>class <span class="symbol">TreeViewColumn</span>: <span class="super-symbol">tkd.element.element.Element</span>;
 </h2>
 <div class="declaration-description"><div class="sections"><p>A class representing a column in the tree view.</p>
 </div>
-<div class="class-members"><h2><a name="TreeViewColumn.this"></a> this(string title = null, string anchor = AnchorPosition.west);
+<div class="class-members"><h2><a name="TreeViewColumn.this"></a>this(string title = null, string anchor = AnchorPosition.west);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct a new column.
 </p>
@@ -366,9 +376,9 @@ These are the fields within the callback's <a href="    ../element/element.html#
 
 </p>
 <p><h3>Callback Arguments:</h3>
-These are the fields within the callback's <a href="    ../element/element.html#CommandArgs">CommandArgs</a> parameter which
+These are the fields within the callback's <a href="     ../element/element.html#CommandArgs">CommandArgs</a> parameter which
      are populated by this method when the callback is executed.
-     <p>        <table class="parameter-list">            <tr><td>CommandArgs.element</td><td>The column that executed the callback.</td></tr>
+     <p>         <table class="parameter-list">             <tr><td>CommandArgs.element</td><td>The column that executed the callback.</td></tr>
              <tr><td>CommandArgs.uniqueData</td><td>The internal id of the tree view (An implementation detail that's not very useful).</td></tr>
              <tr><td>CommandArgs.callback</td><td>The callback which was executed.</td></tr>
          </table>
@@ -427,7 +437,7 @@ These are the fields within the callback's <a href="    ../element/element.html#
 <div class="declaration-description"><div class="sections"><p>An array containing the child rows.</p>
 </div>
 </div>
-<h2><a name="TreeViewRow.this"></a> this(string[] values, bool isOpen = false, string[] tags = []);
+<h2><a name="TreeViewRow.this"></a>this(string[] values, bool isOpen = false, string[] tags = []);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Constructor.
 </p>

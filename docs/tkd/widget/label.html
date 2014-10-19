@@ -15,7 +15,7 @@
 </p>
 <h3>License</h3><p>MIT. See LICENSE for full details.</p>
 </div>
-<div class="module-members"><h2><a name="Label"></a>class <span class="symbol">Label</span>: tkd.widget.textwidget.TextWidget;
+<div class="module-members"><h2><a name="Label"></a>class <span class="symbol">Label</span>: <span class="super-symbol">tkd.widget.textwidget.TextWidget</span>;
 </h2>
 <div class="declaration-description"><div class="sections"><p>A label widget displays a textual label and/or image.
 </p>
@@ -27,7 +27,7 @@
 </p>
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this widget.
-     <p>        <a href="./common/anchor.html">Anchor</a> <br>
+     <p>         <a href="./common/anchor.html">Anchor</a> <br>
          <a href="./common/justify.html">Justify</a> <br>
          <a href="./common/padding.html">Padding</a> <br>
          <a href="./common/relief.html">Relief</a> <br>
@@ -37,7 +37,7 @@ These are injected common commands that can also be used with this widget.
 </p>
 <p><h3>Additional Events:</h3>
 Additional events that can also be bound to using the <a href="../element/uielement.html#UiElement.bind">bind</a> method.
-     <p>        &lt;&lt;Invoke&gt;&gt;,
+     <p>         &lt;&lt;Invoke&gt;&gt;,
          &lt;&lt;PrevWindow&gt;&gt;,
          &lt;Key-Tab&gt;,
          &lt;Key-F10&gt;,
@@ -47,7 +47,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </p>
 <h3>See Also</h3><p><a href="./textwidget.html">tkd.widget.textwidget</a></p>
 </div>
-<div class="class-members"><h2><a name="Label.this"></a> this(UiElement parent, string text);
+<div class="class-members"><h2><a name="Label.this"></a>this(UiElement parent, string text);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
@@ -59,13 +59,26 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <h3>See Also</h3><p><a href="../element/uielement.html">tkd.element.uielement</a> <br></p>
 </div>
 </div>
-<h2><a name="Label.this"></a> this(string text);
+<h2><a name="Label.this"></a>this(string text);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
 <h3>Parameters</h3><table class="parameter-list"><tr><td>string text</td>
 <td>The text of the label.</td></tr>
 </table>
+</div>
+</div>
+<h2><a name="Label.setTextAnchor"></a>auto <span class="symbol">setTextAnchor</span>(this T)(string position);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Specifies how text in the widget is positioned relative to the inner margins.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string position</td>
+<td>The position of the anchor.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p>
+<h3>See Also</h3><p><a href="../anchorposition.html">tkd.widget.anchorposition</a> <br></p>
 </div>
 </div>
 </div>

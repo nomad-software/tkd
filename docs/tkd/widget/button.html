@@ -15,7 +15,7 @@
 </p>
 <h3>License</h3><p>MIT. See LICENSE for full details.</p>
 </div>
-<div class="module-members"><h2><a name="Button"></a>class <span class="symbol">Button</span>: tkd.widget.textwidget.TextWidget;
+<div class="module-members"><h2><a name="Button"></a>class <span class="symbol">Button</span>: <span class="super-symbol">tkd.widget.textwidget.TextWidget</span>;
 </h2>
 <div class="declaration-description"><div class="sections"><p>A button widget displays a textual label and/or image, and evaluates a
  command when pressed.
@@ -29,7 +29,7 @@
 </p>
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this widget.
-     <p>        <a href="./common/command.html">Command</a> <br>
+     <p>         <a href="./common/command.html">Command</a> <br>
          <a href="./common/default_.html">Default</a> <br>
          <a href="./common/invoke.html">Invoke</a> <br>
      </p>
@@ -37,7 +37,7 @@ These are injected common commands that can also be used with this widget.
 </p>
 <p><h3>Additional Events:</h3>
 Additional events that can also be bound to using the <a href="../element/uielement.html#UiElement.bind">bind</a> method.
-     <p>        &lt;&lt;Invoke&gt;&gt;,
+     <p>         &lt;&lt;Invoke&gt;&gt;,
          &lt;&lt;PrevWindow&gt;&gt;,
          &lt;Alt-Key&gt;,
          &lt;B1-Enter&gt;,
@@ -59,7 +59,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </p>
 <h3>See Also</h3><p><a href="./textwidget.html">tkd.widget.textwidget</a></p>
 </div>
-<div class="class-members"><h2><a name="Button.this"></a> this(UiElement parent, string text, Image image = null, string imagePosition = ImagePosition.top);
+<div class="class-members"><h2><a name="Button.this"></a>this(UiElement parent, string text, Image image = null, string imagePosition = ImagePosition.top);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
@@ -79,7 +79,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
      <a href="../image/imageposition.html">tkd.image.imageposition</a> <br></p>
 </div>
 </div>
-<h2><a name="Button.this"></a> this(UiElement parent, Image image, string text = null, string imagePosition = ImagePosition.image);
+<h2><a name="Button.this"></a>this(UiElement parent, Image image, string text = null, string imagePosition = ImagePosition.image);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
@@ -99,7 +99,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
      <a href="../image/imageposition.html">tkd.image.imageposition</a> <br></p>
 </div>
 </div>
-<h2><a name="Button.this"></a> this(string text, Image image = null, string imagePosition = ImagePosition.top);
+<h2><a name="Button.this"></a>this(string text, Image image = null, string imagePosition = ImagePosition.top);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
@@ -116,7 +116,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
      <a href="../image/imageposition.html">tkd.image.imageposition</a> <br></p>
 </div>
 </div>
-<h2><a name="Button.this"></a> this(Image image, string text = null, string imagePosition = ImagePosition.image);
+<h2><a name="Button.this"></a>this(Image image, string text = null, string imagePosition = ImagePosition.image);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
@@ -131,6 +131,35 @@ Additional events that can also be bound to using the <a href="../element/uielem
      <a href="../image/png.html">tkd.image.png</a> <br>
      <a href="../image/gif.html">tkd.image.gif</a> <br>
      <a href="../image/imageposition.html">tkd.image.imageposition</a> <br></p>
+</div>
+</div>
+<h2><a name="Button.setCommand"></a>auto <span class="symbol">setCommand</span>(this T)(CommandCallback callback);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Add a command to a widget.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>CommandCallback callback</td>
+<td>The delegate callback to execute when invoking the command.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p>
+<p><h3>Callback Arguments:</h3>
+These are the fields within the callback's <a href="     ./element/element.html#CommandArgs">CommandArgs</a> parameter which
+     are populated by this method when the callback is executed.
+     <p>         <table class="parameter-list">             <tr><td>CommandArgs.element</td><td>The element that executed the callback.</td></tr>
+             <tr><td>CommandArgs.callback</td><td>The callback which was executed.</td></tr>
+         </table>
+     </p>
+
+</p>
+<h3>See Also</h3><p><a href="../../element/element.html#CommandCallback">tkd.element.element.CommandCallback</a></p>
+</div>
+</div>
+<h2><a name="Button.removeCommand"></a>auto <span class="symbol">removeCommand</span>(this T)();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Remove a previously set command.
+</p>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
 </div>

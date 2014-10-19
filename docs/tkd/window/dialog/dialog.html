@@ -15,13 +15,13 @@
 </p>
 <h3>License</h3><p>MIT. See LICENSE for full details.</p>
 </div>
-<div class="module-members"><h2><a name="Dialog"></a>abstract class <span class="symbol">Dialog</span>: tkd.element.element.Element;
+<div class="module-members"><h2><a name="Dialog"></a>abstract class <span class="symbol">Dialog</span>: <span class="super-symbol">tkd.element.element.Element</span>;
 </h2>
 <div class="declaration-description"><div class="sections"><p>Abstract base class for all dialog boxes.
 </p>
 <h3>See Also</h3><p><a href="../../element/element.html">tkd.element.element</a> <br></p>
 </div>
-<div class="class-members"><h2><a name="Dialog.this"></a> this(Window parent, string title);
+<div class="class-members"><h2><a name="Dialog.this"></a>this(Window parent, string title);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the dialog.
 </p>
@@ -45,7 +45,7 @@
 <div class="declaration-description"><div class="sections"><p>Remove any leading or trailing braces.</p>
 </div>
 </div>
-<h2><a name="Dialog.show"></a>auto <span class="symbol">show</span>(this T)();
+<h2><a name="Dialog.show"></a>abstract auto <span class="symbol">show</span>(this T)();
 </h2>
 <div class="declaration-description"><div class="sections"><p>Show the dialog.
 </p>

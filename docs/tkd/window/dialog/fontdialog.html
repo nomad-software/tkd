@@ -15,7 +15,7 @@
 </p>
 <h3>License</h3><p>MIT. See LICENSE for full details.</p>
 </div>
-<div class="module-members"><h2><a name="FontDialog"></a>class <span class="symbol">FontDialog</span>: tkd.window.dialog.dialog.Dialog;
+<div class="module-members"><h2><a name="FontDialog"></a>class <span class="symbol">FontDialog</span>: <span class="super-symbol">tkd.window.dialog.dialog.Dialog</span>;
 </h2>
 <div class="declaration-description"><div class="sections"><p>The font dialog allows users to choose a font installed on the system. It
  uses the native platform font selection dialog where available, or a dialog
@@ -36,7 +36,7 @@
 </p>
 <p><h3>Additional Events:</h3>
 Additional events that can also be bound to using the <a href="../../element/uielement.html#UiElement.bind">bind</a> method.
-     <p>        &lt;&lt;TkFontchooserFontChanged&gt;&gt;,
+     <p>         &lt;&lt;TkFontchooserFontChanged&gt;&gt;,
          &lt;&lt;TkFontchooserVisibility&gt;&gt;,
      </p>
 
@@ -47,7 +47,7 @@ The result is empty as all interaction takes place via callbacks.
 </p>
 <h3>See Also</h3><p><a href="./dialog.html">tkd.dialog.dialog</a> <br></p>
 </div>
-<div class="class-members"><h2><a name="FontDialog.this"></a> this(Window parent, string title = "Font");
+<div class="class-members"><h2><a name="FontDialog.this"></a>this(Window parent, string title = "Font");
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the dialog.
 </p>
@@ -58,7 +58,7 @@ The result is empty as all interaction takes place via callbacks.
 </table>
 </div>
 </div>
-<h2><a name="FontDialog.this"></a> this(string title = "Font");
+<h2><a name="FontDialog.this"></a>this(string title = "Font");
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the dialog.
 </p>
@@ -80,9 +80,9 @@ The result is empty as all interaction takes place via callbacks.
 
 </p>
 <p><h3>Callback Arguments:</h3>
-These are the fields within the callback's <a href="    ../../element/element.html#CommandArgs">CommandArgs</a> parameter which
+These are the fields within the callback's <a href="     ../../element/element.html#CommandArgs">CommandArgs</a> parameter which
      are populated by this method when the callback is executed.
-     <p>        <table class="parameter-list">            <tr><td>CommandArgs.element</td><td>The element that executed the callback.</td></tr>
+     <p>         <table class="parameter-list">             <tr><td>CommandArgs.element</td><td>The element that executed the callback.</td></tr>
              <tr><td>CommandArgs.callback</td><td>The callback which was executed.</td></tr>
              <tr><td>CommandArgs.dialog.font</td><td>Font information populated from dialog interaction.</td></tr>
          </table>

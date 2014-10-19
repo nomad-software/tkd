@@ -162,9 +162,9 @@ abstract class TkdApplication
 	 * Associates the virtual event with the binding, so that the virtual event 
 	 * will trigger whenever the binding occurs. Virtual events may be any 
 	 * string value and binding may have any of the values allowed for the 
-	 * binding argument of the $(LINK2 ./uielement.html#UiElement.bind, bind) 
-	 * method. If the virtual event is already defined, the new binding adds to 
-	 * the existing bindings for the event.
+	 * binding argument of the $(LINK2 ./element/uielement.html#UiElement.bind, 
+	 * bind) method. If the virtual event is already defined, the new binding 
+	 * adds to the existing bindings for the event.
 	 *
 	 * Params:
 	 *     virtualEvent = The virtual event to create.

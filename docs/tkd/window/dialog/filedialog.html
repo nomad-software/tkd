@@ -15,13 +15,13 @@
 </p>
 <h3>License</h3><p>MIT. See LICENSE for full details.</p>
 </div>
-<div class="module-members"><h2><a name="FileDialog"></a>abstract class <span class="symbol">FileDialog</span>: tkd.window.dialog.dialog.Dialog;
+<div class="module-members"><h2><a name="FileDialog"></a>abstract class <span class="symbol">FileDialog</span>: <span class="super-symbol">tkd.window.dialog.dialog.Dialog</span>;
 </h2>
 <div class="declaration-description"><div class="sections"><p>Pops up a dialog box for the user to select a color.
 </p>
 <h3>See Also</h3><p><a href="./dialog.html">tkd.dialog.dialog</a> <br></p>
 </div>
-<div class="class-members"><h2><a name="FileDialog.this"></a> this(Window parent, string title);
+<div class="class-members"><h2><a name="FileDialog.this"></a>this(Window parent, string title);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the dialog.
 </p>
@@ -32,7 +32,7 @@
 </table>
 </div>
 </div>
-<h2><a name="FileDialog.this"></a> this(string title);
+<h2><a name="FileDialog.this"></a>this(string title);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the dialog.
 </p>
@@ -60,7 +60,7 @@
  supported by the particular platform then all files are listed
  regardless of their types.
 </p>
-<p>Filetypes must be added in the correct format, i.e. all fields are
+<p> Filetypes must be added in the correct format, i.e. all fields are
  enclosed within curly braces and separated by a space. Extensions must
  contain a dot. The format is described below in which the carats
  indicate essential required space.

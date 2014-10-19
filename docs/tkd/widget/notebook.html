@@ -15,7 +15,7 @@
 </p>
 <h3>License</h3><p>MIT. See LICENSE for full details.</p>
 </div>
-<div class="module-members"><h2><a name="NoteBook"></a>class <span class="symbol">NoteBook</span>: tkd.widget.widget.Widget;
+<div class="module-members"><h2><a name="NoteBook"></a>class <span class="symbol">NoteBook</span>: <span class="super-symbol">tkd.widget.widget.Widget</span>;
 </h2>
 <div class="declaration-description"><div class="sections"><p>A notebook widget manages a collection of panes and displays a single one at
  a time. Each pane is associated with a tab, which the user may select to
@@ -36,7 +36,7 @@ noteBook.addTab(<span class="string">"Text"</span>, pane)
 </p>
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this widget.
-     <p>        <a href="./common/height.html">Height</a> <br>
+     <p>         <a href="./common/height.html">Height</a> <br>
          <a href="./common/padding.html">Padding</a> <br>
          <a href="./common/width.html">Width</a> <br>
      </p>
@@ -44,7 +44,7 @@ These are injected common commands that can also be used with this widget.
 </p>
 <p><h3>Additional Events:</h3>
 Additional events that can also be bound to using the <a href="../element/uielement.html#UiElement.bind">bind</a> method.
-     <p>        &lt;&lt;NotebookTabChanged&gt;&gt;,
+     <p>         &lt;&lt;NotebookTabChanged&gt;&gt;,
          &lt;&lt;PrevWindow&gt;&gt;,
          &lt;Alt-Key&gt;,
          &lt;Button-1&gt;,
@@ -61,7 +61,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </p>
 <h3>See Also</h3><p><a href="./widget.html">tkd.widget.widget</a></p>
 </div>
-<div class="class-members"><h2><a name="NoteBook.this"></a> this(UiElement parent = null);
+<div class="class-members"><h2><a name="NoteBook.this"></a>this(UiElement parent = null);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
@@ -252,7 +252,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <div class="declaration-description"><div class="sections"><p>Call to enable keyboard traversal of the tabs.
 </p>
 <p>This will extend the bindings for the toplevel window containing the notebook as follows:
- <ul>    <li>Control-Tab selects the tab following the currently selected one.</li>
+ <ul>     <li>Control-Tab selects the tab following the currently selected one.</li>
      <li>Control-Shift-Tab selects the tab preceding the currently selected one.</li>
      <li>Alt-c, where c is the mnemonic (underlined) character of any tab, will select that tab.</li>
  </ul>
@@ -289,6 +289,16 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <div class="declaration-description"><div class="sections"><p>Get the number of tabs in the notebook.
 </p>
 <h3>Return Value</h3><p>The number of tabs.</p>
+</div>
+</div>
+<h2><a name="NoteBook.setHeight"></a>auto <span class="symbol">setHeight</span>(this T)(int height);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the height of the widget if the geometry manager allows.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int height</td>
+<td>The desired widget height.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
 </div>

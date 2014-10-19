@@ -15,7 +15,7 @@
 </p>
 <h3>License</h3><p>MIT. See LICENSE for full details.</p>
 </div>
-<div class="module-members"><h2><a name="Frame"></a>class <span class="symbol">Frame</span>: tkd.widget.widget.Widget;
+<div class="module-members"><h2><a name="Frame"></a>class <span class="symbol">Frame</span>: <span class="super-symbol">tkd.widget.widget.Widget</span>;
 </h2>
 <div class="declaration-description"><div class="sections"><p>A frame widget is a container, used to group other widgets together.
 </p>
@@ -31,7 +31,7 @@
 </p>
 <p><h3>Common Commands:</h3>
 These are injected common commands that can also be used with this widget.
-     <p>        <a href="./common/border.html">Border</a> <br>
+     <p>         <a href="./common/border.html">Border</a> <br>
          <a href="./common/height.html">Height</a> <br>
          <a href="./common/padding.html">Padding</a> <br>
          <a href="./common/relief.html">Relief</a> <br>
@@ -41,7 +41,7 @@ These are injected common commands that can also be used with this widget.
 </p>
 <p><h3>Additional Events:</h3>
 Additional events that can also be bound to using the <a href="../element/uielement.html#UiElement.bind">bind</a> method.
-     <p>        &lt;&lt;PrevWindow&gt;&gt;,
+     <p>         &lt;&lt;PrevWindow&gt;&gt;,
          &lt;Alt-Key&gt;,
          &lt;Key-F10&gt;,
          &lt;Key-Tab&gt;,
@@ -50,7 +50,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
 </p>
 <h3>See Also</h3><p><a href="./widget.html">tkd.widget.widget</a></p>
 </div>
-<div class="class-members"><h2><a name="Frame.this"></a> this(UiElement parent, int borderWidth = 0, string relief = ReliefStyle.flat);
+<div class="class-members"><h2><a name="Frame.this"></a>this(UiElement parent, int borderWidth = 0, string relief = ReliefStyle.flat);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
@@ -65,7 +65,7 @@ Additional events that can also be bound to using the <a href="../element/uielem
      <a href="./reliefstyle.html">tkd.widget.reliefstyle</a> <br></p>
 </div>
 </div>
-<h2><a name="Frame.this"></a> this(int borderWidth = 0, string relief = ReliefStyle.flat);
+<h2><a name="Frame.this"></a>this(int borderWidth = 0, string relief = ReliefStyle.flat);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Construct the widget.
 </p>
@@ -75,6 +75,16 @@ Additional events that can also be bound to using the <a href="../element/uielem
 <td>The relief style of the border.</td></tr>
 </table>
 <h3>See Also</h3><p><a href="./reliefstyle.html">tkd.widget.reliefstyle</a> <br></p>
+</div>
+</div>
+<h2><a name="Frame.setBorderWidth"></a>auto <span class="symbol">setBorderWidth</span>(this T)(int width);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the border width of the widget.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>int width</td>
+<td>The desired border width.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
 </div>
