@@ -391,13 +391,31 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 				tags = format("\"%s\"", row.tags.join("\" \""));
 			}
 
-			this._tk.eval("%s insert {%s} end -text {%s} -values {%s} -open %s -tags {%s}", this.id, parentRow, row.values[0], dataValues, row.isOpen, tags);
+			this._tk.eval("%s insert {%s} end -id {%s} -text {%s} -values {%s} -open %s -tags {%s}", this.id, parentRow, row.itemId, row.values[0], dataValues, row.isOpen, tags);
 
 			if (row.children.length)
 			{
 				this.appendRows(this._tk.getResult!(string), row.children);
 			}
 		}
+	}
+
+	/**
+	* Set the value of a column, given a row id.
+	*
+	* Params:
+	*     rowId = The itemId of the row.
+	*     column = The 0-based column index.
+	*     value = The new value.
+	*
+	* Returns:
+	*     This widget to aid method chaining.
+	*/
+	public auto setValue(this T)(string rowId, uint column, string value)
+	{
+		this._tk.eval("%s set %s %s {%s}", this.id, rowId, column, value);
+
+		return cast(T) this;
 	}
 
 	/**
@@ -927,6 +945,11 @@ class TreeViewRow
 	private string[] _tags;
 
 	/**
+	* A unique identifier for the item
+	*/
+	private string _itemId;
+
+	/**
 	 * An array containing the child rows.
 	 */
 	public TreeViewRow[] children;
@@ -936,6 +959,9 @@ class TreeViewRow
 	 */
 	private this()
 	{
+		import std.conv: to;
+		import std.uuid: randomUUID;
+		_itemId = randomUUID().to!string;
 	}
 
 	/**
@@ -950,6 +976,7 @@ class TreeViewRow
 	{
 		assert(values.length, "There must be at least 1 value in the row.");
 
+		this();
 		this._values = values;
 		this._isOpen = isOpen;
 		this._tags   = tags;
@@ -986,6 +1013,17 @@ class TreeViewRow
 	public @property string[] tags()
 	{
 		return this._tags;
+	}
+
+	/**
+	* Get the id used to identify this row in the tree.
+	*
+	* Returns:
+	*     An string id.
+	*/
+	public @property string itemId()
+	{
+		return this._itemId;
 	}
 
 	/**
