@@ -211,6 +211,22 @@ These are the fields within the callback's <a href="     ../element/element.html
 <h3>Return Value</h3><p>This widget to aid method chaining.</p>
 </div>
 </div>
+<h2><a name="TreeView.updateDataColumn"></a>auto <span class="symbol">updateDataColumn</span>(this T)(string rowId, uint columnIndex, string value);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the value of a data column, given a row id. Row id's are populated
+ within a tree view row object once that row has been inserted into the
+ tree view.
+</p>
+<h3>Parameters</h3><table class="parameter-list"><tr><td>string rowId</td>
+<td>The row id.</td></tr>
+<tr><td>uint columnIndex</td>
+<td>The 0-based data column index.</td></tr>
+<tr><td>string value</td>
+<td>The new value.</td></tr>
+</table>
+<h3>Return Value</h3><p>This widget to aid method chaining.</p>
+</div>
+</div>
 <h2><a name="TreeView.setTag"></a>auto <span class="symbol">setTag</span>(this T)(string name, Image image, string foreground = Color.default_, string background = Color.default_);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Set image and colors for a specific tag.
@@ -448,6 +464,14 @@ These are the fields within the callback's <a href="     ../element/element.html
 <tr><td>string[] tags</td>
 <td>The tags to associate to this row.</td></tr>
 </table>
+</div>
+</div>
+<h2><a name="TreeViewRow.id"></a>@property string <span class="symbol">id</span>();
+</h2>
+<div class="declaration-description"><div class="sections"><p>Get the row <span class="symbol">id</span>. This is populated by the treeview once the row has been
+ inserted.
+</p>
+<h3>Return Value</h3><p>A string containing the row <span class="symbol">id</span>.</p>
 </div>
 </div>
 <h2><a name="TreeViewRow.values"></a>@property string[] <span class="symbol">values</span>();
