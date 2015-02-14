@@ -391,29 +391,33 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 				tags = format("\"%s\"", row.tags.join("\" \""));
 			}
 
-			this._tk.eval("%s insert {%s} end -id {%s} -text {%s} -values {%s} -open %s -tags {%s}", this.id, parentRow, row.itemId, row.values[0], dataValues, row.isOpen, tags);
+			this._tk.eval("%s insert {%s} end -text {%s} -values {%s} -open %s -tags {%s}", this.id, parentRow, row.values[0], dataValues, row.isOpen, tags);
+
+			row._rowId = this._tk.getResult!(string);
 
 			if (row.children.length)
 			{
-				this.appendRows(this._tk.getResult!(string), row.children);
+				this.appendRows(row.id, row.children);
 			}
 		}
 	}
 
 	/**
-	* Set the value of a column, given a row id.
-	*
-	* Params:
-	*     rowId = The itemId of the row.
-	*     column = The 0-based column index.
-	*     value = The new value.
-	*
-	* Returns:
-	*     This widget to aid method chaining.
-	*/
-	public auto setValue(this T)(string rowId, uint column, string value)
+	 * Set the value of a data column, given a row id. Row id's are populated 
+	 * within a tree view row object once that row has been inserted into the 
+	 * tree view.
+	 *
+	 * Params:
+	 *     rowId = The row id.
+	 *     columnIndex = The 0-based data column index.
+	 *     value = The new value.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto updateDataColumn(this T)(string rowId, uint columnIndex, string value)
 	{
-		this._tk.eval("%s set %s %s {%s}", this.id, rowId, column, value);
+		this._tk.eval("%s set %s %s {%s}", this.id, rowId, columnIndex, value);
 
 		return cast(T) this;
 	}
@@ -930,6 +934,12 @@ class TreeViewColumn : Element
 class TreeViewRow
 {
 	/**
+	 * The row id. This is populated by the treeview once the row has been 
+	 * inserted.
+	 */
+	private string _rowId;
+
+	/**
 	 * An array containing the column values.
 	 */
 	private string[] _values;
@@ -945,11 +955,6 @@ class TreeViewRow
 	private string[] _tags;
 
 	/**
-	* A unique identifier for the item
-	*/
-	private string _itemId;
-
-	/**
 	 * An array containing the child rows.
 	 */
 	public TreeViewRow[] children;
@@ -959,9 +964,6 @@ class TreeViewRow
 	 */
 	private this()
 	{
-		import std.conv: to;
-		import std.uuid: randomUUID;
-		_itemId = randomUUID().to!string;
 	}
 
 	/**
@@ -976,10 +978,21 @@ class TreeViewRow
 	{
 		assert(values.length, "There must be at least 1 value in the row.");
 
-		this();
 		this._values = values;
 		this._isOpen = isOpen;
 		this._tags   = tags;
+	}
+
+	/**
+	 * Get the row id. This is populated by the treeview once the row has been 
+	 * inserted.
+	 *
+	 * Returns:
+	 *     A string containing the row id.
+	 */
+	public @property string id()
+	{
+		return this._rowId;
 	}
 
 	/**
@@ -1016,22 +1029,11 @@ class TreeViewRow
 	}
 
 	/**
-	* Get the id used to identify this row in the tree.
-	*
-	* Returns:
-	*     An string id.
-	*/
-	public @property string itemId()
-	{
-		return this._itemId;
-	}
-
-	/**
 	 * String representation.
 	 */
 	debug override public string toString()
 	{
-		return format("Values: %s, isOpen: %s, Tags: %s, Children: %s", this.values, this.isOpen, this.tags, this.children);
+		return format("Row Id: %s, Values: %s, isOpen: %s, Tags: %s, Children: %s", this.id, this.values, this.isOpen, this.tags, this.children);
 	}
 }
 
