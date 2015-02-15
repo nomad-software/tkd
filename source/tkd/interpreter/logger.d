@@ -148,7 +148,12 @@ class Logger
 	{
 		try
 		{
-			this.log(format(text, args), Level.eval);
+			static if (A.length)
+				auto cmd = format(text, args);
+			else
+				auto cmd = text;
+
+			this.log(cmd, Level.eval);
 		}
 		catch (Exception ex)
 		{

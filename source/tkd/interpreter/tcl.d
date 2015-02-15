@@ -120,7 +120,12 @@ class Tcl
 
 		debug (log) this._log.eval(script, args);
 
-		int result = Tcl_EvalEx(this._interpreter, format(script, args).toStringz, -1, 0);
+		static if (A.length)		
+			auto cmd = format(script, args);		
+		else		
+			auto cmd = script;		
+
+		int result = Tcl_EvalEx(this._interpreter, cmd.toStringz, -1, 0);
 
 		if (result == TCL_ERROR)
 		{
