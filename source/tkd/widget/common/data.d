@@ -36,7 +36,11 @@ mixin template Data()
 	 */
 	public auto setData(this T)(string[] values)
 	{
-		this._tk.eval("%s configure -values { \"%s\" }", this.id, values.join("\" \""));
+		string data = format(`[list "%s"]`, this._tk.escape(values).join(`" "`));
+
+		// String concatentation is used here to avoid the character escaping 
+		// done on args.
+		this._tk.eval("%s configure -values " ~  data, this.id);
 
 		return cast(T) this;
 	}

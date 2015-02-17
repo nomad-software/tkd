@@ -190,12 +190,12 @@ class Application : TkdApplication
 			auto entry1 = new Text(entryLabelFrame)
 				.setWidth(0)
 				.setHeight(3)
-				.appendText("Nullam sapien lectus, aliquet sit amet quam et, sagittis porttitor dolor.")
+				.appendText("import std.stdio;\n\nvoid main(string[] args)\n{\n\twriteln(\"Hello World!\");\n}")
 				.pack(5, 0, GeometrySide.bottom, GeometryFill.both, AnchorPosition.northWest, true);
 			this._entry = new Entry(entryLabelFrame)
 				.pack(5, 0, GeometrySide.left, GeometryFill.x, AnchorPosition.northWest, true);
 			auto entry3 = new SpinBox(entryLabelFrame)
-				.setData(["foo", "bar", "baz", "qux"])
+				.setData(["$foo", "[bar]", "\"baz\"", "{qux}"])
 				.setWrap(true)
 				.setWidth(5)
 				.pack(5, 0, GeometrySide.left);

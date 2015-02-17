@@ -34,7 +34,7 @@ mixin template Text()
 	 */
 	public auto setText(this T)(string text)
 	{
-		this._tk.eval("%s configure -text %s", this.id, text);
+		this._tk.eval(`%s configure -text "%s"`, this.id, text);
 
 		return cast(T) this;
 	}

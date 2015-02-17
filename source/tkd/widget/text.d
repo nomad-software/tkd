@@ -274,7 +274,7 @@ class Text : Widget, IXScrollable!(Text), IYScrollable!(Text)
 	 */
 	public auto appendText(this T)(string text)
 	{
-		this._tk.eval("%s insert end {%s}", this.id, text);
+		this._tk.eval(`%s insert end "%s"`, this.id, text);
 
 		return cast(T) this;
 	}
@@ -292,7 +292,7 @@ class Text : Widget, IXScrollable!(Text), IYScrollable!(Text)
 	 */
 	public auto insertText(this T)(int line, int character, string text)
 	{
-		this._tk.eval("%s insert %s.%s {%s}", this.id, line, character, text);
+		this._tk.eval(`%s insert %s.%s "%s"`, this.id, line, character, text);
 
 		return cast(T) this;
 	}

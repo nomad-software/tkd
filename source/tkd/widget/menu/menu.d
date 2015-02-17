@@ -99,7 +99,7 @@ class Menu : UiElement
 		this._radioButtonVariable = format("variable-%s", this.generateHash());
 
 		this._tk.eval("menu %s -type normal -tearoff 0", this.id);
-		this._tk.eval("%s add cascade -menu %s -label {%s} -underline %s", parent.id, this.id, label, underlineChar);
+		this._tk.eval(`%s add cascade -menu %s -label "%s" -underline %s`, parent.id, this.id, label, underlineChar);
 	}
 
 	/**
@@ -119,7 +119,7 @@ class Menu : UiElement
 		menu._parent = this;
 
 		this._tk.eval("%s clone %s", originalId, menu.id);
-		this._tk.eval("%s add cascade -menu %s -label {%s} -underline %s", this.id, menu.id, label, underlineChar);
+		this._tk.eval(`%s add cascade -menu %s -label "%s" -underline %s`, this.id, menu.id, label, underlineChar);
 
 		return cast(T) this;
 	}
@@ -154,7 +154,7 @@ class Menu : UiElement
 	{
 		string command = this.createCommand(callback, label);
 
-		this._tk.eval("%s add command -label {%s} -command %s -accelerator {%s}", this.id, label, command, shortCutText);
+		this._tk.eval(`%s add command -label "%s" -command %s -accelerator {%s}`, this.id, label, command, shortCutText);
 
 		return cast(T) this;
 	}
@@ -195,7 +195,7 @@ class Menu : UiElement
 	{
 		string command = this.createCommand(callback, label);
 
-		this._tk.eval("%s add command -image %s -label {%s} -command %s -compound %s -accelerator {%s}", this.id, image.id, label, command, imagePosition, shortCutText);
+		this._tk.eval(`%s add command -image %s -label "%s" -command %s -compound %s -accelerator {%s}`, this.id, image.id, label, command, imagePosition, shortCutText);
 
 		return cast(T) this;
 	}
@@ -231,7 +231,7 @@ class Menu : UiElement
 		this._checkButtonVariables ~= format("variable-%s", this.generateHash(label));
 		string command = this.createCommand(callback, label);
 
-		this._tk.eval("%s add checkbutton -label {%s} -command %s -accelerator {%s} -variable %s", this.id, label, command, shortCutText, this._checkButtonVariables.back());
+		this._tk.eval(`%s add checkbutton -label "%s" -command %s -accelerator {%s} -variable %s`, this.id, label, command, shortCutText, this._checkButtonVariables.back());
 
 		return cast(T) this;
 	}
@@ -273,7 +273,7 @@ class Menu : UiElement
 		this._checkButtonVariables ~= format("variable-%s", this.generateHash(label));
 		string command = this.createCommand(callback, label);
 
-		this._tk.eval("%s add checkbutton -image %s -label {%s} -command %s -compound %s -accelerator {%s} -variable %s", this.id, image.id, label, command, imagePosition, shortCutText, this._checkButtonVariables.back());
+		this._tk.eval(`%s add checkbutton -image %s -label "%s" -command %s -compound %s -accelerator {%s} -variable %s`, this.id, image.id, label, command, imagePosition, shortCutText, this._checkButtonVariables.back());
 
 		return cast(T) this;
 	}
@@ -332,7 +332,7 @@ class Menu : UiElement
 	{
 		string command = this.createCommand(callback, label);
 
-		this._tk.eval("%s add radiobutton -label {%s} -command %s -accelerator {%s} -variable %s", this.id, label, command, shortCutText, this._radioButtonVariable);
+		this._tk.eval(`%s add radiobutton -label "%s" -command %s -accelerator {%s} -variable %s`, this.id, label, command, shortCutText, this._radioButtonVariable);
 
 		return cast(T) this;
 	}
@@ -376,7 +376,7 @@ class Menu : UiElement
 	{
 		string command = this.createCommand(callback, label);
 
-		this._tk.eval("%s add radiobutton -image %s -label {%s} -command %s -compound %s -accelerator {%s} -variable %s", this.id, image.id, label, command, imagePosition, shortCutText, this._radioButtonVariable);
+		this._tk.eval(`%s add radiobutton -image %s -label "%s" -command %s -compound %s -accelerator {%s} -variable %s`, this.id, image.id, label, command, imagePosition, shortCutText, this._radioButtonVariable);
 
 		return cast(T) this;
 	}

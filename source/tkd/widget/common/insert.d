@@ -23,7 +23,7 @@ mixin template Insert()
 	 */
 	public auto insertTextAt(this T)(string text, int charIndex)
 	{
-		this._tk.eval("%s insert %s %s", this.id, charIndex, text);
+		this._tk.eval(`%s insert %s "%s"`, this.id, charIndex, text);
 
 		return cast(T) this;
 	}
@@ -39,7 +39,7 @@ mixin template Insert()
 	 */
 	public auto appendText(this T)(string text)
 	{
-		this._tk.eval("%s insert end %s", this.id, text);
+		this._tk.eval(`%s insert end "%s"`, this.id, text);
 
 		return cast(T) this;
 	}
@@ -59,7 +59,7 @@ mixin template Insert()
 	 */
 	public auto insertTextAtCursor(this T)(string text)
 	{
-		this._tk.eval("%s insert insert %s", this.id, text);
+		this._tk.eval(`%s insert insert "%s"`, this.id, text);
 
 		return cast(T) this;
 	}

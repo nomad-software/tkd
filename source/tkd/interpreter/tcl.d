@@ -10,7 +10,7 @@ module tkd.interpreter.tcl;
  * Imports.
  */
 import std.conv;
-import std.regex : regex, replaceAll;
+import std.regex : Captures, regex, replaceAll;
 import std.stdio;
 import std.string;
 import tcltk.tcl;
@@ -81,24 +81,57 @@ class Tcl
 	}
 
 	/**
-	 * Escape harmful characters in the script before evaluation.
+	 * Escape harmful characters in arguments that are to be used in a script.
+	 *
+	 * Params:
+	 *     args = An array of arguments to escape.
+	 *
+	 * Returns:
+	 *     Escaped arguments.
+	 */
+	public string[] escape(string[] args)
+	{
+		foreach (ref arg; args)
+		{
+			arg = this.escape(arg);
+		}
+		return args;
+	}
+
+	/**
+	 * Escape harmful characters in the passed argument that is to be used in a 
+	 * script.
 	 *
 	 * Params:
 	 *     arg = The argument to escape.
 	 *
 	 * Returns:
-	 *     The escaped script.
+	 *     The argument.
 	 */
-	private string escapeArg(string arg)
+	public string escape(string arg)
 	{
-		// Allow backslashes to be passed as intended to Tcl.
-		arg = arg.replaceAll(regex(r"\\"), r"\\");
+		string replacer(Captures!(string) m)
+		{
+			final switch(m.hit)
+			{
+				case `\`:
+					return `\\`;
 
-		// Braces are used as string delimeters in Tcl so escape those.
-		arg = arg.replaceAll(regex(r"\}"), r"\}");
-		arg = arg.replaceAll(regex(r"\{"), r"\{");
+				case `"`:
+					return `\"`;
 
-		return arg;
+				case `$`:
+					return `\$`;
+
+				case `[`:
+					return `\[`;
+
+				case `]`:
+					return `\]`;
+			}
+			assert(false);
+		}
+		return arg.replaceAll!(replacer)(regex(`\\|"|\$|\[|\]`));
 	}
 
 	/**
@@ -114,7 +147,7 @@ class Tcl
 		{
 			static if (is(typeof(arg) == string))
 			{
-				arg = this.escapeArg(arg);
+				arg = this.escape(arg);
 			}
 		}
 

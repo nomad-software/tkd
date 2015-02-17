@@ -178,7 +178,11 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 */
 	private void buildColumns()
 	{
-		this._tk.eval("%s configure -columns { \"%s\" }", this.id, this.getDataColumnIdentifiers().join("\" \""));
+		string columns = format(`[list "%s"]`, this.getDataColumnIdentifiers().join(`" "`));
+
+		// String concatentation is used here to avoid the character escaping 
+		// done on args.
+		this._tk.eval("%s configure -columns " ~ columns, this.id);
 
 		for (int x = 1; x < this._columns.length; x++)
 		{
@@ -376,22 +380,28 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 */
 	private void appendRows(string parentRow, TreeViewRow[] rows)
 	{
-		string dataValues;
+		string values;
 		string tags;
 
 		foreach (row; rows)
 		{
+			row._values = this._tk.escape(row._values);
+
 			if (row.values.length > 1)
 			{
-				dataValues = format("\"%s\"", row.values[1 .. $].join("\" \""));
+				values = "-values " ~ format(`[list "%s"]`, row.values[1 .. $].join(`" "`));
 			}
+
+			row._tags = this._tk.escape(row._tags);
 
 			if (row.tags.length)
 			{
-				tags = format("\"%s\"", row.tags.join("\" \""));
+				tags = "-tags " ~ format(`[list "%s"]`, row.tags.join(`" "`));
 			}
 
-			this._tk.eval("%s insert {%s} end -text {%s} -values {%s} -open %s -tags {%s}", this.id, parentRow, row.values[0], dataValues, row.isOpen, tags);
+			// String concatentation is used here to avoid the character 
+			// escaping done on args.
+			this._tk.eval(`%s insert {%s} end -text "` ~  row.values[0] ~ `" ` ~ values ~ ` -open %s ` ~ tags, this.id, parentRow, row.isOpen);
 
 			row._rowId = this._tk.getResult!(string);
 
@@ -480,7 +490,11 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 */
 	public auto displayDataColumns(this T)(int[] indexes)
 	{
-		this._tk.eval("%s configure -displaycolumns {\"%s\"}", this.id, this.getDataColumnIdentifiers(indexes).join("\" \""));
+		string columns = format(`[list "%s"]`, this.getDataColumnIdentifiers(indexes).join(`" "`));
+
+		// String concatentation is used here to avoid the character escaping 
+		// done on args.
+		this._tk.eval("%s configure -displaycolumns " ~ columns, this.id);
 
 		return cast(T) this;
 	}

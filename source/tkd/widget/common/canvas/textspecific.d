@@ -205,7 +205,7 @@ mixin template TextSpecific()
 
 		if (this._parent && this._text.length)
 		{
-			this._tk.eval("%s itemconfigure %s -text {%s}", this._parent.id, this.id, this._text);
+			this._tk.eval(`%s itemconfigure %s -text "%s"`, this._parent.id, this.id, this._text);
 		}
 
 		return cast(T) this;
