@@ -120,7 +120,12 @@ class Tcl
 
 		debug (log) this._log.eval(script, args);
 
-		int result = Tcl_EvalEx(this._interpreter, format(script, args).toStringz, -1, 0);
+		static if (A.length)
+		{
+			script = format(script, args);
+		}
+
+		int result = Tcl_EvalEx(this._interpreter, script.toStringz, -1, 0);
 
 		if (result == TCL_ERROR)
 		{
@@ -145,8 +150,13 @@ class Tcl
 	 */
 	public void setResult(A...)(string result, A args)
 	{
-		debug (log) this._log.info("Setting interpreter result '%s'", format(result, args));
-		Tcl_SetResult(this._interpreter, format(result, args).toStringz, TCL_STATIC);
+		static if (A.length)
+		{
+			result = format(result, args);
+		}
+
+		debug (log) this._log.info("Setting interpreter result '%s'", result);
+		Tcl_SetResult(this._interpreter, result.toStringz, TCL_STATIC);
 	}
 
 	/**

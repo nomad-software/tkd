@@ -58,7 +58,7 @@ class Logger
 	 * Params:
 	 *     logFile = The log file for logging.
 	 */
-	public this(string logFile = null) nothrow
+	final public this(string logFile = null) nothrow
 	{
 		try
 		{
@@ -83,7 +83,7 @@ class Logger
 	 * Returns:
 	 *     The current timestamp.
 	 */
-	private string getTimestamp() nothrow
+	final private string getTimestamp() nothrow
 	{
 		try
 		{
@@ -103,7 +103,7 @@ class Logger
 	 *     text = The text to write to the log.
 	 *     level = The level of the text.
 	 */
-	private void log(string text, Level level) nothrow
+	final private void log(A...)(Level level, string text, A args) nothrow
 	{
 		string levelText;
 
@@ -128,6 +128,11 @@ class Logger
 
 		try
 		{
+			static if (A.length)
+			{
+				text = format(text, args);
+			}
+
 			this._log.writefln("%s %s: %s", this.getTimestamp(), levelText, text);
 			this._log.flush();
 		}
@@ -144,16 +149,9 @@ class Logger
 	 *     text = The format of the text to write to the log.
 	 *     args = The arguments that the format defines (if any).
 	 */
-	public void eval(A...)(string text, A args) nothrow
+	final public void eval(A...)(string text, A args) nothrow
 	{
-		try
-		{
-			this.log(format(text, args), Level.eval);
-		}
-		catch (Exception ex)
-		{
-			assert(false, ex.msg);
-		}
+		this.log(Level.eval, text, args);
 	}
 
 	/**
@@ -163,16 +161,9 @@ class Logger
 	 *     text = The format of the text to write to the log.
 	 *     args = The arguments that the format defines (if any).
 	 */
-	public void info(A...)(string text, A args) nothrow
+	final public void info(A...)(string text, A args) nothrow
 	{
-		try
-		{
-			this.log(format(text, args), Level.information);
-		}
-		catch (Exception ex)
-		{
-			assert(false, ex.msg);
-		}
+		this.log(Level.information, text, args);
 	}
 
 	/**
@@ -182,16 +173,9 @@ class Logger
 	 *     text = The format of the text to write to the log.
 	 *     args = The arguments that the format defines (if any).
 	 */
-	public void warning(A...)(string text, A args) nothrow
+	final public void warning(A...)(string text, A args) nothrow
 	{
-		try
-		{
-			this.log(format(text, args), Level.warning);
-		}
-		catch (Exception ex)
-		{
-			assert(false, ex.msg);
-		}
+		this.log(Level.warning, text, args);
 	}
 
 	/**
@@ -201,16 +185,9 @@ class Logger
 	 *     text = The format of the text to write to the log.
 	 *     args = The arguments that the format defines (if any).
 	 */
-	public void error(A...)(string text, A args) nothrow
+	final public void error(A...)(string text, A args) nothrow
 	{
-		try
-		{
-			this.log(format(text, args), Level.error);
-		}
-		catch (Exception ex)
-		{
-			assert(false, ex.msg);
-		}
+		this.log(Level.error, text, args);
 	}
 
 }
