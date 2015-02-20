@@ -429,7 +429,7 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 */
 	public auto updateDataColumn(this T)(string rowId, uint columnIndex, string value)
 	{
-		auto cmd = text(this.id, ` set `, rowId, columnIndex, `"`, value, `"`);
+		auto cmd = text(this.id, ` set `, rowId, ` `, columnIndex, ` "`, this._tk.escape(value), `"`);
 		this._tk.eval(cmd);
 
 		return cast(T) this;
