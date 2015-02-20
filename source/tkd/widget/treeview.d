@@ -11,6 +11,7 @@ module tkd.widget.treeview;
  */
 import std.algorithm;
 import std.array;
+import std.conv;
 import std.regex;
 import std.string;
 import tkd.element.color;
@@ -389,7 +390,7 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 
 			if (row.values.length > 1)
 			{
-				values = "-values " ~ format(`[list "%s"]`, row.values[1 .. $].join(`" "`));
+				values = "-values " ~ format(`{"%s"}`, row.values[1 .. $].join(`" "`));
 			}
 
 			row._tags = this._tk.escape(row._tags);
@@ -401,7 +402,8 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 
 			// String concatentation is used here to avoid the character 
 			// escaping done on args.
-			this._tk.eval(`%s insert {%s} end -text "` ~  row.values[0] ~ `" ` ~ values ~ ` -open %s ` ~ tags, this.id, parentRow, row.isOpen);
+			auto cmd = text(this.id, ` insert {`, parentRow, `} end -text "`, row.values[0], `" `, values, ` -open `, row.isOpen);
+			this._tk.eval(cmd);
 
 			row._rowId = this._tk.getResult!(string);
 
@@ -427,7 +429,8 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 */
 	public auto updateDataColumn(this T)(string rowId, uint columnIndex, string value)
 	{
-		this._tk.eval("%s set %s %s {%s}", this.id, rowId, columnIndex, value);
+		auto cmd = text(this.id, ` set `, rowId, ` `, columnIndex, ` "`, this._tk.escape(value), `"`);
+		this._tk.eval(cmd);
 
 		return cast(T) this;
 	}
