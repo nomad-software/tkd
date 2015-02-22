@@ -10,6 +10,7 @@ module tkd.widget.notebook;
  * Imports.
  */
 import std.array;
+import std.conv;
 import tkd.element.uielement;
 import tkd.image.image;
 import tkd.image.imageposition;
@@ -126,7 +127,12 @@ class NoteBook : Widget
 	 */
 	public auto insertTab(this T, I)(I tabIdentifier, string text, Widget widget) if (is(I == int) || is(I == string))
 	{
-		this._tk.eval(`%s insert %s %s -text "%s"`, this.id, tabIdentifier, widget.id, text);
+		// String concatenation is used to build the script here instead of 
+		// using format specifiers to enable supporting input which includes 
+		// Tcl/Tk reserved characters and elements that could be construed as 
+		// format specifiers.
+		string script = std.conv.text(this.id, ` insert `, tabIdentifier, ` `, widget.id, ` -text "`, this._tk.escape(text), `"`);
+		this._tk.eval(script);
 
 		return cast(T) this;
 	}
@@ -249,7 +255,12 @@ class NoteBook : Widget
 	 */
 	public auto setTabText(this T, I)(I tabIdentifier, string text) if (is(I == int) || is(I == string))
 	{
-		this._tk.eval(`%s tab %s -text "%s"`, this.id, tabIdentifier, text);
+		// String concatenation is used to build the script here instead of 
+		// using format specifiers to enable supporting input which includes 
+		// Tcl/Tk reserved characters and elements that could be construed as 
+		// format specifiers.
+		string script = std.conv.text(this.id, ` tab `, tabIdentifier, ` -text "`, this._tk.escape(text), `"`);
+		this._tk.eval(script);
 
 		return cast(T) this;
 	}

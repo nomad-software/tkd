@@ -11,6 +11,7 @@ module tkd.widget.common.canvas.textspecific;
  */
 mixin template TextSpecific()
 {
+	import std.conv;
 	import std.typecons : Nullable;
 
 	/**
@@ -205,7 +206,12 @@ mixin template TextSpecific()
 
 		if (this._parent && this._text.length)
 		{
-			this._tk.eval(`%s itemconfigure %s -text "%s"`, this._parent.id, this.id, this._text);
+			// String concatenation is used to build the script here instead of 
+			// using format specifiers to enable supporting input which 
+			// includes Tcl/Tk reserved characters and elements that could be 
+			// construed as format specifiers.
+			string script = std.conv.text(this._parent.id, ` itemconfigure `, this.id, ` -text "`, this._tk.escape(this._text), `"`);
+			this._tk.eval(script);
 		}
 
 		return cast(T) this;

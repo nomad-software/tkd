@@ -168,7 +168,20 @@ class Application : TkdApplication
 	{
 		auto menuBar = new MenuBar(this.mainWindow);
 
+		auto checkButtonSubMenu = new Menu()
+			.addCheckButtonEntry("Option 1", delegate(CommandArgs args){})
+			.addCheckButtonEntry("Option 2", delegate(CommandArgs args){})
+			.addCheckButtonEntry("Option 3", delegate(CommandArgs args){});
+
+		auto radioButtonSubMenu = new Menu()
+			.addRadioButtonEntry("Option 1", delegate(CommandArgs args){})
+			.addRadioButtonEntry("Option 2", delegate(CommandArgs args){})
+			.addRadioButtonEntry("Option 3", delegate(CommandArgs args){});
+
 		auto fileMenu = new Menu(menuBar, "File", 0)
+			.addMenuEntry("Checkbutton submenu", checkButtonSubMenu)
+			.addMenuEntry("Radiobutton submenu", radioButtonSubMenu)
+			.addSeparator()
 			.addEntry(new EmbeddedPng!("cancel.png"), "Quit", &this.exitApplication, ImagePosition.left, "Ctrl-Q");
 
 		auto helpMenu = new Menu(menuBar, "Help", 0)

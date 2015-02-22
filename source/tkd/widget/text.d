@@ -9,6 +9,7 @@ module tkd.widget.text;
 /**
  * Imports.
  */
+import std.conv;
 import tkd.element.uielement;
 import tkd.image.image;
 import tkd.widget.common.border;
@@ -274,7 +275,12 @@ class Text : Widget, IXScrollable!(Text), IYScrollable!(Text)
 	 */
 	public auto appendText(this T)(string text)
 	{
-		this._tk.eval(`%s insert end "%s"`, this.id, text);
+		// String concatenation is used to build the script here instead of 
+		// using format specifiers to enable supporting input which includes 
+		// Tcl/Tk reserved characters and elements that could be construed as 
+		// format specifiers.
+		string script = std.conv.text(this.id, ` insert end "`, this._tk.escape(text), `"`);
+		this._tk.eval(script);
 
 		return cast(T) this;
 	}
@@ -292,7 +298,12 @@ class Text : Widget, IXScrollable!(Text), IYScrollable!(Text)
 	 */
 	public auto insertText(this T)(int line, int character, string text)
 	{
-		this._tk.eval(`%s insert %s.%s "%s"`, this.id, line, character, text);
+		// String concatenation is used to build the script here instead of 
+		// using format specifiers to enable supporting input which includes 
+		// Tcl/Tk reserved characters and elements that could be construed as 
+		// format specifiers.
+		string script = std.conv.text(this.id, ` insert `, line, `.`, character, ` "`, this._tk.escape(text), `"`);
+		this._tk.eval(script);
 
 		return cast(T) this;
 	}

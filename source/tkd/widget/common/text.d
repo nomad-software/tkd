@@ -11,6 +11,8 @@ module tkd.widget.common.text;
  */
 mixin template Text()
 {
+	import std.conv;
+
 	/**
 	 * Get the widget text.
 	 *
@@ -34,7 +36,12 @@ mixin template Text()
 	 */
 	public auto setText(this T)(string text)
 	{
-		this._tk.eval(`%s configure -text "%s"`, this.id, text);
+		// String concatenation is used to build the script here instead of 
+		// using format specifiers to enable supporting input which includes 
+		// Tcl/Tk reserved characters and elements that could be construed as 
+		// format specifiers.
+		string script = std.conv.text(this.id, ` configure -text `, `"`, this._tk.escape(text), `"`);
+		this._tk.eval(script);
 
 		return cast(T) this;
 	}

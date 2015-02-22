@@ -139,7 +139,11 @@ abstract class Element
 	 */
 	protected string generateHash(A...)(string text, A args)
 	{
-		return hexDigest!(CRC32)(format(text, args)).array.to!(string);
+		static if (A.length)
+		{
+			text = format(text, args);
+		}
+		return hexDigest!(CRC32)(text).array.to!(string);
 	}
 
 	/*
@@ -171,6 +175,8 @@ abstract class Element
 	 */
 	protected string createCommand(CommandCallback callback, string uniqueData = null)
 	{
+		assert(callback !is null, "A command callback can not be null.");
+
 		Tcl_CmdProc commandCallbackHandler = function(ClientData data, Tcl_Interp* tclInterpreter, int argc, const(char)** argv)
 		{
 			CommandArgs args = *cast(CommandArgs*)data;

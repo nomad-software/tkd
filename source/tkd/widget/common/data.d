@@ -12,6 +12,7 @@ module tkd.widget.common.data;
 mixin template Data()
 {
 	import std.array;
+	import std.conv;
 
 	/**
 	 * Get the data values of the widget.
@@ -38,9 +39,12 @@ mixin template Data()
 	{
 		string data = format(`[list "%s"]`, this._tk.escape(values).join(`" "`));
 
-		// String concatentation is used here to avoid the character escaping 
-		// done on args.
-		this._tk.eval("%s configure -values " ~  data, this.id);
+		// String concatenation is used to build the script here instead of 
+		// using format specifiers to enable supporting input which includes 
+		// Tcl/Tk reserved characters and elements that could be construed as 
+		// format specifiers.
+		string script = std.conv.text(this.id, ` configure -values `, data);
+		this._tk.eval(script);
 
 		return cast(T) this;
 	}

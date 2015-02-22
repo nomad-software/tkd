@@ -11,6 +11,8 @@ module tkd.widget.common.insert;
  */
 mixin template Insert()
 {
+	import std.conv;
+
 	/**
 	 * Insert text at an index.
 	 *
@@ -23,7 +25,12 @@ mixin template Insert()
 	 */
 	public auto insertTextAt(this T)(string text, int charIndex)
 	{
-		this._tk.eval(`%s insert %s "%s"`, this.id, charIndex, text);
+		// String concatenation is used to build the script here instead of 
+		// using format specifiers to enable supporting input which includes 
+		// Tcl/Tk reserved characters and elements that could be construed as 
+		// format specifiers.
+		string script = std.conv.text(this.id, ` insert `, charIndex, ` "`, this._tk.escape(text), `"`);
+		this._tk.eval(script);
 
 		return cast(T) this;
 	}
@@ -39,7 +46,12 @@ mixin template Insert()
 	 */
 	public auto appendText(this T)(string text)
 	{
-		this._tk.eval(`%s insert end "%s"`, this.id, text);
+		// String concatenation is used to build the script here instead of 
+		// using format specifiers to enable supporting input which includes 
+		// Tcl/Tk reserved characters and elements that could be construed as 
+		// format specifiers.
+		string script = std.conv.text(this.id, ` insert end `, `"`, this._tk.escape(text), `"`);
+		this._tk.eval(script);
 
 		return cast(T) this;
 	}
@@ -59,7 +71,12 @@ mixin template Insert()
 	 */
 	public auto insertTextAtCursor(this T)(string text)
 	{
-		this._tk.eval(`%s insert insert "%s"`, this.id, text);
+		// String concatenation is used to build the script here instead of 
+		// using format specifiers to enable supporting input which includes 
+		// Tcl/Tk reserved characters and elements that could be construed as 
+		// format specifiers.
+		string script = std.conv.text(this.id, ` insert insert `, `"`, this._tk.escape(text), `"`);
+		this._tk.eval(script);
 
 		return cast(T) this;
 	}

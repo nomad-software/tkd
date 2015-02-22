@@ -11,6 +11,7 @@ module tkd.widget.treeview;
  */
 import std.algorithm;
 import std.array;
+import std.conv;
 import std.regex;
 import std.string;
 import tkd.element.color;
@@ -178,11 +179,13 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 */
 	private void buildColumns()
 	{
+		// String concatenation is used to build the script here instead of 
+		// using format specifiers to enable supporting input which includes 
+		// Tcl/Tk reserved characters and elements that could be construed as 
+		// format specifiers.
 		string columns = format(`[list "%s"]`, this.getDataColumnIdentifiers().join(`" "`));
-
-		// String concatentation is used here to avoid the character escaping 
-		// done on args.
-		this._tk.eval("%s configure -columns " ~ columns, this.id);
+		string script  = std.conv.text(this.id, ` configure -columns `, columns);
+		this._tk.eval(script);
 
 		for (int x = 1; x < this._columns.length; x++)
 		{
@@ -372,7 +375,7 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 
 	/**
 	 * This method does the actualy work of adding rows to the tree view.
-	 * All children are recursed and add too.
+	 * All children are recursed and added too.
 	 *
 	 * Params:
 	 *     parentRow = The id of the parent row. Use '{}' for the top level.
@@ -389,19 +392,24 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 
 			if (row.values.length > 1)
 			{
-				values = "-values " ~ format(`[list "%s"]`, row.values[1 .. $].join(`" "`));
+				// Build the data column list.
+				values = " -values " ~ format(`[list "%s"]`, row.values[1 .. $].join(`" "`));
 			}
 
 			row._tags = this._tk.escape(row._tags);
 
 			if (row.tags.length)
 			{
-				tags = "-tags " ~ format(`[list "%s"]`, row.tags.join(`" "`));
+				// Build the tags list.
+				tags = " -tags " ~ format(`[list "%s"]`, row.tags.join(`" "`));
 			}
 
-			// String concatentation is used here to avoid the character 
-			// escaping done on args.
-			this._tk.eval(`%s insert {%s} end -text "` ~  row.values[0] ~ `" ` ~ values ~ ` -open %s ` ~ tags, this.id, parentRow, row.isOpen);
+			// String concatenation is used to build the script here instead of 
+			// using format specifiers to enable supporting input which includes 
+			// Tcl/Tk reserved characters and elements that could be construed as 
+			// format specifiers.
+			string script = std.conv.text(this.id, ` insert {`, parentRow, `} end -text "`, row.values[0], `"`, values, ` -open `, row.isOpen, tags);
+			this._tk.eval(script);
 
 			row._rowId = this._tk.getResult!(string);
 
@@ -492,9 +500,12 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	{
 		string columns = format(`[list "%s"]`, this.getDataColumnIdentifiers(indexes).join(`" "`));
 
-		// String concatentation is used here to avoid the character escaping 
-		// done on args.
-		this._tk.eval("%s configure -displaycolumns " ~ columns, this.id);
+		// String concatenation is used to build the script here instead of 
+		// using format specifiers to enable supporting input which includes 
+		// Tcl/Tk reserved characters and elements that could be construed as 
+		// format specifiers.
+		string script = std.conv.text(this.id, ` configure -displaycolumns `, columns);
+		this._tk.eval(script);
 
 		return cast(T) this;
 	}
@@ -796,7 +807,13 @@ class TreeViewColumn : Element
 
 		if (this._parent)
 		{
-			this._tk.eval("%s heading %s -text {%s} -anchor %s", this._parent.id, this.id, this._title, this._anchor);
+			// String concatenation is used to build the script here instead of 
+			// using format specifiers to enable supporting input which includes 
+			// Tcl/Tk reserved characters and elements that could be construed as 
+			// format specifiers.
+			string script = std.conv.text(this._parent.id, ` heading `, this.id, ` -text "`, this._tk.escape(this._title), `" -anchor `, this._anchor);
+			this._tk.eval(script);
+
 		}
 
 		return cast(T) this;
@@ -817,7 +834,12 @@ class TreeViewColumn : Element
 
 		if (this._parent && this._image)
 		{
-			this._tk.eval("%s heading %s -text {%s} -anchor %s -image %s", this._parent.id, this.id, this._title, this._anchor, image.id);
+			// String concatenation is used to build the script here instead of 
+			// using format specifiers to enable supporting input which includes 
+			// Tcl/Tk reserved characters and elements that could be construed as 
+			// format specifiers.
+			string script = std.conv.text(this._parent.id, ` heading `, this.id, ` -text "`, this._tk.escape(this._title), `" -anchor `, this._anchor, ` -image `, image.id);
+			this._tk.eval(script);
 		}
 
 		return cast(T) this;
