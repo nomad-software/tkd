@@ -435,7 +435,12 @@ class TreeView : Widget, IXScrollable!(TreeView), IYScrollable!(TreeView)
 	 */
 	public auto updateDataColumn(this T)(string rowId, uint columnIndex, string value)
 	{
-		this._tk.eval("%s set %s %s {%s}", this.id, rowId, columnIndex, value);
+		// String concatenation is used to build the script here instead of 
+		// using format specifiers to enable supporting input which includes 
+		// Tcl/Tk reserved characters and elements that could be construed as 
+		// format specifiers.
+		string script = std.conv.text(this.id, ` set `, rowId, ` `, columnIndex, ` "`, this._tk.escape(value), `"`);
+		this._tk.eval(script);
 
 		return cast(T) this;
 	}
