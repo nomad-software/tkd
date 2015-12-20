@@ -216,15 +216,37 @@ class MessageDialog : Dialog
 	{
 		this.checkDefaultButton();
 
+		// String concatenation is used to build the script here instead of 
+		// using format specifiers to enable supporting input which includes 
+		// Tcl/Tk reserved characters and elements that could be construed as 
+		// format specifiers.
+		string script;
+
 		if (this._parent)
 		{
-			this._tk.eval("tk_messageBox -parent %s -title {%s} -default {%s} -detail {%s} -icon {%s} -message {%s} -type {%s}", this._parent.id, this._title, this._defaultButton, this._detailMessage, this._icon, this._message, this._type);
+			script = std.conv.text(
+				`tk_messageBox -parent `, this._parent.id,
+				` -title {`, this._title, `}`,
+				` -default {`, this._defaultButton, `}`,
+				` -detail {`, this._detailMessage, `}`,
+				` -icon {`, this._icon, `}`,
+				` -message {`, this._message, `}`,
+				` -type {`, this._type, `}`
+			);
 		}
 		else
 		{
-			this._tk.eval("tk_messageBox -title {%s} -default {%s} -detail {%s} -icon {%s} -message {%s} -type {%s}", this._title, this._defaultButton, this._detailMessage, this._icon, this._message, this._type);
+			script = std.conv.text(
+				`tk_messageBox -title {`, this._title, `}`,
+				` -default {`, this._defaultButton, `}`,
+				` -detail {`, this._detailMessage, `}`,
+				` -icon {`, this._icon, `}`,
+				` -message {`, this._message, `}`,
+				` -type {`, this._type, `}`
+			);
 		}
 
+		this._tk.eval(script);
 		this._results = [this._tk.getResult!(string)];
 
 		return cast(T) this;

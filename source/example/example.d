@@ -120,7 +120,7 @@ class Application : TkdApplication
 	 */
 	private void openMessageDialog(CommandArgs args)
 	{
-		auto dialog = new MessageDialog()
+		auto dialog = new MessageDialog(this.mainWindow)
 			.setMessage("Lorem ipsum dolor sit amet.")
 			.setDetailMessage("Nunc at aliquam arcu. Sed eget tellus ligula.\nSed egestas est et tempus cursus.")
 			.setType(MessageDialogType.okcancel)
@@ -155,9 +155,9 @@ class Application : TkdApplication
 	 */
 	private void showAbout(CommandArgs args)
 	{
-		auto dialog = new MessageDialog("About")
+		auto dialog = new MessageDialog(this.mainWindow, "About")
 			.setMessage("Tkd Showcase")
-			.setDetailMessage("An showcase Tkd application demonstrating menus, widgets and dialogs.\n\nThe possiblities are endless.")
+			.setDetailMessage("A showcase Tkd application demonstrating menus, widgets and dialogs.\n\nThe possiblities are endless.")
 			.show();
 	}
 
