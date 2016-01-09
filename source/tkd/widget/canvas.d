@@ -666,7 +666,7 @@ protected abstract class CanvasItem : Element
 	 * Returns:
 	 *     This item to aid method chaining.
 	 */
-	public auto setCoords(this T)(int[] coords)
+	public auto setCoords(this T)(double[] coords)
 	{
 		assert(coords.length >= 2, "Not enough coordinates specified.");
 
