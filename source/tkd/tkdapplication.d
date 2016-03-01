@@ -90,6 +90,9 @@ abstract class TkdApplication
 
 		this._tk = Tk.getInstance();
 
+		// Use UTF-8 encoding throught the entire application.
+		this._tk.eval("encoding system utf-8");
+
 		// Fix to remove hard-coded background colors from widgets.
 		version (Windows)
 		{
