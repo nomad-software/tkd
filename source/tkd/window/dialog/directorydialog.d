@@ -54,6 +54,15 @@ class DirectoryDialog : Dialog
 	this(Window parent, string title = "Directory")
 	{
 		super(parent, title);
+
+		// Fix to hide hidden files by default on Posix systems. This also
+		// enables a checkbutton to show them again within the dialog.
+		version (Posix)
+		{
+			this._tk.eval("catch {tk_getOpenFile foo bar}");
+			this._tk.eval("set ::tk::dialog::file::showHiddenVar 0");
+			this._tk.eval("set ::tk::dialog::file::showHiddenBtn 1");
+		}
 	}
 
 	/**
