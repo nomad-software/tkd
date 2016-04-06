@@ -13,6 +13,7 @@ mixin template Data()
 {
 	import std.array;
 	import std.conv;
+	import std.string;
 
 	/**
 	 * Get the data values of the widget.

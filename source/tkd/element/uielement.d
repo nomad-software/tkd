@@ -327,7 +327,7 @@ abstract class UiElement : Element
 	 */
 	public auto bind(this T)(string binding, CommandCallback callback)
 	{
-		assert(!std.regex.match(binding, r"^<.*?>$").empty, "Binding must take the form of <binding>");
+		assert(!match(binding, r"^<.*?>$").empty, "Binding must take the form of <binding>");
 
 		string command = this.createCommand(callback, binding);
 		this._tk.eval("bind %s {%s} {%s %%b %%k %%x %%y %%D %%K %%X %%Y}", this.id, binding, command);

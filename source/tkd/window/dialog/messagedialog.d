@@ -9,6 +9,7 @@ module tkd.window.dialog.messagedialog;
 /**
  * Imports.
  */
+import std.conv;
 import std.regex;
 import tkd.window.dialog.dialog;
 import tkd.window.window;
@@ -224,7 +225,7 @@ class MessageDialog : Dialog
 
 		if (this._parent)
 		{
-			script = std.conv.text(
+			script = text(
 				`tk_messageBox -parent `, this._parent.id,
 				` -title {`, this._title, `}`,
 				` -default {`, this._defaultButton, `}`,
@@ -236,7 +237,7 @@ class MessageDialog : Dialog
 		}
 		else
 		{
-			script = std.conv.text(
+			script = text(
 				`tk_messageBox -title {`, this._title, `}`,
 				` -default {`, this._defaultButton, `}`,
 				` -detail {`, this._detailMessage, `}`,

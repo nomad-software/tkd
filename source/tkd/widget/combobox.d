@@ -10,6 +10,7 @@ module tkd.widget.combobox;
  * Imports.
  */
 import std.conv;
+import std.string;
 import tkd.element.element;
 import tkd.element.uielement;
 import tkd.widget.common.boundingbox;
