@@ -213,7 +213,7 @@ abstract class Element
 
 				args.callback(args);
 			}
-			catch (Throwable ex)
+			catch (Exception ex)
 			{
 				string error = "Error occurred in command callback. ";
 				error ~= ex.msg ~ "\n";
