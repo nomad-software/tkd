@@ -218,6 +218,19 @@ libraries are **libtcl** and **libtk**.
 
 ## Notes
 
+### Linux Mint users
+
+On Linux Mint (may be the same on other Ubuntu derivatives), installing libtcl8.6-dev and libtk8.6-dev may not be enough. Why ? Because the libraries are installed inside the folder `/usr/lib/x86_64-linux-gnu` and not just `/usr/lib`.
+
+So you can run these commands, before calling dub on your project
+
+```bash
+sudo ln -s /usr/lib/x86_64-linux-gnu/libtcl8.6.a /usr/lib/libtcl.a
+sudo ln -s /usr/lib/x86_64-linux-gnu/libtk8.6.a /usr/lib/libtk.a
+sudo ln -s /usr/lib/x86_64-linux-gnu/libtcl8.6.so /usr/lib/libtcl.so
+sudo ln -s /usr/lib/x86_64-linux-gnu/libtk8.6.so /usr/lib/libtk.so
+```
+
 ### Debugging
 
 The following debug flags can be passed to Tkd to help debug certain issues.
