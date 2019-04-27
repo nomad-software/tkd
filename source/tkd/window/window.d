@@ -13,6 +13,7 @@ import std.conv;
 import std.string;
 import tkd.element.element : CommandCallback;
 import tkd.element.uielement;
+import tkd.widget.common.color;
 import tkd.image.image;
 import tkd.interpreter;
 
@@ -596,6 +597,8 @@ class Window : UiElement
 
 		return this._mainWindow;
 	}
+    
+    mixin Color;
 }
 
 /**
