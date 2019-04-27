@@ -204,6 +204,8 @@ class Application : TkdApplication
 				.setWidth(0)
 				.setHeight(3)
 				.appendText("import std.stdio;\n\nvoid main(string[] args)\n{\n\twriteln(\"Hello World!\");\n}")
+				.setForegroundColor("#00ff00")
+				.setBackgroundColor("#000000")
 				.pack(5, 0, GeometrySide.bottom, GeometryFill.both, AnchorPosition.northWest, true);
 			this._entry = new Entry(entryLabelFrame)
 				.pack(5, 0, GeometrySide.left, GeometryFill.x, AnchorPosition.northWest, true);

@@ -14,6 +14,7 @@ import std.string;
 import tkd.element.element;
 import tkd.element.uielement;
 import tkd.widget.common.boundingbox;
+import tkd.widget.common.color;
 import tkd.widget.common.cursor;
 import tkd.widget.common.data;
 import tkd.widget.common.delete_;
@@ -198,6 +199,7 @@ class ComboBox : Widget, IXScrollable!(ComboBox)
 	 * Mixin common commands.
 	 */
 	mixin BoundingBox;
+    mixin Color;
 	mixin Cursor;
 	mixin Data;
 	mixin Delete_;

@@ -12,6 +12,7 @@ module tkd.widget.entry;
 import std.string;
 import tkd.element.uielement;
 import tkd.widget.common.boundingbox;
+import tkd.widget.common.color;
 import tkd.widget.common.cursor;
 import tkd.widget.common.delete_;
 import tkd.widget.common.exportselection;
@@ -153,6 +154,7 @@ class Entry : Widget, IXScrollable!(Entry)
 	 * Mixin common commands.
 	 */
 	mixin BoundingBox;
+    mixin Color;
 	mixin Cursor;
 	mixin Delete_;
 	mixin ExportSelection;

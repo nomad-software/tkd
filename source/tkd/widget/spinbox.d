@@ -12,6 +12,7 @@ module tkd.widget.spinbox;
 import std.string;
 import tkd.element.uielement;
 import tkd.widget.common.boundingbox;
+import tkd.widget.common.color;
 import tkd.widget.common.command;
 import tkd.widget.common.cursor;
 import tkd.widget.common.data;
@@ -233,6 +234,7 @@ class SpinBox : Widget, IXScrollable!(SpinBox)
 	 * Mixin common commands.
 	 */
 	mixin BoundingBox;
+    mixin Color;
 	mixin Command;
 	mixin Cursor;
 	mixin Data;
