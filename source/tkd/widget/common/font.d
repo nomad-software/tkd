@@ -11,7 +11,7 @@ module tkd.widget.common.font;
  */
 mixin template Font()
 {  
-	public auto setFont(this T)(string font, int size = 12, string bold = "", string italic = "", string underline = "")
+	public auto setFont(this T)(string font, int size = 0, string bold = "", string italic = "", string underline = "")
 	{
 		this._tk.eval("%s configure -font {%s %s %s %s %s}", this.id, font, size, bold, italic, underline);
 
