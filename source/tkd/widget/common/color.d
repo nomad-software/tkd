@@ -11,6 +11,17 @@ module tkd.widget.common.color;
  */
 mixin template Color()
 {
+	/**
+	 * Set the foreground color of the widget.
+	 *
+	 * Params:
+	 *     color = The name of the color 'black' or its hex value '#000000' or '#000'.
+	 *
+	 * 	   For a comprehensive list of color names see the tkd.element.color Color enum.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
 	public auto setForegroundColor(this T)(string color)
 	{
 		this._tk.eval("%s configure -foreground %s", this.id, color);
@@ -18,7 +29,18 @@ mixin template Color()
 		return cast(T) this;
 	}
 
-    public auto setBackgroundColor(this T)(string color)
+	/**
+	 * Set the background color of the widget.
+	 *
+	 * Params:
+	 *     color = The name of the color 'white' or it's hex value '#FFFFFF' or '#FFF'.
+	 *
+	 * 	   For a comprehensive list of color names see the tkd.element.color Color enum.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto setBackgroundColor(this T)(string color)
 	{
 		this._tk.eval("%s configure -background %s", this.id, color);
 

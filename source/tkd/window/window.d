@@ -597,8 +597,11 @@ class Window : UiElement
 
 		return this._mainWindow;
 	}
-    
-    mixin Color;
+
+	/**
+	 * Mixin common commands.
+	 */
+	mixin Color;
 }
 
 /**

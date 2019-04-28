@@ -497,7 +497,7 @@ class Text : Widget, IXScrollable!(Text), IYScrollable!(Text)
 	 */
 	mixin Border;
 	mixin Color;
-    mixin Font;
+	mixin Font;
 	mixin Height;
 	mixin Relief;
 	mixin Width;

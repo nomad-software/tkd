@@ -154,7 +154,7 @@ class Entry : Widget, IXScrollable!(Entry)
 	 * Mixin common commands.
 	 */
 	mixin BoundingBox;
-    mixin Color;
+	mixin Color;
 	mixin Cursor;
 	mixin Delete_;
 	mixin ExportSelection;

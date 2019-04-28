@@ -199,7 +199,7 @@ class ComboBox : Widget, IXScrollable!(ComboBox)
 	 * Mixin common commands.
 	 */
 	mixin BoundingBox;
-    mixin Color;
+	mixin Color;
 	mixin Cursor;
 	mixin Data;
 	mixin Delete_;

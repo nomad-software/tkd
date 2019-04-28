@@ -234,7 +234,7 @@ class SpinBox : Widget, IXScrollable!(SpinBox)
 	 * Mixin common commands.
 	 */
 	mixin BoundingBox;
-    mixin Color;
+	mixin Color;
 	mixin Command;
 	mixin Cursor;
 	mixin Data;
