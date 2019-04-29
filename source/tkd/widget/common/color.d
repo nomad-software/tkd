@@ -46,4 +46,22 @@ mixin template Color()
 
 		return cast(T) this;
 	}
+
+	/**
+	 * Set the insert cursor color of the widget.
+	 *
+	 * Params:
+	 *     color = The name of the color 'yellow' or it's hex value '#FFFF00' or '#FF0'.
+	 *
+	 * 	   For a comprehensive list of color names see the tkd.element.color Color enum.
+	 *
+	 * Returns:
+	 *     This widget to aid method chaining.
+	 */
+	public auto setInsertColor(this T)(string color)
+	{
+		this._tk.eval("%s configure -insertbackground %s", this.id, color);
+
+		return cast(T) this;
+	}
 }
