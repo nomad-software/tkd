@@ -21,6 +21,9 @@ mixin template Color()
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../../element/color.html, tkd.element.color) for standard defined colors.
 	 */
 	public auto setForegroundColor(this T)(string color)
 	{
@@ -39,6 +42,9 @@ mixin template Color()
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../../element/color.html, tkd.element.color) for standard defined colors.
 	 */
 	public auto setBackgroundColor(this T)(string color)
 	{
@@ -57,6 +63,9 @@ mixin template Color()
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
+	 *
+	 * See_Also:
+	 *     $(LINK2 ../../element/color.html, tkd.element.color) for standard defined colors.
 	 */
 	public auto setInsertColor(this T)(string color)
 	{
