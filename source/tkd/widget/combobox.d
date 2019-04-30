@@ -19,6 +19,7 @@ import tkd.widget.common.cursor;
 import tkd.widget.common.data;
 import tkd.widget.common.delete_;
 import tkd.widget.common.exportselection;
+import tkd.widget.common.font;
 import tkd.widget.common.height;
 import tkd.widget.common.index;
 import tkd.widget.common.insert;
@@ -204,6 +205,7 @@ class ComboBox : Widget, IXScrollable!(ComboBox)
 	mixin Data;
 	mixin Delete_;
 	mixin ExportSelection;
+	mixin Font;
 	mixin Height;
 	mixin Index;
 	mixin Insert;
