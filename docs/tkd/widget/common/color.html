@@ -240,16 +240,30 @@
 				content:"▾";
 			}
 		</style>
-		<title>tkd.widget.common.cursor</title>
+		<title>tkd.widget.common.color</title>
 	</head>
 	<body>
-		<h1>tkd.widget.common.cursor</h1>
-		<div class="sections"><p>Cursor module.
-</p><h3>License</h3><p>MIT. See LICENSE for full details.</p></div><div class="module-members"><div class="member"><h2><span class="ddoc_anchor" id="Cursor"></span>template <span class="symbol">Cursor</span>()</h2>
-<div class="declaration-description"><div class="sections"><p>These are common commands that apply to all widgets that have them injected.</p></div><div class="template-members"><div class="member"><h2><span class="ddoc_anchor" id="Cursor.setCursorPosition"></span>auto <span class="symbol">setCursorPosition</span>(this T)(int charIndex);
+		<h1>tkd.widget.common.color</h1>
+		<div class="sections"><p>Color module.
+</p><h3>License</h3><p>MIT. See LICENSE for full details.</p></div><div class="module-members"><div class="member"><h2><span class="ddoc_anchor" id="Color"></span>template <span class="symbol">Color</span>()</h2>
+<div class="declaration-description"><div class="sections"><p>These are common commands that apply to all widgets that have them injected.</p></div><div class="template-members"><div class="member"><h2><span class="ddoc_anchor" id="Color.setForegroundColor"></span>auto <span class="symbol">setForegroundColor</span>(this T)(string color);
 </h2>
-<div class="declaration-description"><div class="sections"><p>Set the text cursor just after the character index passed.
-</p><h3>Parameters</h3><table class="parameter-list"><tr><td>int charIndex</td><td>The index of the character after the cursor.</td></tr></table><h3>Return Value</h3><p>This widget to aid method chaining.</p></div></div>
+<div class="declaration-description"><div class="sections"><p>Set the foreground color of the widget.
+</p><h3>Parameters</h3><table class="parameter-list"><tr><td>string color</td><td>The name of the color, e.g. 'black' or a hex value, e.g. '#000000'.</td></tr></table><h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p><h3>See Also</h3><p><a href="../../element/color.html">tkd.element.color</a> for standard defined colors.</p></div></div>
+</div><div class="member"><h2><span class="ddoc_anchor" id="Color.setBackgroundColor"></span>auto <span class="symbol">setBackgroundColor</span>(this T)(string color);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the background color of the widget.
+</p><h3>Parameters</h3><table class="parameter-list"><tr><td>string color</td><td>The name of the color, e.g. 'black' or a hex value, e.g. '#000000'.</td></tr></table><h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p><h3>See Also</h3><p><a href="../../element/color.html">tkd.element.color</a> for standard defined colors.</p></div></div>
+</div><div class="member"><h2><span class="ddoc_anchor" id="Color.setInsertColor"></span>auto <span class="symbol">setInsertColor</span>(this T)(string color);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the insert cursor color of the widget.
+</p><h3>Parameters</h3><table class="parameter-list"><tr><td>string color</td><td>The name of the color, e.g. 'black' or a hex value, e.g. '#000000'.</td></tr></table><h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p><h3>See Also</h3><p><a href="../../element/color.html">tkd.element.color</a> for standard defined colors.</p></div></div>
 </div></div></div>
 </div></div>
 	</body>

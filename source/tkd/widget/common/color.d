@@ -15,9 +15,7 @@ mixin template Color()
 	 * Set the foreground color of the widget.
 	 *
 	 * Params:
-	 *     color = The name of the color 'black' or its hex value '#000000' or
-	 *     '#000'. For a comprehensive list of color names see the
-	 *     tkd.element.color Color enum.
+	 *     color = The name of the color, e.g. 'black' or a hex value, e.g. '#000000'.
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
@@ -36,9 +34,7 @@ mixin template Color()
 	 * Set the background color of the widget.
 	 *
 	 * Params:
-	 *     color = The name of the color 'white' or it's hex value '#FFFFFF' or
-	 *     '#FFF'. For a comprehensive list of color names see the
-	 *     tkd.element.color Color enum.
+	 *     color = The name of the color, e.g. 'black' or a hex value, e.g. '#000000'.
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
@@ -57,9 +53,7 @@ mixin template Color()
 	 * Set the insert cursor color of the widget.
 	 *
 	 * Params:
-	 *     color = The name of the color 'yellow' or it's hex value '#FFFF00'
-	 *     or '#FF0'. For a comprehensive list of color names see the
-	 *     tkd.element.color Color enum.
+	 *     color = The name of the color, e.g. 'black' or a hex value, e.g. '#000000'.
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
