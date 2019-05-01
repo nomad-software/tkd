@@ -16,6 +16,7 @@ import tkd.widget.common.color;
 import tkd.widget.common.cursor;
 import tkd.widget.common.delete_;
 import tkd.widget.common.exportselection;
+import tkd.widget.common.font;
 import tkd.widget.common.index;
 import tkd.widget.common.insert;
 import tkd.widget.common.justify;
@@ -158,6 +159,7 @@ class Entry : Widget, IXScrollable!(Entry)
 	mixin Cursor;
 	mixin Delete_;
 	mixin ExportSelection;
+	mixin Font;
 	mixin Index;
 	mixin Insert;
 	mixin Justify;

@@ -12,6 +12,7 @@ module tkd.widget.label;
 import tkd.element.uielement;
 import tkd.widget.common.anchor;
 import tkd.widget.common.color;
+import tkd.widget.common.font;
 import tkd.widget.common.justify;
 import tkd.widget.common.padding;
 import tkd.widget.common.relief;
@@ -88,6 +89,7 @@ class Label : TextWidget
 	 */
 	mixin Anchor;
 	mixin Color;
+	mixin Font;
 	mixin Justify;
 	mixin Padding;
 	mixin Relief;

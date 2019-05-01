@@ -14,6 +14,7 @@ import tkd.element.uielement;
 import tkd.image.image;
 import tkd.widget.common.border;
 import tkd.widget.common.color;
+import tkd.widget.common.font;
 import tkd.widget.common.height;
 import tkd.widget.common.relief;
 import tkd.widget.common.width;
@@ -496,6 +497,7 @@ class Text : Widget, IXScrollable!(Text), IYScrollable!(Text)
 	 */
 	mixin Border;
 	mixin Color;
+	mixin Font;
 	mixin Height;
 	mixin Relief;
 	mixin Width;
