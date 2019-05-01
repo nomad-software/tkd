@@ -11,8 +11,10 @@ module tkd.element.fontstyle;
  */
 enum FontStyle : string
 {
-	normal = "",
-	italic = "italic",
-	underline = "underline",
+	normal     = "normal",
+	bold       = "bold",
+	roman      = "roman",
+	italic     = "italic",
+	underline  = "underline",
 	overstrike = "overstrike",
 }
