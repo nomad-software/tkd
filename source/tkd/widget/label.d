@@ -32,6 +32,8 @@ import tkd.widget.textwidget;
  *     These are injected common commands that can also be used with this widget.
  *     $(P
  *         $(LINK2 ./common/anchor.html, Anchor) $(BR)
+ *         $(LINK2 ./common/color.html, Color) $(BR)
+ *         $(LINK2 ./common/font.html, Font) $(BR)
  *         $(LINK2 ./common/justify.html, Justify) $(BR)
  *         $(LINK2 ./common/padding.html, Padding) $(BR)
  *         $(LINK2 ./common/relief.html, Relief) $(BR)

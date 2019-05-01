@@ -40,6 +40,8 @@ import tkd.widget.widget;
  *     These are injected common commands that can also be used with this widget.
  *     $(P
  *         $(LINK2 ./common/border.html, Border) $(BR)
+ *         $(LINK2 ./common/color.html, Color) $(BR)
+ *         $(LINK2 ./common/font.html, Font) $(BR)
  *         $(LINK2 ./common/height.html, Height) $(BR)
  *         $(LINK2 ./common/relief.html, Relief) $(BR)
  *         $(LINK2 ./common/width.html, Width) $(BR)

@@ -32,6 +32,13 @@ import tkd.interpreter;
  * 	.setMaxSize(1024, 768)
  * 	.setProtocolCommand(WindowProtocol.deleteWindow, delegate(CommandArgs args){ ... });
  * ---
+ *
+ * Common_Commands:
+ *     These are injected common commands that can also be used with this widget.
+ *     $(P
+ *         $(LINK2 ../widget/common/color.html, Color) $(BR)
+ *     )
+ *
  * Additional_Events:
  *     Additional events that can also be bound to using the $(LINK2 ../element/uielement.html#UiElement.bind, bind) method.
  *     $(P

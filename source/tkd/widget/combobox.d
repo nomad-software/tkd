@@ -56,10 +56,12 @@ import tkd.widget.widget;
  *     These are injected common commands that can also be used with this widget.
  *     $(P
  *         $(LINK2 ./common/boundingbox.html, BoundingBox) $(BR)
+ *         $(LINK2 ./common/color.html, Color) $(BR)
  *         $(LINK2 ./common/cursor.html, Cursor) $(BR)
  *         $(LINK2 ./common/data.html, Data) $(BR)
  *         $(LINK2 ./common/delete_.html, Delete) $(BR)
  *         $(LINK2 ./common/exportselection.html, Exportselection) $(BR)
+ *         $(LINK2 ./common/font.html, Font) $(BR)
  *         $(LINK2 ./common/height.html, Height) $(BR)
  *         $(LINK2 ./common/index.html, Index) $(BR)
  *         $(LINK2 ./common/insert.html, Insert) $(BR)
