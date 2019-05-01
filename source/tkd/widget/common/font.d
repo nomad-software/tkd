@@ -8,6 +8,11 @@ module tkd.widget.common.font;
 
 /**
 * These are common commands that apply to all widgets that have them injected.
+*
+ * Example:
+ * ---
+ * widget.setFont("PragmataPro", 10, FontStyle.bold, FontStyle.italic);
+ * ---
 */
 mixin template Font()
 {
