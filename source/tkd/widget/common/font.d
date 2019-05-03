@@ -9,24 +9,22 @@ module tkd.widget.common.font;
 /**
 * These are common commands that apply to all widgets that have them injected.
 *
- * Example:
+ * Examples:
  * ---
- * widget.setFont("PragmataPro", 10, FontStyle.bold, FontStyle.italic);
+ * widget.setFont("Gothic");
+ * ---
+ * widget.setFont("Arial 10");
+ * ---
+ * widget.setFont("{Comic Sans MS} 12 bold italic underline overstrike");
  * ---
 */
 mixin template Font()
-{
-	import std.array : join;
-	import std.conv : to;
-	import tkd.element.fontstyle;
-
+{  
 	/**
 	 * Set the font and style for the widget.
 	 *
 	 * Params:
-	 *     font   = The name of the font like 'Arial' or 'arial'.
-	 *     size   = The size of the font like '12'.
-	 *     styles = The different font styles.
+	 *     font   = The string containing all the specified font options.
 	 *
 	 * Returns:
 	 *     This widget to aid method chaining.
@@ -34,9 +32,9 @@ mixin template Font()
 	 * See_Also:
 	 *     $(LINK2 ../../element/fontstyle.html, tkd.element.fontstyle) for font styles.
 	 */
-	public auto setFont(this T)(string font, int size, FontStyle[] styles...)
+	public auto setFont(this T)(string font)
 	{
-		this._tk.eval("%s configure -font {{%s} %s %s}", this.id, font, size, styles.to!(string[]).join(" "));
+		this._tk.eval("%s configure -font {%s}", this.id, font);
 
 		return cast(T) this;
 	}

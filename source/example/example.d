@@ -26,6 +26,11 @@ class Application : TkdApplication
 	private Entry _openFileEntry;
 	private Entry _saveFileEntry;
 	private Entry _messageEntry;
+	private Text _customText;
+	private Entry _customEntry;
+	private SpinBox _customSpinBox;
+	private ComboBox _customComboBox;
+	private Label _customLabel;
 
 	/**
 	 * Open the font dialog.
@@ -38,6 +43,19 @@ class Application : TkdApplication
 		auto dialog = new FontDialog("Choose a font")
 			.setCommand(delegate(CommandArgs args){
 				this._fontEntry.setValue(args.dialog.font);
+			})
+			.show();
+	}
+
+	private void openFontDialogCustomization(CommandArgs args)
+	{
+		auto dialog = new FontDialog("Choose a font")
+			.setCommand(delegate(CommandArgs args){
+				this._customText.setFont(args.dialog.font);
+				this._customEntry.setFont(args.dialog.font);
+				this._customSpinBox.setFont(args.dialog.font);
+				this._customComboBox.setFont(args.dialog.font);
+				this._customLabel.setFont(args.dialog.font);
 			})
 			.show();
 	}
@@ -55,6 +73,32 @@ class Application : TkdApplication
 			.show();
 		this._colorEntry.setValue(dialog.getResult());
 	}
+
+	private void openColorDialogCustomizationForeground(CommandArgs args)
+	{
+		auto dialog = new ColorDialog("Choose a color")
+			.show();
+		this._customText.setForegroundColor(dialog.getResult());
+		this._customEntry.setForegroundColor(dialog.getResult());
+		this._customSpinBox.setForegroundColor(dialog.getResult());
+		this._customComboBox.setForegroundColor(dialog.getResult());
+		this._customLabel.setForegroundColor(dialog.getResult());
+	}
+
+	private void openColorDialogCustomizationBackground(CommandArgs args)
+	{
+		auto dialog = new ColorDialog("Choose a color")
+			.show();
+		this._customText.setBackgroundColor(dialog.getResult());
+		this._customLabel.setBackgroundColor(dialog.getResult());
+	}
+    
+    private void openColorDialogCustomizationInsertColor(CommandArgs args)
+    {
+		auto dialog = new ColorDialog("Choose a color")
+			.show();
+		this._customText.setInsertColor(dialog.getResult());
+    }
 
 	/**
 	 * Open the directory dialog.
@@ -447,6 +491,74 @@ class Application : TkdApplication
 	}
 
 	/**
+	 * Create the customization pane for the note book.
+	 *
+	 * Returns:
+	 *     The customization pane.
+	 */
+	private Frame createCustomizationPane()
+	{
+		auto customizationPane = new Frame();
+
+			auto container = new Frame(customizationPane)
+				.configureGeometryColumn(1, 1)
+				.pack(10, 0, GeometrySide.top, GeometryFill.both, AnchorPosition.center, true);
+
+				auto foregroundColorButton = new Button(container, new EmbeddedPng!("color_swatch.png"), "Foreground Color", ImagePosition.left)
+					.setCommand(&this.openColorDialogCustomizationForeground)
+					.grid(0, 0, 5, 0, 1, 1, "ew");
+
+				auto backgroundColorButton = new Button(container, new EmbeddedPng!("color_swatch.png"), "Background Color", ImagePosition.left)
+					.setCommand(&this.openColorDialogCustomizationBackground)
+					.grid(1, 0, 5, 0, 1, 1, "ew");
+                    
+                auto insertColorButton = new Button(container, new EmbeddedPng!("color_swatch.png"), "Insert Cursor Color", ImagePosition.left)
+					.setCommand(&this.openColorDialogCustomizationInsertColor)              
+					.grid(2, 0, 5, 0, 1, 1, "ew");
+
+				auto fontButton = new Button(container, new EmbeddedPng!("style.png"), "Change Font", ImagePosition.left)
+					.setCommand(&this.openFontDialogCustomization)
+					.grid(3, 0, 5, 0, 1, 1, "ew");
+
+				this._customText = new Text(container)
+					.setWidth(32)
+					.setHeight(22)
+                    .setBackgroundColor("#000")
+                    .setForegroundColor("#00FF00")
+                    .setInsertColor(Color.firebrick)
+                    .setFont("Helvetica")
+					.appendText("import std.stdio;\n\nvoid main(string[] args)\n{\n\twriteln(\"Hello World!\");\n}")
+					.grid(0, 1, 5, 0, 4, 3, "ew");
+
+				this._customEntry = new Entry(container)
+					.setValue("Entry Widget")
+					.setWidth(14)
+					.setForegroundColor(Color.darkGoldenrod)
+					.grid(0, 4, 5, 0, 1, 1, "ew");
+
+				this._customSpinBox = new SpinBox(container)
+					.setValue("SpinBox Widget")
+					.setData(["SpinBox1", "SpinBox2", "SpinBox3"])
+					.setWidth(14)
+					.setForegroundColor(Color.darkOrange2)
+					.grid(1, 4, 5, 0, 1, 1, "ew");
+
+				this._customComboBox = new ComboBox(container)
+					.setValue("ComboBox Widget")
+					.setData(["ComboBox1", "ComboBox2", "ComboBox3"])
+					.setWidth(14)
+					.setForegroundColor(Color.red)
+					.grid(2, 4, 5, 0, 1, 1, "ew");
+
+				this._customLabel = new Label(container, "Label Widget")
+                    .setBackgroundColor(Color.yellow)
+                    .setForegroundColor(Color.violetRed4)
+					.grid(3, 4, 5, 0, 1, 1, "ew");
+
+		return customizationPane;
+	}
+
+	/**
 	 * Set up the key bindings for the application.
 	 */
 	private void setUpKeyBindings()
@@ -481,12 +593,14 @@ class Application : TkdApplication
 		auto panedPane  = this.createPanedPane();
 		auto canvasPane = this.createCanvasPane();
 		auto dialogPane = this.createDialogPane();
+		auto customizationPane = this.createCustomizationPane();
 
 		noteBook
 			.addTab("Widgets", widgetPane).setTabImage(0, new EmbeddedPng!("layout_content.png"), ImagePosition.left)
 			.addTab("Panes", panedPane).setTabImage(1, new EmbeddedPng!("application_tile_horizontal.png"), ImagePosition.left)
 			.addTab("Canvas", canvasPane).setTabImage(2, new EmbeddedPng!("shape_ungroup.png"), ImagePosition.left)
 			.addTab("Dialogs", dialogPane).setTabImage(3, new EmbeddedPng!("application_double.png"), ImagePosition.left)
+			.addTab("Customization", customizationPane).setTabImage(4, new EmbeddedPng!("color_swatch.png"), ImagePosition.left)
 			.pack(10, 0, GeometrySide.top, GeometryFill.both, AnchorPosition.center, true);
 
 		auto exitButton = new Button("Exit")
