@@ -92,13 +92,13 @@ class Application : TkdApplication
 		this._customText.setBackgroundColor(dialog.getResult());
 		this._customLabel.setBackgroundColor(dialog.getResult());
 	}
-    
-    private void openColorDialogCustomizationInsertColor(CommandArgs args)
-    {
+
+	private void openColorDialogCustomizationInsertColor(CommandArgs args)
+	{
 		auto dialog = new ColorDialog("Choose a color")
 			.show();
 		this._customText.setInsertColor(dialog.getResult());
-    }
+	}
 
 	/**
 	 * Open the directory dialog.
@@ -511,8 +511,8 @@ class Application : TkdApplication
 				auto backgroundColorButton = new Button(container, new EmbeddedPng!("color_swatch.png"), "Background Color", ImagePosition.left)
 					.setCommand(&this.openColorDialogCustomizationBackground)
 					.grid(1, 0, 5, 0, 1, 1, "ew");
-                    
-                auto insertColorButton = new Button(container, new EmbeddedPng!("color_swatch.png"), "Insert Cursor Color", ImagePosition.left)
+
+				auto insertColorButton = new Button(container, new EmbeddedPng!("color_swatch.png"), "Insert Cursor Color", ImagePosition.left)
 					.setCommand(&this.openColorDialogCustomizationInsertColor)              
 					.grid(2, 0, 5, 0, 1, 1, "ew");
 
@@ -523,10 +523,10 @@ class Application : TkdApplication
 				this._customText = new Text(container)
 					.setWidth(32)
 					.setHeight(22)
-                    .setBackgroundColor("#000")
-                    .setForegroundColor("#00FF00")
-                    .setInsertColor(Color.firebrick)
-                    .setFont("Helvetica")
+					.setBackgroundColor("#000")
+					.setForegroundColor("#00FF00")
+					.setInsertColor(Color.firebrick)
+					.setFont("Helvetica")
 					.appendText("import std.stdio;\n\nvoid main(string[] args)\n{\n\twriteln(\"Hello World!\");\n}")
 					.grid(0, 1, 5, 0, 4, 3, "ew");
 
@@ -551,8 +551,8 @@ class Application : TkdApplication
 					.grid(2, 4, 5, 0, 1, 1, "ew");
 
 				this._customLabel = new Label(container, "Label Widget")
-                    .setBackgroundColor(Color.yellow)
-                    .setForegroundColor(Color.violetRed4)
+					.setBackgroundColor(Color.yellow)
+					.setForegroundColor(Color.violetRed4)
 					.grid(3, 4, 5, 0, 1, 1, "ew");
 
 		return customizationPane;
