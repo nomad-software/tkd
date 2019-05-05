@@ -246,15 +246,28 @@
 		<h1>tkd.widget.common.font</h1>
 		<div class="sections"><p>Font module.
 </p><h3>License</h3><p>MIT. See LICENSE for full details.</p></div><div class="module-members"><div class="member"><h2><span class="ddoc_anchor" id="Font"></span>template <span class="symbol">Font</span>()</h2>
-<div class="declaration-description"><div class="sections"><p>These are common commands that apply to all widgets that have them injected.
-</p><p><h3>Example</h3><pre>widget.setFont(<span class="string">"PragmataPro"</span>, 10, FontStyle.bold, FontStyle.italic);
-</pre>
-</p></div><div class="template-members"><div class="member"><h2><span class="ddoc_anchor" id="Font.setFont"></span>auto <span class="symbol">setFont</span>(this T)(string font, int size, FontStyle[] styles...);
+<div class="declaration-description"><div class="sections"><p>These are common commands that apply to all widgets that have them injected.</p></div><div class="template-members"><div class="member"><h2><span class="ddoc_anchor" id="Font.setFont"></span>auto <span class="symbol">setFont</span>(this T)(string font, int size, FontStyle[] styles...);
 </h2>
 <div class="declaration-description"><div class="sections"><p>Set the font and style for the widget.
 </p><h3>Parameters</h3><table class="parameter-list"><tr><td>string font</td><td>The name of the font like 'Arial' or 'arial'.</td></tr><tr><td>int size</td><td>The size of the font like '12'.</td></tr><tr><td>FontStyle[] styles</td><td>The different font styles.</td></tr></table><h3>Return Value</h3><p>This widget to aid method chaining.
 
+</p><p><h3>Example</h3><pre>widget.<span class="symbol">setFont</span>(<span class="string">"PragmataPro"</span>, 10, FontStyle.bold, FontStyle.italic);
+</pre>
+
 </p><h3>See Also</h3><p><a href="../../element/fontstyle.html">tkd.element.fontstyle</a> for font styles.</p></div></div>
+</div><div class="member"><h2><span class="ddoc_anchor" id="Font.setFont.2"></span>auto <span class="symbol">setFont</span>(this T)(string fontInfo);
+</h2>
+<div class="declaration-description"><div class="sections"><p>Set the font and style for the widget via a simple string.
+ This method is exists to set the font using the output of the font dialog.
+</p><h3>Parameters</h3><table class="parameter-list"><tr><td>string fontInfo</td><td>The output of the file dialog.</td></tr></table><h3>Return Value</h3><p>This widget to aid method chaining.
+
+</p><p><h3>Example</h3><pre><span class="keyword">auto</span> dialog = <span class="keyword">new</span> FontDialog(<span class="string">"Choose a font"</span>)
+    .setCommand(<span class="keyword">delegate</span>(CommandArgs args){
+        widget.<span class="symbol">setFont</span>(args.dialog.font);
+    })
+    .show();
+</pre>
+</p><h3>See Also</h3><p><a href="../../window/dialog/fontdialog.html">tkd.window.dialog.fontdialog</a> for how to recieve output.</p></div></div>
 </div></div></div>
 </div></div>
 	</body>

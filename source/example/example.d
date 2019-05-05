@@ -42,6 +42,7 @@ class Application : TkdApplication
 	{
 		auto dialog = new FontDialog("Choose a font")
 			.setCommand(delegate(CommandArgs args){
+				this._fontEntry.setFont(args.dialog.font);
 				this._fontEntry.setValue(args.dialog.font);
 			})
 			.show();
@@ -71,6 +72,7 @@ class Application : TkdApplication
 		auto dialog = new ColorDialog("Choose a color")
 			.setInitialColor(Color.beige)
 			.show();
+		this._colorEntry.setForegroundColor(dialog.getResult());
 		this._colorEntry.setValue(dialog.getResult());
 	}
 
