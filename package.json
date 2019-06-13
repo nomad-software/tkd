@@ -6,14 +6,14 @@
 	"copyright": "Copyright (c) 2014 Gary Willoughby",
 	"license": "MIT",
 	"dependencies": {
-		"tcltk": ">=8.6.5",
+		"tcltk": ">=8.6.5"
 	},
 	"configurations": [
 		{
 			"name": "library",
 			"targetType": "library",
 			"targetPath": "build",
-			"excludedSourceFiles": ["source/example/*"],
+			"excludedSourceFiles": ["source/example/*"]
 		},
 		{
 			"name": "example",
@@ -22,7 +22,7 @@
 			"lflags-windows": ["/subsystem:windows"],
 			"stringImportPaths": ["source/example/media"],
 			"targetName": "example",
-			"targetPath": "build/example",
-		},
-	],
+			"targetPath": "build/example"
+		}
+	]
 }
