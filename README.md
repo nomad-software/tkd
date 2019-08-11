@@ -196,16 +196,21 @@ following in the application's `dub.json` build file. Dub version **0.9.22** or
 greater is required. The following assumes `build` is the output directory.
 ```
 ...
-"postGenerateCommands-windows-x86": [
-	"copy $TCLTK_PACKAGE_DIR\\dist\\x86\\tcl86t.dll build\\tcl86t.dll /y",
-	"copy $TCLTK_PACKAGE_DIR\\dist\\x86\\tk86t.dll build\\tk86t.dll /y",
-	"xcopy $TCLTK_PACKAGE_DIR\\dist\\library build\\library /i /e /y",
+"copyFiles-windows": [
+	"$TCLTK_PACKAGE_DIR/dist/$ARCH/tcl86t.dll",
+	"$TCLTK_PACKAGE_DIR/dist/$ARCH/tk86t.dll",
+	"$TCLTK_PACKAGE_DIR/dist/library",
 ],
-"postGenerateCommands-windows-x86_64": [
-	"copy $TCLTK_PACKAGE_DIR\\dist\\x86_64\\tcl86t.dll build\\tcl86t.dll /y",
-	"copy $TCLTK_PACKAGE_DIR\\dist\\x86_64\\tk86t.dll build\\tk86t.dll /y",
-	"xcopy $TCLTK_PACKAGE_DIR\\dist\\library build\\library /i /e /y",
-],
+...
+```
+Alternatively, if using `dub.sdl`:
+```
+...
+copyFiles \
+	"$TCLTK_PACKAGE_DIR/dist/$ARCH/tcl86t.dll" \
+	"$TCLTK_PACKAGE_DIR/dist/$ARCH/tk86t.dll" \
+	"$TCLTK_PACKAGE_DIR/dist/library" \
+	platform="windows"
 ...
 ```
 
