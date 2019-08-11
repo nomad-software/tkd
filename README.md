@@ -193,7 +193,7 @@ project
 ```
 You can automate this process when building an application by placing the
 following in the application's `dub.json` build file. Dub version **0.9.22** or
-greater is required. The following assumes `build` is the output directory.
+greater is required.
 ```
 ...
 "copyFiles-windows": [
