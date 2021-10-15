@@ -53,7 +53,7 @@ mixin template TextSpecific()
 			this._angle = this._tk.getResult!(double);
 		}
 
-		return this._angle.isNull ? 0.0 : this._angle;
+		return this._angle.isNull ? 0.0 : this._angle.get;
 	}
 
 	/**
@@ -231,7 +231,7 @@ mixin template TextSpecific()
 			this._maxLineLength = this._tk.getResult!(int);
 		}
 
-		return this._maxLineLength.isNull ? 0 : this._maxLineLength;
+		return this._maxLineLength.isNull ? 0 : this._maxLineLength.get;
 	}
 
 	/**

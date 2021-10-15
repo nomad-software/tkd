@@ -131,7 +131,7 @@ mixin template ArcSpecific()
 			this._startAngle = this._tk.getResult!(double);
 		}
 
-		return this._startAngle.isNull ? 0.0 : this._startAngle;
+		return this._startAngle.isNull ? 0.0 : this._startAngle.get;
 	}
 
 	/**
