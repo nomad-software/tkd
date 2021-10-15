@@ -76,7 +76,7 @@ mixin template WidgetSpecific()
 			this._width = this._tk.getResult!(int);
 		}
 
-		return this._width.isNull ? 0 : this._width;
+		return this._width.isNull ? 0 : this._width.get;
 	}
 
 	/**
@@ -124,7 +124,7 @@ mixin template WidgetSpecific()
 			this._height = this._tk.getResult!(int);
 		}
 
-		return this._height.isNull ? 0 : this._height;
+		return this._height.isNull ? 0 : this._height.get;
 	}
 
 	/**

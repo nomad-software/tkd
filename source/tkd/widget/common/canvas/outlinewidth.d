@@ -42,7 +42,7 @@ mixin template OutlineWidth()
 			this._outlineWidth = this._tk.getResult!(int);
 		}
 
-		return this._outlineWidth.isNull ? 0 : this._outlineWidth;
+		return this._outlineWidth.isNull ? 0 : this._outlineWidth.get;
 	}
 
 	/**
@@ -89,7 +89,7 @@ mixin template OutlineWidth()
 			this._activeOutlineWidth = this._tk.getResult!(int);
 		}
 
-		return this._activeOutlineWidth.isNull ? 0 : this._activeOutlineWidth;
+		return this._activeOutlineWidth.isNull ? 0 : this._activeOutlineWidth.get;
 	}
 
 	/**
@@ -136,7 +136,7 @@ mixin template OutlineWidth()
 			this._disabledOutlineWidth = this._tk.getResult!(int);
 		}
 
-		return this._disabledOutlineWidth.isNull ? 0 : this._disabledOutlineWidth;
+		return this._disabledOutlineWidth.isNull ? 0 : this._disabledOutlineWidth.get;
 	}
 
 	/**
